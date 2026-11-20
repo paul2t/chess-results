@@ -15,8 +15,7 @@ import { formatScore, isPlayed, normName, outcome, type Outcome } from './parse'
 import type { BoardGame, Snapshot, TeamMatch, TeamPage, TeamRow, Tournament } from './types';
 
 type View = 'team' | 'standings' | 'rounds';
-// `default` no longer opens a tournament: it only tells which team to follow first in that tournament.
-interface Config { proxies: string[]; default: { tnr: number; team: string | number } }
+interface Config { proxies: string[] }
 
 // ───────────────────────────── state ─────────────────────────────
 
@@ -40,8 +39,9 @@ const S = {
   error: '',
   offline: false,
   auto: store.get('cr:auto') !== '0',
+  onlyFav: store.get('cr:onlyfav') === '1',
   fetcher: null as Fetcher | null,
-  cfg: { proxies: [], default: { tnr: 1542962, team: 'Dassault Systemes 1' } } as Config,
+  cfg: { proxies: [] } as Config,
 };
 
 const $app = document.getElementById('app')!;
@@ -84,13 +84,27 @@ function viewedPage(): TeamPage | null {
 
 // ───────────────────────────── favorites & my team ─────────────────────────────
 
+/** Personal state (my team, followed teams…) is kept on this device, except in the demo, which leaves no trace. */
+const persist = (k: string, v: string): void => { if (!DEMO) store.set(k, v); };
+
 const sameName = (a: string, b: string): boolean => normName(a) === normName(b);
 const isFavTeam = (name: string): boolean => S.favTeams.some((n) => sameName(n, name));
 const shortName = (name: string): string => name.replace(/\s*\(.*$/, '') || name;
 
+/** My team or a followed team. */
+const isFollowed = (row: TeamRow | undefined): boolean => !!row && (row.snr === S.mySnr || isFavTeam(row.name));
+
+/** Toggle shown in Standings and Rounds: keep only my team and the followed teams (a device setting). */
+function followFilter(): HTMLElement {
+  return h('button', {
+    class: `chipbtn ${S.onlyFav ? 'on' : ''}`, 'aria-pressed': S.onlyFav,
+    onclick: () => { S.onlyFav = !S.onlyFav; store.set('cr:onlyfav', S.onlyFav ? '1' : '0'); render(); },
+  }, `★ ${t('followedOnly')}`);
+}
+
 function toggleFavTeam(row: TeamRow): void {
   S.favTeams = toggleName(S.favTeams, row.name, sameName);
-  store.set(favTeamsKey(S.tnr), JSON.stringify(S.favTeams));
+  persist(favTeamsKey(S.tnr), JSON.stringify(S.favTeams));
   render();
 }
 
@@ -101,11 +115,11 @@ function chooseMine(snr: number): void {
   // the previous "my team" stays one tap away as a followed team; the new one is no longer "just followed"
   if (prev && !isFavTeam(prev.name)) S.favTeams = [...S.favTeams, prev.name];
   if (row) S.favTeams = S.favTeams.filter((n) => !sameName(n, row.name));
-  store.set(favTeamsKey(S.tnr), JSON.stringify(S.favTeams));
+  persist(favTeamsKey(S.tnr), JSON.stringify(S.favTeams));
   S.teamRef = snr;
   S.mySnr = snr;
   S.viewSnr = snr;
-  if (row) store.set(`cr:team:${S.tnr}`, row.name);
+  if (row) persist(`cr:team:${S.tnr}`, row.name);
   syncUrl();
   void load();
 }
@@ -119,7 +133,7 @@ function tournamentInfo(snap: Snapshot | null): Tournament {
   };
 }
 
-const saveTournaments = (): void => store.set(FAVS_KEY, JSON.stringify(S.favTours));
+const saveTournaments = (): void => persist(FAVS_KEY, JSON.stringify(S.favTours));
 
 function toggleFavTournament(): void {
   S.favTours = toggleFav(S.favTours, tournamentInfo(S.snap));
@@ -158,7 +172,7 @@ async function load(): Promise<void> {
       S.mySnr = snap.teamSnr;
       // remembered by name: team numbers can move before the event starts
       const mine = snap.home.teams.find((x) => x.snr === snap.teamSnr);
-      if (mine) store.set(`cr:team:${S.tnr}`, mine.name);
+      if (mine) persist(`cr:team:${S.tnr}`, mine.name);
     }
     refreshFavTournament(snap);
     if (!DEMO) store.set(RECENT_KEY, JSON.stringify(pushRecent(parseFavs(store.get(RECENT_KEY)), tournamentInfo(snap))));
@@ -168,7 +182,7 @@ async function load(): Promise<void> {
       if (page) S.other.set(S.viewSnr, page);
     }
     if (S.round === null) S.round = defaultRound(snap);
-    store.set(cacheKey(S.tnr), JSON.stringify(snap));
+    persist(cacheKey(S.tnr), JSON.stringify(snap));
   } catch (e) {
     S.error = e instanceof Error ? e.message : String(e);
     S.offline = S.snap !== null;
@@ -215,7 +229,7 @@ async function openTeam(snr: number): Promise<void> {
 function buildUrl(): string {
   const q = new URLSearchParams(location.search);
   if (!DEMO) q.set('t', String(S.tnr));
-  if (S.mySnr !== null && !DEMO) q.set('team', String(S.mySnr));
+  q.delete('team'); // "my team" is personal (kept on this device): a shared link must not carry it
   q.set('view', S.view);
   if (S.view === 'team' && S.viewSnr !== null && S.viewSnr !== S.mySnr) q.set('show', String(S.viewSnr)); else q.delete('show');
   if (S.view === 'rounds' && S.round !== null && S.snap && S.round !== defaultRound(S.snap)) q.set('rd', String(S.round)); else q.delete('rd');
@@ -495,7 +509,7 @@ function boardRow(g: BoardGame, page: TeamPage): HTMLElement {
 
 // ── standings ──
 
-function teamList(onPick: (snr: number) => void, withStar = false): HTMLElement {
+function teamList(onPick: (snr: number) => void, withStar = false, filterable = false): HTMLElement {
   const s = S.snap;
   if (!s) return h('p', { class: 'empty' }, t('loading'));
   const started = s.home.kind === 'ranking';
@@ -509,7 +523,11 @@ function teamList(onPick: (snr: number) => void, withStar = false): HTMLElement 
   });
   function buildRows(): HTMLElement {
     const qq = normName(S.filter);
-    return h('div', { class: 'tlist', id: 'tlist' }, ...s!.home.teams.filter((x) => !qq || normName(x.name).includes(qq)).map((x) => {
+    const shown = s!.home.teams.filter((x) => (!qq || normName(x.name).includes(qq)) && (!filterable || !S.onlyFav || isFollowed(x)));
+    if (!shown.length && filterable && S.onlyFav && !qq) {
+      return h('div', { class: 'tlist', id: 'tlist' }, h('p', { class: 'empty' }, t('noFollowed')));
+    }
+    return h('div', { class: 'tlist', id: 'tlist' }, ...shown.map((x) => {
       const fav = isFavTeam(x.name);
       return h('div', { class: `trow ${x.snr === S.mySnr ? 'mine' : ''} ${fav ? 'fav' : ''}`, 'data-snr': x.snr },
         h('button', { class: 'tpick', onclick: () => onPick(x.snr) },
@@ -541,8 +559,9 @@ function standingsView(): HTMLElement {
     : null;
   return h('div', { class: 'stack' },
     h('div', { class: 'row-between' }, h('h2', null, title), jump),
+    h('div', { class: 'hero-actions' }, followFilter()),
     started ? h('p', { class: 'legend' }, `${label(labels[1], 'TB1')} · ${label(labels[3], 'TB3')}`) : null,
-    teamList((snr) => void openTeam(snr), true));
+    teamList((snr) => void openTeam(snr), true, true));
 }
 
 // ── rounds ──
@@ -563,8 +582,11 @@ function roundsView(): HTMLElement {
   }));
   const r = s.rounds.find((x) => x.round === sel);
   const sched = s.schedule.find((x) => x.round === sel);
-  const body = r
-    ? h('div', { class: 'pairs' }, ...r.matches.map((m) => {
+  const shownMatches = r ? r.matches.filter((m) => !S.onlyFav || isFollowed(bySnr(m.home)) || isFollowed(bySnr(m.away))) : [];
+  const body = r && S.onlyFav && !shownMatches.length
+    ? h('p', { class: 'empty' }, S.favTeams.length || S.mySnr !== null ? t('noFollowedGame') : t('noFollowed'))
+    : r
+    ? h('div', { class: 'pairs' }, ...shownMatches.map((m) => {
         const home = bySnr(m.home), away = bySnr(m.away);
         const mine = S.mySnr !== null && (home?.snr === S.mySnr || away?.snr === S.mySnr);
         const o = outcome(m.homeScore, m.awayScore);
@@ -581,6 +603,7 @@ function roundsView(): HTMLElement {
     : h('p', { class: 'empty' }, `${t('notPaired')}${sched ? ` · ${dayTime(sched.date, sched.time)}` : ''}`);
   return h('div', { class: 'stack' },
     h('div', { class: 'row-between' }, h('h2', null, `${t('round')} ${sel}`), r ? h('span', { class: 'sub' }, dayTime(r.date, r.time)) : null),
+    h('div', { class: 'hero-actions' }, followFilter()),
     chips, body);
 }
 
@@ -595,7 +618,7 @@ function openSettings(): void {
     const m = /tnr(\d+)/i.exec(tnrInput.value) ?? /^(\d+)$/.exec(tnrInput.value.trim());
     const q = new URLSearchParams(location.search);
     if (m) q.set('t', m[1]!);
-    if (m && asInt(m[1]!) !== S.tnr) q.delete('team');
+    if (m && asInt(m[1]!) !== S.tnr) { q.delete('show'); q.delete('rd'); }
     const px = proxyInput.value.trim();
     if (px) store.set('cr:proxy', px); else store.del('cr:proxy');
     location.search = q.toString();
@@ -632,14 +655,18 @@ async function boot(): Promise<void> {
     return;
   }
 
+  if (params.has('team')) { // links made before "my team" left the address
+    const q = new URLSearchParams(location.search);
+    q.delete('team');
+    try { history.replaceState(null, '', `${location.pathname}${q.size ? '?' + q.toString() : ''}${location.hash}`); } catch { /* ignore */ }
+  }
+
   S.tnr = DEMO ? 1285835 : asInt(params.get('t'));
   S.favTours = parseFavs(store.get(FAVS_KEY));
   S.favTeams = parseNames(store.get(favTeamsKey(S.tnr)));
-  const saved = store.get(`cr:team:${S.tnr}`);
-  S.teamRef = params.get('team')
-    ?? (DEMO ? '45' : null)
-    ?? saved
-    ?? (S.tnr === S.cfg.default.tnr ? S.cfg.default.team : null);
+  // "My team" is never in the address (so a link can be shared): it comes from this device only, and
+  // nobody has one until they choose it. The demo uses a fixed team and leaves no trace.
+  S.teamRef = DEMO ? '45' : store.get(`cr:team:${S.tnr}`);
   const v = params.get('view');
   if (v === 'standings' || v === 'rounds' || v === 'team') S.view = v;
 

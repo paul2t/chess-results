@@ -3,8 +3,8 @@
 A fast, phone-first viewer for team tournaments on [chess-results.com](https://chess-results.com).
 Live site: **https://paul2t.github.io/chess-results/**
 
-Built for the European Corporate Chess Championship 2026 (team *Dassault Systemes 1*), but it works for
-any team tournament on chess-results.com.
+Built for the European Corporate Chess Championship 2026, but it works for any team tournament on
+chess-results.com. Nothing is preselected: everybody picks their own tournaments and team.
 
 ## Dashboard, favorites, my team
 
@@ -15,12 +15,15 @@ The home page is a dashboard, not a fixed tournament:
 * **Search** – type part of a name (or paste a chess-results link / tournament number) and press Search. It uses the
   [chess-results search](https://s2.chess-results.com/TurnierSuche.aspx?lan=1&SNode=S0) and lists team tournaments
   only (Swiss and round-robin team events), most recent first.
-* **My team** – open a tournament, open any team (Standings or Rounds) and tap *Set as my team*. It is remembered per
-  tournament and opened first next time. The team you leave stays as a followed team.
+* **My team** – open a tournament, open any team (Standings or Rounds) and tap *Set as my team* (or pick it when the
+  Team tab asks). It is remembered per tournament and opened first next time. The team you leave stays as a followed
+  team. It lives on your device only and is **never part of the link**, so a link can be shared safely; whoever opens it
+  chooses their own team.
 * **Followed teams** – tap ☆ on a team in Standings (or *Follow this team* on its page). Followed teams appear as
-  chips at the top of the Team tab, one tap from your own, and their games are outlined in Rounds.
+  chips at the top of the Team tab, one tap from your own, and their games are outlined in Rounds. The
+  *★ Followed only* switch in Standings and Rounds keeps just your team and the followed ones.
 * **Back / Forward** – every tab or team change adds a history entry, and the address holds the whole position
-  (`t`, `team`, `view`, `show` = team being viewed, `rd` = round), so Back, reload and sharing a link land where you were.
+  (`t`, `view`, `show` = team being viewed, `rd` = round), so Back, reload and sharing a link land where you were.
   Coming back to the dashboard restores your last search, and tournaments you opened lately are listed under
   *Recently opened* (this device, up to 5 not already starred).
 
@@ -29,7 +32,8 @@ The home page is a dashboard, not a fixed tournament:
 | URL | What it shows |
 | --- | --- |
 | `/chess-results/` | The dashboard: favorites and tournament search |
-| `?t=1542962&team=50` | A tournament (`tnr` from the chess-results URL) and team (number **or** name) |
+| `?t=1542962` | A tournament (`tnr` from the chess-results URL) |
+| `?t=1542962&view=team&show=50` | The page of team number 50 in that tournament (`show`); old `team=` links are ignored |
 | `?view=standings` / `rounds` / `team` | Open on a given tab |
 | `?demo=1` | Full 2025 edition (real data, no network) to see what a finished event looks like |
 

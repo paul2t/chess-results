@@ -1,7 +1,3 @@
 {
-  "proxies": ["https://chess-results-proxy.paul2t.workers.dev/?url={url}"],
-  "default": {
-    "tnr": 1542962,
-    "team": "Dassault Systemes 1"
-  }
+  "proxies": ["https://chess-results-proxy.paul2t.workers.dev/?url={url}"]
 }

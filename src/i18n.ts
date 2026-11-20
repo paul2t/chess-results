@@ -23,6 +23,8 @@ const en = {
   proxyOutdated: 'The proxy does not accept searches yet. Redeploy it from the worker/ folder (see README).',
   setMine: 'Set as my team', followed: 'Followed teams', follow: 'Follow this team', unfollow: 'Stop following',
   backHome: 'All tournaments', recent: 'Recently opened', clear: 'Clear',
+  followedOnly: 'Followed only', noFollowed: 'No followed team yet. Tap ☆ next to a team, or open a team and choose Follow.',
+  noFollowedGame: 'None of your followed teams plays in this round.',
 };
 
 const fr: typeof en = {
@@ -50,6 +52,8 @@ const fr: typeof en = {
   proxyOutdated: "Le proxy n'accepte pas encore les recherches. Redéployez-le depuis le dossier worker/ (voir README).",
   setMine: 'Définir comme mon équipe', followed: 'Équipes suivies', follow: 'Suivre cette équipe', unfollow: 'Ne plus suivre',
   backHome: 'Tous les tournois', recent: 'Ouverts récemment', clear: 'Effacer',
+  followedOnly: 'Suivies uniquement', noFollowed: 'Aucune équipe suivie. Touchez ☆ à côté d’une équipe, ou ouvrez une équipe et choisissez Suivre.',
+  noFollowedGame: 'Aucune de vos équipes suivies ne joue dans cette ronde.',
 };
 
 export type Key = keyof typeof en;
