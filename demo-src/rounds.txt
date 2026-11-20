@@ -1,0 +1,252 @@
+# Round 1 on 2025/11/07 at 3:00 pm
+1|Atscaf Nord|Greco|0|4
+2|Global Ramblers|SWISSto12|3½|½
+3|Electricite de France|Agrofert|0|4
+4|Redia A/S|UBS AG|4|0
+5|Kaissa|TePe Sigeman|½|3½
+6|MVCMI #1|Alstom #A|3|1
+7|ASML #2|Enedis|0|4
+8|Chateau Montaiguillon|KPMG Poland|4|0
+9|ForChess Power|D-fine|1|3
+10|PROBIT Sp|Nextep|4|0
+11|Thalès|Google DeepMind|0|4
+12|PwC Greece|Alstom #2|4|0
+13|EuropeChess|KPMG Europe|0|4
+14|ASML #1|EBRD|3|1
+15|Dassault Systèmes #2|Leonard #1|0|4
+16|DOLE|OCTO Technology|3|1
+17|PwC France|Les Pyramides de Port-Marly #1|½|3½
+18|PwC Europe|Accenture|4|0
+19|Dassault Systèmes #1|PwC Poland|0|4
+20|Societe Générale|Google #2|4|0
+21|ASML #3|MVCMI #2|0|4
+22|Banque de France|Sodern|4|0
+23|Les Pyramides de Port-Marly #2|Ernest&Young|0|4
+24|SUDINOX Smart Industry|Région Ile-de-France|4|0
+25|Leonard #2|Google #1|0|4
+26|MiddleWay|MUREX|3|1
+27|B-Workshop|bye|2|
+# Round 2 on 2025/11/07 at 4:00 pm
+1|Greco|ASML #1|2½|1½
+2|Leonard #1|Global Ramblers|2|2
+3|Agrofert|DOLE|2|2
+4|Les Pyramides de Port-Marly #1|Redia A/S|1½|2½
+5|TePe Sigeman|PwC Europe|2½|1½
+6|PwC Poland|MVCMI #1|1|3
+7|Enedis|Societe Générale|3½|½
+8|Banque de France|Chateau Montaiguillon|2|2
+9|D-fine|Ernest&Young|2|2
+10|SUDINOX Smart Industry|PROBIT Sp|½|3½
+11|Google DeepMind|Google #1|3|1
+12|MiddleWay|PwC Greece|0|4
+13|KPMG Europe|ASML #3|4|0
+14|MVCMI #2|B-Workshop|4|0
+15|EuropeChess|Atscaf Nord|1½|2½
+16|SWISSto12|EBRD|2|2
+17|Dassault Systèmes #2|Electricite de France|1½|2½
+18|UBS AG|OCTO Technology|1½|2½
+19|PwC France|Kaissa|1½|2½
+20|Alstom #A|Accenture|3|1
+21|Dassault Systèmes #1|ASML #2|2|2
+22|KPMG Poland|Google #2|3|1
+23|Sodern|ForChess Power|2|2
+24|Nextep|Les Pyramides de Port-Marly #2|2|2
+25|Région Ile-de-France|Thalès|1|3
+26|Alstom #2|Leonard #2|3|1
+27|MUREX|bye|2|
+# Round 3 on 2025/11/07 at 5:00 pm
+1|PROBIT Sp|Greco|1½|2½
+2|Redia A/S|Google DeepMind|3|1
+3|PwC Greece|TePe Sigeman|1½|2½
+4|MVCMI #1|KPMG Europe|1½|2½
+5|MVCMI #2|Enedis|1½|2½
+6|Global Ramblers|DOLE|2|2
+7|Leonard #1|Agrofert|½|3½
+8|Ernest&Young|Chateau Montaiguillon|2|2
+9|D-fine|Banque de France|2½|1½
+10|ASML #1|Atscaf Nord|3½|½
+11|Electricite de France|Les Pyramides de Port-Marly #1|0|4
+12|PwC Europe|Kaissa|4|0
+13|Alstom #A|PwC Poland|0|4
+14|Societe Générale|KPMG Poland|3½|½
+15|Thalès|SUDINOX Smart Industry|0|4
+16|Google #1|Alstom #2|3|1
+17|OCTO Technology|MiddleWay|1|3
+18|MUREX|Nextep|2|2
+19|EBRD|B-Workshop|4|0
+20|SWISSto12|Dassault Systèmes #1|1|3
+21|ASML #2|Sodern|4|0
+22|ForChess Power|Les Pyramides de Port-Marly #2|3|1
+23|Accenture|UBS AG|1|3
+24|Google #2|EuropeChess|1|3
+25|ASML #3|Dassault Systèmes #2|3|1
+26|Région Ile-de-France|PwC France|1|3
+27|Leonard #2|bye|2|
+# Round 4 on 2025/11/07 at 6:00 pm
+1|Greco|TePe Sigeman|1½|2½
+2|Enedis|Redia A/S|0|4
+3|KPMG Europe|Agrofert|1|3
+4|Global Ramblers|D-fine|2½|1½
+5|PwC Europe|MVCMI #1|1½|2½
+6|Chateau Montaiguillon|PwC Poland|2|2
+7|Societe Générale|PROBIT Sp|1½|2½
+8|Google DeepMind|MVCMI #2|1|3
+9|Ernest&Young|PwC Greece|½|3½
+10|SUDINOX Smart Industry|ASML #1|1|3
+11|DOLE|Google #1|2|2
+12|Les Pyramides de Port-Marly #1|MiddleWay|3|1
+13|ForChess Power|Leonard #1|½|3½
+14|Dassault Systèmes #1|Banque de France|1|3
+15|EBRD|ASML #2|2|2
+16|MUREX|Thalès|2|2
+17|Atscaf Nord|Nextep|4|0
+18|Alstom #2|Electricite de France|3|1
+19|UBS AG|EuropeChess|3½|½
+20|Kaissa|OCTO Technology|1|3
+21|PwC France|Alstom #A|1½|2½
+22|KPMG Poland|ASML #3|3|1
+23|Leonard #2|SWISSto12|½|3½
+24|B-Workshop|Sodern|1|3
+25|Les Pyramides de Port-Marly #2|Dassault Systèmes #2|1|3
+26|Accenture|Google #2|1|3
+27|Région Ile-de-France|bye|2|
+# Round 5 on 2025/11/08 at 10:00 am
+1|TePe Sigeman|Redia A/S|1½|2½
+2|Agrofert|Greco|2|2
+3|PwC Greece|Global Ramblers|2½|1½
+4|MVCMI #1|ASML #1|2½|1½
+5|KPMG Europe|Enedis|2|2
+6|PROBIT Sp|Les Pyramides de Port-Marly #1|2½|1½
+7|MVCMI #2|Chateau Montaiguillon|1|3
+8|PwC Poland|D-fine|1½|2½
+9|Google #1|Leonard #1|2½|1½
+10|Banque de France|DOLE|1½|2½
+11|UBS AG|Google DeepMind|2|2
+12|Alstom #A|PwC Europe|1|3
+13|ASML #2|Societe Générale|½|3½
+14|KPMG Poland|Ernest&Young|1½|2½
+15|Alstom #2|SUDINOX Smart Industry|1|3
+16|MiddleWay|EBRD|2½|1½
+17|OCTO Technology|Atscaf Nord|1|3
+18|Sodern|MUREX|1|3
+19|SWISSto12|ForChess Power|2½|1½
+20|Thalès|Dassault Systèmes #1|3|1
+21|Nextep|Electricite de France|1|3
+22|Google #2|Kaissa|2|2
+23|EuropeChess|ASML #3|2|2
+24|Dassault Systèmes #2|PwC France|1½|2½
+25|B-Workshop|Région Ile-de-France|1|3
+26|Les Pyramides de Port-Marly #2|Leonard #2|1|3
+27|Accenture|bye|2|
+# Round 6 on 2025/11/08 at 11:00 am
+1|Redia A/S|Agrofert|1½|2½
+2|TePe Sigeman|PROBIT Sp|0|4
+3|PwC Greece|MVCMI #1|2½|1½
+4|D-fine|Greco|½|3½
+5|DOLE|Enedis|2½|1½
+6|Chateau Montaiguillon|KPMG Europe|3|1
+7|Google #1|Global Ramblers|½|3½
+8|ASML #1|MVCMI #2|1|3
+9|Les Pyramides de Port-Marly #1|Ernest&Young|3|1
+10|SUDINOX Smart Industry|PwC Europe|1½|2½
+11|Societe Générale|MiddleWay|4|0
+12|Atscaf Nord|MUREX|4|0
+13|Google DeepMind|Banque de France|2½|1½
+14|Leonard #1|SWISSto12|2½|1½
+15|PwC Poland|UBS AG|4|0
+16|Electricite de France|Thalès|2½|1½
+17|EBRD|Alstom #A|1|3
+18|ASML #2|Alstom #2|3|1
+19|PwC France|KPMG Poland|0|4
+20|OCTO Technology|Région Ile-de-France|3½|½
+21|Google #2|Leonard #2|1|3
+22|Kaissa|Dassault Systèmes #1|3|1
+23|ASML #3|ForChess Power|2|2
+24|Sodern|EuropeChess|1½|2½
+25|Nextep|Accenture|3½|½
+26|Dassault Systèmes #2|B-Workshop|3½|½
+27|Les Pyramides de Port-Marly #2|bye|2|
+# Round 7 on 2025/11/08 at 2:00 pm
+1|Agrofert|PROBIT Sp|2|2
+2|Redia A/S|PwC Greece|2|2
+3|Greco|Chateau Montaiguillon|3|1
+4|DOLE|TePe Sigeman|2|2
+5|Global Ramblers|Societe Générale|3½|½
+6|MVCMI #1|MVCMI #2|2½|1½
+7|PwC Europe|Les Pyramides de Port-Marly #1|3|1
+8|Enedis|Atscaf Nord|2½|1½
+9|Leonard #1|D-fine|1|3
+10|Google DeepMind|PwC Poland|1|3
+11|KPMG Europe|Google #1|3½|½
+12|Electricite de France|ASML #1|1|3
+13|Ernest&Young|Alstom #A|3½|½
+14|KPMG Poland|SUDINOX Smart Industry|2|2
+15|MiddleWay|ASML #2|2|2
+16|Leonard #2|OCTO Technology|0|4
+17|MUREX|UBS AG|1|3
+18|Banque de France|Kaissa|3|1
+19|Thalès|SWISSto12|2½|1½
+20|ForChess Power|EuropeChess|2½|1½
+21|ASML #3|Nextep|2|2
+22|Alstom #2|Dassault Systèmes #2|3|1
+23|EBRD|PwC France|4|0
+24|Région Ile-de-France|Google #2|½|3½
+25|Dassault Systèmes #1|Les Pyramides de Port-Marly #2|3|1
+26|Accenture|B-Workshop|3|1
+27|Sodern|bye|2|
+# Round 8 on 2025/11/08 at 3:00 pm
+1|Greco|Redia A/S|2½|1½
+2|Agrofert|PwC Greece|2½|1½
+3|PROBIT Sp|Global Ramblers|1½|2½
+4|MVCMI #1|DOLE|3|1
+5|Enedis|PwC Europe|3½|½
+6|TePe Sigeman|KPMG Europe|2½|1½
+7|D-fine|Chateau Montaiguillon|2½|1½
+8|ASML #1|PwC Poland|2|2
+9|Atscaf Nord|Les Pyramides de Port-Marly #1|1|3
+10|Ernest&Young|Societe Générale|1½|2½
+11|MVCMI #2|OCTO Technology|4|0
+12|MiddleWay|Google DeepMind|1½|2½
+13|UBS AG|Leonard #1|0|4
+14|ASML #2|Banque de France|1½|2½
+15|Google #1|SUDINOX Smart Industry|2|2
+16|Thalès|KPMG Poland|2|2
+17|ForChess Power|Electricite de France|3|1
+18|Alstom #A|Alstom #2|2½|1½
+19|Leonard #2|EBRD|0|4
+20|SWISSto12|MUREX|3|1
+21|Kaissa|ASML #3|3|1
+22|Nextep|Google #2|1½|2½
+23|EuropeChess|Dassault Systèmes #1|1½|2½
+24|Dassault Systèmes #2|Sodern|4|0
+25|Région Ile-de-France|Accenture|2|2
+26|B-Workshop|Les Pyramides de Port-Marly #2|1|3
+27|PwC France|bye|2|
+# Round 9 on 2025/11/08 at 4:00 pm
+1|Global Ramblers|Greco|1½|2½
+2|TePe Sigeman|Agrofert|1½|2½
+3|Redia A/S|MVCMI #1|2|2
+4|PROBIT Sp|Enedis|4|0
+5|PwC Greece|D-fine|2|2
+6|PwC Poland|DOLE|1½|2½
+7|Les Pyramides de Port-Marly #1|MVCMI #2|2|2
+8|Societe Générale|PwC Europe|0|4
+9|Chateau Montaiguillon|ASML #1|1½|2½
+10|Leonard #1|Google DeepMind|2|2
+11|Banque de France|KPMG Europe|2|2
+12|EBRD|Ernest&Young|2|2
+13|SUDINOX Smart Industry|ForChess Power|3|1
+14|KPMG Poland|Google #1|2|2
+15|Atscaf Nord|Thalès|3|1
+16|OCTO Technology|Alstom #A|1|3
+17|UBS AG|MiddleWay|1|3
+18|SWISSto12|Kaissa|1|3
+19|Electricite de France|ASML #2|1|3
+20|Dassault Systèmes #1|Alstom #2|2|2
+21|Google #2|Dassault Systèmes #2|1|3
+22|MUREX|PwC France|1|3
+23|Nextep|Leonard #2|2|2
+24|Les Pyramides de Port-Marly #2|Accenture|2|2
+25|Sodern|Région Ile-de-France|1|3
+26|B-Workshop|EuropeChess|2|2
+27|ASML #3|bye|2|

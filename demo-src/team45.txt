@@ -1,0 +1,59 @@
+TEAM 45|36|Dassault Systèmes #1|1642|Paul de Temmerman|17|3
+P 1||Ridel, Fabien|1809|0|FRA|653019768|0 0 0 0 0 0 0 1 0|1|9
+P 2||De Temmerman, Paul|1757|0|FRA|653043871|0 0 1 0 0 0 1 ½ 1|3,5|9
+P 3||Ferreira, Isaque|0|1500|FRA|653043979|0 + 1 0 0 0 1 0 0|3|9
+P 4||Rodrigues Miguel, Luca|0|1500|FRA|560029099|0 + 1 1 1 1 1 1 1|8|9
+R Round 1 on 2025/11/07 at 3:00 pm
+M 45|Dassault Systèmes #1|19|PwC Poland|0 : 4
+B 19.1|w|Ridel, Fabien|FRA||IM|Barski, Radoslaw|POL|0 - 1
+B 19.2|b|De Temmerman, Paul|FRA|||Galuszka, Tomasz|POL|0 - 1
+B 19.3|w|Ferreira, Isaque|FRA|||Fritz, Antoni|POL|0 - 1
+B 19.4|b|Rodrigues Miguel, Luca|FRA|||Moscicka, Pola|POL|0 - 1
+R Round 2 on 2025/11/07 at 4:00 pm
+M 45|Dassault Systèmes #1|33|ASML #2|2 : 2
+B 21.1|w|Ridel, Fabien|FRA|||Coronel, Joshua|ITA|0 - 1
+B 21.2|b|De Temmerman, Paul|FRA|||Quintana Hernandez, Marcos Ivan|MEX|0 - 1
+B 21.3|w|Ferreira, Isaque|FRA|||no player||+ - -
+B 21.4|b|Rodrigues Miguel, Luca|FRA|||no player||+ - -
+R Round 3 on 2025/11/07 at 5:00 pm
+M 28|SWISSto12|45|Dassault Systèmes #1|1 : 3
+B 20.1|w|Moussard, Jules|FRA|||Ridel, Fabien|FRA|1 - 0
+B 20.2|b|Dimitriadis, Alexandros|GRE|||De Temmerman, Paul|FRA|0 - 1
+B 20.3|w|NUTHMANN, Thomas|FRA|||Ferreira, Isaque|FRA|0 - 1
+B 20.4|b|DE LUCCA, Enrico|FRA|||Rodrigues Miguel, Luca|FRA|0 - 1
+R Round 4 on 2025/11/07 at 6:00 pm
+M 45|Dassault Systèmes #1|22|Banque de France|1 : 3
+B 14.1|w|Ridel, Fabien|FRA||CM|Croizier, Valery|FRA|0 - 1
+B 14.2|b|De Temmerman, Paul|FRA|||Venard, Paul-Andre|FRA|0 - 1
+B 14.3|w|Ferreira, Isaque|FRA|||Renault, Fabien|FRA|0 - 1
+B 14.4|b|Rodrigues Miguel, Luca|FRA|||Charbit, Florent|FRA|1 - 0
+R Round 5 on 2025/11/08 at 10:00 am
+M 37|Thalès|45|Dassault Systèmes #1|3 : 1
+B 20.1|w|Ibazizen, Abdelatif|FRA|||Ridel, Fabien|FRA|1 - 0
+B 20.2|b|Marty, Jean-Yves|FRA|||De Temmerman, Paul|FRA|1 - 0
+B 20.3|w|Quemener, Yann|FRA|||Ferreira, Isaque|FRA|1 - 0
+B 20.4|b|BOUTELDJA, Brahim|FRA|||Rodrigues Miguel, Luca|FRA|0 - 1
+R Round 6 on 2025/11/08 at 11:00 am
+M 31|Kaissa|45|Dassault Systèmes #1|3 : 1
+B 22.1|w|Coupet, Pascal|FRA|||Ridel, Fabien|FRA|1 - 0
+B 22.2|b|Bernard, Serge|FRA|||De Temmerman, Paul|FRA|1 - 0
+B 22.3|w|Droin, Franck|FRA|||Ferreira, Isaque|FRA|1 - 0
+B 22.4|b|DROIN, Sebastien|FRA|||Rodrigues Miguel, Luca|FRA|0 - 1
+R Round 7 on 2025/11/08 at 2:00 pm
+M 45|Dassault Systèmes #1|49|Les Pyramides de Port-Marly #2|3 : 1
+B 25.1|w|Ridel, Fabien|FRA|||Guy, Ange|FRA|0 - 1
+B 25.2|b|De Temmerman, Paul|FRA|||Strand, Hakan|FRA|1 - 0
+B 25.3|w|Ferreira, Isaque|FRA|||Wyler, Luc|FRA|1 - 0
+B 25.4|b|Rodrigues Miguel, Luca|FRA|||Fuster, Jean Baptiste|FRA|1 - 0
+R Round 8 on 2025/11/08 at 3:00 pm
+M 39|EuropeChess|45|Dassault Systèmes #1|1½:2½
+B 23.1|w|Bertram, Johannes|GER|||Ridel, Fabien|FRA|0 - 1
+B 23.2|b|Sola, Alessandro|BEL|||De Temmerman, Paul|FRA|½ - ½
+B 23.3|w|Hinkel, Kira|BEL|||Ferreira, Isaque|FRA|1 - 0
+B 23.4|b|Bressers, Effie|BEL|||Rodrigues Miguel, Luca|FRA|0 - 1
+R Round 9 on 2025/11/08 at 4:00 pm
+M 45|Dassault Systèmes #1|38|Alstom #2|2 : 2
+B 20.1|w|Ridel, Fabien|FRA|||Guerlach, Keigo|FRA|0 - 1
+B 20.2|b|De Temmerman, Paul|FRA|||Martine, Valentin|FRA|1 - 0
+B 20.3|w|Ferreira, Isaque|FRA|||Benaggoun, Khaled|ALG|0 - 1
+B 20.4|b|Rodrigues Miguel, Luca|FRA|||PARRAUD, Guillaume|FRA|1 - 0

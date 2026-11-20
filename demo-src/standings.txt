@@ -1,0 +1,53 @@
+1|1|UKR||Greco||9|7|1|1|24|7|24|0
+2|3|BUL||Agrofert||9|6|3|0|24|6|24|0
+3|10|POL||PROBIT Sp||9|6|1|2|22|6|25,5|0
+4|6|FRA||MVCMI #1||9|6|1|2|22|6|21,5|0
+5|18|EUF||PwC Europe||9|6|0|3|21|6|24|0
+6|12|GRE||PwC Greece|1st Consulting|9|5|2|2|21|5|23,5|0
+7|4|DEN||Redia A/S|1st Digital|9|5|2|2|21|5|23|0
+8|2|CZE||Global Ramblers|1st Sport&Tourism|9|5|2|2|21|5|22,5|0
+9|9|GER||D-fine||9|5|2|2|21|5|19,5|0
+10|16|FRA||DOLE|1st Industry|9|4|4|1|21|4|19,5|0
+11|21|FRA||MVCMI #2||9|5|1|3|20|5|24|0
+12|17|FRA||Les Pyramides de Port-Marly #1||9|5|1|3|20|5|22,5|0
+13|14|NED||ASML #1||9|5|1|3|20|5|21|0
+14|7|FRA||Enedis|1st Energy|9|5|1|3|20|5|19,5|0
+15|5|SWE||TePe Sigeman||9|5|1|3|20|5|18,5|0
+16|20|FRA||Societe Générale|1st Banking&Insurance|9|5|0|4|19|5|20|0
+17|27|FRA||Atscaf Nord||9|5|0|4|19|5|19,5|0
+18|32|FRA||Alstom #A||9|5|0|4|19|5|16,5|0
+19|19|POL||PwC Poland||9|4|2|3|19|4|23|0
+20|13|EUF||KPMG Europe||9|4|2|3|19|4|21,5|0
+21|15|FRA||Leonard #1||9|4|2|3|19|4|21|0
+|22|FRA||Banque de France||9|4|2|3|19|4|21|0
+|24|FRA||SUDINOX Smart Industry|Special Award|9|4|2|3|19|4|21|0
+24|11|GBR||Google DeepMind||9|4|2|3|19|4|19|0
+25|26|FRA||MiddleWay||9|4|1|4|18|4|16|0
+|31|FRA||Kaissa||9|4|1|4|18|4|16|0
+27|40|GBR||EBRD||9|3|3|3|18|3|21,5|0
+28|8|FRA||Chateau Montaiguillon||9|3|3|3|18|3|20|0
+29|23|NOR||Ernest&Young||9|3|3|3|18|3|19|0
+30|33|NED||ASML #2||9|3|3|3|18|3|18|0
+|34|POL||KPMG Poland||9|3|3|3|18|3|18|0
+32|25|EUF||Google #1||9|3|3|3|18|3|17,5|0
+33|41|FRA||Dassault Systèmes #2||9|4|0|5|17|4|18,5|0
+34|42|FRA||OCTO Technology||9|4|0|5|17|4|17|0
+35|35|FRA||ForChess Power||9|3|2|4|17|3|16,5|0
+36|45|FRA||Dassault Systèmes #1||9|3|2|4|17|3|15,5|0
+37|37|FRA||Thalès||9|3|2|4|17|3|15|0
+38|28|SUI||SWISSto12||9|3|1|5|16|3|16,5|0
+39|38|FRA||Alstom #2||9|3|1|5|16|3|15,5|0
+40|46|EUF||Google #2||9|3|1|5|16|3|15|0
+41|30|SUI||UBS AG||9|3|1|5|16|3|14|0
+|43|FRA||PwC France||8|3|0|5|16|3|14|0
+43|29|FRA||Electricite de France||9|3|0|6|15|3|12|0
+44|39|EUF||EuropeChess|1st Special|9|2|2|5|15|2|14,5|0
+45|50|FRA||Région Ile-de-France||8|2|1|5|15|2|13|0
+46|51|FRA||Leonard #2||8|2|1|5|15|2|11,5|0
+47|36|FRA||Nextep||9|1|4|4|15|1|14|0
+48|47|NED||ASML #3||8|1|3|4|15|1|13|0
+49|49|FRA||Les Pyramides de Port-Marly #2||8|1|2|5|14|1|13|0
+|52|FRA||MUREX||8|1|2|5|14|1|13|0
+51|44|FRA||Accenture||8|1|2|5|14|1|12,5|0
+52|48|FRA||Sodern||8|1|1|6|13|1|10,5|0
+53|53|FRA||B-Workshop||8|0|1|7|11|0|8,5|0
