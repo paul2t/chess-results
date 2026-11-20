@@ -3,6 +3,7 @@
 // - only https://*.chess-results.com is reachable (not an open proxy)
 // - only the origins listed below may read the response from a browser
 // - responses are cached for 20 s at the edge, so many phones refreshing = one request upstream
+// - POST is accepted for one page only, the tournament search form (TurnierSuche.aspx), and never cached
 
 const ALLOWED_ORIGINS = [
   'https://paul2t.github.io',
@@ -11,6 +12,9 @@ const ALLOWED_ORIGINS = [
 ];
 const HOST_RE = /^([a-z0-9-]+\.)*chess-results\.com$/i;
 const TTL_SECONDS = 20;
+const SEARCH_PATH = '/turniersuche.aspx';
+const MAX_BODY = 100_000;
+const UA = 'chess-results-viewer (+https://github.com/paul2t/chess-results)';
 
 export default {
   async fetch(request, _env, ctx) {
@@ -23,10 +27,12 @@ export default {
     if (request.method === 'OPTIONS') {
       return new Response(null, {
         status: 204,
-        headers: { ...cors, 'Access-Control-Allow-Methods': 'GET', 'Access-Control-Max-Age': '86400' },
+        headers: { ...cors, 'Access-Control-Allow-Methods': 'GET, POST', 'Access-Control-Max-Age': '86400' },
       });
     }
-    if (request.method !== 'GET') return new Response('Method not allowed', { status: 405, headers: cors });
+    if (request.method !== 'GET' && request.method !== 'POST') {
+      return new Response('Method not allowed', { status: 405, headers: cors });
+    }
 
     let target;
     try {
@@ -38,15 +44,35 @@ export default {
       return new Response('Only chess-results.com is allowed', { status: 403, headers: cors });
     }
 
+    if (request.method === 'POST') {
+      if (!ALLOWED_ORIGINS.includes(origin)) return new Response('Origin not allowed', { status: 403, headers: cors });
+      if (target.pathname.toLowerCase() !== SEARCH_PATH) {
+        return new Response('POST is only allowed for the tournament search', { status: 403, headers: cors });
+      }
+      const form = await request.text();
+      if (form.length > MAX_BODY) return new Response('Body too large', { status: 413, headers: cors });
+      const upstream = await fetch(target.toString(), {
+        method: 'POST',
+        body: form,
+        headers: { 'User-Agent': UA, 'Accept-Language': 'en', 'Content-Type': 'application/x-www-form-urlencoded' },
+      });
+      const out = new Response(await upstream.arrayBuffer(), {
+        status: upstream.status,
+        headers: {
+          'Content-Type': upstream.headers.get('Content-Type') || 'text/html; charset=utf-8',
+          'Cache-Control': 'no-store',
+        },
+      });
+      for (const [k, v] of Object.entries(cors)) out.headers.set(k, v);
+      return out;
+    }
+
     const cache = caches.default;
     const key = new Request(target.toString());
     let cached = await cache.match(key);
     if (!cached) {
       const upstream = await fetch(target.toString(), {
-        headers: {
-          'User-Agent': 'chess-results-viewer (+https://github.com/paul2t/chess-results)',
-          'Accept-Language': 'en',
-        },
+        headers: { 'User-Agent': UA, 'Accept-Language': 'en' },
       });
       const body = await upstream.arrayBuffer();
       cached = new Response(body, {
