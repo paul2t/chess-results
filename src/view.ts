@@ -1,45 +1,27 @@
 // Mobile-first viewer for chess-results.com team tournaments.
-//   ?t=<tnr>      tournament number (or full chess-results URL in the settings)
+//   (no ?t)       the dashboard: favorite tournaments + search (src/dashboard.ts)
+//   ?t=<tnr>      a tournament (tournament number)
 //   ?team=<n|name> the team to follow (number or name, e.g. "Dassault Systemes 1")
 //   ?view=team|standings|rounds   ?demo=1 (2025 data, no network)   ?proxy=<url template with {url}>
 import { createDemoFetcher, createFetcher, type Fetcher } from './api';
+import { startDashboard } from './dashboard';
+import { h, store, type Kid } from './dom';
+import {
+  favTeamsKey, FAVS_KEY, isFav, parseFavs, parseNames, toggleFav, toggleName,
+} from './favs';
 import { t } from './i18n';
 import { loadSnapshot, loadTeamPage } from './loader';
 import { formatScore, isPlayed, normName, outcome, type Outcome } from './parse';
-import type { BoardGame, Snapshot, TeamMatch, TeamPage, TeamRow } from './types';
+import type { BoardGame, Snapshot, TeamMatch, TeamPage, TeamRow, Tournament } from './types';
 
 type View = 'team' | 'standings' | 'rounds';
+// `default` no longer opens a tournament: it only tells which team to follow first in that tournament.
 interface Config { proxies: string[]; default: { tnr: number; team: string | number } }
-
-// ───────────────────────────── tiny DOM helper ─────────────────────────────
-
-type Kid = Node | string | number | null | false | undefined;
-function h<K extends keyof HTMLElementTagNameMap>(
-  tag: K, props?: Record<string, unknown> | null, ...kids: Kid[]
-): HTMLElementTagNameMap[K] {
-  const el = document.createElement(tag);
-  for (const [k, v] of Object.entries(props ?? {})) {
-    if (v === undefined || v === null || v === false) continue;
-    if (k.startsWith('on') && typeof v === 'function') el.addEventListener(k.slice(2), v as EventListener);
-    else if (k === 'class') el.className = String(v);
-    else el.setAttribute(k, v === true ? '' : String(v));
-  }
-  for (const kid of kids) {
-    if (kid === null || kid === undefined || kid === false) continue;
-    el.append(typeof kid === 'object' ? kid : String(kid));
-  }
-  return el;
-}
 
 // ───────────────────────────── state ─────────────────────────────
 
 const params = new URLSearchParams(location.search);
 const DEMO = params.has('demo') || (window as unknown as { __DEMO__?: boolean }).__DEMO__ === true;
-const store = {
-  get: (k: string): string | null => { try { return localStorage.getItem(k); } catch { return null; } },
-  set: (k: string, v: string): void => { try { localStorage.setItem(k, v); } catch { /* quota / private mode */ } },
-  del: (k: string): void => { try { localStorage.removeItem(k); } catch { /* ignore */ } },
-};
 
 const S = {
   tnr: 0,
@@ -52,6 +34,8 @@ const S = {
   other: new Map<number, TeamPage>(),
   open: new Set<string>(),
   filter: '',
+  favTeams: [] as string[],
+  favTours: [] as Tournament[],
   loading: false,
   error: '',
   offline: false,
@@ -98,6 +82,65 @@ function viewedPage(): TeamPage | null {
   return S.viewSnr === S.mySnr ? S.snap.team : S.other.get(S.viewSnr) ?? null;
 }
 
+// ───────────────────────────── favorites & my team ─────────────────────────────
+
+const sameName = (a: string, b: string): boolean => normName(a) === normName(b);
+const isFavTeam = (name: string): boolean => S.favTeams.some((n) => sameName(n, name));
+const shortName = (name: string): string => name.replace(/\s*\(.*$/, '') || name;
+
+function toggleFavTeam(row: TeamRow): void {
+  S.favTeams = toggleName(S.favTeams, row.name, sameName);
+  store.set(favTeamsKey(S.tnr), JSON.stringify(S.favTeams));
+  render();
+}
+
+/** Makes `snr` "my team": the one opened first, kept per tournament, shown on the dashboard. */
+function chooseMine(snr: number): void {
+  const row = teamOf(snr);
+  const prev = S.mySnr !== null && S.mySnr !== snr ? teamOf(S.mySnr) : undefined;
+  // the previous "my team" stays one tap away as a followed team; the new one is no longer "just followed"
+  if (prev && !isFavTeam(prev.name)) S.favTeams = [...S.favTeams, prev.name];
+  if (row) S.favTeams = S.favTeams.filter((n) => !sameName(n, row.name));
+  store.set(favTeamsKey(S.tnr), JSON.stringify(S.favTeams));
+  S.teamRef = snr;
+  S.mySnr = snr;
+  S.viewSnr = snr;
+  if (row) store.set(`cr:team:${S.tnr}`, row.name);
+  syncUrl();
+  void load();
+}
+
+function tournamentInfo(snap: Snapshot | null): Tournament {
+  const first = snap?.schedule[0]?.date ?? '';
+  const last = snap?.schedule[snap.schedule.length - 1]?.date ?? first;
+  return {
+    tnr: S.tnr, name: snap?.home.tournamentName || `Tournament ${S.tnr}`,
+    fed: '', from: first, to: last, location: snap?.details?.location ?? '',
+  };
+}
+
+const saveTournaments = (): void => store.set(FAVS_KEY, JSON.stringify(S.favTours));
+
+function toggleFavTournament(): void {
+  S.favTours = toggleFav(S.favTours, tournamentInfo(S.snap));
+  saveTournaments();
+  render();
+}
+
+/** Keeps a favorite's name and dates in step with what the tournament page says. */
+function refreshFavTournament(snap: Snapshot): void {
+  const cur = S.favTours.find((f) => f.tnr === S.tnr);
+  if (!cur) return;
+  const info = tournamentInfo(snap);
+  const next: Tournament = {
+    ...cur, name: info.name || cur.name, from: info.from || cur.from, to: info.to || cur.to,
+    location: info.location || cur.location,
+  };
+  if (JSON.stringify(next) === JSON.stringify(cur)) return;
+  S.favTours = S.favTours.map((f) => (f.tnr === S.tnr ? next : f));
+  saveTournaments();
+}
+
 // ───────────────────────────── loading ─────────────────────────────
 
 const cacheKey = (tnr: number) => `cr:snap:${tnr}`;
@@ -113,8 +156,11 @@ async function load(): Promise<void> {
     S.offline = false;
     if (snap.teamSnr !== null) {
       S.mySnr = snap.teamSnr;
-      store.set(`cr:team:${S.tnr}`, String(snap.teamSnr));
+      // remembered by name: team numbers can move before the event starts
+      const mine = snap.home.teams.find((x) => x.snr === snap.teamSnr);
+      if (mine) store.set(`cr:team:${S.tnr}`, mine.name);
     }
+    refreshFavTournament(snap);
     if (S.viewSnr === null) S.viewSnr = S.mySnr;
     if (S.viewSnr !== null && S.viewSnr !== S.mySnr) {
       const page = await loadTeamPage(S.fetcher, S.tnr, S.viewSnr).catch(() => null);
@@ -191,10 +237,16 @@ function header(): HTMLElement {
   const sub = s
     ? `${t('updated')} ${clock(s.fetchedAt)}${s.home.lastUpdate ? ` · ${t('source')} ${s.home.lastUpdate}` : ''}`
     : S.loading ? t('loading') : '';
+  const fav = isFav(S.favTours, S.tnr);
   return h('header', { class: 'top' },
+    h('a', { class: 'icon', href: location.pathname, 'aria-label': t('backHome') }, '‹'),
     h('div', { class: 'title' },
       h('h1', null, s?.home.tournamentName || 'Chess results'),
       h('p', { class: 'sub' }, sub)),
+    DEMO ? null : h('button', {
+      class: `icon star ${fav ? 'on' : ''}`, 'aria-pressed': fav, 'aria-label': fav ? t('removeFav') : t('addFav'),
+      onclick: toggleFavTournament,
+    }, fav ? '★' : '☆'),
     h('button', { class: `icon ${S.loading ? 'spin' : ''}`, 'aria-label': t('refresh'), onclick: () => void load() }, '↻'),
     h('button', { class: 'icon', 'aria-label': t('settings'), onclick: openSettings }, '⚙'));
 }
@@ -231,18 +283,33 @@ function teamView(): HTMLElement {
   const row = teamOf(S.viewSnr);
   const page = viewedPage();
   if (!row) return h('p', { class: 'empty' }, t('noData'));
-  const wrap = h('div', { class: 'stack' }, hero(row, s), statusCard(page, s, row));
+  const wrap = h('div', { class: 'stack' }, teamSwitcher(), hero(row, s), statusCard(page, s, row));
   if (page && page.lineup.length) wrap.append(lineupCard(page, s));
   if (page && page.matches.length) wrap.append(matchesCard(page, s));
   return wrap;
 }
 
 function chooser(): HTMLElement {
-  return h('div', { class: 'stack' }, h('h2', null, t('chooseTeam')), teamList((snr) => {
-    S.teamRef = snr; S.mySnr = snr; S.viewSnr = snr;
-    syncUrl();
-    void load();
-  }));
+  return h('div', { class: 'stack' }, h('h2', null, t('chooseTeam')), teamList(chooseMine));
+}
+
+/** My team and the followed teams, one tap apart. */
+function teamSwitcher(): HTMLElement | null {
+  const s = S.snap;
+  if (!s) return null;
+  const entries: { row: TeamRow; mine: boolean }[] = [];
+  const mine = S.mySnr !== null ? teamOf(S.mySnr) : undefined;
+  if (mine) entries.push({ row: mine, mine: true });
+  for (const n of S.favTeams) {
+    const r = s.home.teams.find((x) => sameName(x.name, n));
+    if (r && r.snr !== mine?.snr) entries.push({ row: r, mine: false });
+  }
+  if (entries.length < 2) return null;
+  return h('div', { class: 'chips tswitch', role: 'tablist', 'aria-label': t('followed') },
+    ...entries.map((e) => h('button', {
+      class: `tchip ${e.row.snr === S.viewSnr ? 'on' : ''}`, role: 'tab', 'aria-selected': e.row.snr === S.viewSnr,
+      onclick: () => void openTeam(e.row.snr),
+    }, e.mine ? '♟ ' : '★ ', shortName(e.row.name))));
 }
 
 function hero(row: TeamRow, s: Snapshot): HTMLElement {
@@ -257,9 +324,18 @@ function hero(row: TeamRow, s: Snapshot): HTMLElement {
         stat(t('record'), `${row.wins}-${row.draws}-${row.losses}`),
       ]
     : [stat(t('seed'), `#${row.snr}`), stat('Elo ∅', row.rating ?? '–')];
+  const isMine = row.snr === S.mySnr;
+  const fav = isFavTeam(row.name);
   return h('section', { class: 'card hero' },
-    h('h2', null, row.name.replace(/\s*\(.*$/, '') || row.name),
+    h('h2', null, shortName(row.name)),
     h('p', { class: 'sub' }, [row.fed, row.group, row.name.includes('(') ? row.name.slice(row.name.indexOf('(')) : ''].filter(Boolean).join(' · ')),
+    h('div', { class: 'hero-actions' },
+      isMine
+        ? h('span', { class: 'tag' }, `♟ ${t('myTeam')}`)
+        : h('button', { class: 'chipbtn', onclick: () => chooseMine(row.snr) }, `♟ ${t('setMine')}`),
+      isMine ? null : h('button', {
+        class: `chipbtn ${fav ? 'on' : ''}`, 'aria-pressed': fav, onclick: () => toggleFavTeam(row),
+      }, fav ? `★ ${t('unfollow')}` : `☆ ${t('follow')}`)),
     h('div', { class: 'stats' }, ...stats));
 }
 
@@ -381,7 +457,7 @@ function boardRow(g: BoardGame, page: TeamPage): HTMLElement {
 
 // ── standings ──
 
-function teamList(onPick: (snr: number) => void): HTMLElement {
+function teamList(onPick: (snr: number) => void, withStar = false): HTMLElement {
   const s = S.snap;
   if (!s) return h('p', { class: 'empty' }, t('loading'));
   const started = s.home.kind === 'ranking';
@@ -395,13 +471,20 @@ function teamList(onPick: (snr: number) => void): HTMLElement {
   });
   function buildRows(): HTMLElement {
     const qq = normName(S.filter);
-    return h('div', { class: 'tlist', id: 'tlist' }, ...s!.home.teams.filter((x) => !qq || normName(x.name).includes(qq)).map((x) =>
-      h('button', { class: `trow ${x.snr === S.mySnr ? 'mine' : ''}`, 'data-snr': x.snr, onclick: () => onPick(x.snr) },
-        h('span', { class: 'rk' }, started ? x.rank ?? '' : x.snr),
-        h('span', { class: 'tn' }, h('b', null, x.name), h('small', null, started
-          ? `${x.fed}${x.group ? ' · ' + x.group : ''} · ${x.wins}-${x.draws}-${x.losses}`
-          : `Elo ∅ ${x.rating ?? '–'}`)),
-        started ? h('span', { class: 'pts2' }, h('b', null, x.tb[0] ?? ''), h('small', null, x.tb[2] ?? '')) : null)));
+    return h('div', { class: 'tlist', id: 'tlist' }, ...s!.home.teams.filter((x) => !qq || normName(x.name).includes(qq)).map((x) => {
+      const fav = isFavTeam(x.name);
+      return h('div', { class: `trow ${x.snr === S.mySnr ? 'mine' : ''} ${fav ? 'fav' : ''}`, 'data-snr': x.snr },
+        h('button', { class: 'tpick', onclick: () => onPick(x.snr) },
+          h('span', { class: 'rk' }, started ? x.rank ?? '' : x.snr),
+          h('span', { class: 'tn' }, h('b', null, x.name), h('small', null, started
+            ? `${x.fed}${x.group ? ' · ' + x.group : ''} · ${x.wins}-${x.draws}-${x.losses}`
+            : `Elo ∅ ${x.rating ?? '–'}`)),
+          started ? h('span', { class: 'pts2' }, h('b', null, x.tb[0] ?? ''), h('small', null, x.tb[2] ?? '')) : null),
+        withStar && x.snr !== S.mySnr ? h('button', {
+          class: `star ${fav ? 'on' : ''}`, 'aria-pressed': fav, 'aria-label': fav ? t('unfollow') : t('follow'),
+          onclick: () => toggleFavTeam(x),
+        }, fav ? '★' : '☆') : null);
+    }));
   }
   return h('div', null, search, buildRows());
 }
@@ -421,7 +504,7 @@ function standingsView(): HTMLElement {
   return h('div', { class: 'stack' },
     h('div', { class: 'row-between' }, h('h2', null, title), jump),
     started ? h('p', { class: 'legend' }, `${label(labels[1], 'TB1')} · ${label(labels[3], 'TB3')}`) : null,
-    teamList((snr) => void openTeam(snr)));
+    teamList((snr) => void openTeam(snr), true));
 }
 
 // ── rounds ──
@@ -450,7 +533,8 @@ function roundsView(): HTMLElement {
         const side = (name: string, row: TeamRow | undefined, win: boolean) =>
           h('button', { class: `pt ${win ? 'w' : ''}`, disabled: !row || m.bye && name === m.away, onclick: () => row && void openTeam(row.snr) },
             name, row?.rank && s.home.kind === 'ranking' ? h('small', null, ` #${row.rank}`) : null);
-        return h('div', { class: `pair ${mine ? 'mine' : ''}` },
+        const followed = !mine && (isFavTeam(m.home) || isFavTeam(m.away));
+        return h('div', { class: `pair ${mine ? 'mine' : ''} ${followed ? 'fav' : ''}` },
           h('span', { class: 'no' }, m.no),
           side(m.home, home, o === 'W'),
           h('span', { class: 'res' }, m.bye ? `${formatScore(m.homeScore)}` : scoreText(m.homeScore, m.awayScore)),
@@ -501,7 +585,18 @@ async function boot(): Promise<void> {
     if (res.ok) S.cfg = { ...S.cfg, ...(await res.json()) };
   } catch { /* defaults */ }
 
-  S.tnr = DEMO ? 1285835 : asInt(params.get('t')) || S.cfg.default.tnr;
+  const proxies = [params.get('proxy') ?? store.get('cr:proxy') ?? '', ...S.cfg.proxies].filter(Boolean);
+  S.fetcher = DEMO ? createDemoFetcher() : createFetcher(proxies);
+
+  // No tournament in the address: show the dashboard (favorites + search).
+  if (!DEMO && !asInt(params.get('t'))) {
+    startDashboard($app, S.fetcher);
+    return;
+  }
+
+  S.tnr = DEMO ? 1285835 : asInt(params.get('t'));
+  S.favTours = parseFavs(store.get(FAVS_KEY));
+  S.favTeams = parseNames(store.get(favTeamsKey(S.tnr)));
   const saved = store.get(`cr:team:${S.tnr}`);
   S.teamRef = params.get('team')
     ?? (DEMO ? '45' : null)
@@ -509,9 +604,6 @@ async function boot(): Promise<void> {
     ?? (S.tnr === S.cfg.default.tnr ? S.cfg.default.team : null);
   const v = params.get('view');
   if (v === 'standings' || v === 'rounds' || v === 'team') S.view = v;
-
-  const proxies = [params.get('proxy') ?? store.get('cr:proxy') ?? '', ...S.cfg.proxies].filter(Boolean);
-  S.fetcher = DEMO ? createDemoFetcher() : createFetcher(proxies);
 
   // Show what we saved last time immediately, then refresh.
   const cached = store.get(cacheKey(S.tnr));

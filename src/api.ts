@@ -9,6 +9,8 @@ export type Params = Record<string, string | number>;
 export interface Fetcher {
   /** Returns the HTML for a chess-results page of tournament `tnr`. */
   get(tnr: number, params: Params): Promise<string>;
+  /** Fetches any chess-results URL; with `form` (urlencoded) it is a POST, used by the tournament search. */
+  raw(url: string, form?: string): Promise<string>;
   /** Human readable description of the source that served the last request. */
   source(): string;
 }
@@ -21,11 +23,17 @@ export function pageUrl(tnr: number, params: Params): string {
   return `${ORIGIN}/tnr${tnr}.aspx?${q.toString()}`;
 }
 
-async function fetchText(url: string, timeoutMs: number): Promise<string> {
+async function fetchText(url: string, timeoutMs: number, form?: string): Promise<string> {
   const ctl = new AbortController();
   const timer = setTimeout(() => ctl.abort(), timeoutMs);
   try {
-    const res = await fetch(url, { signal: ctl.signal, cache: 'no-store' });
+    const init: RequestInit = { signal: ctl.signal, cache: 'no-store' };
+    if (form !== undefined) {
+      init.method = 'POST';
+      init.body = form;
+      init.headers = { 'Content-Type': 'application/x-www-form-urlencoded' };
+    }
+    const res = await fetch(url, init);
     if (!res.ok) throw new Error(`HTTP ${res.status}`);
     const text = await res.text();
     if (!text || text.length < 200) throw new Error('empty response');
@@ -46,25 +54,27 @@ export function createFetcher(proxies: string[]): Fetcher {
   let good = 0;
   let last = sources[0]!.label;
 
+  async function raw(target: string, form?: string): Promise<string> {
+    const order = [good, ...sources.map((_, i) => i).filter((i) => i !== good)];
+    let lastErr: unknown;
+    for (const i of order) {
+      const s = sources[i]!;
+      try {
+        const html = await fetchText(s.build(target), 15000, form);
+        good = i;
+        last = s.label;
+        return html;
+      } catch (e) {
+        lastErr = e;
+      }
+    }
+    throw new Error(`Cannot reach chess-results (${lastErr instanceof Error ? lastErr.message : lastErr})`);
+  }
+
   return {
     source: () => last,
-    async get(tnr, params) {
-      const target = pageUrl(tnr, params);
-      const order = [good, ...sources.map((_, i) => i).filter((i) => i !== good)];
-      let lastErr: unknown;
-      for (const i of order) {
-        const s = sources[i]!;
-        try {
-          const html = await fetchText(s.build(target), 15000);
-          good = i;
-          last = s.label;
-          return html;
-        } catch (e) {
-          lastErr = e;
-        }
-      }
-      throw new Error(`Cannot reach chess-results (${lastErr instanceof Error ? lastErr.message : lastErr})`);
-    },
+    raw,
+    get: (tnr, params) => raw(pageUrl(tnr, params)),
   };
 }
 
@@ -72,6 +82,7 @@ export function createFetcher(proxies: string[]): Fetcher {
 export function createDemoFetcher(): Fetcher {
   return {
     source: () => 'demo',
+    raw: () => Promise.reject(new Error('Search is not available in the demo')),
     async get(_tnr, p) {
       let file: string;
       if (p.art === 14) file = 'schedule.html';

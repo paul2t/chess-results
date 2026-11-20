@@ -14,6 +14,15 @@ const en = {
   win: 'Win', draw: 'Draw', loss: 'Loss', close: 'Close', scrollToMe: 'Jump to my team',
   proxyNeeded: 'chess-results does not allow direct access from this site. Set up the proxy described in the README.',
   proxyUrl: 'Proxy URL (advanced)', pts: 'Pts',
+  home: 'Tournaments', favorites: 'Favorites',
+  noFavorites: 'No favorites yet. Search for a tournament below and tap ☆ to keep it here.',
+  searchTournaments: 'Search tournaments or paste a link…', searchBtn: 'Search', searching: 'Searching…',
+  noResults: 'No team tournament found', teamsOnly: 'Team tournaments only', showing: 'shown',
+  openTnr: 'Open tournament', addFav: 'Add to favorites', removeFav: 'Remove from favorites',
+  live: 'Live', upcoming: 'Upcoming', ended: 'Finished', myTeamIs: 'My team',
+  proxyOutdated: 'The proxy does not accept searches yet. Redeploy it from the worker/ folder (see README).',
+  setMine: 'Set as my team', followed: 'Followed teams', follow: 'Follow this team', unfollow: 'Stop following',
+  backHome: 'All tournaments',
 };
 
 const fr: typeof en = {
@@ -32,6 +41,15 @@ const fr: typeof en = {
   win: 'Victoire', draw: 'Nul', loss: 'Défaite', close: 'Fermer', scrollToMe: 'Aller à mon équipe',
   proxyNeeded: "chess-results n'autorise pas l'accès direct depuis ce site. Configurez le proxy décrit dans le README.",
   proxyUrl: 'URL du proxy (avancé)', pts: 'Pts',
+  home: 'Tournois', favorites: 'Favoris',
+  noFavorites: 'Aucun favori. Cherchez un tournoi ci-dessous et touchez ☆ pour le garder ici.',
+  searchTournaments: 'Chercher un tournoi ou coller un lien…', searchBtn: 'Chercher', searching: 'Recherche…',
+  noResults: "Aucun tournoi par équipes trouvé", teamsOnly: 'Tournois par équipes uniquement', showing: 'affichés',
+  openTnr: 'Ouvrir le tournoi', addFav: 'Ajouter aux favoris', removeFav: 'Retirer des favoris',
+  live: 'En cours', upcoming: 'À venir', ended: 'Terminé', myTeamIs: 'Mon équipe',
+  proxyOutdated: "Le proxy n'accepte pas encore les recherches. Redéployez-le depuis le dossier worker/ (voir README).",
+  setMine: 'Définir comme mon équipe', followed: 'Équipes suivies', follow: 'Suivre cette équipe', unfollow: 'Ne plus suivre',
+  backHome: 'Tous les tournois',
 };
 
 export type Key = keyof typeof en;

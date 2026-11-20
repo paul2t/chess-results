@@ -128,3 +128,14 @@ export interface Snapshot {
   teamSnr: number | null;
   team: TeamPage | null;
 }
+
+/** A tournament as listed by the chess-results search (and kept as a favorite). */
+export interface Tournament {
+  tnr: number;
+  name: string;
+  fed: string;
+  /** yyyy/mm/dd, as chess-results shows them (may be empty). */
+  from: string;
+  to: string;
+  location: string;
+}
