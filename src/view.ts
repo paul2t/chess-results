@@ -598,7 +598,7 @@ function standingsView(): HTMLElement {
       }, '♟')
     : null;
   return h('div', { class: 'stack' },
-    pageHead(title, started ? `${label(labels[1], 'TB1')} · ${label(labels[3], 'TB3')}` : '', followFilter(), jump),
+    pageHead(title, started ? `${label(labels[1], 'TB1')} · ${label(labels[3], 'TB3')}` : '', jump, followFilter()), // the star comes last so it stays put when switching to Rounds
     teamList((snr) => void openTeam(snr), true, true));
 }
 
