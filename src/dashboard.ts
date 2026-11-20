@@ -1,8 +1,8 @@
 // Home screen: favorite tournaments, plus a search over chess-results.com team tournaments.
 // Opening a tournament is a plain link (?t=<tnr>), handled by the tournament view in view.ts.
 import type { Fetcher } from './api';
-import { h, store, type Kid } from './dom';
-import { FAVS_KEY, isFav, parseFavs, phaseOf, sortFavs, todayStamp, toggleFav } from './favs';
+import { h, session, store, type Kid } from './dom';
+import { FAVS_KEY, isFav, parseFavs, phaseOf, RECENT_KEY, sortFavs, todayStamp, toggleFav } from './favs';
 import { t } from './i18n';
 import { parseTnr, searchTournaments, type SearchResults } from './search';
 import type { Tournament } from './types';
@@ -21,15 +21,33 @@ const myTeamOf = (tnr: number): string => {
   return /^\d*$/.test(v) ? '' : v.replace(/\s*\(.*$/, '');
 };
 
+const DASH_KEY = 'cr:dash';
+const RECENT_SHOWN = 5;
+
 export function startDashboard(root: HTMLElement, fetcher: Fetcher): void {
   const S = {
     favs: parseFavs(store.get(FAVS_KEY)),
+    recent: parseFavs(store.get(RECENT_KEY)),
     query: '',
     results: null as (SearchResults & { query: string }) | null,
     direct: null as number | null,
     loading: false,
     error: '',
   };
+
+  // The last search survives opening a tournament and coming back with Back (for this tab only).
+  const persist = (): void => session.set(DASH_KEY, JSON.stringify({ query: S.query, results: S.results, direct: S.direct }));
+  try {
+    const saved = JSON.parse(session.get(DASH_KEY) ?? 'null') as { query?: unknown; results?: SearchResults & { query: string } | null; direct?: unknown } | null;
+    if (saved && typeof saved.query === 'string') {
+      S.query = saved.query;
+      S.direct = Number.isInteger(saved.direct) ? (saved.direct as number) : null;
+      const r = saved.results;
+      if (r && Array.isArray(r.tournaments)) {
+        S.results = { tournaments: parseFavs(JSON.stringify(r.tournaments)), total: Number(r.total) || 0, query: String(r.query ?? '') };
+      }
+    }
+  } catch { /* ignore a corrupt saved search */ }
 
   const saveFavs = (): void => store.set(FAVS_KEY, JSON.stringify(S.favs));
   const toggle = (tour: Tournament): void => {
@@ -43,7 +61,7 @@ export function startDashboard(root: HTMLElement, fetcher: Fetcher): void {
     S.error = '';
     const tnr = parseTnr(q);
     if (tnr !== null) {
-      S.direct = tnr; S.results = null; render();
+      S.direct = tnr; S.results = null; persist(); render();
       return;
     }
     S.direct = null;
@@ -58,6 +76,7 @@ export function startDashboard(root: HTMLElement, fetcher: Fetcher): void {
       S.results = null;
     } finally {
       S.loading = false;
+      persist();
       render();
     }
   }
@@ -92,11 +111,22 @@ export function startDashboard(root: HTMLElement, fetcher: Fetcher): void {
         : h('p', { class: 'empty' }, t('noFavorites')));
   }
 
+  /** Tournaments opened lately that are not already favorites. */
+  function recent(): HTMLElement | null {
+    const list = S.recent.filter((r) => !isFav(S.favs, r.tnr)).slice(0, RECENT_SHOWN);
+    if (!list.length) return null;
+    return h('section', { class: 'stack' },
+      h('div', { class: 'row-between' },
+        h('h2', null, t('recent')),
+        h('button', { class: 'link', onclick: () => { S.recent = []; store.del(RECENT_KEY); render(); } }, t('clear'))),
+      h('div', { class: 'tlist' }, ...list.map((r) => row(r, true))));
+  }
+
   function searchBox(): HTMLElement {
     const input = h('input', {
       type: 'search', placeholder: t('searchTournaments'), value: S.query, autocomplete: 'off', enterkeyhint: 'search',
       'aria-label': t('searchTournaments'),
-      oninput: (e: Event) => { S.query = (e.target as HTMLInputElement).value; },
+      oninput: (e: Event) => { S.query = (e.target as HTMLInputElement).value; persist(); },
     });
     return h('form', { class: 'searchbar', onsubmit: (e: Event) => { e.preventDefault(); void search(); } },
       input, h('button', { class: 'primary', type: 'submit', disabled: S.loading }, S.loading ? '…' : t('searchBtn')));
@@ -141,9 +171,17 @@ export function startDashboard(root: HTMLElement, fetcher: Fetcher): void {
       h('div', { class: 'title' }, h('h1', null, 'Chess results'), h('p', { class: 'sub' }, t('home'))),
       h('button', { class: 'icon', 'aria-label': t('settings'), onclick: openSettings }, '⚙'));
     const banner = S.error ? h('div', { class: 'banners' }, h('div', { class: 'banner err' }, h('span', null, S.error))) : null;
-    root.replaceChildren(...[header, banner, h('main', null, h('div', { class: 'stack' }, favorites(), searchBox(), results()))]
+    root.replaceChildren(...[header, banner, h('main', null, h('div', { class: 'stack' }, favorites(), recent(), searchBox(), results()))]
       .filter((x): x is HTMLElement => x !== null));
   }
+
+  // Back can restore this page from the browser's cache: pick up stars and tournaments changed meanwhile.
+  window.addEventListener('pageshow', (e) => {
+    if (!e.persisted) return;
+    S.favs = parseFavs(store.get(FAVS_KEY));
+    S.recent = parseFavs(store.get(RECENT_KEY));
+    render();
+  });
 
   document.title = 'Chess results';
   render();

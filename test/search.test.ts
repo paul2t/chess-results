@@ -5,7 +5,7 @@ import { JSDOM } from 'jsdom';
 import type { Fetcher } from '../src/api';
 import { mergeResults, parseSearchForm, parseSearchResults, parseTnr, searchTournaments, SEARCH_URL } from '../src/search';
 import {
-  isFav, parseFavs, parseNames, phaseOf, sortFavs, toggleFav, toggleName,
+  isFav, parseFavs, parseNames, phaseOf, pushRecent, sortFavs, toggleFav, toggleName,
 } from '../src/favs';
 import type { Tournament } from '../src/types';
 
@@ -118,4 +118,17 @@ test('favorite teams: names are deduped and toggled case-insensitively', () => {
   const same = (a: string, b: string) => a.toLowerCase() === b.toLowerCase();
   assert.deepEqual(toggleName(['Alpha'], 'beta', same), ['Alpha', 'beta']);
   assert.deepEqual(toggleName(['Alpha', 'Beta'], 'ALPHA', same), ['Beta']);
+});
+
+test('recent tournaments: newest first, no duplicates, capped, details kept', () => {
+  let list: Tournament[] = [];
+  for (const n of [1, 2, 3]) list = pushRecent(list, T(n, '2026/01/01'), 3);
+  assert.deepEqual(list.map((x) => x.tnr), [3, 2, 1]);
+  list = pushRecent(list, T(4, '2026/01/01'), 3);
+  assert.deepEqual(list.map((x) => x.tnr), [4, 3, 2]); // oldest dropped
+  list = pushRecent(list, T(2, '2026/01/01'), 3);
+  assert.deepEqual(list.map((x) => x.tnr), [2, 4, 3]); // moved to the front, not duplicated
+  const rich: Tournament = { tnr: 9, name: 'Nine', fed: 'FRA', from: '2026/02/01', to: '2026/02/02', location: 'Paris' };
+  list = pushRecent([rich], { tnr: 9, name: 'Nine (updated)', fed: '', from: '', to: '', location: '' });
+  assert.deepEqual(list, [{ ...rich, name: 'Nine (updated)' }]); // what the tournament page does not say is kept
 });

@@ -7,7 +7,7 @@ import { createDemoFetcher, createFetcher, type Fetcher } from './api';
 import { startDashboard } from './dashboard';
 import { h, store, type Kid } from './dom';
 import {
-  favTeamsKey, FAVS_KEY, isFav, parseFavs, parseNames, toggleFav, toggleName,
+  favTeamsKey, FAVS_KEY, isFav, parseFavs, parseNames, pushRecent, RECENT_KEY, toggleFav, toggleName,
 } from './favs';
 import { t } from './i18n';
 import { loadSnapshot, loadTeamPage } from './loader';
@@ -161,6 +161,7 @@ async function load(): Promise<void> {
       if (mine) store.set(`cr:team:${S.tnr}`, mine.name);
     }
     refreshFavTournament(snap);
+    if (!DEMO) store.set(RECENT_KEY, JSON.stringify(pushRecent(parseFavs(store.get(RECENT_KEY)), tournamentInfo(snap))));
     if (S.viewSnr === null) S.viewSnr = S.mySnr;
     if (S.viewSnr !== null && S.viewSnr !== S.mySnr) {
       const page = await loadTeamPage(S.fetcher, S.tnr, S.viewSnr).catch(() => null);
@@ -182,41 +183,69 @@ function defaultRound(s: Snapshot): number {
   return paired.length ? Math.max(...paired) : 1;
 }
 
-async function openTeam(snr: number): Promise<void> {
-  S.viewSnr = snr;
-  S.view = 'team';
-  syncUrl();
+/** Makes sure the page of another team is loaded (my team's page comes with the snapshot). */
+async function ensureTeamPage(snr: number): Promise<void> {
+  if (snr === S.mySnr || !S.fetcher || S.other.has(snr)) return;
+  S.loading = true;
   render();
-  window.scrollTo(0, 0);
-  if (snr !== S.mySnr && S.fetcher && !S.other.has(snr)) {
-    S.loading = true;
+  try {
+    const page = await loadTeamPage(S.fetcher, S.tnr, snr);
+    if (page) S.other.set(snr, page);
+    S.error = '';
+  } catch (e) {
+    S.error = e instanceof Error ? e.message : String(e);
+  } finally {
+    S.loading = false;
     render();
-    try {
-      const page = await loadTeamPage(S.fetcher, S.tnr, snr);
-      if (page) S.other.set(snr, page);
-      S.error = '';
-    } catch (e) {
-      S.error = e instanceof Error ? e.message : String(e);
-    } finally {
-      S.loading = false;
-      render();
-    }
   }
 }
 
-function syncUrl(): void {
+async function openTeam(snr: number): Promise<void> {
+  S.viewSnr = snr;
+  S.view = 'team';
+  syncUrl(true);
+  render();
+  window.scrollTo(0, 0);
+  await ensureTeamPage(snr);
+}
+
+// The address carries the whole position (?t, team, view, show = viewed team, rd = round), so reload,
+// share and the Back/Forward buttons all land where you were. Changing tab or team adds a history
+// entry; picking a round or choosing "my team" only rewrites the current one.
+function buildUrl(): string {
   const q = new URLSearchParams(location.search);
   if (!DEMO) q.set('t', String(S.tnr));
   if (S.mySnr !== null && !DEMO) q.set('team', String(S.mySnr));
   q.set('view', S.view);
+  if (S.view === 'team' && S.viewSnr !== null && S.viewSnr !== S.mySnr) q.set('show', String(S.viewSnr)); else q.delete('show');
+  if (S.view === 'rounds' && S.round !== null && S.snap && S.round !== defaultRound(S.snap)) q.set('rd', String(S.round)); else q.delete('rd');
+  return `${location.pathname}?${q.toString()}${location.hash}`;
+}
+
+function syncUrl(push = false): void {
+  const url = buildUrl();
+  if (url === `${location.pathname}${location.search}${location.hash}`) return;
   try {
-    history.replaceState(null, '', `${location.pathname}?${q.toString()}${location.hash}`);
+    if (push) history.pushState(null, '', url); else history.replaceState(null, '', url);
   } catch { /* sandboxed frames may refuse */ }
 }
 
+/** Back/Forward: put the view, viewed team and round back as the address says. */
+function applyUrl(): void {
+  const q = new URLSearchParams(location.search);
+  const v = q.get('view');
+  S.view = v === 'standings' || v === 'rounds' ? v : 'team';
+  if (S.view === 'team') S.viewSnr = asInt(q.get('show')) || S.mySnr;
+  if (S.view === 'rounds') S.round = asInt(q.get('rd')) || (S.snap ? defaultRound(S.snap) : null);
+  render();
+  window.scrollTo(0, 0);
+  if (S.view === 'team' && S.viewSnr !== null) void ensureTeamPage(S.viewSnr);
+}
+
 function setView(v: View): void {
+  if (S.view === v) { window.scrollTo({ top: 0, behavior: 'smooth' }); return; }
   S.view = v;
-  syncUrl();
+  syncUrl(true);
   render();
   window.scrollTo(0, 0);
 }
@@ -227,9 +256,18 @@ function render(): void {
   const y = window.scrollY;
   const view = S.view === 'standings' ? standingsView() : S.view === 'rounds' ? roundsView() : teamView();
   const b = banner();
+  document.title = pageTitle();
   $app.replaceChildren(...[header(), b, h('main', null, view), nav()].filter((x): x is HTMLElement => x !== null));
   window.scrollTo(0, y);
   document.querySelector('.rchip.on')?.scrollIntoView({ inline: 'center', block: 'nearest' });
+}
+
+/** Shown in the tab and in the browser's history list: "<team> – <tournament>" on the Team tab. */
+function pageTitle(): string {
+  const name = S.snap?.home.tournamentName;
+  if (!name) return 'Chess results';
+  const row = S.view === 'team' && S.viewSnr !== null ? teamOf(S.viewSnr) : undefined;
+  return row ? `${shortName(row.name)} – ${name}` : S.view === 'standings' ? `${t('standings')} – ${name}` : S.view === 'rounds' ? `${t('rounds')} – ${name}` : name;
 }
 
 function header(): HTMLElement {
@@ -520,7 +558,7 @@ function roundsView(): HTMLElement {
     const done = !!r && r.matches.every(isPlayed);
     return h('button', {
       class: `rchip ${n === sel ? 'on' : ''} ${done ? 'done' : r ? 'live' : ''}`,
-      onclick: () => { S.round = n; render(); },
+      onclick: () => { S.round = n; syncUrl(); render(); },
     }, n);
   }));
   const r = s.rounds.find((x) => x.round === sel);
@@ -618,6 +656,12 @@ async function boot(): Promise<void> {
       }
     } catch { /* ignore corrupt cache */ }
   }
+  // Position from the address: the team being viewed and the selected round
+  const show = asInt(params.get('show'));
+  if (show && S.view === 'team') S.viewSnr = show;
+  const rd = asInt(params.get('rd'));
+  if (rd && S.view === 'rounds') S.round = rd;
+  window.addEventListener('popstate', applyUrl);
   render();
   await load();
 

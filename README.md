@@ -19,6 +19,10 @@ The home page is a dashboard, not a fixed tournament:
   tournament and opened first next time. The team you leave stays as a followed team.
 * **Followed teams** – tap ☆ on a team in Standings (or *Follow this team* on its page). Followed teams appear as
   chips at the top of the Team tab, one tap from your own, and their games are outlined in Rounds.
+* **Back / Forward** – every tab or team change adds a history entry, and the address holds the whole position
+  (`t`, `team`, `view`, `show` = team being viewed, `rd` = round), so Back, reload and sharing a link land where you were.
+  Coming back to the dashboard restores your last search, and tournaments you opened lately are listed under
+  *Recently opened* (this device, up to 5 not already starred).
 
 ## Using it
 

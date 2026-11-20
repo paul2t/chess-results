@@ -24,3 +24,9 @@ export const store = {
   set: (k: string, v: string): void => { try { localStorage.setItem(k, v); } catch { /* quota / private mode */ } },
   del: (k: string): void => { try { localStorage.removeItem(k); } catch { /* ignore */ } },
 };
+
+/** Like `store`, but forgotten when the tab is closed: for transient state such as the last search. */
+export const session = {
+  get: (k: string): string | null => { try { return sessionStorage.getItem(k); } catch { return null; } },
+  set: (k: string, v: string): void => { try { sessionStorage.setItem(k, v); } catch { /* ignore */ } },
+};

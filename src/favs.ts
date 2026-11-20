@@ -77,3 +77,20 @@ export function parseNames(raw: string | null): string[] {
 export function toggleName(names: string[], name: string, same: (a: string, b: string) => boolean): string[] {
   return names.some((n) => same(n, name)) ? names.filter((n) => !same(n, name)) : [...names, name];
 }
+
+// ── recently opened tournaments ──
+
+export const RECENT_KEY = 'cr:recent';
+export const RECENT_MAX = 8;
+
+/** Puts the tournament first, drops duplicates and keeps details a newer entry lacks (federation, dates…). */
+export function pushRecent(list: Tournament[], tour: Tournament, max = RECENT_MAX): Tournament[] {
+  const old = list.find((x) => x.tnr === tour.tnr);
+  const merged: Tournament = old
+    ? {
+        tnr: tour.tnr, name: tour.name || old.name, fed: tour.fed || old.fed,
+        from: tour.from || old.from, to: tour.to || old.to, location: tour.location || old.location,
+      }
+    : tour;
+  return [merged, ...list.filter((x) => x.tnr !== tour.tnr)].slice(0, max);
+}

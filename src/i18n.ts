@@ -22,7 +22,7 @@ const en = {
   live: 'Live', upcoming: 'Upcoming', ended: 'Finished', myTeamIs: 'My team',
   proxyOutdated: 'The proxy does not accept searches yet. Redeploy it from the worker/ folder (see README).',
   setMine: 'Set as my team', followed: 'Followed teams', follow: 'Follow this team', unfollow: 'Stop following',
-  backHome: 'All tournaments',
+  backHome: 'All tournaments', recent: 'Recently opened', clear: 'Clear',
 };
 
 const fr: typeof en = {
@@ -49,7 +49,7 @@ const fr: typeof en = {
   live: 'En cours', upcoming: 'À venir', ended: 'Terminé', myTeamIs: 'Mon équipe',
   proxyOutdated: "Le proxy n'accepte pas encore les recherches. Redéployez-le depuis le dossier worker/ (voir README).",
   setMine: 'Définir comme mon équipe', followed: 'Équipes suivies', follow: 'Suivre cette équipe', unfollow: 'Ne plus suivre',
-  backHome: 'Tous les tournois',
+  backHome: 'Tous les tournois', recent: 'Ouverts récemment', clear: 'Effacer',
 };
 
 export type Key = keyof typeof en;
