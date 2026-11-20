@@ -97,9 +97,16 @@ const isFollowed = (row: TeamRow | undefined): boolean => !!row && (row.snr === 
 /** Toggle shown in Standings and Rounds: keep only my team and the followed teams (a device setting). */
 function followFilter(): HTMLElement {
   return h('button', {
-    class: `chipbtn ${S.onlyFav ? 'on' : ''}`, 'aria-pressed': S.onlyFav,
+    class: `iconbtn star ${S.onlyFav ? 'on' : ''}`, 'aria-pressed': S.onlyFav, 'aria-label': t('followedOnly'), title: t('followedOnly'),
     onclick: () => { S.onlyFav = !S.onlyFav; store.set('cr:onlyfav', S.onlyFav ? '1' : '0'); render(); },
-  }, `★ ${t('followedOnly')}`);
+  }, S.onlyFav ? '★' : '☆');
+}
+
+/** Header of a page or card: title (and a small line under it) on the left, icon buttons on the right. */
+function pageHead(title: string, sub: string, ...icons: Kid[]): HTMLElement {
+  return h('div', { class: 'head' },
+    h('div', { class: 'head-title' }, h('h2', null, title), sub ? h('p', { class: 'sub' }, sub) : null),
+    icons.some(Boolean) ? h('div', { class: 'head-icons' }, ...icons) : null);
 }
 
 function toggleFavTeam(row: TeamRow): void {
@@ -392,19 +399,17 @@ function hero(row: TeamRow, s: Snapshot): HTMLElement {
   const fav = isFavTeam(row.name);
   const followLabel = fav ? t('unfollow') : t('follow');
   return h('section', { class: 'card hero' },
-    h('div', { class: 'hero-head' },
-      h('div', { class: 'hero-title' },
-        h('h2', null, shortName(row.name)),
-        h('p', { class: 'sub' }, [row.fed, row.group, row.name.includes('(') ? row.name.slice(row.name.indexOf('(')) : ''].filter(Boolean).join(' · '))),
-      h('div', { class: 'hero-icons' },
-        // my team is always in the chip strip, so it needs no follow star
-        isMine ? null : h('button', {
-          class: `iconbtn star ${fav ? 'on' : ''}`, 'aria-pressed': fav, 'aria-label': followLabel, title: followLabel,
-          onclick: () => toggleFavTeam(row),
-        }, fav ? '★' : '☆'),
-        isMine
-          ? h('span', { class: 'iconbtn mine on', role: 'img', 'aria-label': t('myTeam'), title: t('myTeam') }, '♟')
-          : h('button', { class: 'iconbtn mine', 'aria-label': t('setMine'), title: t('setMine'), onclick: () => askMine(row) }, '♟'))),
+    pageHead(
+      shortName(row.name),
+      [row.fed, row.group, row.name.includes('(') ? row.name.slice(row.name.indexOf('(')) : ''].filter(Boolean).join(' · '),
+      // my team is always in the chip strip, so it needs no follow star
+      isMine ? null : h('button', {
+        class: `iconbtn star ${fav ? 'on' : ''}`, 'aria-pressed': fav, 'aria-label': followLabel, title: followLabel,
+        onclick: () => toggleFavTeam(row),
+      }, fav ? '★' : '☆'),
+      isMine
+        ? h('span', { class: 'iconbtn mine on', role: 'img', 'aria-label': t('myTeam'), title: t('myTeam') }, '♟')
+        : h('button', { class: 'iconbtn mine', 'aria-label': t('setMine'), title: t('setMine'), onclick: () => askMine(row) }, '♟')),
     h('div', { class: 'stats' }, ...stats));
 }
 
@@ -588,14 +593,12 @@ function standingsView(): HTMLElement {
   const title = started ? (s.home.listTitle || t('standings')) : t('startingList');
   const jump = S.mySnr !== null
     ? h('button', {
-        class: 'link',
+        class: 'iconbtn mine', 'aria-label': t('scrollToMe'), title: t('scrollToMe'),
         onclick: () => document.querySelector(`.trow[data-snr="${S.mySnr}"]`)?.scrollIntoView({ block: 'center', behavior: 'smooth' }),
-      }, t('scrollToMe'))
+      }, '♟')
     : null;
   return h('div', { class: 'stack' },
-    h('div', { class: 'row-between' }, h('h2', null, title), jump),
-    h('div', { class: 'hero-actions' }, followFilter()),
-    started ? h('p', { class: 'legend' }, `${label(labels[1], 'TB1')} · ${label(labels[3], 'TB3')}`) : null,
+    pageHead(title, started ? `${label(labels[1], 'TB1')} · ${label(labels[3], 'TB3')}` : '', followFilter(), jump),
     teamList((snr) => void openTeam(snr), true, true));
 }
 
@@ -637,8 +640,7 @@ function roundsView(): HTMLElement {
       }))
     : h('p', { class: 'empty' }, `${t('notPaired')}${sched ? ` · ${dayTime(sched.date, sched.time)}` : ''}`);
   return h('div', { class: 'stack' },
-    h('div', { class: 'row-between' }, h('h2', null, `${t('round')} ${sel}`), r ? h('span', { class: 'sub' }, dayTime(r.date, r.time)) : null),
-    h('div', { class: 'hero-actions' }, followFilter()),
+    pageHead(`${t('round')} ${sel}`, r ? dayTime(r.date, r.time) : '', followFilter()),
     chips, body);
 }
 

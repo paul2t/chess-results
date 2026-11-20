@@ -22,7 +22,8 @@ The home page is a dashboard, not a fixed tournament:
   chooses their own team.
 * **Followed teams** – tap ☆ on a team in Standings (or the ☆ at the top right of its card). Followed teams appear as
   chips at the top of the Team tab, one tap from your own, and their games are outlined in Rounds. The
-  *★ Followed only* switch in Standings and Rounds keeps just your team and the followed ones.
+  ★ icon at the top right of Standings and Rounds ("followed only") keeps just your team and the followed ones;
+  the ♟ icon next to it jumps to your team in the standings.
 * **Back / Forward** – every tab or team change adds a history entry, and the address holds the whole position
   (`t`, `view`, `show` = team being viewed, `rd` = round), so Back, reload and sharing a link land where you were.
   Coming back to the dashboard restores your last search, and tournaments you opened lately are listed under
