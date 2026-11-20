@@ -2,7 +2,7 @@
 // Opening a tournament is a plain link (?t=<tnr>), handled by the tournament view in view.ts.
 import type { Fetcher } from './api';
 import { h, session, store, type Kid } from './dom';
-import { FAVS_KEY, isFav, parseFavs, phaseOf, RECENT_KEY, sortFavs, todayStamp, toggleFav } from './favs';
+import { FAVS_KEY, isFav, parseFavs, phaseOf, RECENT_KEY, splitFavs, todayStamp, toggleFav } from './favs';
 import { t } from './i18n';
 import { parseTnr, searchTournaments, type SearchResults } from './search';
 import type { Tournament } from './types';
@@ -28,6 +28,7 @@ export function startDashboard(root: HTMLElement, fetcher: Fetcher): void {
   const S = {
     favs: parseFavs(store.get(FAVS_KEY)),
     recent: parseFavs(store.get(RECENT_KEY)),
+    favTab: 'current' as 'current' | 'past', // opens on live and upcoming; "past" only on request
     query: '',
     results: null as (SearchResults & { query: string }) | null,
     direct: null as number | null,
@@ -36,11 +37,12 @@ export function startDashboard(root: HTMLElement, fetcher: Fetcher): void {
   };
 
   // The last search survives opening a tournament and coming back with Back (for this tab only).
-  const persist = (): void => session.set(DASH_KEY, JSON.stringify({ query: S.query, results: S.results, direct: S.direct }));
+  const persist = (): void => session.set(DASH_KEY, JSON.stringify({ query: S.query, results: S.results, direct: S.direct, favTab: S.favTab }));
   try {
-    const saved = JSON.parse(session.get(DASH_KEY) ?? 'null') as { query?: unknown; results?: SearchResults & { query: string } | null; direct?: unknown } | null;
+    const saved = JSON.parse(session.get(DASH_KEY) ?? 'null') as { query?: unknown; results?: SearchResults & { query: string } | null; direct?: unknown; favTab?: unknown } | null;
     if (saved && typeof saved.query === 'string') {
       S.query = saved.query;
+      if (saved.favTab === 'past') S.favTab = 'past';
       S.direct = Number.isInteger(saved.direct) ? (saved.direct as number) : null;
       const r = saved.results;
       if (r && Array.isArray(r.tournaments)) {
@@ -103,12 +105,30 @@ export function startDashboard(root: HTMLElement, fetcher: Fetcher): void {
       }, fav ? '★' : '☆'));
   }
 
+  function setFavTab(tab: 'current' | 'past'): void {
+    S.favTab = tab;
+    persist();
+    render();
+  }
+
+  /** Favorites: live and upcoming first; finished ones sit behind a "Past" tab, shown only when there are some. */
   function favorites(): HTMLElement {
+    const { current, past } = splitFavs(S.favs, todayStamp());
+    const tab = past.length ? S.favTab : 'current';
+    const seg = (id: 'current' | 'past', label: string, n: number): HTMLElement =>
+      h('button', {
+        class: `segbtn ${tab === id ? 'on' : ''}`, role: 'tab', 'aria-selected': tab === id,
+        onclick: () => setFavTab(id),
+      }, label, h('span', { class: 'count' }, n));
+    const list = tab === 'past' ? past : current;
     return h('section', { class: 'stack' },
       h('h2', null, t('favorites')),
-      S.favs.length
-        ? h('div', { class: 'tlist' }, ...sortFavs(S.favs, todayStamp()).map((f) => row(f, true)))
-        : h('p', { class: 'empty' }, t('noFavorites')));
+      past.length
+        ? h('div', { class: 'seg', role: 'tablist', 'aria-label': t('favorites') }, seg('current', t('upcoming'), current.length), seg('past', t('past'), past.length))
+        : null,
+      list.length
+        ? h('div', { class: 'tlist' }, ...list.map((f) => row(f, true)))
+        : h('p', { class: 'empty' }, S.favs.length ? t('noUpcomingFav') : t('noFavorites')));
   }
 
   /** Tournaments opened lately that are not already favorites. */

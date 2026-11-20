@@ -94,3 +94,10 @@ export function pushRecent(list: Tournament[], tour: Tournament, max = RECENT_MA
     : tour;
   return [merged, ...list.filter((x) => x.tnr !== tour.tnr)].slice(0, max);
 }
+
+/** Favorites in two lists: live and upcoming (undated ones too) in the first, finished in the second. */
+export function splitFavs(favs: Tournament[], today: string): { current: Tournament[]; past: Tournament[] } {
+  const sorted = sortFavs(favs, today);
+  const isPast = (x: Tournament): boolean => phaseOf(x.from, x.to, today) === 'finished';
+  return { current: sorted.filter((x) => !isPast(x)), past: sorted.filter(isPast) };
+}

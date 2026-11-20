@@ -10,7 +10,8 @@ chess-results.com. Nothing is preselected: everybody picks their own tournaments
 
 The home page is a dashboard, not a fixed tournament:
 
-* **Favorites** – tournaments you starred (☆/★), live ones first, then upcoming, then finished. A favorite also
+* **Favorites** – tournaments you starred (☆/★). It opens on *Upcoming* (live ones first, then the soonest);
+  finished tournaments are behind the *Past* tab, which only appears once you have some. A favorite also
   shows which team is yours in it. They are stored in the browser (`localStorage`), on this device only.
 * **Search** – type part of a name (or paste a chess-results link / tournament number) and press Search. It uses the
   [chess-results search](https://s2.chess-results.com/TurnierSuche.aspx?lan=1&SNode=S0) and lists team tournaments

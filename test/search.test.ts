@@ -5,7 +5,7 @@ import { JSDOM } from 'jsdom';
 import type { Fetcher } from '../src/api';
 import { mergeResults, parseSearchForm, parseSearchResults, parseTnr, searchTournaments, SEARCH_URL } from '../src/search';
 import {
-  isFav, parseFavs, parseNames, phaseOf, pushRecent, sortFavs, toggleFav, toggleName,
+  isFav, parseFavs, parseNames, phaseOf, pushRecent, sortFavs, splitFavs, toggleFav, toggleName,
 } from '../src/favs';
 import type { Tournament } from '../src/types';
 
@@ -131,4 +131,13 @@ test('recent tournaments: newest first, no duplicates, capped, details kept', ()
   const rich: Tournament = { tnr: 9, name: 'Nine', fed: 'FRA', from: '2026/02/01', to: '2026/02/02', location: 'Paris' };
   list = pushRecent([rich], { tnr: 9, name: 'Nine (updated)', fed: '', from: '', to: '', location: '' });
   assert.deepEqual(list, [{ ...rich, name: 'Nine (updated)' }]); // what the tournament page does not say is kept
+});
+
+test('favorites split: live and upcoming first, finished apart, undated stay with the first', () => {
+  const today = '2026/11/20';
+  const { current, past } = splitFavs(
+    [T(1, '2025/11/07'), T(2, '2026/11/27'), T(3, '2026/11/20'), T(4, ''), T(5, '2026/01/10', '2026/01/11')], today);
+  assert.deepEqual(current.map((x) => x.tnr), [3, 2, 4]); // live, then upcoming, then undated
+  assert.deepEqual(past.map((x) => x.tnr), [5, 1]); // most recent first
+  assert.deepEqual(splitFavs([], today), { current: [], past: [] });
 });
