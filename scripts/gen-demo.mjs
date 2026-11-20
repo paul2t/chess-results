@@ -70,6 +70,17 @@ ${body}
     }),
   ].join('');
 
+  // per player: the opponent met in each round, with RtgI/RtgN (the only place the pairings' ratings appear)
+  const opp = [];
+  for (const l of lines.filter((x) => x.startsWith('Q '))) {
+    const [kind, ...c] = l.slice(2).trim().split('|');
+    if (kind === 'T') {
+      opp.push(`<tr class="CRg1b"><td class="none" colspan="10">${esc(c.join('|'))}</td></tr><tr class="CRng1b"><th class="CRc">Rd.</th><th class="CRc">SNo</th><th class="CR"></th><th class="CR">Name</th><th class="CRr">RtgI</th><th class="CRr">RtgN</th><th class="CR">FED</th><th class="CRc">Pts.</th><th class="CRc">Res.</th><th class="CRc">Bo.</th></tr>`);
+    } else {
+      opp.push(`<tr class="CRng1">${c.map((v, i) => `<td class="${i === 3 ? 'CR' : 'CRc'}">${esc(v)}</td>`).join('')}</tr>`);
+    }
+  }
+
   const player = (color, name) => `<table><tbody><tr><td><div class="${color === 'w' ? 'FarbewT' : 'FarbesT'}"></div></td><td class="CR">${esc(name)}</td></tr></tbody></table>`;
   const pair = [];
   for (const l of lines) {
@@ -84,7 +95,7 @@ ${body}
     }
   }
   writeFileSync(`${OUT}/team-${snr}.html`, page('Team-Composition with round-results',
-    `<table class="CRs1">${comp}</table><h3>Board Pairings</h3><table class="CRs1">${pair.join('')}</table>`));
+    `<table class="CRs1">${comp}</table>${opp.length ? `<table class="CRs1">${opp.join('')}</table>` : ''}<h3>Board Pairings</h3><table class="CRs1">${pair.join('')}</table>`));
 }
 
 console.log('demo pages written to', OUT);

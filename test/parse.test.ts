@@ -124,6 +124,37 @@ test('team page: lineup and every match, either side (2025)', () => {
   assert.equal(total, 15.5);
 });
 
+test('team page: opponent ratings come from the per-player opponent list (2025)', () => {
+  for (const page of [fx('2025-team45.html'), demo('team-45.html')]) { // the real page and the demo built from it
+    const t = parseTeamPage(page, 45)!;
+    const [r1, r2, r3] = t.matches;
+    // RtgI first
+    assert.equal(r1!.boards[0]!.opp.rating, 2267); // Barski, Radoslaw (IM)
+    assert.equal(r1!.boards[1]!.opp.rating, 2112); // Galuszka, Tomasz
+    // we are on the right-hand side: the opponent is the left player
+    assert.equal(r3!.boards[0]!.opp.name, 'Moussard, Jules');
+    assert.equal(r3!.boards[0]!.opp.rating, 2605);
+    // RtgI is 0 -> national rating
+    assert.equal(r3!.boards[2]!.opp.rating, 1500); // NUTHMANN, Thomas
+    // nobody on the other side: no rating
+    assert.equal(r2!.boards[2]!.opp.name, 'no player');
+    assert.equal(r2!.boards[2]!.opp.rating, null);
+    // every real opponent has a rating, and our own side is left alone
+    const real = t.matches.flatMap((m) => m.boards).filter((b) => !b.noPlayer);
+    assert.ok(real.length > 0 && real.every((b) => (b.opp.rating ?? 0) > 0), 'each opponent has a rating');
+    assert.ok(t.matches.flatMap((m) => m.boards).every((b) => b.us.rating === undefined));
+  }
+});
+
+test('team page without the opponent list leaves ratings unset', () => {
+  const d = fx('2025-team45.html');
+  const list = Array.from(d.querySelectorAll<HTMLTableElement>('table.CRs1, table.CRs2')).find((t) => /Rp:\d+/.test(t.rows[0]?.textContent ?? ''))!;
+  list.remove();
+  const boards = parseTeamPage(d, 45)!.matches.flatMap((m) => m.boards);
+  assert.ok(boards.length > 30);
+  assert.ok(boards.every((b) => b.opp.rating === undefined));
+});
+
 test('team page before the event (art=8, 2026)', () => {
   const t = parseTeamPage(fx('2026-team8.html'), 50)!;
   assert.equal(t.name, 'Dassault Systemes 1 (France) Industry');

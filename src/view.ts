@@ -517,7 +517,8 @@ function boardRow(g: BoardGame, page: TeamPage): HTMLElement {
     h('span', { class: 'who' },
       h('b', null, natural(g.us.name)), player?.rating ? h('small', null, ` ${player.rating}`) : null,
       h('span', { class: 'vs' }, ' – '),
-      g.opp.title ? h('em', null, g.opp.title + ' ') : null, natural(g.opp.name)),
+      g.opp.title ? h('em', null, g.opp.title + ' ') : null, natural(g.opp.name),
+      g.opp.rating ? h('small', null, ` ${g.opp.rating}`) : null),
     h('span', { class: `pill sm ${outcomeClass(o)}` }, res || '·'));
 }
 

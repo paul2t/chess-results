@@ -39,7 +39,7 @@ The home page is a dashboard, not a fixed tournament:
 | `?demo=1` | Full 2025 edition (real data, no network) to see what a finished event looks like |
 
 Tabs: **Team** (rank, match/game points, next or live match, line-up with per-round results, every match with
-board-by-board colours and results), **Standings**, **Rounds** (all pairings, tap a team to open it). The
+board-by-board colours, ratings and results), **Standings**, **Rounds** (all pairings, tap a team to open it). The
 ⚙ menu takes a chess-results link and the tournament switches; `‹` goes back to the dashboard.
 Every tab ends with *Open on chess-results.com ↗*, the same page (team, standings, round) on the original site;
 the ⚙ menu links the tournament's home page.

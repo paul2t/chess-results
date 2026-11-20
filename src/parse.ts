@@ -240,6 +240,7 @@ export function parseTeamPage(doc: Document, snr: number): TeamPage | null {
     snr, name: '', captain: '', avgRating: null, tb1: '', tb2: '', lineup: [], matches: [], roundColumns: 0,
   };
   let found = false;
+  const opponents: OpponentRow[] = [];
 
   for (const t of tables(doc)) {
     const rows = rowsOf(t);
@@ -260,9 +261,52 @@ export function parseTeamPage(doc: Document, snr: number): TeamPage | null {
     if (ROUND_HEAD.test(first)) {
       found = true;
       page.matches = parseTeamMatches(rows, snr);
+      continue;
+    }
+
+    if (rows.some((r) => isHeaderRow(r) && txt(r.cells[0]) === 'Rd.')) opponents.push(...parseOpponentRows(rows));
+  }
+  applyOpponentRatings(page.matches, opponents);
+  return found ? page : null;
+}
+
+interface OpponentRow { round: number; board: number; name: string; rating: number | null }
+
+/**
+ * The team page lists, for each player of the team, the opponent met in every round with RtgI/RtgN
+ * (the board pairings themselves carry no rating). Blocks are: a title row, a header row, round rows.
+ */
+function parseOpponentRows(rows: HTMLTableRowElement[]): OpponentRow[] {
+  const out: OpponentRow[] = [];
+  let col: Record<string, number> | null = null;
+  for (const r of rows) {
+    if (isHeaderRow(r) && txt(r.cells[0]) === 'Rd.') {
+      const heads = cells(r).map(txt);
+      col = { rd: heads.indexOf('Rd.'), name: heads.indexOf('Name'), intl: heads.indexOf('RtgI'), natl: heads.indexOf('RtgN'), bo: heads.indexOf('Bo.') };
+      continue;
+    }
+    const c = cells(r).map(txt);
+    if (!col || c.length < 2 || !/^\d+$/.test(c[col.rd!] ?? '')) continue;
+    const rating = (col.intl! >= 0 ? int(c[col.intl!] ?? '') : 0) || (col.natl! >= 0 ? int(c[col.natl!] ?? '') : 0) || null;
+    out.push({ round: int(c[col.rd!]!), board: col.bo! >= 0 ? int(c[col.bo!] ?? '') : 0, name: c[col.name!] ?? '', rating });
+  }
+  return out;
+}
+
+/** "Barski, Radoslaw" (pairings) and "Barski Radoslaw" (opponent list) must compare equal. */
+const sameKey = (s: string): string => normName(s.replace(/,/g, ' '));
+
+/** Fills `opp.rating` of every board: by round and name, else by round and board number. */
+function applyOpponentRatings(matches: TeamMatch[], rows: OpponentRow[]): void {
+  if (!rows.length) return;
+  for (const m of matches) {
+    for (const g of m.boards) {
+      const key = sameKey(g.opp.name);
+      const hit = rows.find((x) => x.round === m.round && sameKey(x.name) === key)
+        ?? rows.find((x) => x.round === m.round && x.board === g.board);
+      g.opp.rating = hit?.rating ?? null;
     }
   }
-  return found ? page : null;
 }
 
 function parseComposition(rows: HTMLTableRowElement[], page: TeamPage): void {

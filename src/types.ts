@@ -74,6 +74,8 @@ export interface Opponent {
   name: string;
   title: string;
   fed: string;
+  /** International rating, else national; null when unrated or not on the page (e.g. before the round). */
+  rating?: number | null;
 }
 
 export interface BoardGame {

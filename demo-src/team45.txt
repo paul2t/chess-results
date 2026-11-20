@@ -57,3 +57,43 @@ B 20.1|w|Ridel, Fabien|FRA|||Guerlach, Keigo|FRA|0 - 1
 B 20.2|b|De Temmerman, Paul|FRA|||Martine, Valentin|FRA|1 - 0
 B 20.3|w|Ferreira, Isaque|FRA|||Benaggoun, Khaled|ALG|0 - 1
 B 20.4|b|Rodrigues Miguel, Luca|FRA|||PARRAUD, Guillaume|FRA|1 - 0
+Q T|Ridel Fabien 1809 FRA Rp:1746
+Q R|1|193|IM|Barski Radoslaw|2267|0|POL|4|w 0|1
+Q R|2|18||Coronel Joshua|2024|0|ITA|4|w 0|1
+Q R|3|147|GM|Moussard Jules|2605|0|FRA|8,5|s 0|1
+Q R|4|30|CM|Croizier Valery|2164|0|FRA|4,5|w 0|1
+Q R|5|142||Ibazizen Abdelatif|1948|0|FRA|2|s 0|1
+Q R|6|99||Coupet Pascal|2139|0|FRA|3,5|s 0|1
+Q R|7|116||Guy Ange|1834|0|FRA|3|w 0|1
+Q R|8|219||Bertram Johannes|1915|0|GER|4,5|s 1|1
+Q R|9|8||Guerlach Keigo|1974|0|FRA|2|w 0|1
+Q T|De Temmerman Paul 1757 FRA Rp:1822
+Q R|1|194||Galuszka Tomasz|2112|0|POL|6,5|s 0|2
+Q R|2|20||Quintana Hernandez Marcos Ivan|1913|0|MEX|2|s 0|2
+Q R|3|148|AIM|Dimitriadis Alexandros|1941|0|GRE|4,5|w 1|2
+Q R|4|31||Venard Paul-Andre|2075|0|FRA|4,5|s 0|2
+Q R|5|143||Marty Jean-Yves|1911|0|FRA|4,5|w 0|2
+Q R|6|100||Bernard Serge|1976|0|FRA|6,5|w 0|2
+Q R|7|117||Strand Hakan|1595|0|FRA|4|s 1|2
+Q R|8|221||Sola Alessandro|1733|0|BEL|4|w ½|2
+Q R|9|11||Martine Valentin|1860|0|FRA|5|s 1|2
+Q T|Ferreira Isaque 1500 FRA Rp:1567
+Q R|1|195||Fritz Antoni|2032|0|POL|5,5|w 0|3
+Q R|2|0||Brett nicht besetzt|0|0||0|- 1K|3
+Q R|3|149||NUTHMANN Thomas|0|1500|FRA|1,5|s 1|3
+Q R|4|32||Renault Fabien|2004|0|FRA|5,5|w 0|3
+Q R|5|144||Quemener Yann|1761|0|FRA|5,5|s 0|3
+Q R|6|101||Droin Franck|1902|0|FRA|5|s 0|3
+Q R|7|118||Wyler Luc|1490|0|FRA|1|w 1|3
+Q R|8|222||Hinkel Kira|1612|0|BEL|5|s 0|3
+Q R|9|13||Benaggoun Khaled|1778|0|ALG|2,5|w 0|3
+Q T|Rodrigues Miguel Luca 1500 FRA Rp:1931
+Q R|1|196||Moscicka Pola|1937|0|POL|7|s 0|4
+Q R|2|0||Brett nicht besetzt|0|0||0|- 1K|4
+Q R|3|150||DE LUCCA Enrico|0|1500|FRA|2|w 1|4
+Q R|4|33||Charbit Florent|1916|0|FRA|6,5|s 1|4
+Q R|5|145||BOUTELDJA Brahim|0|1500|FRA|2|w 1|4
+Q R|6|103||DROIN Sebastien|0|1500|FRA|1|w 1|4
+Q R|7|119||Fuster Jean Baptiste|1408|0|FRA|3|s 1|4
+Q R|8|223||Bressers Effie|0|1500|BEL|1|w 1|4
+Q R|9|89||PARRAUD Guillaume|0|1500|FRA|5|s 1|4
