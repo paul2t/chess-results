@@ -43,7 +43,6 @@ em { font-style: normal; color: var(--accent); font-weight: 600; font-size: .85e
 .banner { display: flex; flex-wrap: wrap; gap: 4px 12px; align-items: center; padding: 8px 14px; font-size: .85rem; }
 .banner small { flex-basis: 100%; }
 .banner.err { background: var(--loss-bg); color: var(--loss); }
-.banner.info { background: var(--mine); }
 .link { color: var(--accent); font-weight: 600; padding: 8px 4px; text-decoration: none; }
 
 main { padding: 12px; max-width: 720px; margin: 0 auto; }

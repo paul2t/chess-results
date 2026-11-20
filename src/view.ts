@@ -326,11 +326,6 @@ function banner(): HTMLElement | null {
       direct && !S.snap ? h('small', null, t('proxyNeeded')) : null,
       h('button', { class: 'link', onclick: () => void load() }, t('retry'))));
   }
-  if (S.snap && S.viewSnr !== null && S.viewSnr !== S.mySnr) {
-    kids.push(h('div', { class: 'banner info' },
-      h('span', null, `${t('viewing')}: ${teamOf(S.viewSnr)?.name ?? '#' + S.viewSnr}`),
-      S.mySnr !== null ? h('button', { class: 'link', onclick: () => void openTeam(S.mySnr!) }, t('backToMine')) : null));
-  }
   return kids.length ? h('div', { class: 'banners' }, ...kids) : null;
 }
 
@@ -363,19 +358,22 @@ function chooser(): HTMLElement {
 function teamSwitcher(): HTMLElement | null {
   const s = S.snap;
   if (!s) return null;
-  const entries: { row: TeamRow; mine: boolean }[] = [];
+  const entries: { row: TeamRow; icon: string }[] = [];
   const mine = S.mySnr !== null ? teamOf(S.mySnr) : undefined;
-  if (mine) entries.push({ row: mine, mine: true });
+  if (mine) entries.push({ row: mine, icon: '♟ ' });
   for (const n of S.favTeams) {
     const r = s.home.teams.find((x) => sameName(x.name, n));
-    if (r && r.snr !== mine?.snr) entries.push({ row: r, mine: false });
+    if (r && r.snr !== mine?.snr) entries.push({ row: r, icon: '★ ' });
   }
+  // A team that is neither mine nor followed still gets a chip while it is open, so my team stays one tap away.
+  const viewed = S.viewSnr !== null ? teamOf(S.viewSnr) : undefined;
+  if (mine && viewed && !entries.some((e) => e.row.snr === viewed.snr)) entries.push({ row: viewed, icon: '' });
   if (entries.length < 2) return null;
   return h('div', { class: 'chips tswitch', role: 'tablist', 'aria-label': t('followed') },
     ...entries.map((e) => h('button', {
       class: `tchip ${e.row.snr === S.viewSnr ? 'on' : ''}`, role: 'tab', 'aria-selected': e.row.snr === S.viewSnr,
       onclick: () => void openTeam(e.row.snr),
-    }, e.mine ? '♟ ' : '★ ', shortName(e.row.name))));
+    }, e.icon, shortName(e.row.name))));
 }
 
 function hero(row: TeamRow, s: Snapshot): HTMLElement {
