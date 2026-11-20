@@ -3,7 +3,7 @@
 //   ?t=<tnr>      a tournament (tournament number)
 //   ?team=<n|name> the team to follow (number or name, e.g. "Dassault Systemes 1")
 //   ?view=team|standings|rounds   ?demo=1 (2025 data, no network)   ?proxy=<url template with {url}>
-import { createDemoFetcher, createFetcher, type Fetcher } from './api';
+import { createDemoFetcher, createFetcher, pageUrl, type Fetcher } from './api';
 import { startDashboard } from './dashboard';
 import { h, store, type Kid } from './dom';
 import {
@@ -271,9 +271,23 @@ function render(): void {
   const view = S.view === 'standings' ? standingsView() : S.view === 'rounds' ? roundsView() : teamView();
   const b = banner();
   document.title = pageTitle();
-  $app.replaceChildren(...[header(), b, h('main', null, view), nav()].filter((x): x is HTMLElement => x !== null));
+  $app.replaceChildren(...[header(), b, h('main', null, view, S.snap ? originalLink() : null), nav()].filter((x): x is HTMLElement => x !== null));
   window.scrollTo(0, y);
   document.querySelector('.rchip.on')?.scrollIntoView({ inline: 'center', block: 'nearest' });
+}
+
+/** The same page on chess-results.com, for whatever is on screen (team, standings or round). */
+function originalUrl(): string {
+  const s = S.snap;
+  const started = s?.home.kind === 'ranking';
+  if (S.view === 'standings') return pageUrl(S.tnr, { art: started ? 1 : 0 });
+  if (S.view === 'rounds') return pageUrl(S.tnr, { art: 2, rd: S.round ?? (s ? defaultRound(s) : 1) });
+  return S.viewSnr !== null ? pageUrl(S.tnr, { art: started ? 20 : 8, snr: S.viewSnr }) : pageUrl(S.tnr, {});
+}
+
+function originalLink(): HTMLElement {
+  return h('p', { class: 'srclink' },
+    h('a', { class: 'link', href: originalUrl(), target: '_blank', rel: 'noopener noreferrer' }, `${t('openOriginal')} ↗`));
 }
 
 /** Shown in the tab and in the browser's history list: "<team> – <tournament>" on the Team tab. */
@@ -627,6 +641,7 @@ function openSettings(): void {
     h('h2', null, t('settings')),
     h('label', null, t('tournament'), tnrInput, h('small', null, t('tournamentHint'))),
     h('label', { class: 'check' }, auto, t('autoRefresh')),
+    h('p', null, h('a', { class: 'link', href: pageUrl(S.tnr, {}), target: '_blank', rel: 'noopener noreferrer' }, `${t('openOriginal')} ↗`)),
     h('details', null, h('summary', null, t('proxyUrl')), h('label', null, proxyInput)),
     h('div', { class: 'row-between' },
       h('a', { class: 'link', href: `?demo=1` }, t('demo')),

@@ -185,3 +185,7 @@ a.icon { display: grid; place-items: center; text-decoration: none; }
 .segbtn.on { background: var(--accent); color: #fff; }
 .segbtn .count { font-size: .75rem; min-width: 22px; padding: 1px 6px; border-radius: 999px; background: var(--bg); color: var(--muted); font-variant-numeric: tabular-nums; }
 .segbtn.on .count { background: rgba(255, 255, 255, .22); color: #fff; }
+
+/* link to the same page on chess-results.com */
+.srclink { text-align: center; margin-top: 16px; }
+.srclink .link { display: inline-block; font-size: .85rem; font-weight: 500; }

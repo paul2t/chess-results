@@ -41,6 +41,8 @@ The home page is a dashboard, not a fixed tournament:
 Tabs: **Team** (rank, match/game points, next or live match, line-up with per-round results, every match with
 board-by-board colours and results), **Standings**, **Rounds** (all pairings, tap a team to open it). The
 ⚙ menu takes a chess-results link and the tournament switches; `‹` goes back to the dashboard.
+Every tab ends with *Open on chess-results.com ↗*, the same page (team, standings, round) on the original site;
+the ⚙ menu links the tournament's home page.
 Tapping a team anywhere opens its page. The page refreshes on load, with the ↻ button, and every 60 s while
 visible; the last data is cached so it still shows something when the venue wifi drops.
 
