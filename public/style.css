@@ -55,9 +55,9 @@ h2 { font-size: 1.15rem; }
 
 /* hero */
 .hero h2 { font-size: 1.3rem; }
-.stats { display: grid; grid-template-columns: repeat(auto-fit, minmax(70px, 1fr)); gap: 8px; margin-top: 12px; }
+.stats { display: grid; grid-template-columns: repeat(auto-fit, minmax(72px, 1fr)); gap: 6px; margin-top: 12px; }
 .stat { background: var(--bg); border-radius: 10px; padding: 8px 6px; text-align: center; }
-.stat b { display: block; font-size: 1.25rem; font-variant-numeric: tabular-nums; }
+.stat b { display: block; font-size: 1.1rem; white-space: nowrap; font-variant-numeric: tabular-nums; }
 .stat span { font-size: .7rem; color: var(--muted); }
 
 /* status */
@@ -66,19 +66,21 @@ h2 { font-size: 1.15rem; }
 .status .score { font-size: 2rem; font-weight: 700; margin-top: 6px; font-variant-numeric: tabular-nums; }
 
 /* lineup */
-.lineup { display: grid; gap: 4px; font-size: .85rem; }
-.lrow { display: grid; grid-template-columns: 18px minmax(0, 1fr) repeat(var(--n), 22px) 34px; gap: 3px; align-items: center; min-height: 30px; }
-.lrow.lhead { color: var(--muted); font-size: .7rem; min-height: 0; }
-.lrow .c { text-align: center; }
-.lrow .nm { line-height: 1.15; overflow-wrap: anywhere; }
-.lrow .nm small { white-space: nowrap; }
-.lrow .bo { color: var(--muted); text-align: center; }
-.lrow .pts { font-weight: 700; }
-.chip { height: 22px; border-radius: 5px; display: grid; place-items: center; font-size: .75rem; font-weight: 700; }
+.lineup { display: grid; gap: 10px; }
+.lhead, .player { display: grid; grid-template-columns: 20px minmax(0, 1fr) auto; column-gap: 8px; row-gap: 4px; align-items: baseline; }
+.lhead { color: var(--muted); font-size: .7rem; margin-bottom: -4px; }
+.lhead .chips9, .player .chips9 { grid-column: 2 / 4; }
+.chips9 { display: grid; grid-template-columns: repeat(var(--n), minmax(0, 1fr)); gap: 3px; }
+.chips9 .c { text-align: center; }
+.player .bo { color: var(--muted); text-align: center; }
+.player .nm { font-weight: 600; overflow-wrap: anywhere; line-height: 1.2; }
+.player .nm small { font-weight: 400; }
+.player .pts { font-weight: 700; font-variant-numeric: tabular-nums; }
+.chip { height: 26px; border-radius: 6px; display: grid; place-items: center; font-size: .8rem; font-weight: 700; }
 .chip.win { background: var(--win-bg); color: var(--win); }
 .chip.draw { background: var(--draw-bg); color: var(--draw); }
 .chip.loss { background: var(--loss-bg); color: var(--loss); }
-.chip.none { color: var(--muted); font-weight: 400; }
+.chip.none { color: var(--muted); font-weight: 400; background: var(--bg); }
 .chip.forf { outline: 1px dashed currentColor; outline-offset: -2px; }
 
 /* matches */

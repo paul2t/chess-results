@@ -183,6 +183,7 @@ function render(): void {
   const b = banner();
   $app.replaceChildren(...[header(), b, h('main', null, view), nav()].filter((x): x is HTMLElement => x !== null));
   window.scrollTo(0, y);
+  document.querySelector('.rchip.on')?.scrollIntoView({ inline: 'center', block: 'nearest' });
 }
 
 function header(): HTMLElement {
@@ -292,7 +293,7 @@ function statusCard(page: TeamPage | null, s: Snapshot, row: TeamRow): HTMLEleme
       h('h3', null, t('startsAt')),
       h('div', { class: 'big' }, first ? dayTime(first.date, first.time) : '—'),
       s.details?.location ? h('div', { class: 'sub' }, s.details.location) : null,
-      row.rating ? h('div', { class: 'sub' }, `${t('seed')} #${row.snr}`) : null);
+      null);
   }
   const nextRound = (last?.round ?? 0) + 1;
   const sched = s.schedule.find((r) => r.round === nextRound);
@@ -313,19 +314,21 @@ const CHIP: Record<string, string> = { '1': 'win', '+': 'win forf', '½': 'draw'
 function lineupCard(page: TeamPage, s: Snapshot): HTMLElement {
   const nCols = Math.max(page.roundColumns, page.lineup[0]?.results.length ?? 0);
   const roundsShown = Math.max(nCols, s.home.kind === 'ranking' ? s.totalRounds : 0);
-  const head = h('div', { class: 'lrow lhead', style: `--n:${roundsShown}` },
-    h('span', null, '#'), h('span', null, ''),
-    ...Array.from({ length: roundsShown }, (_, i) => h('span', { class: 'c' }, i + 1)),
-    h('span', { class: 'c' }, t('pts')));
-  const rows = page.lineup.map((p) => h('div', { class: 'lrow', style: `--n:${roundsShown}` },
+  const chips = (kids: Kid[]) => h('div', { class: 'chips9', style: `--n:${roundsShown}` }, ...kids);
+  const head = roundsShown
+    ? h('div', { class: 'lhead' }, h('span'), chips(Array.from({ length: roundsShown }, (_, i) => h('span', { class: 'c' }, i + 1))), h('span'))
+    : null;
+  const rows = page.lineup.map((p) => h('div', { class: 'player' },
     h('span', { class: 'bo' }, p.board),
     h('span', { class: 'nm' }, p.title ? h('em', null, p.title + ' ') : null, natural(p.name),
       p.rating ? h('small', null, ` ${p.rating}`) : null),
-    ...Array.from({ length: roundsShown }, (_, i) => {
-      const r = p.results[i] ?? '';
-      return h('span', { class: `chip ${CHIP[r] ?? 'none'}` }, r === '' ? '·' : r);
-    }),
-    h('span', { class: 'c pts' }, p.points || '–')));
+    h('span', { class: 'pts' }, roundsShown ? p.points || '–' : ''),
+    roundsShown
+      ? chips(Array.from({ length: roundsShown }, (_, i) => {
+          const r = p.results[i] ?? '';
+          return h('span', { class: `chip ${CHIP[r] ?? 'none'}` }, r === '' ? '·' : r);
+        }))
+      : null));
   return h('section', { class: 'card' }, h('h3', null, t('lineup')), h('div', { class: 'lineup' }, head, ...rows));
 }
 
