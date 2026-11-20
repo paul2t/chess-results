@@ -390,17 +390,39 @@ function hero(row: TeamRow, s: Snapshot): HTMLElement {
     : [stat(t('seed'), `#${row.snr}`), stat('Elo ∅', row.rating ?? '–')];
   const isMine = row.snr === S.mySnr;
   const fav = isFavTeam(row.name);
+  const followLabel = fav ? t('unfollow') : t('follow');
   return h('section', { class: 'card hero' },
-    h('h2', null, shortName(row.name)),
-    h('p', { class: 'sub' }, [row.fed, row.group, row.name.includes('(') ? row.name.slice(row.name.indexOf('(')) : ''].filter(Boolean).join(' · ')),
-    h('div', { class: 'hero-actions' },
-      isMine
-        ? h('span', { class: 'tag' }, `♟ ${t('myTeam')}`)
-        : h('button', { class: 'chipbtn', onclick: () => chooseMine(row.snr) }, `♟ ${t('setMine')}`),
-      isMine ? null : h('button', {
-        class: `chipbtn ${fav ? 'on' : ''}`, 'aria-pressed': fav, onclick: () => toggleFavTeam(row),
-      }, fav ? `★ ${t('unfollow')}` : `☆ ${t('follow')}`)),
+    h('div', { class: 'hero-head' },
+      h('div', { class: 'hero-title' },
+        h('h2', null, shortName(row.name)),
+        h('p', { class: 'sub' }, [row.fed, row.group, row.name.includes('(') ? row.name.slice(row.name.indexOf('(')) : ''].filter(Boolean).join(' · '))),
+      h('div', { class: 'hero-icons' },
+        // my team is always in the chip strip, so it needs no follow star
+        isMine ? null : h('button', {
+          class: `iconbtn star ${fav ? 'on' : ''}`, 'aria-pressed': fav, 'aria-label': followLabel, title: followLabel,
+          onclick: () => toggleFavTeam(row),
+        }, fav ? '★' : '☆'),
+        isMine
+          ? h('span', { class: 'iconbtn mine on', role: 'img', 'aria-label': t('myTeam'), title: t('myTeam') }, '♟')
+          : h('button', { class: 'iconbtn mine', 'aria-label': t('setMine'), title: t('setMine'), onclick: () => askMine(row) }, '♟'))),
     h('div', { class: 'stats' }, ...stats));
+}
+
+/** Making another team "mine" asks first when I already have one; the very first choice does not. */
+function askMine(row: TeamRow): void {
+  const prev = S.mySnr !== null ? teamOf(S.mySnr) : undefined;
+  if (!prev || prev.snr === row.snr) { chooseMine(row.snr); return; }
+  const dlg = h('dialog', { class: 'sheet' });
+  const text = t('changeTeamText').replace(/\{new\}/g, () => shortName(row.name)).replace(/\{old\}/g, () => shortName(prev.name));
+  dlg.append(
+    h('h2', null, t('changeTeam')),
+    h('p', { class: 'dialog-text' }, text),
+    h('div', { class: 'row-between' },
+      h('button', { class: 'link', onclick: () => dlg.close() }, t('cancel')),
+      h('button', { class: 'primary', onclick: () => { dlg.close(); chooseMine(row.snr); } }, t('change'))));
+  dlg.addEventListener('close', () => dlg.remove());
+  document.body.append(dlg);
+  dlg.showModal();
 }
 
 /** Score as shown, or provisional from finished boards while the match is running. */

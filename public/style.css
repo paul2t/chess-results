@@ -131,6 +131,15 @@ input[type="search"], .sheet input[type="text"] {
 .tag { padding: 6px 12px; border-radius: 999px; background: var(--mine); border: 1px solid var(--mine-line); font-size: .85rem; font-weight: 650; }
 .chipbtn { padding: 6px 12px; min-height: 36px; border-radius: 999px; border: 1px solid var(--line); background: var(--bg); font-size: .85rem; font-weight: 600; }
 .chipbtn.on { border-color: var(--accent); color: var(--accent); }
+
+/* team card: title on the left, icon buttons (follow, my team) on the right */
+.hero-head { display: flex; align-items: flex-start; justify-content: space-between; gap: 8px; }
+.hero-title { min-width: 0; flex: 1; }
+.hero-icons { display: flex; gap: 6px; flex: 0 0 auto; margin: -4px -4px 0 0; }
+.iconbtn { width: 42px; height: 42px; border-radius: 50%; display: grid; place-items: center; align-self: auto; font-size: 1.3rem; line-height: 1; border: 1px solid var(--line); background: var(--bg); color: var(--muted); text-align: center; }
+.iconbtn.star.on { color: #e3a700; border-color: #e3a700; }
+.iconbtn.mine.on { background: var(--mine); border-color: var(--mine-line); color: var(--ink); }
+.dialog-text { margin-bottom: 16px; line-height: 1.4; }
 .tchip { flex: 0 0 auto; padding: 8px 14px; min-height: 40px; border-radius: 999px; border: 1px solid var(--line); background: var(--card); font-weight: 600; white-space: nowrap; }
 .tchip.on { background: var(--accent); border-color: var(--accent); color: #fff; }
 a.icon { display: grid; place-items: center; text-decoration: none; }
