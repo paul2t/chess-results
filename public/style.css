@@ -3,14 +3,23 @@
   --brand: #1b3a5c; --accent: #2f6fb0;
   --win: #1f8a4c; --win-bg: #d9f2e3; --draw: #8a6d00; --draw-bg: #fdf0c2; --loss: #b3261e; --loss-bg: #fbdcd9;
   --nav-h: 58px;
+  color-scheme: light dark;
 }
+/* the dark palette twice: when the device is dark (unless light was chosen), and when dark was chosen */
 @media (prefers-color-scheme: dark) {
-  :root {
+  :root:not([data-theme="light"]) {
     --bg: #0f1720; --card: #17212c; --ink: #e8eef5; --muted: #93a2b3; --line: #263444;
     --brand: #0f1720; --accent: #6aa6e0;
     --win: #5fd18d; --win-bg: #17402a; --draw: #e6c34d; --draw-bg: #3d3410; --loss: #ff8a80; --loss-bg: #4a1f1b;
   }
 }
+:root[data-theme="dark"] {
+  --bg: #0f1720; --card: #17212c; --ink: #e8eef5; --muted: #93a2b3; --line: #263444;
+  --brand: #0f1720; --accent: #6aa6e0;
+  --win: #5fd18d; --win-bg: #17402a; --draw: #e6c34d; --draw-bg: #3d3410; --loss: #ff8a80; --loss-bg: #4a1f1b;
+  color-scheme: dark;
+}
+:root[data-theme="light"] { color-scheme: light; }
 * { box-sizing: border-box; }
 html { -webkit-text-size-adjust: 100%; }
 body {
@@ -33,6 +42,7 @@ em { font-style: normal; color: var(--accent); font-weight: 600; font-size: .85e
 .top .title { flex: 1; min-width: 0; }
 .top h1 { font-size: 1rem; font-weight: 650; white-space: nowrap; overflow: hidden; text-overflow: ellipsis; }
 .top .sub { color: #b9c7d6; font-size: .72rem; white-space: nowrap; overflow: hidden; text-overflow: ellipsis; }
+.top > a.icon:first-child { margin-left: -10px; } /* the home button sits further left: more room for the title */
 .icon { width: 44px; height: 44px; font-size: 1.35rem; border-radius: 50%; color: #fff; text-align: center; }
 .icon:active { background: rgba(255,255,255,.15); }
 .icon { display: inline-flex; align-items: center; justify-content: center; padding: 0; }
@@ -195,6 +205,7 @@ a.icon { display: grid; place-items: center; text-decoration: none; }
 .primary { background: var(--accent); color: #fff; padding: 10px 18px; border-radius: 10px; font-weight: 650; }
 
 /* favorites: upcoming / past switch */
+.seg.three { grid-template-columns: repeat(3, 1fr); }
 .seg { display: grid; grid-template-columns: 1fr 1fr; gap: 4px; padding: 4px; background: var(--card); border: 1px solid var(--line); border-radius: 12px; }
 .segbtn { display: flex; justify-content: center; align-items: center; gap: 8px; min-height: 40px; border-radius: 9px; font-weight: 600; color: var(--muted); text-align: center; }
 .segbtn.on { background: var(--accent); color: #fff; }

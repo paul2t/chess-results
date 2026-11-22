@@ -5,6 +5,7 @@ import { h, session, store, type Kid } from './dom';
 import { FAVS_KEY, isFav, parseFavs, phaseOf, RECENT_KEY, splitFavs, todayStamp, toggleFav } from './favs';
 import { flagOf } from './flags';
 import { t } from './i18n';
+import { getTheme, setTheme, type Theme } from './theme';
 import { BASE } from './route';
 import { parseTnr, searchTournaments, type SearchResults } from './search';
 import type { Tournament } from './types';
@@ -167,8 +168,21 @@ export function startDashboard(root: HTMLElement, fetcher: Fetcher): void {
       if (px) store.set('cr:proxy', px); else store.del('cr:proxy');
       location.reload();
     };
+    const themes: [Theme, string][] = [['auto', t('themeAuto')], ['light', t('themeLight')], ['dark', t('themeDark')]];
+    const seg = h('div', { class: 'seg three', role: 'group', 'aria-label': t('theme') });
+    const paint = (): void => seg.replaceChildren(...themes.map(([mode, label]) => h('button', {
+      class: `segbtn ${getTheme() === mode ? 'on' : ''}`, 'aria-pressed': getTheme() === mode,
+      onclick: () => { setTheme(mode); paint(); },
+    }, label)));
+    paint();
+    const auto = h('input', {
+      type: 'checkbox', checked: store.get('cr:auto') !== '0',
+      onchange: (e: Event) => store.set('cr:auto', (e.target as HTMLInputElement).checked ? '1' : '0'),
+    });
     dlg.append(
       h('h2', null, t('settings')),
+      h('label', null, t('theme'), seg),
+      h('label', { class: 'check' }, auto, t('autoRefresh')),
       h('details', null, h('summary', null, t('proxyUrl')), h('label', null, proxyInput)),
       h('div', { class: 'row-between' },
         h('a', { class: 'link', href: `${BASE}demo` }, t('demo')),

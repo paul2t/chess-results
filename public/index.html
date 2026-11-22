@@ -5,6 +5,8 @@
   <!-- Addresses look like /chess-results/1542962/team/50: files are found relative to the folder before the
        tournament number (same rule as basePath in src/route.ts). Served as 404.html too, for those paths. -->
   <script>
+    // the chosen theme (settings), before anything is painted
+    try { var th = localStorage.getItem('cr:theme'); if (th === 'light' || th === 'dark') document.documentElement.dataset.theme = th; } catch (e) {}
     // written, not declared, so the browser does not fetch them ahead of the base (as /demo/style.css)
     document.write('<base href="' + location.pathname.replace(/\/(\d+|demo)(\/.*)?$/, '/') + '">' +
       '<link rel="stylesheet" href="style.css">');

@@ -12,6 +12,7 @@ import {
 } from './favs';
 import { flagOf } from './flags';
 import { t } from './i18n';
+import { applyTheme, getTheme } from './theme';
 import { loadPlayerNumbers, loadPlayerPage, loadPlayers, loadSnapshot, loadTeamPage } from './loader';
 import { BASE, buildPath, extraQuery, parseLegacy, parsePath, type Route, type View } from './route';
 import { formatScore, isPlayed, normName, outcome, playerKey, ratingOf, type Outcome } from './parse';
@@ -23,6 +24,7 @@ interface Config { proxies: string[] }
 
 // ───────────────────────────── state ─────────────────────────────
 
+applyTheme(getTheme()); // also fixes the browser bar's colour (the page itself was themed by index.html)
 const params = new URLSearchParams(location.search);
 // From the address: a path (/1542962/team/50) or, for links made before, a query (?t=1542962&show=50).
 const ROUTE: Route | null = parsePath(location.pathname) ?? parseLegacy(location.search);
@@ -366,8 +368,7 @@ function header(): HTMLElement {
       class: `icon star ${fav ? 'on' : ''}`, 'aria-pressed': fav, 'aria-label': fav ? t('removeFav') : t('addFav'),
       onclick: toggleFavTournament,
     }, fav ? '★' : '☆'),
-    h('button', { class: `icon ${S.loading ? 'spin' : ''} ${warn ? 'warn' : ''}`, 'aria-label': warn ? `${t('refresh')} – ${warn}` : t('refresh'), title: warn, onclick: () => void load() }, refreshIcon()),
-    h('button', { class: 'icon', 'aria-label': t('settings'), onclick: openSettings }, '⚙'));
+    h('button', { class: `icon ${S.loading ? 'spin' : ''} ${warn ? 'warn' : ''}`, 'aria-label': warn ? `${t('refresh')} – ${warn}` : t('refresh'), title: warn, onclick: () => void load() }, refreshIcon()));
 }
 
 function banner(): HTMLElement | null {
@@ -873,32 +874,6 @@ function playerCard(pno: number): HTMLElement {
   return h('div', { class: 'stack' }, bar, hero,
     details.length ? h('section', { class: 'card' }, ...details) : null,
     page.games.length ? h('section', { class: 'card' }, h('h3', null, t('opponents')), h('div', { class: 'opps' }, ...page.games.map(gameRow))) : null);
-}
-
-// ───────────────────────────── settings ─────────────────────────────
-
-function openSettings(): void {
-  const dlg = h('dialog', { class: 'sheet' });
-  const proxyInput = h('input', { type: 'text', value: store.get('cr:proxy') ?? '', placeholder: 'https://…/?url={url}' });
-  const auto = h('input', { type: 'checkbox', checked: S.auto, onchange: (e: Event) => { S.auto = (e.target as HTMLInputElement).checked; store.set('cr:auto', S.auto ? '1' : '0'); } });
-  const apply = () => {
-    const px = proxyInput.value.trim();
-    if (px === (store.get('cr:proxy') ?? '')) { dlg.close(); return; }
-    if (px) store.set('cr:proxy', px); else store.del('cr:proxy');
-    location.reload(); // the proxy is read at start-up
-  };
-  dlg.append(
-    h('h2', null, t('settings')),
-    h('label', { class: 'check' }, auto, t('autoRefresh')),
-    h('p', null, h('a', { class: 'link', href: pageUrl(S.tnr, {}), target: '_blank', rel: 'noopener noreferrer' }, `${t('openOriginal')} ↗`)),
-    h('details', null, h('summary', null, t('proxyUrl')), h('label', null, proxyInput)),
-    h('div', { class: 'row-between' },
-      h('span', null,
-        h('button', { class: 'link', onclick: () => dlg.close() }, t('close')),
-        h('button', { class: 'primary', onclick: apply }, t('apply')))));
-  dlg.addEventListener('close', () => dlg.remove());
-  document.body.append(dlg);
-  dlg.showModal();
 }
 
 // ───────────────────────────── boot ─────────────────────────────
