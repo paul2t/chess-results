@@ -19,8 +19,6 @@ interface Config { proxies: string[] }
 
 // ───────────────────────────── state ─────────────────────────────
 
-/** The team the demo opens on (Dassault Systèmes #1, 2025 winners). */
-const DEMO_TEAM = 45;
 const params = new URLSearchParams(location.search);
 // From the address: a path (/1542962/team/50) or, for links made before, a query (?t=1542962&show=50).
 const ROUTE: Route | null = parsePath(location.pathname) ?? parseLegacy(location.search);
@@ -125,15 +123,8 @@ function toggleFavTeam(row: TeamRow): void {
   render();
 }
 
-/** The team opened when the address names none: the first followed team that is in this tournament. */
-function defaultTeam(): number | null {
-  if (DEMO) return DEMO_TEAM;
-  for (const n of S.favTeams) {
-    const row = S.snap?.home.teams.find((x) => sameName(x.name, n));
-    if (row) return row.snr;
-  }
-  return null;
-}
+/** The Teams tab comes back as you left it: the last team opened, or the list of teams. */
+const lastTeamKey = (tnr: number) => `cr:lastteam:${tnr}`;
 
 const pagesKey = (tnr: number) => `cr:pages:${tnr}`;
 const MAX_PAGES = 8;
@@ -258,6 +249,7 @@ function buildUrl(): string {
 }
 
 function syncUrl(push = false): void {
+  if (S.view === 'teams') persist(lastTeamKey(S.tnr), S.viewSnr === null ? '' : String(S.viewSnr));
   const url = buildUrl();
   if (url === `${location.pathname}${location.search}${location.hash}`) return;
   try {
@@ -279,7 +271,6 @@ function applyUrl(): void {
 function setView(v: View): void {
   if (S.view === v) { window.scrollTo({ top: 0, behavior: 'smooth' }); return; }
   S.view = v;
-  if (v === 'teams' && S.viewSnr === null) S.viewSnr = defaultTeam(); // the first followed team, else the list
   syncUrl(true);
   render();
   window.scrollTo(0, 0);
@@ -378,8 +369,7 @@ function teamView(): HTMLElement {
   const page = viewedPage();
   if (!row) return h('p', { class: 'empty' }, t('noData'));
   const wrap = h('div', { class: 'stack' },
-    h('button', { class: 'link back', onclick: showTeamList }, `‹ ${t('allTeams')}`),
-    teamSwitcher(), hero(row, s),
+    teamBar(), hero(row, s),
     // until the team's page is here, say so rather than guess (an empty page would read as "starts at …")
     page ? statusCard(page, s, row) : h('p', { class: 'empty' }, S.loading ? t('loading') : t('noData')));
   if (page && page.lineup.length) wrap.append(lineupCard(page, s));
@@ -391,24 +381,19 @@ function teamsList(): HTMLElement {
   return h('div', { class: 'stack' }, pageHead(t('allTeams'), '', followFilter()), teamList((snr) => void openTeam(snr), true, true));
 }
 
-/** The followed teams, one tap apart. */
-function teamSwitcher(): HTMLElement | null {
-  const s = S.snap;
-  if (!s) return null;
-  const entries: { row: TeamRow; icon: string }[] = [];
+/** One line: back to the list of teams, then the followed teams, one tap apart. */
+function teamBar(): HTMLElement {
+  const entries: TeamRow[] = [];
   for (const n of S.favTeams) {
-    const r = s.home.teams.find((x) => sameName(x.name, n));
-    if (r && !entries.some((e) => e.row.snr === r.snr)) entries.push({ row: r, icon: '★ ' });
+    const r = S.snap?.home.teams.find((x) => sameName(x.name, n));
+    if (r && !entries.some((e) => e.snr === r.snr)) entries.push(r);
   }
-  // A team that is not followed still gets a chip while it is open, so the followed ones stay one tap away.
-  const viewed = S.viewSnr !== null ? teamOf(S.viewSnr) : undefined;
-  if (entries.length && viewed && !entries.some((e) => e.row.snr === viewed.snr)) entries.push({ row: viewed, icon: '' });
-  if (entries.length < 2) return null;
-  return h('div', { class: 'chips tswitch', role: 'tablist', 'aria-label': t('followed') },
-    ...entries.map((e) => h('button', {
-      class: `tchip ${e.row.snr === S.viewSnr ? 'on' : ''}`, role: 'tab', 'aria-selected': e.row.snr === S.viewSnr,
-      onclick: () => void openTeam(e.row.snr),
-    }, e.icon, shortName(e.row.name))));
+  return h('div', { class: 'chips tswitch', 'aria-label': t('followed') },
+    h('button', { class: 'tchip all', onclick: showTeamList }, `‹ ${t('allTeams')}`),
+    ...entries.map((r) => h('button', {
+      class: `tchip ${r.snr === S.viewSnr ? 'on' : ''}`, 'aria-current': r.snr === S.viewSnr ? 'true' : null,
+      onclick: () => void openTeam(r.snr),
+    }, '★ ', shortName(r.name))));
 }
 
 function hero(row: TeamRow, s: Snapshot): HTMLElement {
@@ -726,7 +711,7 @@ async function boot(): Promise<void> {
     } catch { /* ignore corrupt cache */ }
   }
   // Position from the address: the team being viewed and the selected round
-  S.viewSnr = ROUTE.snr;
+  S.viewSnr = ROUTE.view === 'teams' ? ROUTE.snr : DEMO ? null : asInt(store.get(lastTeamKey(S.tnr))) || null;
   if (ROUTE.rd && S.view === 'rounds') S.round = ROUTE.rd;
   syncUrl(); // an old ?t=… link becomes /<tnr>/…
   window.addEventListener('popstate', applyUrl);
