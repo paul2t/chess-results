@@ -60,7 +60,14 @@ const bySnr = (name: string): TeamRow | undefined => {
   const n = normName(name);
   return S.snap?.home.teams.find((x) => normName(x.name) === n);
 };
-const clock = (ms: number): string => new Date(ms).toLocaleTimeString([], { hour: '2-digit', minute: '2-digit', second: '2-digit' });
+const clock = (ms: number): string => new Date(ms).toLocaleTimeString([], { hour: '2-digit', minute: '2-digit' });
+/** chess-results' "Last update 22.11.2026 14:10:05" as "14:10" (today) or "21.11 14:10": short enough for a phone header. */
+function shortUpload(src: string, now = new Date()): string {
+  const m = /^(\d{1,2})\.(\d{1,2})\.(\d{4})\s+(\d{1,2}:\d{2})/.exec(src);
+  if (!m) return src;
+  const today = +m[1]! === now.getDate() && +m[2]! === now.getMonth() + 1 && +m[3]! === now.getFullYear();
+  return today ? m[4]! : `${m[1]}.${m[2]} ${m[4]}`;
+}
 const dayTime = (date: string, time: string): string => {
   const d = date ? new Date(date.replace(/\//g, '-') + 'T00:00:00') : null;
   const day = d && !isNaN(+d) ? d.toLocaleDateString([], { weekday: 'short', day: 'numeric', month: 'short' }) : date;
@@ -330,14 +337,15 @@ function refreshIcon(): HTMLElement {
 function header(): HTMLElement {
   const s = S.snap;
   const sub = s
-    ? `${t('updated')} ${clock(s.fetchedAt)}${s.home.lastUpdate ? ` · ${t('source')} ${s.home.lastUpdate}` : ''}`
+    ? `↻ ${clock(s.fetchedAt)}${s.home.lastUpdate ? ` · ↑ ${shortUpload(s.home.lastUpdate)}` : ''}`
     : S.loading ? t('loading') : '';
   const fav = isFav(S.favTours, S.tnr);
   return h('header', { class: 'top' },
     h('a', { class: 'icon', href: BASE, 'aria-label': t('backHome') }, '‹'),
     h('div', { class: 'title' },
       h('h1', null, s?.home.tournamentName || 'Chess results'),
-      h('p', { class: 'sub' }, sub)),
+      // ↻ = when this page last fetched, ↑ = when chess-results says it was uploaded (spelled out in the tooltip)
+      h('p', { class: 'sub', title: s ? `${t('updated')} · ${t('source')}` : null }, sub)),
     DEMO ? null : h('button', {
       class: `icon star ${fav ? 'on' : ''}`, 'aria-pressed': fav, 'aria-label': fav ? t('removeFav') : t('addFav'),
       onclick: toggleFavTournament,

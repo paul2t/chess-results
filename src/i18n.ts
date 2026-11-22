@@ -1,6 +1,6 @@
 const en = {
   team: 'Team', standings: 'Standings', rounds: 'Rounds', settings: 'Settings',
-  refresh: 'Refresh', updated: 'Updated', source: 'chess-results upload',
+  refresh: 'Refresh', updated: 'Refreshed here', source: 'Uploaded to chess-results',
   rank: 'Rank', seed: 'Seed', mp: 'Match pts', gp: 'Game pts', record: 'W-D-L',
   nextMatch: 'Next match', liveMatch: 'In progress', lastMatch: 'Last result', startsAt: 'Starts',
   round: 'Round', vs: 'vs', lineup: 'Line-up', matches: 'Matches', boards: 'Boards',
@@ -33,7 +33,7 @@ const en = {
 
 const fr: typeof en = {
   team: 'Équipe', standings: 'Classement', rounds: 'Rondes', settings: 'Réglages',
-  refresh: 'Actualiser', updated: 'Mis à jour', source: 'mise en ligne chess-results',
+  refresh: 'Actualiser', updated: 'Actualisé ici', source: 'mis en ligne sur chess-results',
   rank: 'Rang', seed: 'Tête de série', mp: 'Pts match', gp: 'Pts parties', record: 'G-N-P',
   nextMatch: 'Prochain match', liveMatch: 'En cours', lastMatch: 'Dernier résultat', startsAt: 'Début',
   round: 'Ronde', vs: 'contre', lineup: 'Composition', matches: 'Matchs', boards: 'Échiquiers',
