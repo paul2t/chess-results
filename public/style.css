@@ -35,7 +35,10 @@ em { font-style: normal; color: var(--accent); font-weight: 600; font-size: .85e
 .top .sub { color: #b9c7d6; font-size: .72rem; white-space: nowrap; overflow: hidden; text-overflow: ellipsis; }
 .icon { width: 44px; height: 44px; font-size: 1.35rem; border-radius: 50%; color: #fff; text-align: center; }
 .icon:active { background: rgba(255,255,255,.15); }
-.icon.spin { animation: spin 1s linear infinite; }
+.icon { display: inline-flex; align-items: center; justify-content: center; padding: 0; }
+.icon .rotor { display: block; width: 24px; height: 24px; line-height: 0; transform-origin: 50% 50%; }
+.icon .rotor svg { display: block; }
+.icon.spin .rotor { animation: spin 1s linear infinite; }
 @keyframes spin { to { transform: rotate(360deg); } }
 
 /* banners */

@@ -184,6 +184,7 @@ async function load(): Promise<void> {
     refreshFavTournament(snap);
     if (!DEMO) store.set(RECENT_KEY, JSON.stringify(pushRecent(parseFavs(store.get(RECENT_KEY)), tournamentInfo(snap))));
     if (S.viewSnr === null) S.viewSnr = S.mySnr;
+    syncUrl(); // the team on show is only known now when nothing was cached
     if (S.viewSnr !== null && S.viewSnr !== S.mySnr) {
       const page = await loadTeamPage(S.fetcher, S.tnr, S.viewSnr).catch(() => null);
       if (page) S.other.set(S.viewSnr, page);
@@ -238,7 +239,7 @@ function buildUrl(): string {
   if (!DEMO) q.set('t', String(S.tnr));
   q.delete('team'); // "my team" is personal (kept on this device): a shared link must not carry it
   q.set('view', S.view);
-  if (S.view === 'team' && S.viewSnr !== null && S.viewSnr !== S.mySnr) q.set('show', String(S.viewSnr)); else q.delete('show');
+  if (S.view === 'team' && S.viewSnr !== null) q.set('show', String(S.viewSnr)); else q.delete('show');
   if (S.view === 'rounds' && S.round !== null && S.snap && S.round !== defaultRound(S.snap)) q.set('rd', String(S.round)); else q.delete('rd');
   return `${location.pathname}?${q.toString()}${location.hash}`;
 }
@@ -305,6 +306,13 @@ function pageTitle(): string {
   return row ? `${shortName(row.name)} – ${name}` : S.view === 'standings' ? `${t('standings')} – ${name}` : S.view === 'rounds' ? `${t('rounds')} – ${name}` : name;
 }
 
+/** Circular arrow drawn around the middle of its box, so it spins on its own centre (the ↻ glyph does not). */
+function refreshIcon(): HTMLElement {
+  const el = h('span', { class: 'rotor', 'aria-hidden': 'true' });
+  el.innerHTML = '<svg viewBox="0 0 24 24" width="24" height="24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><path d="M20 12a8 8 0 1 1-2.6-5.9"/><path d="M20 3.5v4.6h-4.6"/></svg>';
+  return el;
+}
+
 function header(): HTMLElement {
   const s = S.snap;
   const sub = s
@@ -320,7 +328,7 @@ function header(): HTMLElement {
       class: `icon star ${fav ? 'on' : ''}`, 'aria-pressed': fav, 'aria-label': fav ? t('removeFav') : t('addFav'),
       onclick: toggleFavTournament,
     }, fav ? '★' : '☆'),
-    h('button', { class: `icon ${S.loading ? 'spin' : ''}`, 'aria-label': t('refresh'), onclick: () => void load() }, '↻'),
+    h('button', { class: `icon ${S.loading ? 'spin' : ''}`, 'aria-label': t('refresh'), onclick: () => void load() }, refreshIcon()),
     h('button', { class: 'icon', 'aria-label': t('settings'), onclick: openSettings }, '⚙'));
 }
 
