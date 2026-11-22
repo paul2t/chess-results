@@ -16,12 +16,6 @@ const day = (stamp: string): string => {
 };
 const range = (from: string, to: string): string => (!to || to === from ? day(from) : `${day(from)} – ${day(to)}`);
 
-/** Name of the team followed in a tournament ("My team"), as remembered by the tournament view. */
-const myTeamOf = (tnr: number): string => {
-  const v = store.get(`cr:team:${tnr}`) ?? '';
-  return /^\d*$/.test(v) ? '' : v.replace(/\s*\(.*$/, '');
-};
-
 const DASH_KEY = 'cr:dash';
 const RECENT_SHOWN = 5;
 
@@ -90,15 +84,13 @@ export function startDashboard(root: HTMLElement, fetcher: Fetcher): void {
     return h('span', { class: `phase ${p}` }, p === 'live' ? t('live') : p === 'upcoming' ? t('upcoming') : t('ended'));
   }
 
-  function row(tour: Tournament, withTeam: boolean): HTMLElement {
+  function row(tour: Tournament): HTMLElement {
     const fav = isFav(S.favs, tour.tnr);
-    const mine = withTeam ? myTeamOf(tour.tnr) : '';
     return h('div', { class: 'trow tour' },
       h('a', { class: 'tpick', href: `${BASE}${tour.tnr}` },
         h('span', { class: 'tn' },
           h('b', null, tour.name),
-          h('small', null, [tour.fed, tour.from ? range(tour.from, tour.to) : '', tour.location].filter(Boolean).join(' · ')),
-          mine ? h('small', { class: 'mineteam' }, `♟ ${t('myTeamIs')}: ${mine}`) : null),
+          h('small', null, [tour.fed, tour.from ? range(tour.from, tour.to) : '', tour.location].filter(Boolean).join(' · '))),
         badge(tour)),
       h('button', {
         class: `star ${fav ? 'on' : ''}`, 'aria-pressed': fav, 'aria-label': fav ? t('removeFav') : t('addFav'),
@@ -128,7 +120,7 @@ export function startDashboard(root: HTMLElement, fetcher: Fetcher): void {
         ? h('div', { class: 'seg', role: 'tablist', 'aria-label': t('favorites') }, seg('current', t('upcoming'), current.length), seg('past', t('past'), past.length))
         : null,
       list.length
-        ? h('div', { class: 'tlist' }, ...list.map((f) => row(f, true)))
+        ? h('div', { class: 'tlist' }, ...list.map((f) => row(f)))
         : h('p', { class: 'empty' }, S.favs.length ? t('noUpcomingFav') : t('noFavorites')));
   }
 
@@ -140,7 +132,7 @@ export function startDashboard(root: HTMLElement, fetcher: Fetcher): void {
       h('div', { class: 'row-between' },
         h('h2', null, t('recent')),
         h('button', { class: 'link', onclick: () => { S.recent = []; store.del(RECENT_KEY); render(); } }, t('clear'))),
-      h('div', { class: 'tlist' }, ...list.map((r) => row(r, true))));
+      h('div', { class: 'tlist' }, ...list.map((r) => row(r))));
   }
 
   function searchBox(): HTMLElement {
@@ -156,14 +148,14 @@ export function startDashboard(root: HTMLElement, fetcher: Fetcher): void {
   function results(): Kid {
     if (S.loading) return h('p', { class: 'empty' }, t('searching'));
     if (S.direct !== null) {
-      return h('div', { class: 'tlist' }, row({ tnr: S.direct, name: `${t('openTnr')} ${S.direct}`, fed: '', from: '', to: '', location: '' }, false));
+      return h('div', { class: 'tlist' }, row({ tnr: S.direct, name: `${t('openTnr')} ${S.direct}`, fed: '', from: '', to: '', location: '' }));
     }
     const r = S.results;
     if (!r) return null;
     if (!r.tournaments.length) return h('p', { class: 'empty' }, t('noResults'));
     return h('div', { class: 'stack' },
       h('p', { class: 'legend' }, `${t('teamsOnly')} · ${r.tournaments.length} ${t('showing')}`),
-      h('div', { class: 'tlist' }, ...r.tournaments.map((x) => row(x, false))));
+      h('div', { class: 'tlist' }, ...r.tournaments.map((x) => row(x))));
   }
 
   function openSettings(): void {

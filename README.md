@@ -6,25 +6,20 @@ Live site: **https://paul2t.github.io/chess-results/**
 Built for the European Corporate Chess Championship 2026, but it works for any team tournament on
 chess-results.com. Nothing is preselected: everybody picks their own tournaments and team.
 
-## Dashboard, favorites, my team
+## Dashboard, favorites, followed teams
 
 The home page is a dashboard, not a fixed tournament:
 
 * **Favorites** – tournaments you starred (☆/★). It opens on *Upcoming* (live ones first, then the soonest);
-  finished tournaments are behind the *Past* tab, which only appears once you have some. A favorite also
-  shows which team is yours in it. They are stored in the browser (`localStorage`), on this device only.
+  finished tournaments are behind the *Past* tab, which only appears once you have some. They are stored in the browser (`localStorage`), on this device only.
 * **Search** – type part of a name (or paste a chess-results link / tournament number) and press Search. It uses the
   [chess-results search](https://s2.chess-results.com/TurnierSuche.aspx?lan=1&SNode=S0) and lists team tournaments
   only (Swiss and round-robin team events), most recent first.
-* **My team** – open a tournament, open any team (Standings or Rounds) and tap the ♟ icon at the top right of its card (or pick it when the
-  Team tab asks). It is remembered per tournament and opened first next time. Changing it asks for confirmation, and the
-  team you leave stays as a followed team. Tap the highlighted ♟ again to have no team at all (that team stays followed;
-  the Team tab asks again when you reopen the tournament). It lives on your device only and is **never part of the link**, so a link can be shared safely; whoever opens it
-  chooses their own team.
-* **Followed teams** – tap ☆ on a team in Standings (or the ☆ at the top right of its card). Followed teams appear as
-  chips at the top of the Team tab, one tap from your own, and their games are outlined in Rounds. The
-  ★ icon at the top right of Standings and Rounds ("followed only") keeps just your team and the followed ones;
-  the ♟ icon next to it jumps to your team in the standings.
+* **Followed teams** – tap ☆ on a team in Standings (or the ☆ at the top right of its card). They are kept per tournament, on this
+  device only, and are **never part of the link**, so a link can be shared safely. Followed teams appear as chips at the top of the
+  Team tab, one tap apart, and their games are outlined in Rounds. The Team tab opens on the first one you followed (or asks you to
+  pick a team if there is none), and the ★ icon at the top right of Standings and Rounds ("followed only") keeps just them.
+  Pages of the teams you opened last are remembered, so they still show when the wifi drops.
 * **Back / Forward** – every tab or team change adds a history entry, and the address holds the whole position
   (`/<tournament>/<tab>/<team or round>`), so Back, reload and sharing a link land where you were.
   Coming back to the dashboard restores your last search, and tournaments you opened lately are listed under

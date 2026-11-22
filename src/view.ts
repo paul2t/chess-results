@@ -19,6 +19,8 @@ interface Config { proxies: string[] }
 
 // ───────────────────────────── state ─────────────────────────────
 
+/** The team the demo opens on (Dassault Systèmes #1, 2025 winners). */
+const DEMO_TEAM = 45;
 const params = new URLSearchParams(location.search);
 // From the address: a path (/1542962/team/50) or, for links made before, a query (?t=1542962&show=50).
 const ROUTE: Route | null = parsePath(location.pathname) ?? parseLegacy(location.search);
@@ -26,13 +28,14 @@ const DEMO = ROUTE?.demo === true;
 
 const S = {
   tnr: 0,
-  teamRef: null as string | number | null,
-  mySnr: null as number | null,
   viewSnr: null as number | null,
   view: 'team' as View,
   round: null as number | null,
   snap: null as Snapshot | null,
-  other: new Map<number, TeamPage>(),
+  /** Team pages loaded or remembered, most recently used last. */
+  pages: new Map<number, TeamPage>(),
+  /** Pages fetched since the last refresh of the tournament (the others may be out of date). */
+  fresh: new Set<number>(),
   open: new Set<string>(),
   filter: '',
   favTeams: [] as string[],
@@ -88,22 +91,21 @@ const isFinished = (s: Snapshot): boolean =>
 
 function viewedPage(): TeamPage | null {
   if (!S.snap || S.viewSnr === null) return null;
-  return S.viewSnr === S.mySnr ? S.snap.team : S.other.get(S.viewSnr) ?? null;
+  return S.pages.get(S.viewSnr) ?? null;
 }
 
-// ───────────────────────────── favorites & my team ─────────────────────────────
+// ───────────────────────────── followed teams ─────────────────────────────
 
-/** Personal state (my team, followed teams…) is kept on this device, except in the demo, which leaves no trace. */
+/** Personal state (followed teams…) is kept on this device, except in the demo, which leaves no trace. */
 const persist = (k: string, v: string): void => { if (!DEMO) store.set(k, v); };
 
 const sameName = (a: string, b: string): boolean => normName(a) === normName(b);
 const isFavTeam = (name: string): boolean => S.favTeams.some((n) => sameName(n, name));
 const shortName = (name: string): string => name.replace(/\s*\(.*$/, '') || name;
 
-/** My team or a followed team. */
-const isFollowed = (row: TeamRow | undefined): boolean => !!row && (row.snr === S.mySnr || isFavTeam(row.name));
+const isFollowed = (row: TeamRow | undefined): boolean => !!row && isFavTeam(row.name);
 
-/** Toggle shown in Standings and Rounds: keep only my team and the followed teams (a device setting). */
+/** Toggle shown in Standings and Rounds: keep only the followed teams (a device setting). */
 function followFilter(): HTMLElement {
   return h('button', {
     class: `iconbtn star ${S.onlyFav ? 'on' : ''}`, 'aria-pressed': S.onlyFav, 'aria-label': t('followedOnly'), title: t('followedOnly'),
@@ -124,37 +126,26 @@ function toggleFavTeam(row: TeamRow): void {
   render();
 }
 
-/** Makes `snr` "my team": the one opened first, kept per tournament, shown on the dashboard. */
-function chooseMine(snr: number): void {
-  const row = teamOf(snr);
-  const prev = S.mySnr !== null && S.mySnr !== snr ? teamOf(S.mySnr) : undefined;
-  // the previous "my team" stays one tap away as a followed team; the new one is no longer "just followed"
-  if (prev && !isFavTeam(prev.name)) S.favTeams = [...S.favTeams, prev.name];
-  if (row) S.favTeams = S.favTeams.filter((n) => !sameName(n, row.name));
-  persist(favTeamsKey(S.tnr), JSON.stringify(S.favTeams));
-  S.teamRef = snr;
-  S.mySnr = snr;
-  S.viewSnr = snr;
-  if (row) persist(`cr:team:${S.tnr}`, row.name);
-  syncUrl();
-  void load();
+/** The team opened when the address names none: the first followed team that is in this tournament. */
+function defaultTeam(): number | null {
+  if (DEMO) return DEMO_TEAM;
+  for (const n of S.favTeams) {
+    const row = S.snap?.home.teams.find((x) => sameName(x.name, n));
+    if (row) return row.snr;
+  }
+  return null;
 }
 
-/** Nobody's team any more: the team stays open (and followed), the Team tab asks again next time. */
-function clearMine(): void {
-  const snr = S.mySnr;
-  const row = snr !== null ? teamOf(snr) : undefined;
-  if (row && !isFavTeam(row.name)) S.favTeams = [...S.favTeams, row.name];
-  persist(favTeamsKey(S.tnr), JSON.stringify(S.favTeams));
-  if (S.snap && snr !== null) {
-    if (S.snap.team) S.other.set(snr, S.snap.team); // its page was kept in the snapshot as "my team"
-    S.snap = { ...S.snap, teamSnr: null, team: null };
-    persist(cacheKey(S.tnr), JSON.stringify(S.snap));
-  }
-  S.teamRef = null;
-  S.mySnr = null;
-  if (!DEMO) store.del(`cr:team:${S.tnr}`);
-  render();
+const pagesKey = (tnr: number) => `cr:pages:${tnr}`;
+const MAX_PAGES = 8;
+
+/** Keeps a team page (in memory, and on this device for when the wifi drops). */
+function rememberPage(snr: number, page: TeamPage): void {
+  S.pages.delete(snr);
+  S.pages.set(snr, page);
+  S.fresh.add(snr);
+  while (S.pages.size > MAX_PAGES) S.pages.delete(S.pages.keys().next().value!);
+  persist(pagesKey(S.tnr), JSON.stringify([...S.pages]));
 }
 
 function tournamentInfo(snap: Snapshot | null): Tournament {
@@ -197,23 +188,18 @@ async function load(): Promise<void> {
   S.loading = true;
   render();
   try {
-    const snap = await loadSnapshot(S.fetcher, S.tnr, S.teamRef, S.snap);
+    const snap = await loadSnapshot(S.fetcher, S.tnr, S.snap);
     S.snap = snap;
     S.error = '';
     S.offline = false;
-    if (snap.teamSnr !== null) {
-      S.mySnr = snap.teamSnr;
-      // remembered by name: team numbers can move before the event starts
-      const mine = snap.home.teams.find((x) => x.snr === snap.teamSnr);
-      if (mine) persist(`cr:team:${S.tnr}`, mine.name);
-    }
     refreshFavTournament(snap);
     if (!DEMO) store.set(RECENT_KEY, JSON.stringify(pushRecent(parseFavs(store.get(RECENT_KEY)), tournamentInfo(snap))));
-    if (S.viewSnr === null) S.viewSnr = S.mySnr;
+    S.fresh.clear();
+    if (S.viewSnr === null) S.viewSnr = defaultTeam();
     syncUrl(); // the team on show is only known now when nothing was cached
-    if (S.viewSnr !== null && S.viewSnr !== S.mySnr) {
+    if (S.viewSnr !== null) {
       const page = await loadTeamPage(S.fetcher, S.tnr, S.viewSnr).catch(() => null);
-      if (page) S.other.set(S.viewSnr, page);
+      if (page) rememberPage(S.viewSnr, page);
     }
     if (S.round === null) S.round = defaultRound(snap);
     persist(cacheKey(S.tnr), JSON.stringify(snap));
@@ -231,14 +217,14 @@ function defaultRound(s: Snapshot): number {
   return paired.length ? Math.max(...paired) : 1;
 }
 
-/** Makes sure the page of another team is loaded (my team's page comes with the snapshot). */
+/** Makes sure the page of a team is loaded and up to date (a remembered page is shown meanwhile). */
 async function ensureTeamPage(snr: number): Promise<void> {
-  if (snr === S.mySnr || !S.fetcher || S.other.has(snr)) return;
+  if (!S.fetcher || S.fresh.has(snr)) return;
   S.loading = true;
   render();
   try {
     const page = await loadTeamPage(S.fetcher, S.tnr, snr);
-    if (page) S.other.set(snr, page);
+    if (page) rememberPage(snr, page);
     S.error = '';
   } catch (e) {
     S.error = e instanceof Error ? e.message : String(e);
@@ -259,7 +245,7 @@ async function openTeam(snr: number): Promise<void> {
 
 // The address carries the whole position (/<tnr>/<tab>/<team or round>), so reload, share and the
 // Back/Forward buttons all land where you were. Changing tab or team adds a history entry; picking a
-// round or choosing "my team" only rewrites the current one.
+// round only rewrites the current one.
 function buildUrl(): string {
   const rd = S.view === 'rounds' && S.round !== null && (!S.snap || S.round !== defaultRound(S.snap)) ? S.round : null;
   const path = buildPath({ demo: DEMO, tnr: S.tnr, view: S.view, snr: S.view === 'team' ? S.viewSnr : null, rd });
@@ -278,7 +264,7 @@ function syncUrl(push = false): void {
 function applyUrl(): void {
   const r = parsePath(location.pathname);
   S.view = r?.view ?? 'team';
-  if (S.view === 'team') S.viewSnr = r?.snr || S.mySnr;
+  if (S.view === 'team') S.viewSnr = r?.snr || defaultTeam();
   if (S.view === 'rounds') S.round = r?.rd || (S.snap ? defaultRound(S.snap) : null);
   render();
   window.scrollTo(0, 0);
@@ -388,23 +374,21 @@ function teamView(): HTMLElement {
 }
 
 function chooser(): HTMLElement {
-  return h('div', { class: 'stack' }, h('h2', null, t('chooseTeam')), teamList(chooseMine));
+  return h('div', { class: 'stack' }, h('h2', null, t('chooseTeam')), teamList((snr) => void openTeam(snr), true));
 }
 
-/** My team and the followed teams, one tap apart. */
+/** The followed teams, one tap apart. */
 function teamSwitcher(): HTMLElement | null {
   const s = S.snap;
   if (!s) return null;
   const entries: { row: TeamRow; icon: string }[] = [];
-  const mine = S.mySnr !== null ? teamOf(S.mySnr) : undefined;
-  if (mine) entries.push({ row: mine, icon: '♟ ' });
   for (const n of S.favTeams) {
     const r = s.home.teams.find((x) => sameName(x.name, n));
-    if (r && r.snr !== mine?.snr) entries.push({ row: r, icon: '★ ' });
+    if (r && !entries.some((e) => e.row.snr === r.snr)) entries.push({ row: r, icon: '★ ' });
   }
-  // A team that is neither mine nor followed still gets a chip while it is open, so my team stays one tap away.
+  // A team that is not followed still gets a chip while it is open, so the followed ones stay one tap away.
   const viewed = S.viewSnr !== null ? teamOf(S.viewSnr) : undefined;
-  if (mine && viewed && !entries.some((e) => e.row.snr === viewed.snr)) entries.push({ row: viewed, icon: '' });
+  if (entries.length && viewed && !entries.some((e) => e.row.snr === viewed.snr)) entries.push({ row: viewed, icon: '' });
   if (entries.length < 2) return null;
   return h('div', { class: 'chips tswitch', role: 'tablist', 'aria-label': t('followed') },
     ...entries.map((e) => h('button', {
@@ -425,39 +409,17 @@ function hero(row: TeamRow, s: Snapshot): HTMLElement {
         stat(t('record'), `${row.wins}-${row.draws}-${row.losses}`),
       ]
     : [stat(t('seed'), `#${row.snr}`), stat('Elo ∅', row.rating ?? '–')];
-  const isMine = row.snr === S.mySnr;
   const fav = isFavTeam(row.name);
   const followLabel = fav ? t('unfollow') : t('follow');
   return h('section', { class: 'card hero' },
     pageHead(
       shortName(row.name),
       [row.fed, row.group, row.name.includes('(') ? row.name.slice(row.name.indexOf('(')) : ''].filter(Boolean).join(' · '),
-      // my team is always in the chip strip, so it needs no follow star
-      isMine ? null : h('button', {
+      h('button', {
         class: `iconbtn star ${fav ? 'on' : ''}`, 'aria-pressed': fav, 'aria-label': followLabel, title: followLabel,
         onclick: () => toggleFavTeam(row),
-      }, fav ? '★' : '☆'),
-      isMine
-        ? h('button', { class: 'iconbtn mine on', 'aria-pressed': true, 'aria-label': t('unsetMine'), title: t('unsetMine'), onclick: clearMine }, '♟')
-        : h('button', { class: 'iconbtn mine', 'aria-label': t('setMine'), title: t('setMine'), onclick: () => askMine(row) }, '♟')),
+      }, fav ? '★' : '☆')),
     h('div', { class: 'stats' }, ...stats));
-}
-
-/** Making another team "mine" asks first when I already have one; the very first choice does not. */
-function askMine(row: TeamRow): void {
-  const prev = S.mySnr !== null ? teamOf(S.mySnr) : undefined;
-  if (!prev || prev.snr === row.snr) { chooseMine(row.snr); return; }
-  const dlg = h('dialog', { class: 'sheet' });
-  const text = t('changeTeamText').replace(/\{new\}/g, () => shortName(row.name)).replace(/\{old\}/g, () => shortName(prev.name));
-  dlg.append(
-    h('h2', null, t('changeTeam')),
-    h('p', { class: 'dialog-text' }, text),
-    h('div', { class: 'row-between' },
-      h('button', { class: 'link', onclick: () => dlg.close() }, t('cancel')),
-      h('button', { class: 'primary', onclick: () => { dlg.close(); chooseMine(row.snr); } }, t('change'))));
-  dlg.addEventListener('close', () => dlg.remove());
-  document.body.append(dlg);
-  dlg.showModal();
 }
 
 /** Score as shown, or provisional from finished boards while the match is running. */
@@ -599,14 +561,14 @@ function teamList(onPick: (snr: number) => void, withStar = false, filterable = 
     }
     return h('div', { class: 'tlist', id: 'tlist' }, ...shown.map((x) => {
       const fav = isFavTeam(x.name);
-      return h('div', { class: `trow ${x.snr === S.mySnr ? 'mine' : ''} ${fav ? 'fav' : ''}`, 'data-snr': x.snr },
+      return h('div', { class: `trow ${fav ? 'fav' : ''}`, 'data-snr': x.snr },
         h('button', { class: 'tpick', onclick: () => onPick(x.snr) },
           h('span', { class: 'rk' }, started ? x.rank ?? '' : x.snr),
           h('span', { class: 'tn' }, h('b', null, x.name), h('small', null, started
             ? `${x.fed}${x.group ? ' · ' + x.group : ''} · ${x.wins}-${x.draws}-${x.losses}`
             : `Elo ∅ ${x.rating ?? '–'}`)),
           started ? h('span', { class: 'pts2' }, h('b', null, x.tb[0] ?? ''), h('small', null, x.tb[2] ?? '')) : null),
-        withStar && x.snr !== S.mySnr ? h('button', {
+        withStar ? h('button', {
           class: `star ${fav ? 'on' : ''}`, 'aria-pressed': fav, 'aria-label': fav ? t('unfollow') : t('follow'),
           onclick: () => toggleFavTeam(x),
         }, fav ? '★' : '☆') : null);
@@ -621,14 +583,8 @@ function standingsView(): HTMLElement {
   const started = s.home.kind === 'ranking';
   const labels = s.home.tbLabels;
   const title = started ? (s.home.listTitle || t('standings')) : t('startingList');
-  const jump = S.mySnr !== null
-    ? h('button', {
-        class: 'iconbtn mine', 'aria-label': t('scrollToMe'), title: t('scrollToMe'),
-        onclick: () => document.querySelector(`.trow[data-snr="${S.mySnr}"]`)?.scrollIntoView({ block: 'center', behavior: 'smooth' }),
-      }, '♟')
-    : null;
   return h('div', { class: 'stack' },
-    pageHead(title, started ? `${label(labels[1], 'TB1')} · ${label(labels[3], 'TB3')}` : '', jump, followFilter()), // the star comes last so it stays put when switching to Rounds
+    pageHead(title, started ? `${label(labels[1], 'TB1')} · ${label(labels[3], 'TB3')}` : '', followFilter()), // the star comes last so it stays put when switching to Rounds
     teamList((snr) => void openTeam(snr), true, true));
 }
 
@@ -652,17 +608,16 @@ function roundsView(): HTMLElement {
   const sched = s.schedule.find((x) => x.round === sel);
   const shownMatches = r ? r.matches.filter((m) => !S.onlyFav || isFollowed(bySnr(m.home)) || isFollowed(bySnr(m.away))) : [];
   const body = r && S.onlyFav && !shownMatches.length
-    ? h('p', { class: 'empty' }, S.favTeams.length || S.mySnr !== null ? t('noFollowedGame') : t('noFollowed'))
+    ? h('p', { class: 'empty' }, S.favTeams.length ? t('noFollowedGame') : t('noFollowed'))
     : r
     ? h('div', { class: 'pairs' }, ...shownMatches.map((m) => {
         const home = bySnr(m.home), away = bySnr(m.away);
-        const mine = S.mySnr !== null && (home?.snr === S.mySnr || away?.snr === S.mySnr);
         const o = outcome(m.homeScore, m.awayScore);
         const side = (name: string, row: TeamRow | undefined, win: boolean) =>
           h('button', { class: `pt ${win ? 'w' : ''}`, disabled: !row || m.bye && name === m.away, onclick: () => row && void openTeam(row.snr) },
             name, row?.rank && s.home.kind === 'ranking' ? h('small', null, ` #${row.rank}`) : null);
-        const followed = !mine && (isFavTeam(m.home) || isFavTeam(m.away));
-        return h('div', { class: `pair ${mine ? 'mine' : ''} ${followed ? 'fav' : ''}` },
+        const followed = isFavTeam(m.home) || isFavTeam(m.away);
+        return h('div', { class: `pair ${followed ? 'fav' : ''}` },
           h('span', { class: 'no' }, m.no),
           side(m.home, home, o === 'W'),
           h('span', { class: 'res' }, m.bye ? `${formatScore(m.homeScore)}` : scoreText(m.homeScore, m.awayScore)),
@@ -720,9 +675,16 @@ async function boot(): Promise<void> {
   S.tnr = DEMO ? 1285835 : ROUTE.tnr;
   S.favTours = parseFavs(store.get(FAVS_KEY));
   S.favTeams = parseNames(store.get(favTeamsKey(S.tnr)));
-  // "My team" is never in the address (so a link can be shared): it comes from this device only, and
-  // nobody has one until they choose it. The demo uses a fixed team and leaves no trace.
-  S.teamRef = DEMO ? '45' : store.get(`cr:team:${S.tnr}`);
+  // Followed teams are never in the address (so a link can be shared): they come from this device only.
+  // Whoever had "my team" here before keeps it as the first followed team.
+  const legacy = DEMO ? null : store.get(`cr:team:${S.tnr}`);
+  if (legacy !== null) {
+    store.del(`cr:team:${S.tnr}`);
+    if (!/^\d*$/.test(legacy) && !isFavTeam(legacy)) {
+      S.favTeams = [legacy, ...S.favTeams];
+      persist(favTeamsKey(S.tnr), JSON.stringify(S.favTeams));
+    }
+  }
   S.view = ROUTE.view;
 
   // Show what we saved last time immediately, then refresh.
@@ -732,14 +694,15 @@ async function boot(): Promise<void> {
       const snap = JSON.parse(cached) as Snapshot;
       if (snap && snap.home) {
         S.snap = snap;
-        S.mySnr = snap.teamSnr ?? null;
-        S.viewSnr = S.mySnr;
         S.round = defaultRound(snap);
       }
     } catch { /* ignore corrupt cache */ }
+    try {
+      for (const [snr, page] of JSON.parse(store.get(pagesKey(S.tnr)) ?? '[]') as [number, TeamPage][]) S.pages.set(snr, page);
+    } catch { /* ignore corrupt cache */ }
   }
   // Position from the address: the team being viewed and the selected round
-  if (ROUTE.snr && S.view === 'team') S.viewSnr = ROUTE.snr;
+  S.viewSnr = ROUTE.snr ?? defaultTeam();
   if (ROUTE.rd && S.view === 'rounds') S.round = ROUTE.rd;
   syncUrl(); // an old ?t=… link becomes /<tnr>/…
   window.addEventListener('popstate', applyUrl);

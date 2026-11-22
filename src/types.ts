@@ -126,9 +126,6 @@ export interface Snapshot {
   details: Details | null;
   totalRounds: number;
   rounds: RoundPairings[];
-  /** Resolved team number of the followed team (null if unknown / not chosen). */
-  teamSnr: number | null;
-  team: TeamPage | null;
 }
 
 /** A tournament as listed by the chess-results search (and kept as a favorite). */
