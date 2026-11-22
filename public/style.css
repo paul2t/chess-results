@@ -38,6 +38,12 @@ em { font-style: normal; color: var(--accent); font-weight: 600; font-size: .85e
 .icon { display: inline-flex; align-items: center; justify-content: center; padding: 0; }
 .icon .rotor { display: block; width: 24px; height: 24px; line-height: 0; transform-origin: 50% 50%; }
 .icon .rotor svg { display: block; }
+.top .sub.warn { color: #ffc857; }
+.icon.warn { position: relative; }
+.icon.warn::after {
+  content: '!'; position: absolute; top: 5px; right: 4px; width: 16px; height: 16px; border-radius: 50%;
+  background: #ffc857; color: #1b1b1b; font: 700 .7rem/16px system-ui, sans-serif; text-align: center;
+}
 .icon.spin .rotor { animation: spin 1s linear infinite; }
 @keyframes spin { to { transform: rotate(360deg); } }
 

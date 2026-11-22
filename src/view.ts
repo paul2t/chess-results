@@ -42,7 +42,6 @@ const S = {
   favTours: [] as Tournament[],
   loading: false,
   error: '',
-  offline: false,
   auto: store.get('cr:auto') !== '0',
   onlyFav: store.get('cr:onlyfav') === '1',
   fetcher: null as Fetcher | null,
@@ -191,7 +190,6 @@ async function load(): Promise<void> {
     const snap = await loadSnapshot(S.fetcher, S.tnr, S.snap);
     S.snap = snap;
     S.error = '';
-    S.offline = false;
     refreshFavTournament(snap);
     if (!DEMO) store.set(RECENT_KEY, JSON.stringify(pushRecent(parseFavs(store.get(RECENT_KEY)), tournamentInfo(snap))));
     S.fresh.clear();
@@ -205,7 +203,6 @@ async function load(): Promise<void> {
     persist(cacheKey(S.tnr), JSON.stringify(snap));
   } catch (e) {
     S.error = e instanceof Error ? e.message : String(e);
-    S.offline = S.snap !== null;
   } finally {
     S.loading = false;
     render();
@@ -326,26 +323,29 @@ function header(): HTMLElement {
     ? `↻ ${clock(s.fetchedAt)}${s.home.lastUpdate ? ` · ↑ ${shortUpload(s.home.lastUpdate)}` : ''}`
     : S.loading ? t('loading') : '';
   const fav = isFav(S.favTours, S.tnr);
+  // The last refresh failed but saved data is shown: warn in the header, where nothing moves.
+  const warn = s && S.error ? `${t('offline')} ${clock(s.fetchedAt)} – ${S.error}` : null;
   return h('header', { class: 'top' },
     h('a', { class: 'icon', href: BASE, 'aria-label': t('backHome') }, '‹'),
     h('div', { class: 'title' },
       h('h1', null, s?.home.tournamentName || 'Chess results'),
       // ↻ = when this page last fetched, ↑ = when chess-results says it was uploaded (spelled out in the tooltip)
-      h('p', { class: 'sub', title: s ? `${t('updated')} · ${t('source')}` : null }, sub)),
+      h('p', { class: `sub ${warn ? 'warn' : ''}`, title: warn ?? (s ? `${t('updated')} · ${t('source')}` : null) }, sub)),
     DEMO ? null : h('button', {
       class: `icon star ${fav ? 'on' : ''}`, 'aria-pressed': fav, 'aria-label': fav ? t('removeFav') : t('addFav'),
       onclick: toggleFavTournament,
     }, fav ? '★' : '☆'),
-    h('button', { class: `icon ${S.loading ? 'spin' : ''}`, 'aria-label': t('refresh'), onclick: () => void load() }, refreshIcon()),
+    h('button', { class: `icon ${S.loading ? 'spin' : ''} ${warn ? 'warn' : ''}`, 'aria-label': warn ? `${t('refresh')} – ${warn}` : t('refresh'), title: warn, onclick: () => void load() }, refreshIcon()),
     h('button', { class: 'icon', 'aria-label': t('settings'), onclick: openSettings }, '⚙'));
 }
 
 function banner(): HTMLElement | null {
   const kids: Kid[] = [];
-  if (S.error) {
+  // With data on screen a failed refresh is shown in the header (see header()), not by pushing the page down.
+  if (S.error && !S.snap) {
     const direct = /Cannot reach/.test(S.error);
     kids.push(h('div', { class: 'banner err' },
-      h('span', null, S.offline && S.snap ? `${t('offline')} ${clock(S.snap.fetchedAt)}` : `${t('error')}: ${S.error}`),
+      h('span', null, `${t('error')}: ${S.error}`),
       direct && !S.snap ? h('small', null, t('proxyNeeded')) : null,
       h('button', { class: 'link', onclick: () => void load() }, t('retry'))));
   }
