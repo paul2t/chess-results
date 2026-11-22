@@ -52,6 +52,7 @@ Every tab ends with *Open on chess-results.com ↗*, the same page (team, standi
 The starting list of players does not say which card number a player has, so the first time you open a card from the list the app
 fetches chess-results' page with every player's games (`art=24`, large) once and reads the numbers from the opponents; it is kept
 on the device. A player who has not played yet has no number there and shows as "No card for this player".
+Pressing the Teams or Players tab again, while on a team or a player, goes back to the whole list (on the list it scrolls to the top).
 Tapping a team anywhere opens its page. The page refreshes on load, with the ↻ button, and every 60 s while
 visible; the last data is cached so it still shows something when the venue wifi drops.
 

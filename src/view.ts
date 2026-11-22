@@ -290,7 +290,13 @@ function applyUrl(): void {
 }
 
 function setView(v: View): void {
-  if (S.view === v) { window.scrollTo({ top: 0, behavior: 'smooth' }); return; }
+  if (S.view === v) {
+    // the tab you are on, pressed again: from a team or a player back to the whole list, else to the top
+    if (v === 'teams' && S.viewSnr !== null) showTeamList();
+    else if (v === 'players' && S.viewPno !== null) showPlayerList();
+    else window.scrollTo({ top: 0, behavior: 'smooth' });
+    return;
+  }
   S.view = v;
   syncUrl(true);
   render();
