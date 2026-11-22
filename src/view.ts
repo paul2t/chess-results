@@ -846,8 +846,7 @@ function gameRow(g: PlayerGame): HTMLElement {
       g.oppSnr ? h('button', { class: 'opplink', onclick: () => void openPlayer(g.oppSnr) }, name) : name,
       rating ? h('small', null, ` ${rating}`) : null,
       g.oppFed ? h('small', null, ` ${flagOf(g.oppFed)}`) : null),
-    h('span', { class: `pill sm ${outcomeClass(o)}` },
-      g.result === null ? '·' : `${formatScore(g.result)}${g.forfeit ? ` (${t('forfeit')})` : ''}`));
+    h('span', { class: `pill sm ${outcomeClass(o)}` }, g.result === null ? '·' : formatScore(g.result)));
 }
 
 function playerCard(pno: number): HTMLElement {
