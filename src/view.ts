@@ -8,7 +8,7 @@ import { createDemoFetcher, createFetcher, pageUrl, type Fetcher } from './api';
 import { startDashboard } from './dashboard';
 import { h, store, type Kid } from './dom';
 import {
-  favTeamsKey, FAVS_KEY, isFav, parseFavs, parseNames, pushRecent, RECENT_KEY, toggleFav, toggleName,
+  favTeamsKey, FAVS_KEY, parseFavs, parseNames, pushRecent, RECENT_KEY, toggleName,
 } from './favs';
 import { flagOf } from './flags';
 import { t } from './i18n';
@@ -172,12 +172,6 @@ function tournamentInfo(snap: Snapshot | null): Tournament {
 }
 
 const saveTournaments = (): void => persist(FAVS_KEY, JSON.stringify(S.favTours));
-
-function toggleFavTournament(): void {
-  S.favTours = toggleFav(S.favTours, tournamentInfo(S.snap));
-  saveTournaments();
-  render();
-}
 
 /** Keeps a favorite's name and dates in step with what the tournament page says. */
 function refreshFavTournament(snap: Snapshot): void {
@@ -366,7 +360,6 @@ function header(): HTMLElement {
   const sub = s
     ? `↻ ${clock(s.fetchedAt)}${s.home.lastUpdate ? ` · ↑ ${shortUpload(s.home.lastUpdate)}` : ''}`
     : S.loading ? t('loading') : '';
-  const fav = isFav(S.favTours, S.tnr);
   // The last refresh failed but saved data is shown: warn in the header, where nothing moves.
   const warn = s && S.error ? `${t('offline')} ${clock(s.fetchedAt)} – ${S.error}` : null;
   return h('header', { class: 'top' },
@@ -375,10 +368,6 @@ function header(): HTMLElement {
       h('h1', null, s?.home.tournamentName || 'Chess results'),
       // ↻ = when this page last fetched, ↑ = when chess-results says it was uploaded (spelled out in the tooltip)
       h('p', { class: `sub ${warn ? 'warn' : ''}`, title: warn ?? (s ? `${t('updated')} · ${t('source')}` : null) }, sub)),
-    DEMO ? null : h('button', {
-      class: `icon star ${fav ? 'on' : ''}`, 'aria-pressed': fav, 'aria-label': fav ? t('removeFav') : t('addFav'),
-      onclick: toggleFavTournament,
-    }, fav ? '★' : '☆'),
     h('button', { class: `icon ${S.loading ? 'spin' : ''} ${warn ? 'warn' : ''}`, 'aria-label': warn ? `${t('refresh')} – ${warn}` : t('refresh'), title: warn, onclick: () => void load() }, refreshIcon()));
 }
 

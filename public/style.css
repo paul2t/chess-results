@@ -138,8 +138,6 @@ input[type="search"], .sheet input[type="text"] {
 .trow.tour .tn b { white-space: normal; }
 .star { flex: 0 0 auto; width: 48px; align-self: stretch; font-size: 1.4rem; color: var(--muted); text-align: center; }
 .star.on { color: #e3a700; }
-.top .icon.star { align-self: auto; width: 40px; color: #fff; }
-.top .icon.star.on { color: #ffd24a; }
 .phase { font-size: .7rem; font-weight: 650; padding: 2px 8px; border-radius: 999px; white-space: nowrap; background: var(--bg); color: var(--muted); }
 .phase.live { background: var(--win-bg); color: var(--win); }
 .phase.upcoming { background: var(--draw-bg); color: var(--draw); }
