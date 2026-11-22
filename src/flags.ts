@@ -1,5 +1,5 @@
 // Federation codes as chess-results prints them (FIDE, three letters) → flag emoji.
-// Anything unknown (e.g. EUF, a club or an empty cell) stays as the code it was.
+// Anything unknown (e.g. a club or an empty cell) stays as the code it was.
 
 const ISO: Record<string, string> = {
   AFG: 'AF', ALB: 'AL', ALG: 'DZ', AND: 'AD', ANG: 'AO', ANT: 'AG', ARG: 'AR', ARM: 'AM', ARU: 'AW', AUS: 'AU',
@@ -23,6 +23,7 @@ const ISO: Record<string, string> = {
   TGA: 'TO', THA: 'TH', TJK: 'TJ', TKM: 'TM', TLS: 'TL', TOG: 'TG', TPE: 'TW', TTO: 'TT', TUN: 'TN', TUR: 'TR',
   UAE: 'AE', UGA: 'UG', UKR: 'UA', URU: 'UY', USA: 'US', UZB: 'UZ', VAN: 'VU', VEN: 'VE', VIE: 'VN', VIN: 'VC',
   YEM: 'YE', ZAM: 'ZM', ZIM: 'ZW',
+  EUF: 'EU', // the European Union Chess Federation, which fields the "European" teams
 };
 
 // England, Scotland and Wales have their own flags (a black flag followed by invisible subdivision tags)
