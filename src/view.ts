@@ -47,8 +47,8 @@ const S = {
   cards: new Map<number, PlayerPage>(),
   cardFresh: new Set<number>(),
   viewPno: null as number | null,
-  /** Rows of the list whose card could not be found. */
-  noCard: new Set<number>(),
+  /** Players (by playerKey) whose card could not be found. */
+  noCard: new Set<string>(),
   pfilter: '',
   open: new Set<string>(),
   filter: '',
@@ -512,7 +512,10 @@ function lineupCard(page: TeamPage, s: Snapshot): HTMLElement {
     : null;
   const rows = page.lineup.map((p) => h('div', { class: 'player' },
     h('span', { class: 'bo' }, p.board),
-    h('span', { class: 'nm' }, p.title ? h('em', null, p.title + ' ') : null, natural(p.name),
+    h('span', { class: 'nm' }, p.title ? h('em', null, p.title + ' ') : null,
+      S.noCard.has(playerKey(p.name))
+        ? natural(p.name)
+        : h('button', { class: 'opplink', title: t('openPlayer'), onclick: () => void openPlayerByName({ name: p.name, rating: p.rating ?? 0 }) }, natural(p.name)),
       p.rating ? h('small', null, ` ${p.rating}`) : null),
     h('span', { class: 'pts' }, roundsShown ? p.points || '–' : ''),
     roundsShown
@@ -745,18 +748,18 @@ async function ensurePlayersTab(): Promise<void> {
   }
 }
 
-/** The card number of a row of the list (the list itself does not say it): found by name, then by rating. */
-function cardNumberOf(row: PlayerRow): number | null {
-  const found = S.numbers?.[playerKey(row.name)];
+/** The card number of a player (neither the list nor a line-up says it): found by name, then by rating. */
+function cardNumberOf(who: { name: string; rating: number }): number | null {
+  const found = S.numbers?.[playerKey(who.name)];
   if (!found?.length) return null;
-  return (found.find((x) => x.rating === ratingOf(row)) ?? found[0]!).snr;
+  return (found.find((x) => x.rating === who.rating) ?? found[0]!).snr;
 }
 
 let numbersAt = 0;
 
-/** Opens the card of a player picked in the list; the first time this fetches the numbers of all players. */
-async function openPlayerRow(row: PlayerRow): Promise<void> {
-  let snr = cardNumberOf(row);
+/** Opens the card of a player picked in the list or a line-up; the first time this fetches the numbers of all players. */
+async function openPlayerByName(who: { name: string; rating: number }): Promise<void> {
+  let snr = cardNumberOf(who);
   const f = S.fetcher;
   if (snr === null && f && Date.now() - numbersAt > PLAYERS_TTL) {
     const alone = !S.loading;
@@ -769,7 +772,7 @@ async function openPlayerRow(row: PlayerRow): Promise<void> {
       }).then(() => S.numbers);
       numbersAt = Date.now();
       S.error = '';
-      snr = numbers ? cardNumberOf(row) : null;
+      snr = numbers ? cardNumberOf(who) : null;
     } catch (e) {
       S.error = e instanceof Error ? e.message : String(e);
     } finally {
@@ -778,7 +781,7 @@ async function openPlayerRow(row: PlayerRow): Promise<void> {
     }
   }
   if (snr === null) {
-    if (!S.error) { S.noCard.add(row.no); render(); }
+    if (!S.error) { S.noCard.add(playerKey(who.name)); render(); }
     return;
   }
   await openPlayer(snr);
@@ -820,9 +823,9 @@ function playerList(): HTMLElement {
     const shown = rows!.filter((r) => (!S.onlyFav || isFavTeam(r.team)) && (!q || normName(`${r.title} ${r.name} ${r.team} ${r.fed}`).includes(q)));
     if (!shown.length && S.onlyFav && !q) return h('div', { class: 'tlist', id: 'plist' }, h('p', { class: 'empty' }, t('noFollowed')));
     return h('div', { class: 'tlist', id: 'plist' }, ...shown.map((r) => {
-      const missing = S.noCard.has(r.no);
+      const missing = S.noCard.has(playerKey(r.name));
       return h('div', { class: `trow ${missing ? 'dim' : ''}` },
-        h('button', { class: 'tpick', disabled: missing, onclick: () => void openPlayerRow(r) },
+        h('button', { class: 'tpick', disabled: missing, onclick: () => void openPlayerByName({ name: r.name, rating: ratingOf(r) }) },
           h('span', { class: 'rk' }, r.no),
           h('span', { class: 'tn' },
             h('b', null, r.title ? h('em', null, `${r.title} `) : null, natural(r.name)),

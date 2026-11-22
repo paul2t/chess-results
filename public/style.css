@@ -227,3 +227,4 @@ a.icon { display: grid; place-items: center; text-decoration: none; }
 .opps .board { grid-template-columns: 18px 14px minmax(0, 1fr) auto; padding: 5px 0; }
 .opps .opplink { padding: 2px 0; text-align: left; }
 .board .who small { color: var(--muted); }
+.player .opplink { padding: 2px 0; text-align: left; }
