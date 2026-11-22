@@ -9,6 +9,7 @@ import { h, store, type Kid } from './dom';
 import {
   favTeamsKey, FAVS_KEY, isFav, parseFavs, parseNames, pushRecent, RECENT_KEY, toggleFav, toggleName,
 } from './favs';
+import { flagOf } from './flags';
 import { t } from './i18n';
 import { loadSnapshot, loadTeamPage } from './loader';
 import { BASE, buildPath, extraQuery, parseLegacy, parsePath, type Route, type View } from './route';
@@ -413,7 +414,7 @@ function hero(row: TeamRow, s: Snapshot): HTMLElement {
   return h('section', { class: 'card hero' },
     pageHead(
       shortName(row.name),
-      [row.fed, row.group, row.name.includes('(') ? row.name.slice(row.name.indexOf('(')) : ''].filter(Boolean).join(' · '),
+      [flagOf(row.fed), row.group, row.name.includes('(') ? row.name.slice(row.name.indexOf('(')) : ''].filter(Boolean).join(' · '),
       h('button', {
         class: `iconbtn star ${fav ? 'on' : ''}`, 'aria-pressed': fav, 'aria-label': followLabel, title: followLabel,
         onclick: () => toggleFavTeam(row),
@@ -574,7 +575,7 @@ function teamList(onPick: (snr: number) => void, withStar = false, filterable = 
         h('button', { class: 'tpick', onclick: () => onPick(x.snr) },
           h('span', { class: 'rk' }, started ? x.rank ?? '' : x.snr),
           h('span', { class: 'tn' }, h('b', null, x.name), h('small', null, started
-            ? `${x.fed}${x.group ? ' · ' + x.group : ''} · ${x.wins}-${x.draws}-${x.losses}`
+            ? `${flagOf(x.fed)}${x.group ? ' · ' + x.group : ''} · ${x.wins}-${x.draws}-${x.losses}`
             : `Elo ∅ ${x.rating ?? '–'}`)),
           started ? h('span', { class: 'pts2' }, h('b', null, x.tb[0] ?? ''), h('small', null, x.tb[2] ?? '')) : null),
         withStar ? h('button', {

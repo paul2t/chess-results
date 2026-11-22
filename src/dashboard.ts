@@ -3,6 +3,7 @@
 import type { Fetcher } from './api';
 import { h, session, store, type Kid } from './dom';
 import { FAVS_KEY, isFav, parseFavs, phaseOf, RECENT_KEY, splitFavs, todayStamp, toggleFav } from './favs';
+import { flagOf } from './flags';
 import { t } from './i18n';
 import { BASE } from './route';
 import { parseTnr, searchTournaments, type SearchResults } from './search';
@@ -90,7 +91,7 @@ export function startDashboard(root: HTMLElement, fetcher: Fetcher): void {
       h('a', { class: 'tpick', href: `${BASE}${tour.tnr}` },
         h('span', { class: 'tn' },
           h('b', null, tour.name),
-          h('small', null, [tour.fed, tour.from ? range(tour.from, tour.to) : '', tour.location].filter(Boolean).join(' · '))),
+          h('small', null, [flagOf(tour.fed), tour.from ? range(tour.from, tour.to) : '', tour.location].filter(Boolean).join(' · '))),
         badge(tour)),
       h('button', {
         class: `star ${fav ? 'on' : ''}`, 'aria-pressed': fav, 'aria-label': fav ? t('removeFav') : t('addFav'),
