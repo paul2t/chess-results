@@ -678,25 +678,20 @@ function roundsView(): HTMLElement {
 
 function openSettings(): void {
   const dlg = h('dialog', { class: 'sheet' });
-  const tnrInput = h('input', { type: 'text', inputmode: 'url', value: S.tnr ? `tnr${S.tnr}` : '', placeholder: 'https://chess-results.com/tnr1542962.aspx' });
   const proxyInput = h('input', { type: 'text', value: store.get('cr:proxy') ?? '', placeholder: 'https://…/?url={url}' });
   const auto = h('input', { type: 'checkbox', checked: S.auto, onchange: (e: Event) => { S.auto = (e.target as HTMLInputElement).checked; store.set('cr:auto', S.auto ? '1' : '0'); } });
   const apply = () => {
-    const m = /tnr(\d+)/i.exec(tnrInput.value) ?? /^(\d+)$/.exec(tnrInput.value.trim());
     const px = proxyInput.value.trim();
+    if (px === (store.get('cr:proxy') ?? '')) { dlg.close(); return; }
     if (px) store.set('cr:proxy', px); else store.del('cr:proxy');
-    // another tournament opens on its Team tab; the same one stays where it is
-    const next = m && asInt(m[1]!) !== S.tnr ? `${BASE}${m[1]}` : buildUrl();
-    if (next === `${location.pathname}${location.search}`) location.reload(); else location.href = next;
+    location.reload(); // the proxy is read at start-up
   };
   dlg.append(
     h('h2', null, t('settings')),
-    h('label', null, t('tournament'), tnrInput, h('small', null, t('tournamentHint'))),
     h('label', { class: 'check' }, auto, t('autoRefresh')),
     h('p', null, h('a', { class: 'link', href: pageUrl(S.tnr, {}), target: '_blank', rel: 'noopener noreferrer' }, `${t('openOriginal')} ↗`)),
     h('details', null, h('summary', null, t('proxyUrl')), h('label', null, proxyInput)),
     h('div', { class: 'row-between' },
-      h('a', { class: 'link', href: `${BASE}demo` }, t('demo')),
       h('span', null,
         h('button', { class: 'link', onclick: () => dlg.close() }, t('close')),
         h('button', { class: 'primary', onclick: apply }, t('apply')))));
