@@ -1,9 +1,10 @@
 // Home screen: favorite tournaments, plus a search over chess-results.com team tournaments.
-// Opening a tournament is a plain link (?t=<tnr>), handled by the tournament view in view.ts.
+// Opening a tournament is a plain link (<base>/<tnr>), handled by the tournament view in view.ts.
 import type { Fetcher } from './api';
 import { h, session, store, type Kid } from './dom';
 import { FAVS_KEY, isFav, parseFavs, phaseOf, RECENT_KEY, splitFavs, todayStamp, toggleFav } from './favs';
 import { t } from './i18n';
+import { BASE } from './route';
 import { parseTnr, searchTournaments, type SearchResults } from './search';
 import type { Tournament } from './types';
 
@@ -93,7 +94,7 @@ export function startDashboard(root: HTMLElement, fetcher: Fetcher): void {
     const fav = isFav(S.favs, tour.tnr);
     const mine = withTeam ? myTeamOf(tour.tnr) : '';
     return h('div', { class: 'trow tour' },
-      h('a', { class: 'tpick', href: `?t=${tour.tnr}` },
+      h('a', { class: 'tpick', href: `${BASE}${tour.tnr}` },
         h('span', { class: 'tn' },
           h('b', null, tour.name),
           h('small', null, [tour.fed, tour.from ? range(tour.from, tour.to) : '', tour.location].filter(Boolean).join(' · ')),
@@ -177,7 +178,7 @@ export function startDashboard(root: HTMLElement, fetcher: Fetcher): void {
       h('h2', null, t('settings')),
       h('details', null, h('summary', null, t('proxyUrl')), h('label', null, proxyInput)),
       h('div', { class: 'row-between' },
-        h('a', { class: 'link', href: '?demo=1' }, t('demo')),
+        h('a', { class: 'link', href: `${BASE}demo` }, t('demo')),
         h('span', null,
           h('button', { class: 'link', onclick: () => dlg.close() }, t('close')),
           h('button', { class: 'primary', onclick: apply }, t('apply')))));

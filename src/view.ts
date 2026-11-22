@@ -1,8 +1,8 @@
 // Mobile-first viewer for chess-results.com team tournaments.
-//   (no ?t)       the dashboard: favorite tournaments + search (src/dashboard.ts)
-//   ?t=<tnr>      a tournament (tournament number)
-//   ?team=<n|name> the team to follow (number or name, e.g. "Dassault Systemes 1")
-//   ?view=team|standings|rounds   ?demo=1 (2025 data, no network)   ?proxy=<url template with {url}>
+//   /                          the dashboard: favorite tournaments + search (src/dashboard.ts)
+//   /<tnr>/team/<snr>          a tournament (tournament number), its Team tab on team number <snr>
+//   /<tnr>/standings           /<tnr>/rounds/<round>      the other tabs (see src/route.ts)
+//   /demo/…                    the 2025 edition (real data, no network)      ?proxy=<url template with {url}>
 import { createDemoFetcher, createFetcher, pageUrl, type Fetcher } from './api';
 import { startDashboard } from './dashboard';
 import { h, store, type Kid } from './dom';
@@ -11,16 +11,18 @@ import {
 } from './favs';
 import { t } from './i18n';
 import { loadSnapshot, loadTeamPage } from './loader';
+import { BASE, buildPath, extraQuery, parseLegacy, parsePath, type Route, type View } from './route';
 import { formatScore, isPlayed, normName, outcome, type Outcome } from './parse';
 import type { BoardGame, Snapshot, TeamMatch, TeamPage, TeamRow, Tournament } from './types';
 
-type View = 'team' | 'standings' | 'rounds';
 interface Config { proxies: string[] }
 
 // ───────────────────────────── state ─────────────────────────────
 
 const params = new URLSearchParams(location.search);
-const DEMO = params.has('demo') || (window as unknown as { __DEMO__?: boolean }).__DEMO__ === true;
+// From the address: a path (/1542962/team/50) or, for links made before, a query (?t=1542962&show=50).
+const ROUTE: Route | null = parsePath(location.pathname) ?? parseLegacy(location.search);
+const DEMO = ROUTE?.demo === true;
 
 const S = {
   tnr: 0,
@@ -231,17 +233,13 @@ async function openTeam(snr: number): Promise<void> {
   await ensureTeamPage(snr);
 }
 
-// The address carries the whole position (?t, team, view, show = viewed team, rd = round), so reload,
-// share and the Back/Forward buttons all land where you were. Changing tab or team adds a history
-// entry; picking a round or choosing "my team" only rewrites the current one.
+// The address carries the whole position (/<tnr>/<tab>/<team or round>), so reload, share and the
+// Back/Forward buttons all land where you were. Changing tab or team adds a history entry; picking a
+// round or choosing "my team" only rewrites the current one.
 function buildUrl(): string {
-  const q = new URLSearchParams(location.search);
-  if (!DEMO) q.set('t', String(S.tnr));
-  q.delete('team'); // "my team" is personal (kept on this device): a shared link must not carry it
-  q.set('view', S.view);
-  if (S.view === 'team' && S.viewSnr !== null) q.set('show', String(S.viewSnr)); else q.delete('show');
-  if (S.view === 'rounds' && S.round !== null && S.snap && S.round !== defaultRound(S.snap)) q.set('rd', String(S.round)); else q.delete('rd');
-  return `${location.pathname}?${q.toString()}${location.hash}`;
+  const rd = S.view === 'rounds' && S.round !== null && (!S.snap || S.round !== defaultRound(S.snap)) ? S.round : null;
+  const path = buildPath({ demo: DEMO, tnr: S.tnr, view: S.view, snr: S.view === 'team' ? S.viewSnr : null, rd });
+  return `${path}${extraQuery(location.search)}${location.hash}`;
 }
 
 function syncUrl(push = false): void {
@@ -254,11 +252,10 @@ function syncUrl(push = false): void {
 
 /** Back/Forward: put the view, viewed team and round back as the address says. */
 function applyUrl(): void {
-  const q = new URLSearchParams(location.search);
-  const v = q.get('view');
-  S.view = v === 'standings' || v === 'rounds' ? v : 'team';
-  if (S.view === 'team') S.viewSnr = asInt(q.get('show')) || S.mySnr;
-  if (S.view === 'rounds') S.round = asInt(q.get('rd')) || (S.snap ? defaultRound(S.snap) : null);
+  const r = parsePath(location.pathname);
+  S.view = r?.view ?? 'team';
+  if (S.view === 'team') S.viewSnr = r?.snr || S.mySnr;
+  if (S.view === 'rounds') S.round = r?.rd || (S.snap ? defaultRound(S.snap) : null);
   render();
   window.scrollTo(0, 0);
   if (S.view === 'team' && S.viewSnr !== null) void ensureTeamPage(S.viewSnr);
@@ -320,7 +317,7 @@ function header(): HTMLElement {
     : S.loading ? t('loading') : '';
   const fav = isFav(S.favTours, S.tnr);
   return h('header', { class: 'top' },
-    h('a', { class: 'icon', href: location.pathname, 'aria-label': t('backHome') }, '‹'),
+    h('a', { class: 'icon', href: BASE, 'aria-label': t('backHome') }, '‹'),
     h('div', { class: 'title' },
       h('h1', null, s?.home.tournamentName || 'Chess results'),
       h('p', { class: 'sub' }, sub)),
@@ -661,12 +658,11 @@ function openSettings(): void {
   const auto = h('input', { type: 'checkbox', checked: S.auto, onchange: (e: Event) => { S.auto = (e.target as HTMLInputElement).checked; store.set('cr:auto', S.auto ? '1' : '0'); } });
   const apply = () => {
     const m = /tnr(\d+)/i.exec(tnrInput.value) ?? /^(\d+)$/.exec(tnrInput.value.trim());
-    const q = new URLSearchParams(location.search);
-    if (m) q.set('t', m[1]!);
-    if (m && asInt(m[1]!) !== S.tnr) { q.delete('show'); q.delete('rd'); }
     const px = proxyInput.value.trim();
     if (px) store.set('cr:proxy', px); else store.del('cr:proxy');
-    location.search = q.toString();
+    // another tournament opens on its Team tab; the same one stays where it is
+    const next = m && asInt(m[1]!) !== S.tnr ? `${BASE}${m[1]}` : buildUrl();
+    if (next === `${location.pathname}${location.search}`) location.reload(); else location.href = next;
   };
   dlg.append(
     h('h2', null, t('settings')),
@@ -675,7 +671,7 @@ function openSettings(): void {
     h('p', null, h('a', { class: 'link', href: pageUrl(S.tnr, {}), target: '_blank', rel: 'noopener noreferrer' }, `${t('openOriginal')} ↗`)),
     h('details', null, h('summary', null, t('proxyUrl')), h('label', null, proxyInput)),
     h('div', { class: 'row-between' },
-      h('a', { class: 'link', href: `?demo=1` }, t('demo')),
+      h('a', { class: 'link', href: `${BASE}demo` }, t('demo')),
       h('span', null,
         h('button', { class: 'link', onclick: () => dlg.close() }, t('close')),
         h('button', { class: 'primary', onclick: apply }, t('apply')))));
@@ -696,25 +692,18 @@ async function boot(): Promise<void> {
   S.fetcher = DEMO ? createDemoFetcher() : createFetcher(proxies);
 
   // No tournament in the address: show the dashboard (favorites + search).
-  if (!DEMO && !asInt(params.get('t'))) {
+  if (!ROUTE) {
     startDashboard($app, S.fetcher);
     return;
   }
 
-  if (params.has('team')) { // links made before "my team" left the address
-    const q = new URLSearchParams(location.search);
-    q.delete('team');
-    try { history.replaceState(null, '', `${location.pathname}${q.size ? '?' + q.toString() : ''}${location.hash}`); } catch { /* ignore */ }
-  }
-
-  S.tnr = DEMO ? 1285835 : asInt(params.get('t'));
+  S.tnr = DEMO ? 1285835 : ROUTE.tnr;
   S.favTours = parseFavs(store.get(FAVS_KEY));
   S.favTeams = parseNames(store.get(favTeamsKey(S.tnr)));
   // "My team" is never in the address (so a link can be shared): it comes from this device only, and
   // nobody has one until they choose it. The demo uses a fixed team and leaves no trace.
   S.teamRef = DEMO ? '45' : store.get(`cr:team:${S.tnr}`);
-  const v = params.get('view');
-  if (v === 'standings' || v === 'rounds' || v === 'team') S.view = v;
+  S.view = ROUTE.view;
 
   // Show what we saved last time immediately, then refresh.
   const cached = store.get(cacheKey(S.tnr));
@@ -730,10 +719,9 @@ async function boot(): Promise<void> {
     } catch { /* ignore corrupt cache */ }
   }
   // Position from the address: the team being viewed and the selected round
-  const show = asInt(params.get('show'));
-  if (show && S.view === 'team') S.viewSnr = show;
-  const rd = asInt(params.get('rd'));
-  if (rd && S.view === 'rounds') S.round = rd;
+  if (ROUTE.snr && S.view === 'team') S.viewSnr = ROUTE.snr;
+  if (ROUTE.rd && S.view === 'rounds') S.round = ROUTE.rd;
+  syncUrl(); // an old ?t=… link becomes /<tnr>/…
   window.addEventListener('popstate', applyUrl);
   render();
   await load();

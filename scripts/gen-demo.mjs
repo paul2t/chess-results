@@ -1,6 +1,6 @@
 // Expands demo-src/*.txt (real data from the 2025 European Corporate Chess Championship,
 // tnr1285835) into HTML pages that mimic chess-results.com markup exactly.
-// Output: public/demo/*.html  — used by `?demo=1` and by the unit tests.
+// Output: public/demo/*.html  — used by `/demo` and by the unit tests.
 import { mkdirSync, readFileSync, writeFileSync } from 'node:fs';
 
 const OUT = 'public/demo';

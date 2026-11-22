@@ -25,7 +25,7 @@ The home page is a dashboard, not a fixed tournament:
   ★ icon at the top right of Standings and Rounds ("followed only") keeps just your team and the followed ones;
   the ♟ icon next to it jumps to your team in the standings.
 * **Back / Forward** – every tab or team change adds a history entry, and the address holds the whole position
-  (`t`, `view`, `show` = team being viewed, `rd` = round), so Back, reload and sharing a link land where you were.
+  (`/<tournament>/<tab>/<team or round>`), so Back, reload and sharing a link land where you were.
   Coming back to the dashboard restores your last search, and tournaments you opened lately are listed under
   *Recently opened* (this device, up to 5 not already starred).
 
@@ -34,10 +34,15 @@ The home page is a dashboard, not a fixed tournament:
 | URL | What it shows |
 | --- | --- |
 | `/chess-results/` | The dashboard: favorites and tournament search |
-| `?t=1542962` | A tournament (`tnr` from the chess-results URL) |
-| `?t=1542962&view=team&show=50` | The page of team number 50 in that tournament (`show`); old `team=` links are ignored |
-| `?view=standings` / `rounds` / `team` | Open on a given tab |
-| `?demo=1` | Full 2025 edition (real data, no network) to see what a finished event looks like |
+| `/chess-results/1542962` | A tournament (`tnr` from the chess-results URL); opens on the Team tab |
+| `/chess-results/1542962/team/50` | The page of team number 50 in that tournament |
+| `/chess-results/1542962/standings` | The standings |
+| `/chess-results/1542962/rounds/4` | Round 4 (`/rounds` alone: the latest round) |
+| `/chess-results/demo/standings` | Full 2025 edition (real data, no network) to see what a finished event looks like; `demo` replaces the tournament number |
+
+Links in the old form (`?t=1542962&view=team&show=50`, `?demo=1`) still work and are rewritten to the new form.
+GitHub Pages has no server-side routing, so these paths are answered with `404.html` (a copy of `index.html`, made by
+`build.mjs`); the page finds its files relative to the folder before the tournament number.
 
 Tabs: **Team** (rank, match/game points, next or live match, line-up with per-round results, every match with
 board-by-board colours, ratings and results), **Standings**, **Rounds** (all pairings, tap a team to open it). The
@@ -76,7 +81,7 @@ npm install
 npm test            # parser tests (jsdom) against fixtures built from real 2025/2026 pages
 npm run typecheck
 npm run build       # -> dist/ (view.js bundled from src/view.ts with esbuild)
-npm start           # build + serve on http://localhost:8080 (try /?demo=1)
+npm start           # build + serve on http://localhost:8080 (try /demo/team)
 ```
 
 * `src/parse.ts` – parsers for the home/ranking, schedule, details, round-pairing and team pages

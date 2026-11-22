@@ -2,6 +2,13 @@
 <html lang="en">
 <head>
   <meta charset="utf-8">
+  <!-- Addresses look like /chess-results/1542962/team/50: files are found relative to the folder before the
+       tournament number (same rule as basePath in src/route.ts). Served as 404.html too, for those paths. -->
+  <script>
+    // written, not declared, so the browser does not fetch them ahead of the base (as /demo/style.css)
+    document.write('<base href="' + location.pathname.replace(/\/(\d+|demo)(\/.*)?$/, '/') + '">' +
+      '<link rel="stylesheet" href="style.css">');
+  </script>
   <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
   <meta name="theme-color" content="#1b3a5c" media="(prefers-color-scheme: light)">
   <meta name="theme-color" content="#0f1720" media="(prefers-color-scheme: dark)">
@@ -10,11 +17,10 @@
   <link rel="manifest" href="manifest.webmanifest">
   <link rel="icon" href="icon.svg" type="image/svg+xml">
   <link rel="apple-touch-icon" href="icon.svg">
-  <link rel="stylesheet" href="style.css">
 </head>
 <body>
   <div id="app"><p class="empty">Loading…</p></div>
   <noscript>This viewer needs JavaScript.</noscript>
-  <script src="view.js"></script>
+  <script>document.write('<script src="view.js"><\/script>');</script>
 </body>
 </html>

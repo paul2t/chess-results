@@ -10,6 +10,8 @@ mkdirSync('dist', { recursive: true });
 execFileSync('node', ['scripts/gen-demo.mjs'], { stdio: 'inherit' });
 
 cpSync('public', 'dist', { recursive: true });
+// GitHub Pages answers unknown paths (/chess-results/1542962/team/50) with 404.html: the app itself
+cpSync('public/index.html', 'dist/404.html');
 
 await build({
   entryPoints: ['src/view.ts'],
