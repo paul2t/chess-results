@@ -385,7 +385,7 @@ function teamView(): HTMLElement {
 }
 
 function teamsList(): HTMLElement {
-  return h('div', { class: 'stack' }, h('h2', null, t('allTeams')), teamList((snr) => void openTeam(snr), true));
+  return h('div', { class: 'stack' }, pageHead(t('allTeams'), '', followFilter()), teamList((snr) => void openTeam(snr), true, true));
 }
 
 /** The followed teams, one tap apart. */
