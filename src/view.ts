@@ -379,7 +379,7 @@ function teamView(): HTMLElement {
 }
 
 function teamsList(): HTMLElement {
-  return h('div', { class: 'stack' }, pageHead(t('allTeams'), '', followFilter()), teamList((snr) => void openTeam(snr), true, true));
+  return h('div', { class: 'stack' }, pageHead(t('allTeams'), '', followFilter()), teamList((snr) => void openTeam(snr), true, true, true));
 }
 
 /** One line: back to the list of teams, then the followed teams, one tap apart. */
@@ -551,7 +551,8 @@ function boardRow(g: BoardGame, page: TeamPage): HTMLElement {
 
 // ── standings ──
 
-function teamList(onPick: (snr: number) => void, withStar = false, filterable = false): HTMLElement {
+/** `byStart`: in starting order, numbered by starting number (the standings list is in ranking order). */
+function teamList(onPick: (snr: number) => void, withStar = false, filterable = false, byStart = false): HTMLElement {
   const s = S.snap;
   if (!s) return h('p', { class: 'empty' }, t('loading'));
   const started = s.home.kind === 'ranking';
@@ -565,7 +566,8 @@ function teamList(onPick: (snr: number) => void, withStar = false, filterable = 
   });
   function buildRows(): HTMLElement {
     const qq = normName(S.filter);
-    const shown = s!.home.teams.filter((x) => (!qq || normName(x.name).includes(qq)) && (!filterable || !S.onlyFav || isFollowed(x)));
+    const teams = byStart ? [...s!.home.teams].sort((a, b) => a.snr - b.snr) : s!.home.teams;
+    const shown = teams.filter((x) => (!qq || normName(x.name).includes(qq)) && (!filterable || !S.onlyFav || isFollowed(x)));
     if (!shown.length && filterable && S.onlyFav && !qq) {
       return h('div', { class: 'tlist', id: 'tlist' }, h('p', { class: 'empty' }, t('noFollowed')));
     }
@@ -573,7 +575,7 @@ function teamList(onPick: (snr: number) => void, withStar = false, filterable = 
       const fav = isFavTeam(x.name);
       return h('div', { class: `trow ${fav ? 'fav' : ''}`, 'data-snr': x.snr },
         h('button', { class: 'tpick', onclick: () => onPick(x.snr) },
-          h('span', { class: 'rk' }, started ? x.rank ?? '' : x.snr),
+          h('span', { class: 'rk' }, started && !byStart ? x.rank ?? '' : x.snr),
           h('span', { class: 'tn' }, h('b', null, x.name), h('small', null, started
             ? `${flagOf(x.fed)}${x.group ? ' · ' + x.group : ''} · ${x.wins}-${x.draws}-${x.losses}`
             : `Elo ∅ ${x.rating ?? '–'}`)),
