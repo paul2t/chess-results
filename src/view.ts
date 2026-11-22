@@ -249,19 +249,16 @@ function showTeamList(): void {
 }
 
 async function openTeam(snr: number): Promise<void> {
-  // From the list or another tab this is a new page (Back returns there); from another team's page it
-  // replaces that team, so Back skips the teams browsed in between.
-  const switching = S.view === 'teams' && S.viewSnr !== null;
   S.viewSnr = snr;
   S.view = 'teams';
-  syncUrl(!switching);
+  syncUrl(true); // every team opened is a page of its own: Back returns to the previous one
   render();
   window.scrollTo(0, 0);
   await ensureTeamPage(snr);
 }
 
 // The address carries the whole position (/<tnr>/<tab>/<team or round>), so reload, share and the
-// Back/Forward buttons all land where you were. Changing tab or opening a team from a list adds a history entry (going from one team to another replaces it); picking a
+// Back/Forward buttons all land where you were. Changing tab, team or player adds a history entry; picking a
 // round only rewrites the current one.
 function buildUrl(): string {
   const rd = S.view === 'rounds' && S.round !== null && (!S.snap || S.round !== defaultRound(S.snap)) ? S.round : null;
@@ -782,11 +779,9 @@ async function openPlayerRow(row: PlayerRow): Promise<void> {
 }
 
 async function openPlayer(snr: number): Promise<void> {
-  // as for teams: from the list or another tab this is a new page, from another card it replaces that card
-  const switching = S.view === 'players' && S.viewPno !== null;
-  S.viewPno = snr;
+  S.viewPno = snr; // as for teams: every card opened is a page of its own
   S.view = 'players';
-  syncUrl(!switching);
+  syncUrl(true);
   render();
   window.scrollTo(0, 0);
   await ensurePlayersTab();

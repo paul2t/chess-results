@@ -20,7 +20,7 @@ The home page is a dashboard, not a fixed tournament:
   Teams tab next to *‹ All teams*, one tap apart, and their games are outlined in Rounds. The Teams tab comes back as you left it
   (the last team opened, or the list of teams), and the ★ icon at the top right of Standings, Teams, Players and Rounds ("followed only") keeps just them (for players: the players of the followed teams).
   Pages of the teams you opened last are remembered, so they still show when the wifi drops.
-* **Back / Forward** – every tab change and every team opened from a list adds a history entry (switching from one team straight to another replaces it, so Back skips the teams browsed in between), and the address holds the whole position
+* **Back / Forward** – every tab, team or player you open adds a history entry (picking a round only rewrites the current one), and the address holds the whole position
   (`/<tournament>/<tab>/<team or round>`), so Back, reload and sharing a link land where you were.
   Coming back to the dashboard restores your last search, and tournaments you opened lately are listed under
   *Recently opened* (this device, up to 5 not already starred).
