@@ -1,6 +1,6 @@
 const en = {
   theme: 'Theme', themeAuto: 'Auto', themeLight: 'Light', themeDark: 'Dark',
-  openPlayer: 'Open this player', players: 'Players', allPlayers: 'All players', searchPlayers: 'Find a player…', opponents: 'Opponents', rating: 'Rating',
+  openPlayer: 'Open this player', noOpponent: 'No opponent', players: 'Players', allPlayers: 'All players', searchPlayers: 'Find a player…', opponents: 'Opponents', rating: 'Rating',
   perf: 'Perf.', points: 'Points', teamLabel: 'Team', fideId: 'FIDE ID', born: 'Born', ratingChange: 'Rtg ±', startNo: 'Number',
   playerNoCard: 'No card for this player', board: 'Board',
   teams: 'Teams', standings: 'Standings', rounds: 'Rounds', settings: 'Settings',
@@ -35,7 +35,7 @@ const en = {
 
 const fr: typeof en = {
   theme: 'Thème', themeAuto: 'Auto', themeLight: 'Clair', themeDark: 'Sombre',
-  openPlayer: 'Ouvrir ce joueur', players: 'Joueurs', allPlayers: 'Tous les joueurs', searchPlayers: 'Chercher un joueur…', opponents: 'Adversaires', rating: 'Elo',
+  openPlayer: 'Ouvrir ce joueur', noOpponent: 'Pas d’adversaire', players: 'Joueurs', allPlayers: 'Tous les joueurs', searchPlayers: 'Chercher un joueur…', opponents: 'Adversaires', rating: 'Elo',
   perf: 'Perf.', points: 'Points', teamLabel: 'Équipe', fideId: 'ID FIDE', born: 'Né en', ratingChange: 'Elo ±', startNo: 'Numéro',
   playerNoCard: 'Pas de fiche pour ce joueur', board: 'Échiquier',
   teams: 'Équipes', standings: 'Classement', rounds: 'Rondes', settings: 'Réglages',

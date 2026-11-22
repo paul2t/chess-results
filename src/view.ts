@@ -837,7 +837,7 @@ function playerList(): HTMLElement {
 function gameRow(g: PlayerGame): HTMLElement {
   const o = g.result === null ? null : outcome(g.result, 1 - g.result);
   const rating = ratingOf({ ratingI: g.oppRatingI, ratingN: g.oppRatingN });
-  const name = g.oppName && !/^bye$/i.test(g.oppName) ? natural(g.oppName) : t('bye');
+  const name = !g.oppName ? t('noOpponent') : /^bye$/i.test(g.oppName) ? t('bye') : natural(g.oppName);
   return h('div', { class: 'board' },
     h('span', { class: 'bo' }, g.round),
     h('span', { class: `sq ${g.color ?? ''}`, title: g.color === 'w' ? t('white') : g.color === 'b' ? t('black') : '' }),

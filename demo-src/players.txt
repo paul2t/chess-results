@@ -357,8 +357,8 @@ G|7|1|53||Maleki, Nicolas|2005|0|FRA|0,5|b|1
 G|8|1|193|IM|Barski, Radoslaw|2267|0|POL|4|w|1
 G|9|1|34|GM|Sochacki, Christophe|2412|0|FRA|5,5|b|½
 P|15||Meijer, Dolf|0|2183|1955|-42,6|2|191|NED|0|1006495|1977
-G|1|2|51||Dincer, Mehmet Alper|1731|0|TUR|3||
-G|2|2|82|IM|Dehtiarov, Roman|2390|0|UKR|8||
+G|1|2|51||Dincer, Mehmet Alper|1731|0|TUR|3||- 0K
+G|2|2|82|IM|Dehtiarov, Roman|2390|0|UKR|8||- 0K
 G|3|2|27||Devecchi, Jorge|2009|0|FRA|6,5|b|½
 G|4|2|152||Ciarletta, Iris|2086|0|FRA|6,5|w|½
 G|5|2|125|FM|Dalaud, Dorian|2323|0|FRA|6,5|w|½
@@ -432,8 +432,8 @@ G|6|1|228||Steinle, Thibaud|2009|0|FRA|5|w|0
 G|7|1|172||Akl, Nabil|2097|0|FRA|7|w|0
 G|8|1|99||Coupet, Pascal|2139|0|FRA|3,5|b|0
 P|23||Gujran, Krithik|0|1693|1578|-31,6|1|213|NED|0|40104753|1997
-G|1|2|130||Grigorian, Roudolph|2101|0|FRA|6||
-G|2|2|105|CM|Guttulsrud, Odd Martin|2184|0|NOR|6||
+G|1|2|130||Grigorian, Roudolph|2101|0|FRA|6||- 0K
+G|2|2|105|CM|Guttulsrud, Odd Martin|2184|0|NOR|6||- 0K
 G|3|2|48||Boyer, Jean-Francois|1726|0|FRA|4|b|1
 G|4|2|237||Szarwacki, Dominik|1869|0|POL|4|w|0
 G|5|2|221||Sola, Alessandro|1733|0|BEL|4|w|0
@@ -642,7 +642,7 @@ G|8|2|221||Sola, Alessandro|1733|0|BEL|4|w|½
 G|9|2|11||Martine, Valentin|1860|0|FRA|5|b|1
 P|46||Ferreira, Isaque|1500|0|1567||3|148|FRA|0|653043979|1987
 G|1|3|195||Fritz, Antoni|2032|0|POL|5,5|w|0
-G|2|3|0||Brett nicht besetzt,|0|0||0||
+G|2|3|0||Brett nicht besetzt,|0|0||0||- 1K
 G|3|3|149||NUTHMANN, Thomas|0|1500|FRA|1,5|b|1
 G|4|3|32||Renault, Fabien|2004|0|FRA|5,5|w|0
 G|5|3|144||Quemener, Yann|1761|0|FRA|5,5|b|0
@@ -691,7 +691,7 @@ G|7|1|197||Beaudoire, Gregoire|1801|0|FRA|3,5|w|1
 G|8|1|231||Dorofeev, Andrei|1513|0|FRA|0|b|1
 G|9|1|61|FM|Wu, Christopher|2347|0|USA|4,5|w|1
 P|51||Dincer, Mehmet Alper|0|1731|1755|-8,4|3|158|TUR|0|6373216|1990
-G|1|2|15||Meijer, Dolf|2183|0|NED|2||
+G|1|2|15||Meijer, Dolf|2183|0|NED|2||- 1K
 G|2|2|148|AIM|Dimitriadis, Alexandros|1941|0|GRE|4,5|w|0
 G|3|2|90||FAURE, Eric|0|1500|FRA|1|b|1
 G|5|2|122||Trabet, Nicolas|2126|0|FRA|6|w|0
@@ -758,7 +758,7 @@ G|7|1|26|FM|Toulzac, Pierre-Yves|2263|0|FRA|4,5|w|1
 G|8|1|184|IM|Daulyte-Cornette, Deimante|2348|0|FRA|4,5|w|1
 G|9|1|179|GM|Mastrovasilis, Dimitrios|2500|0|GRE|6,5|b|0
 P|58||Makke, Laurent|0|2136|2065|-16,6|4|120|FRA|0|624314|1986
-G|1|3|0||Brett nicht besetzt,|0|0||0||
+G|1|3|0||Brett nicht besetzt,|0|0||0||- 1K
 G|2|3|162||Guerlach, Frederic|1951|0|FRA|5|w|1
 G|3|3|131||Warnier, Yanis|1960|0|FRA|8|b|½
 G|4|3|170|IM|Olsen, Filip Boe|2318|0|DEN|8,5|w|0
@@ -774,7 +774,7 @@ G|7|3|28||Geujon, Jean-Charles|1826|0|FRA|5|w|½
 G|8|3|186||Budzinski, Jan|1974|0|POL|6|w|1
 G|9|3|182|FM|Miroslaw, Michal|2212|0|POL|5,5|b|0
 P|60||Boulnois, Boris|0|1882|1616|-53,8|3,5|134|FRA|0|26052660|2001
-G|1|4|0||Brett nicht besetzt,|0|0||0||
+G|1|4|0||Brett nicht besetzt,|0|0||0||- 1K
 G|2|4|163||Simonnet, Raphael|1629|0|FRA|2,5|b|½
 G|3|4|132||Vaissaire, Michel|1606|0|FRA|3|w|1
 G|4|4|171||Jarlskov, Daniel Tuk Hartso|1953|0|DEN|5|b|0
@@ -977,7 +977,7 @@ G|8|1|168|GM|Andersen, Mads|2483|0|DEN|5|w|1
 G|9|1|65|GM|Dudin, Gleb|2484|0|HUN|4,5|b|0
 P|82|IM|Dehtiarov, Roman|0|2390|2613|19|8|9|UKR|0|14186640|2008
 G|1|2|27||Devecchi, Jorge|2009|0|FRA|6,5|w|1
-G|2|2|15||Meijer, Dolf|2183|0|NED|2||
+G|2|2|15||Meijer, Dolf|2183|0|NED|2||- 1K
 G|3|2|180|WGM|Zawadzka, Jolanta|2224|0|POL|4,5|w|1
 G|4|2|139|GM|Brynell, Stellan|2343|0|SWE|3,5|b|½
 G|5|2|3|GM|Rusev, Krasimir|2396|0|BUL|6,5|w|½
@@ -1160,7 +1160,7 @@ G|2|4|201||DECUGIS, Christophe|0|1500|FRA|4|w|0
 G|3|4|187||Blanchard, Paul|1838|0|FRA|3|w|0
 G|4|4|176||MOLCARD, Theophile|0|1500|FRA|7|b|0
 P|103||DROIN, Sebastien|1500|0|1413||1|223|FRA|0||1997
-G|5|4|203||MUKTUBAYEVA, Dina|0|1500|POL|7||
+G|5|4|203||MUKTUBAYEVA, Dina|0|1500|POL|7||- 0K
 G|6|4|242||Rodrigues Miguel, Luca|0|1500|FRA|8|b|0
 G|7|4|33||Charbit, Florent|1916|0|FRA|6,5|w|0
 G|8|4|25||Swidurski, Julien|1507|0|FRA|5|b|0
@@ -1177,7 +1177,7 @@ G|8|1|138|GM|L'ami, Erwin|2640|0|NED|6,5|b|0
 G|9|1|30|CM|Croizier, Valery|2164|0|FRA|4,5|b|1
 P|105|CM|Guttulsrud, Odd Martin|0|2184|2275|22|6|50|NOR|0|1507249|1994
 G|1|2|221||Sola, Alessandro|1733|0|BEL|4|w|1
-G|2|2|23||Gujran, Krithik|1693|0|NED|1||
+G|2|2|23||Gujran, Krithik|1693|0|NED|1||- 1K
 G|3|2|125|FM|Dalaud, Dorian|2323|0|FRA|6,5|w|1
 G|4|2|3|GM|Rusev, Krasimir|2396|0|BUL|6,5|b|½
 G|5|2|58||Makke, Laurent|2136|0|FRA|4|b|1
@@ -1398,7 +1398,7 @@ G|7|1|124|GM|Fressinet, Laurent|2584|0|FRA|7|b|½
 G|8|1|174||Roux, Olivier|2080|0|FRA|3,5|w|1
 G|9|1|112|GM|Guliyev, Namig|2506|0|AZE|6,5|b|½
 P|130||Grigorian, Roudolph|0|2101|2197|30|6|47|FRA|0|675768|1995
-G|1|2|23||Gujran, Krithik|1693|0|NED|1||
+G|1|2|23||Gujran, Krithik|1693|0|NED|1||- 1K
 G|2|2|90||FAURE, Eric|0|1500|FRA|1|b|1
 G|3|2|218|IM|Dionisi, Thomas|2390|0|FRA|3|b|0
 G|4|2|77||Cohen, Aron J|2195|0|ENG|2,5|w|1
@@ -2038,7 +2038,7 @@ G|1|4|163||Simonnet, Raphael|1629|0|FRA|2,5|w|0
 G|2|4|239||Sabat, Anna|1546|0|POL|5|w|1
 G|3|4|223||Bressers, Effie|0|1500|BEL|1|b|1
 G|4|4|229||MUZARD, Pierre-Yves|0|1500|FRA|2,5|w|1
-G|5|4|103||DROIN, Sebastien|0|1500|FRA|1||
+G|5|4|103||DROIN, Sebastien|0|1500|FRA|1||- 1K
 G|6|4|233||Remtoula, Naushad|1461|0|FRA|3|b|0
 G|7|4|226||Spurgeon, Brad|1462|0|FRA|0|w|1
 G|8|4|217||Auneveux, Nicolas|0|1500|FRA|0|w|1
@@ -2337,7 +2337,7 @@ G|1|1|184|IM|Daulyte-Cornette, Deimante|2348|0|FRA|4,5|b|0
 G|2|1|9|CM|Martine, Jean-Christophe|1937|0|FRA|2,5|b|1
 P|242||Rodrigues Miguel, Luca|1500|0|1931||8|8|FRA|0|560029099|2000
 G|1|4|196||Moscicka, Pola|1937|0|POL|7|b|0
-G|2|4|0||Brett nicht besetzt,|0|0||0||
+G|2|4|0||Brett nicht besetzt,|0|0||0||- 1K
 G|3|4|150||DE LUCCA, Enrico|0|1500|FRA|2|w|1
 G|4|4|33||Charbit, Florent|1916|0|FRA|6,5|b|1
 G|5|4|145||BOUTELDJA, Brahim|0|1500|FRA|2|w|1

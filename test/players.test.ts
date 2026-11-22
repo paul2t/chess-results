@@ -110,3 +110,22 @@ test('line-up names carry the card number before the event (2026)', () => {
   assert.ok(page.lineup.every((p) => typeof p.snr === 'number' && p.snr > 0));
   assert.equal(parseTeamPage(fx('2025-team45.html'), 45)!.lineup.every((p) => p.snr === null), true);
 });
+
+test('card with a forfeit win against an empty board ("- 1K", "Brett nicht besetzt")', () => {
+  const p = parsePlayerPage(fx('2025-player242.html'), 242)!;
+  assert.equal(p.points, 8);
+  assert.equal(p.games.length, 9);
+  const g = p.games[1]!;
+  assert.deepEqual([g.oppName, g.oppSnr, g.result, g.forfeit, g.color], ['', 0, 1, true, null]);
+  assert.equal(p.games.filter((x) => x.result !== null).length, 9, 'every round has a result');
+  assert.equal(p.games.reduce((a, x) => a + (x.result ?? 0), 0), 8, 'the results add up to the points');
+});
+
+test('forfeit results: "- 1K" wins, "- 0K" loses, "1" and "½" are played games', () => {
+  const row = (res: string) => `<tr class="CRng1"><td class="CRc">1</td><td class="CRc">2</td><td class="CRc">7</td><td class="CR"></td><td class="CR">Roe, Max</td><td class="CRr">1800</td><td class="CRr">0</td><td class="CR">FRA</td><td class="CRc">0</td><td class="CRc">${res}</td></tr>`;
+  const html = `<html><body><table Class="CRs1"><tr><td class="CR">Name</td><td class="CR">Doe, Jane</td></tr></table>
+    <table class="CRs1"><tr class="CRng1b"><th class="CRc">Rd.</th><th class="CRc">Bo.</th><th class="CRc">SNo</th><th class="CR"></th><th class="CR">Name</th><th class="CRr">RtgI</th><th class="CRr">RtgN</th><th class="CR">FED</th><th class="CRc">Pts.</th><th class="CRc">Res.</th></tr>
+    ${['- 1K', '- 0K', '1', '&frac12;'].map(row).join('')}</table></body></html>`;
+  const games = parsePlayerPage(new JSDOM(html).window.document, 1)!.games;
+  assert.deepEqual(games.map((x) => [x.result, x.forfeit]), [[1, true], [0, true], [1, false], [0.5, false]]);
+});

@@ -121,7 +121,7 @@ ${body}
   const all = players.map(({ p, games }) => {
     const [, title, name, rn, ri, perf, , , , fed] = p;
     const rows = games.map(([rd, bo, sno, ot, on, ori, orn, of, op, col, res], i) =>
-      `<tr class="CRng${(i % 2) + 1}"><td class="CRc">${rd}</td><td class="CRc">${sno}</td><td class="CR">${ot}</td><td class="CR">${esc(on.replace(',', ''))}</td><td class="CRr">${ori}</td><td class="CRr">${orn}</td><td class="CR">${of}</td><td class="CRc">${op}</td><td class="CRc">${col === 'b' ? 's' : 'w'} ${num(res)}</td><td class="CRc">${bo}</td></tr>`);
+      `<tr class="CRng${(i % 2) + 1}"><td class="CRc">${rd}</td><td class="CRc">${sno}</td><td class="CR">${ot}</td><td class="CR">${esc(on.replace(',', ''))}</td><td class="CRr">${ori}</td><td class="CRr">${orn}</td><td class="CR">${of}</td><td class="CRc">${op}</td><td class="CRc">${col === '' ? num(res) : `${col === 'b' ? 's' : 'w'} ${num(res)}`}</td><td class="CRc">${bo}</td></tr>`);
     return `<tr class="CRg1b"><td class="none" colspan="10">${esc(name.replace(',', ''))} ${title} ${ri !== '0' ? ri : rn} ${fed} Rp:${perf}</td></tr>${gameHead(false).replace('<th class="CRc">Res.</th>', '<th class="CRc">Res.</th><th class="CRc">Bo.</th>').replace('<th class="CRc">SNo</th>', '<th class="CRc">SNo</th>')}${rows.join('')}`;
   });
   writeFileSync(`${OUT}/player-numbers.html`, page('Player info', `<table class="CRs1">${all.join('')}</table>`));
@@ -132,7 +132,7 @@ ${body}
       .filter(([k, v]) => v !== '' || k === 'Name')
       .map(([k, v]) => `<tr><td class="CR">${k}</td><td class="CR">${esc(v)}</td></tr>`).join('');
     const rows = games.map(([rd, bo, sno, ot, on, ori, orn, of, op, col, res], i) =>
-      `<tr class="CRng${(i % 2) + 1}"><td class="CRc">${rd}</td><td class="CRc">${bo}</td><td class="CRc">${sno}</td><td class="CR">${ot}</td><td class="CR">${esc(on)}</td><td class="CRr">${ori}</td><td class="CRr">${orn}</td><td class="CR">${of}</td><td class="CRc">${op}</td><td class="CR"><table><tr><td><div class="${col === 'b' ? 'FarbesT' : 'FarbewT'}"></div></td><td class="CR">${num(res)}</td></tr></table></td></tr>`);
+      `<tr class="CRng${(i % 2) + 1}"><td class="CRc">${rd}</td><td class="CRc">${bo}</td><td class="CRc">${sno}</td><td class="CR">${ot}</td><td class="CR">${esc(on)}</td><td class="CRr">${ori}</td><td class="CRr">${orn}</td><td class="CR">${of}</td><td class="CRc">${op}</td>${col === '' ? `<td class="CRc">${num(res)}</td>` : `<td class="CR"><table><tr><td><div class="${col === 'b' ? 'FarbesT' : 'FarbewT'}"></div></td><td class="CR">${num(res)}</td></tr></table></td>`}</tr>`);
     writeFileSync(`${OUT}/player-${snr}.html`, page('Player info',
       `<img border="0" src="images/f90/tn_${fed}.gif" alt="Flag ${fed}"/><table Class="CRs1">${kv}</table>${games.length ? `<table class="CRs1">${gameHead(true)}${rows.join('')}</table>` : ''}`));
   }

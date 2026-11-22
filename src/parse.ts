@@ -464,12 +464,11 @@ export function parsePlayers(doc: Document): PlayerRow[] {
   return out;
 }
 
-/** A game result as printed on a card: "1", "½", "0", or "+"/"-" for a forfeit. */
+/** A game result as printed on a card: "1", "½", "0"; "1K" / "0K" (with a leading "- ") for a forfeit; or "+"/"-". */
 function cardResult(raw: string): { result: number | null; forfeit: boolean } {
   const s = norm(raw);
-  if (s === '1') return { result: 1, forfeit: false };
-  if (s === '½') return { result: 0.5, forfeit: false };
-  if (s === '0') return { result: 0, forfeit: false };
+  const m = /(?:^|\s)(1|½|0)(K?)$/.exec(s);
+  if (m) return { result: m[1] === '1' ? 1 : m[1] === '½' ? 0.5 : 0, forfeit: m[2] === 'K' };
   if (s === '+') return { result: 1, forfeit: true };
   if (s === '-') return { result: 0, forfeit: true };
   return { result: null, forfeit: false };
@@ -504,7 +503,8 @@ export function parsePlayerPage(doc: Document, snr: number): PlayerPage | null {
         board: iBo >= 0 && c[iBo] ? int(c[iBo]!) : null,
         oppSnr: iSno >= 0 ? int(c[iSno] ?? '') : 0,
         oppTitle: h[iName - 1] === '' ? c[iName - 1] ?? '' : '',
-        oppName: c[iName] ?? '',
+        // "Brett nicht besetzt" (board not occupied) is no opponent at all: the UI words it
+        oppName: /^(brett nicht besetzt|board not occupied)/i.test(c[iName] ?? '') ? '' : c[iName] ?? '',
         oppRatingI: iI >= 0 ? int(c[iI] ?? '') : 0,
         oppRatingN: iN >= 0 ? int(c[iN] ?? '') : 0,
         oppFed: iFed >= 0 ? c[iFed] ?? '' : '',
