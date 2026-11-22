@@ -185,7 +185,9 @@ a.icon { display: grid; place-items: center; text-decoration: none; }
 .pair .pt:last-child { text-align: right; }
 .pair .pt.w { font-weight: 700; }
 .pair .pt.bye { color: var(--muted); }
-.pair .res { font-weight: 700; font-variant-numeric: tabular-nums; white-space: nowrap; padding: 0 4px; }
+.pair .res { font-weight: 700; font-variant-numeric: tabular-nums; white-space: nowrap; }
+.pair .res.pill { padding: 3px 10px; }
+.pill.decisive { background: color-mix(in srgb, var(--accent) 16%, var(--card)); color: var(--accent); }
 
 /* bottom nav */
 .tabs {

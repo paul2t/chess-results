@@ -568,9 +568,11 @@ function matchCard(m: TeamMatch, page: TeamPage, _s: Snapshot, defaultOpen: bool
 function boardRow(g: BoardGame, page: TeamPage): HTMLElement {
   const player = page.lineup.find((p) => p.name === g.us.name);
   const o = outcome(g.usPts, g.oppPts);
-  const res = g.noPlayer || g.forfeit
-    ? `${g.usPts === null ? '' : formatScore(g.usPts)} (${g.noPlayer ? t('noPlayer') : t('forfeit')})`
-    : g.usPts === null ? '' : `${formatScore(g.usPts)}–${formatScore(g.oppPts)}`;
+  const res = g.noPlayer
+    ? `${g.usPts === null ? '' : formatScore(g.usPts)} (${t('noPlayer')})`
+    : g.forfeit
+      ? (g.usPts === null ? '' : formatScore(g.usPts)) // a forfeit is just the score
+      : g.usPts === null ? '' : `${formatScore(g.usPts)}–${formatScore(g.oppPts)}`;
   return h('div', { class: 'board' },
     h('span', { class: 'bo' }, g.board),
     h('span', { class: `sq ${g.color ?? ''}`, title: g.color === 'w' ? t('white') : g.color === 'b' ? t('black') : '' }),
@@ -663,10 +665,13 @@ function roundsView(): HTMLElement {
           h('button', { class: `pt ${win ? 'w' : ''}`, disabled: !row || m.bye && name === m.away, onclick: () => row && void openTeam(row.snr) },
             name, row?.rank && s.home.kind === 'ranking' ? h('small', null, ` #${row.rank}`) : null);
         const followed = isFavTeam(m.home) || isFavTeam(m.away);
+        // the result in color: win/draw/loss for the followed team when it is the only one in the match, else a draw is amber and a decisive result tinted
+        const mine = isFavTeam(m.home) !== isFavTeam(m.away) ? (isFavTeam(m.home) ? o : o === 'W' ? 'L' : o === 'L' ? 'W' : o) : null;
+        const tone = mine ? outcomeClass(mine) : o === 'D' ? 'draw' : o ? 'decisive' : 'none';
         return h('div', { class: `pair ${followed ? 'fav' : ''}` },
           h('span', { class: 'no' }, m.no),
           side(m.home, home, o === 'W'),
-          h('span', { class: 'res' }, m.bye ? `${formatScore(m.homeScore)}` : scoreText(m.homeScore, m.awayScore)),
+          h('span', { class: `res pill sm ${tone}` }, m.bye ? `${formatScore(m.homeScore)}` : scoreText(m.homeScore, m.awayScore)),
           m.bye ? h('span', { class: 'pt bye' }, t('bye')) : side(m.away, away, o === 'L'));
       }))
     : h('p', { class: 'empty' }, `${t('notPaired')}${sched ? ` · ${dayTime(sched.date, sched.time)}` : ''}`);
