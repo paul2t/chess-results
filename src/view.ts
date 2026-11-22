@@ -216,6 +216,7 @@ function defaultRound(s: Snapshot): number {
 /** Makes sure the page of a team is loaded and up to date (a remembered page is shown meanwhile). */
 async function ensureTeamPage(snr: number): Promise<void> {
   if (!S.fetcher || S.fresh.has(snr)) return;
+  const alone = !S.loading; // a refresh already under way keeps the spinner until it is done
   S.loading = true;
   render();
   try {
@@ -225,7 +226,7 @@ async function ensureTeamPage(snr: number): Promise<void> {
   } catch (e) {
     S.error = e instanceof Error ? e.message : String(e);
   } finally {
-    S.loading = false;
+    if (alone) S.loading = false;
     render();
   }
 }
@@ -378,7 +379,9 @@ function teamView(): HTMLElement {
   if (!row) return h('p', { class: 'empty' }, t('noData'));
   const wrap = h('div', { class: 'stack' },
     h('button', { class: 'link back', onclick: showTeamList }, `‹ ${t('allTeams')}`),
-    teamSwitcher(), hero(row, s), statusCard(page, s, row));
+    teamSwitcher(), hero(row, s),
+    // until the team's page is here, say so rather than guess (an empty page would read as "starts at …")
+    page ? statusCard(page, s, row) : h('p', { class: 'empty' }, S.loading ? t('loading') : t('noData')));
   if (page && page.lineup.length) wrap.append(lineupCard(page, s));
   if (page && page.matches.length) wrap.append(matchesCard(page, s));
   return wrap;
