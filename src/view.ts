@@ -816,7 +816,8 @@ function playerList(): HTMLElement {
   });
   function buildRows(): HTMLElement {
     const q = normName(S.pfilter);
-    const shown = q ? rows!.filter((r) => normName(`${r.title} ${r.name} ${r.team} ${r.fed}`).includes(q)) : rows!;
+    const shown = rows!.filter((r) => (!S.onlyFav || isFavTeam(r.team)) && (!q || normName(`${r.title} ${r.name} ${r.team} ${r.fed}`).includes(q)));
+    if (!shown.length && S.onlyFav && !q) return h('div', { class: 'tlist', id: 'plist' }, h('p', { class: 'empty' }, t('noFollowed')));
     return h('div', { class: 'tlist', id: 'plist' }, ...shown.map((r) => {
       const missing = S.noCard.has(r.no);
       return h('div', { class: `trow ${missing ? 'dim' : ''}` },
@@ -828,7 +829,7 @@ function playerList(): HTMLElement {
           h('span', { class: 'pts2' }, h('b', null, ratingOf(r) || '–'))));
     }));
   }
-  return h('div', { class: 'stack' }, pageHead(t('players'), `${rows.length}`), h('div', null, search, buildRows()));
+  return h('div', { class: 'stack' }, pageHead(t('players'), `${rows.length}`, followFilter()), h('div', null, search, buildRows()));
 }
 
 function gameRow(g: PlayerGame): HTMLElement {

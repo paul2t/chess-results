@@ -18,7 +18,7 @@ The home page is a dashboard, not a fixed tournament:
 * **Followed teams** – tap ☆ on a team in Standings (or the ☆ at the top right of its card). They are kept per tournament, on this
   device only, and are **never part of the link**, so a link can be shared safely. Followed teams appear as chips at the top of the
   Teams tab next to *‹ All teams*, one tap apart, and their games are outlined in Rounds. The Teams tab comes back as you left it
-  (the last team opened, or the list of teams), and the ★ icon at the top right of Standings and Rounds ("followed only") keeps just them.
+  (the last team opened, or the list of teams), and the ★ icon at the top right of Standings, Teams, Players and Rounds ("followed only") keeps just them (for players: the players of the followed teams).
   Pages of the teams you opened last are remembered, so they still show when the wifi drops.
 * **Back / Forward** – every tab change and every team opened from a list adds a history entry (switching from one team straight to another replaces it, so Back skips the teams browsed in between), and the address holds the whole position
   (`/<tournament>/<tab>/<team or round>`), so Back, reload and sharing a link land where you were.
