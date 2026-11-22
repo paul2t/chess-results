@@ -1,8 +1,8 @@
 // Parsers for chess-results.com pages (lan=1, English). Pure functions over a DOM Document,
 // so they run unchanged in the browser (DOMParser) and in tests (jsdom).
 import type {
-  BoardGame, Details, HomePage, Opponent, Pairing, Player, RoundPairings, ScheduleRound,
-  TeamMatch, TeamPage, TeamRow,
+  BoardGame, Details, HomePage, Opponent, Pairing, Player, PlayerGame, PlayerNumbers, PlayerPage, PlayerRow,
+  RoundPairings, ScheduleRound, TeamMatch, TeamPage, TeamRow,
 } from './types';
 
 const norm = (s: string | null | undefined): string =>
@@ -407,6 +407,151 @@ function parseTeamMatches(rows: HTMLTableRowElement[], snr: number): TeamMatch[]
         noPlayer: /^no player$/i.test(left.name) || /^no player$/i.test(right.name),
       };
       cur.boards.push(game);
+    }
+  }
+  return out;
+}
+
+// ───────────────────────────── players (art=16, art=9, art=24) ─────────────────────────────
+
+const headersOf = (r: HTMLTableRowElement): string[] => cells(r).map((c) => txt(c));
+
+/** International rating, else the national one (what chess-results sorts the starting list by). */
+export const ratingOf = (r: { ratingI: number; ratingN: number }): number => r.ratingI || r.ratingN;
+
+/** The players' starting list (art=16): one row per player, highest rating first. */
+export function parsePlayers(doc: Document): PlayerRow[] {
+  const out: PlayerRow[] = [];
+  for (const t of tables(doc)) {
+    const rows = rowsOf(t);
+    const head = rows.find(isHeaderRow);
+    if (!head) continue;
+    const h = headersOf(head);
+    const iName = h.indexOf('Name'), iTeam = h.indexOf('Team');
+    if (iName < 0 || iTeam < 0) continue;
+    const iNo = h.indexOf('No.'), iFide = h.indexOf('FideID'), iI = h.indexOf('RtgI'), iN = h.indexOf('RtgN');
+    const iFed = h.indexOf('FED'), iBo = h.indexOf('Bo.');
+    for (const r of rows) {
+      if (isHeaderRow(r)) continue;
+      const c = cells(r).map(txt);
+      if (c.length <= iTeam || !c[iName]) continue;
+      out.push({
+        no: iNo >= 0 ? int(c[iNo]!) : out.length + 1,
+        title: h[iName - 1] === '' ? c[iName - 1] ?? '' : '', // the untitled column right before the name
+        name: c[iName]!,
+        fideId: iFide >= 0 ? c[iFide] ?? '' : '',
+        ratingI: iI >= 0 ? int(c[iI]!) : 0,
+        ratingN: iN >= 0 ? int(c[iN]!) : 0,
+        fed: iFed >= 0 ? c[iFed] ?? '' : '',
+        team: c[iTeam] ?? '',
+        board: iBo >= 0 && c[iBo] ? int(c[iBo]!) : null,
+      });
+    }
+    if (out.length) break;
+  }
+  return out;
+}
+
+/** A game result as printed on a card: "1", "½", "0", or "+"/"-" for a forfeit. */
+function cardResult(raw: string): { result: number | null; forfeit: boolean } {
+  const s = norm(raw);
+  if (s === '1') return { result: 1, forfeit: false };
+  if (s === '½') return { result: 0.5, forfeit: false };
+  if (s === '0') return { result: 0, forfeit: false };
+  if (s === '+') return { result: 1, forfeit: true };
+  if (s === '-') return { result: 0, forfeit: true };
+  return { result: null, forfeit: false };
+}
+
+/** A player's card (art=9): the info table (label / value) and the games table, one row per round. */
+export function parsePlayerPage(doc: Document, snr: number): PlayerPage | null {
+  const info = new Map<string, string>();
+  const games: PlayerGame[] = [];
+  for (const t of tables(doc)) {
+    const rows = rowsOf(t);
+    const head = rows.find(isHeaderRow);
+    if (!head) {
+      for (const r of rows) if (r.cells.length === 2) info.set(txt(r.cells[0]).toLowerCase(), txt(r.cells[1]));
+      continue;
+    }
+    const h = headersOf(head);
+    const iRd = h.indexOf('Rd.'), iName = h.indexOf('Name');
+    if (iRd < 0 || iName < 0) continue;
+    const iBo = h.indexOf('Bo.'), iSno = h.indexOf('SNo'), iI = h.indexOf('RtgI'), iN = h.indexOf('RtgN');
+    const iFed = h.indexOf('FED'), iPts = h.indexOf('Pts.'), iRes = h.indexOf('Res.');
+    for (const r of rows) {
+      if (isHeaderRow(r)) continue;
+      const cs = cells(r);
+      const c = cs.map(txt);
+      const round = int(c[iRd] ?? '');
+      if (!round) continue;
+      const res = iRes >= 0 ? cs[iRes] : undefined;
+      const { result, forfeit } = cardResult(res ? txt(res.querySelector('td.CR') ?? res) : '');
+      games.push({
+        round,
+        board: iBo >= 0 && c[iBo] ? int(c[iBo]!) : null,
+        oppSnr: iSno >= 0 ? int(c[iSno] ?? '') : 0,
+        oppTitle: h[iName - 1] === '' ? c[iName - 1] ?? '' : '',
+        oppName: c[iName] ?? '',
+        oppRatingI: iI >= 0 ? int(c[iI] ?? '') : 0,
+        oppRatingN: iN >= 0 ? int(c[iN] ?? '') : 0,
+        oppFed: iFed >= 0 ? c[iFed] ?? '' : '',
+        oppPts: iPts >= 0 ? parseScore(c[iPts] ?? '') : null,
+        color: res?.querySelector('.FarbewT') ? 'w' : res?.querySelector('.FarbesT') ? 'b' : null,
+        result,
+        forfeit,
+      });
+    }
+  }
+  const name = info.get('name');
+  if (!name) return null;
+  const num = (k: string): number | null => { const v = info.get(k); return v ? int(v) : null; };
+  const pts = info.get('points');
+  return {
+    snr, name,
+    title: info.get('title') ?? '',
+    fed: info.get('federation') ?? '',
+    ratingI: num('rating international') ?? 0,
+    ratingN: num('rating national') ?? 0,
+    perf: num('performance rating') || null,
+    ratingChange: info.get('fide rtg +/-') ?? '',
+    points: pts ? parseScore(pts) : null,
+    rank: num('rank'),
+    fideId: info.get('fide-id') && info.get('fide-id') !== '0' ? info.get('fide-id')! : '',
+    birth: info.get('year of birth') ?? '',
+    games,
+  };
+}
+
+/** Normalised name used to match the starting list with the card numbers ("Kovalenko, Igor" = "Kovalenko Igor"). */
+export const playerKey = (name: string): string => normName(name);
+
+/**
+ * Card numbers of the players (art=24, every player's games on one page). The starting list does not say
+ * them, but every opponent in those games comes with its number (SNo), name and rating.
+ */
+export function parsePlayerNumbers(doc: Document): PlayerNumbers {
+  const out: PlayerNumbers = {};
+  for (const t of tables(doc)) {
+    const rows = rowsOf(t);
+    let cols: { snr: number; name: number; i: number; n: number } | null = null;
+    for (const r of rows) {
+      if (isHeaderRow(r)) {
+        const h = headersOf(r);
+        cols = h.includes('SNo') && h.includes('Name')
+          ? { snr: h.indexOf('SNo'), name: h.indexOf('Name'), i: h.indexOf('RtgI'), n: h.indexOf('RtgN') }
+          : null;
+        continue;
+      }
+      if (!cols) continue;
+      const c = cells(r).map(txt);
+      const snr = int(c[cols.snr] ?? '');
+      const name = c[cols.name] ?? '';
+      if (!snr || !name) continue;
+      const key = playerKey(name);
+      const rating = ratingOf({ ratingI: cols.i >= 0 ? int(c[cols.i] ?? '') : 0, ratingN: cols.n >= 0 ? int(c[cols.n] ?? '') : 0 });
+      const list = (out[key] ??= []);
+      if (!list.some((x) => x.snr === snr)) list.push({ snr, rating });
     }
   }
   return out;

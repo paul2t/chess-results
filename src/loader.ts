@@ -2,9 +2,10 @@
 // rounds) are reused from the previous snapshot to keep the number of requests low.
 import type { Fetcher } from './api';
 import {
-  isPlayed, normName, parseDetails, parseHome, parsePairings, parseSchedule, parseTeamPage,
+  isPlayed, normName, parseDetails, parseHome, parsePairings, parsePlayerNumbers, parsePlayerPage, parsePlayers,
+  parseSchedule, parseTeamPage,
 } from './parse';
-import type { Details, RoundPairings, Snapshot, TeamPage } from './types';
+import type { Details, PlayerNumbers, PlayerPage, PlayerRow, RoundPairings, Snapshot, TeamPage } from './types';
 
 const toDoc = (html: string): Document => new DOMParser().parseFromString(html, 'text/html');
 
@@ -53,4 +54,19 @@ export async function loadSnapshot(
   const rounds = fetched.filter((r): r is RoundPairings => r !== null);
 
   return { tnr, fetchedAt: Date.now(), home, schedule, details, totalRounds, rounds };
+}
+
+/** The players' starting list (every player, highest rating first). */
+export async function loadPlayers(f: Fetcher, tnr: number): Promise<PlayerRow[]> {
+  return parsePlayers(toDoc(await f.get(tnr, { art: 16, zeilen: 99999 })));
+}
+
+/** A player's card, addressed by the player's number. */
+export async function loadPlayerPage(f: Fetcher, tnr: number, snr: number): Promise<PlayerPage | null> {
+  return parsePlayerPage(toDoc(await f.get(tnr, { art: 9, snr })), snr);
+}
+
+/** The card numbers of all players (a big page: fetched once, when a first card is opened from the list). */
+export async function loadPlayerNumbers(f: Fetcher, tnr: number): Promise<PlayerNumbers> {
+  return parsePlayerNumbers(toDoc(await f.get(tnr, { art: 24, zeilen: 99999 })));
 }

@@ -88,6 +88,9 @@ export function createDemoFetcher(): Fetcher {
       if (p.art === 14) file = 'schedule.html';
       else if (p.art === 2) file = `round-${p.rd}.html`;
       else if (p.art === 20 || p.art === 8) file = `team-${p.snr}.html`;
+      else if (p.art === 16) file = 'players.html';
+      else if (p.art === 24) file = 'player-numbers.html';
+      else if (p.art === 9) file = `player-${p.snr}.html`;
       else if (p.turdet === 'YES') file = 'none.html';
       else file = 'home.html';
       const res = await fetch(`demo/${file}`, { cache: 'no-store' });

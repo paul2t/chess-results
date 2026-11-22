@@ -138,3 +138,59 @@ export interface Tournament {
   to: string;
   location: string;
 }
+
+// ── players ──
+
+/** A row of the players' starting list (sorted by rating). */
+export interface PlayerRow {
+  /** Position in the list, 1 = highest rated (not the number the card page is addressed by). */
+  no: number;
+  title: string;
+  name: string;
+  fideId: string;
+  ratingI: number;
+  ratingN: number;
+  fed: string;
+  team: string;
+  board: number | null;
+}
+
+/** One game on a player's card. */
+export interface PlayerGame {
+  round: number;
+  board: number | null;
+  /** Number of the opponent: the card page of that player is addressed by it (0 when there is none, e.g. a bye). */
+  oppSnr: number;
+  oppTitle: string;
+  oppName: string;
+  oppRatingI: number;
+  oppRatingN: number;
+  oppFed: string;
+  /** The opponent's points, as shown by chess-results (after the round). */
+  oppPts: number | null;
+  color: 'w' | 'b' | null;
+  /** 1, 0.5 or 0 for this player; null when not played yet. */
+  result: number | null;
+  forfeit: boolean;
+}
+
+/** A player's card: details and one game per round. */
+export interface PlayerPage {
+  snr: number;
+  name: string;
+  title: string;
+  fed: string;
+  ratingI: number;
+  ratingN: number;
+  perf: number | null;
+  /** FIDE rating change of the event, as shown ("1,9"). */
+  ratingChange: string;
+  points: number | null;
+  rank: number | null;
+  fideId: string;
+  birth: string;
+  games: PlayerGame[];
+}
+
+/** Who has which card number: name -> candidates (several players can share a name). */
+export type PlayerNumbers = Record<string, { snr: number; rating: number }[]>;

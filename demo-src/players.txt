@@ -1,0 +1,2347 @@
+L|1|GM|L'ami, Erwin|1007998|2640|0|NED|TePe Sigeman|1
+L|2|GM|Topalov, Veselin|2900084|2617|0|BUL|Agrofert|1
+L|3|GM|Moussard, Jules|642908|2605|0|FRA|SWISSto12|1
+L|4|GM|Kovalenko, Igor|14117908|2601|0|UKR|Greco|1
+L|5|GM|Fressinet, Laurent|608742|2584|0|FRA|MVCMI #1|1
+L|6|IM|Droin, Augustin|45105987|2533|0|FRA|Enedis|1
+L|7|GM|Urkedal, Frode Olav Olsen|1506102|2512|0|NOR|KPMG Europe|1
+L|8|GM|Guliyev, Namig|13400363|2506|0|AZE|Les Pyramides de Port-Marly #1|1
+L|9|GM|Kumaran, Dharshan|401978|2505|0|ENG|Google DeepMind|1
+L|10|IM|Travadon, Loic|26092131|2503|0|FRA|MVCMI #2|1
+L|11|GM|Mastrovasilis, Dimitrios|4202694|2500|0|GRE|PROBIT Sp|1
+L|12|IM|Alexakis, Dimitris|4277023|2498|0|GRE|PwC Greece|1
+L|13|GM|Maurizzi, Marcandria|36083534|2489|0|FRA|DOLE|1
+L|14|GM|Dudin, Gleb|34184934|2484|0|HUN|Global Ramblers|1
+L|15|GM|Andersen, Mads|1413864|2483|0|DEN|Redia A/S|1
+L|16|GM|Dourerassou, Jonathan|628050|2480|0|FRA|Societe Générale|1
+L|17|GM|Degraeve, Jean-Marc|600270|2430|0|FRA|Leonard #1|1
+L|18|GM|Ferreira, Jorge Viterbo|1910850|2427|0|POR|ASML #1|1
+L|19|GM|Sochacki, Christophe|662569|2412|0|FRA|Chateau Montaiguillon|1
+L|20|IM|Skytte, Rasmus|1404210|2398|0|DEN|Redia A/S|2
+L|21|GM|Rusev, Krasimir|2905434|2396|0|BUL|Agrofert|2
+L|22|IM|Dehtiarov, Roman|14186640|2390|0|UKR|Greco|2
+L|23|IM|Dionisi, Thomas|651893|2390|0|FRA|Enedis|2
+L|24|IM|Kirk, Ezra|600067|2387|0|ENG|Chateau Montaiguillon|2
+L|25|IM|Meinhardt, Maximilian Dr.|4668766|2384|0|GER|D-fine|1
+L|26|IM|Govciyan, Pavel|621838|2375|0|FRA|DOLE|2
+L|27|IM|Daulyte-Cornette, Deimante|12802859|2348|0|FRA|PwC Europe|1
+L|28|FM|Wu, Christopher|2040875|2347|0|USA|Ernest&Young|1
+L|29|GM|Brynell, Stellan|1700219|2343|0|SWE|TePe Sigeman|2
+L|30|IM|Grinev, Valeriy|14117517|2342|0|UKR|Greco|3
+L|31|FM|Senlle Caride, Miguel|2282500|2336|0|ESP|EBRD|1
+L|32|FM|Brailly-Vignal, Bastien|658804|2325|0|FRA|MiddleWay|1
+L|33|FM|Dalaud, Dorian|36093270|2323|0|FRA|MVCMI #1|2
+L|34|IM|Olsen, Filip Boe|1440640|2318|0|DEN|Redia A/S|3
+L|35|IM|Matros, Alexander|13700251|2305|0|KAZ|Global Ramblers|2
+L|36|IM|Spyropoulos, Nikolaos|4298977|2300|0|GRE|PwC Greece|2
+L|37|IM|Reprintsev, Alexander|14100541|2292|0|UKR|Global Ramblers|3
+L|38|FM|Mitev, Valentin|2921707|2282|0|BUL|Agrofert|3
+L|39|IM|Reimanis, Ritvars|11602988|2280|0|LAT|Google #1|1
+L|40|IM|Skripchenko, Almira|13900145|2271|0|FRA|Les Pyramides de Port-Marly #1|2
+L|41|FM|Klein, Felix|24600458|2270|0|GER|D-fine|2
+L|42|IM|Barski, Radoslaw|1131710|2267|0|POL|PwC Poland|1
+L|43|IM|Maly, Alexey|14103184|2267|0|UKR|Greco|4
+L|44|FM|Toulzac, Pierre-Yves|604720|2263|0|FRA|Atscaf Nord|1
+L|45|IM|Brahami, Lamine|7905637|2252|0|ALG|Alstom #A|1
+L|46|IM|Badelka, Olga|13509926|2238|0|AUT|Global Ramblers|4
+L|47|FM|Lux, Hugo De Melo|2138298|2236|0|BRA|MVCMI #1|3
+L|48|WGM|Zawadzka, Jolanta|1122320|2224|0|POL|PROBIT Sp|2
+L|49|IM|Alexieva, Silvia|2902265|2218|0|FRA|SUDINOX Smart Industry|1
+L|50|FM|Miroslaw, Michal|1117505|2212|0|POL|PROBIT Sp|3
+L|51|FM|Ternault, Mathieu|20641532|2212|0|FRA|Chateau Montaiguillon|3
+L|52||Cohen, Aron J|404357|2195|0|ENG|Google DeepMind|2
+L|53|FM|Redzisz, Michal|21816107|2193|0|POL|PwC Europe|2
+L|54||Eklund, Joel|1705288|2184|0|SWE|TePe Sigeman|3
+L|55|CM|Guttulsrud, Odd Martin|1507249|2184|0|NOR|KPMG Europe|2
+L|56||Meijer, Dolf|1006495|2183|0|NED|ASML #1|2
+L|57|CM|Hassabis, Demis|401307|2182|0|ENG|Google DeepMind|3
+L|58||Alexakis, Georgios|4255038|2166|0|GRE|PwC Greece|3
+L|59|CM|Croizier, Valery|620904|2164|0|FRA|Banque de France|1
+L|60||Sundorf, Jannik|12905380|2154|0|GER|D-fine|3
+L|61||De Carvalho Massabo, Raphael|45108021|2142|0|FRA|DOLE|3
+L|62||Coupet, Pascal|600709|2139|0|FRA|Kaissa|1
+L|63|CM|Seger, Jan Dr.|24617121|2137|0|GER|D-fine|4
+L|64||Makke, Laurent|624314|2136|0|FRA|Enedis|3
+L|65|WGM|Khalafova, Narmin|13402625|2133|0|AZE|KPMG Europe|3
+L|66||Trabet, Nicolas|26053497|2126|0|FRA|MiddleWay|2
+L|67||Galuszka, Tomasz|21816409|2112|0|POL|PwC Poland|2
+L|68||Grigorian, Roudolph|675768|2101|0|FRA|MVCMI #2|2
+L|69||Ilecki, Wojciech|1110128|2101|0|POL|UBS AG|1
+L|70||Akl, Nabil|607886|2097|0|FRA|Nextep|1
+L|71||Ciarletta, Iris|45133263|2086|0|FRA|SUDINOX Smart Industry|2
+L|72||Roux, Olivier|615951|2080|0|FRA|OCTO Technology|1
+L|73||Margarido, Jose Miguel Teixeira|1914227|2076|0|POR|ASML #1|3
+L|74||Venard, Paul-Andre|686522|2075|0|FRA|Banque de France|2
+L|75|WIM|De Seroux, Camille|1305620|2073|0|SUI|Chateau Montaiguillon|4
+L|76||Machlik, Monika|1513621|2068|0|NOR|Ernest&Young|2
+L|77|CM|Kirszenberg, Marc|601594|2062|0|FRA|Leonard #1|2
+L|78||Zurkowski, Andrzej|1131303|2054|0|POL|KPMG Poland|1
+L|79|WIM|Moingt, Anne|604674|2050|0|FRA|Leonard #1|3
+L|80|FM|Moingt, Jean-Claude|601608|2049|0|FRA|Leonard #1|4
+L|81||Kuhn, Patrick|12910260|2044|0|GER|Google #1|2
+L|82||Tomasev, Nenad|911704|2033|0|SRB|Google DeepMind|4
+L|83||Fritz, Antoni|1169327|2032|0|POL|PwC Poland|3
+L|84|WFM|Arzur, Maia|45161127|2028|0|FRA|Enedis|4
+L|85||Coronel, Joshua|887056|2024|0|ITA|ASML #2|1
+L|86||Nemirovski, Laurent|610690|2024|0|FRA|Societe Générale|2
+L|87||Devecchi, Jorge|664022|2009|0|FRA|Atscaf Nord|2
+L|88||Steinle, Thibaud|631027|2009|0|FRA|ForChess Power|1
+L|89||Maleki, Nicolas|622133|2005|0|FRA|Electricite de France|1
+L|90||Renault, Fabien|627410|2004|0|FRA|Banque de France|3
+L|91||Destic, Elena|36001988|1998|0|FRA|MVCMI #1|4
+L|92|WFM|Zawadzka, Magdalena|1115715|1997|0|POL|PROBIT Sp|4
+L|93|CM|Jankowiak, Tomasz|1185357|1991|0|POL|PROBIT Sp|5
+L|94|WIM|Roumegous, Marina|620416|1990|0|FRA|SUDINOX Smart Industry|3
+L|95||Hristova, Ivelina|2925885|1987|0|BUL|Agrofert|4
+L|96||Bernard, Serge|650200|1976|0|FRA|Kaissa|2
+L|97||Sigeman, Johan|1705601|1975|0|SWE|TePe Sigeman|4
+L|98||Budzinski, Jan|1177133|1974|0|POL|PwC Europe|3
+L|99||Guerlach, Keigo|20665865|1974|0|FRA|Alstom #2|1
+L|100||Marek, Yves|26007177|1973|0|FRA|Accenture|1
+L|101||Kralj, Samo|14608928|1966|0|SLO|Google #1|3
+L|102||Belluire, Beatrice|26017296|1963|0|FRA|Leonard #1|5
+L|103||Warnier, Yanis|36084565|1960|0|FRA|MVCMI #2|3
+L|104||Sanchez Elena, Lucia|24591106|1954|0|ESP|Agrofert|5
+L|105||Bilunov, Denis B.|24202312|1953|0|CZE|Global Ramblers|5
+L|106||Jarlskov, Daniel Tuk Hartso|1463896|1953|0|DEN|Redia A/S|4
+L|107||Guerlach, Frederic|694193|1951|0|FRA|Societe Générale|3
+L|108||Kuftyrev, Pavlo|14153246|1951|0|UKR|Greco|5
+L|109||Maugenest, Matthieu|36065544|1951|0|FRA|Electricite de France|2
+L|110||Ibazizen, Abdelatif|650099|1948|0|FRA|Thalès|1
+L|111|AIM|Dimitriadis, Alexandros|4208773|1941|0|GRE|SWISSto12|2
+L|112|CM|Martine, Jean-Christophe|603651|1937|0|FRA|Alstom #A|2
+L|113||Moscicka, Pola|1184032|1937|0|POL|PwC Poland|4
+L|114||Le Marquer, Pierre|26011980|1933|0|FRA|ForChess Power|2
+L|115||Kirk, Eden|680290|1932|0|FRA|Chateau Montaiguillon|5
+L|116||Weijers, Ralf|1059815|1931|0|NED|ASML #1|4
+L|117||Petrolo, Mauro|837059|1918|0|ITA|UBS AG|2
+L|118||Loevenbruck, Charles|644420|1917|0|FRA|Les Pyramides de Port-Marly #1|3
+L|119||Charbit, Florent|26002752|1916|0|FRA|Banque de France|4
+L|120||Khallouf, Anas|653019580|1916|0|FRA|Dassault Systèmes #2|1
+L|121||Bertram, Johannes|24630985|1915|0|GER|EuropeChess|1
+L|122||Quintana Hernandez, Marcos Ivan|5105650|1913|0|MEX|ASML #2|2
+L|123||Hakimzadeh, Karim|440663|1912|0|ENG|Google DeepMind|5
+L|124||Marty, Jean-Yves|26072050|1911|0|FRA|Thalès|2
+L|125||Goujon, Antoine|639303|1903|0|FRA|Sodern|1
+L|126||Droin, Franck|26067641|1902|0|FRA|Kaissa|3
+L|127||Kyrkjebo, Hanna B.|1511599|1897|0|NOR|KPMG Europe|4
+L|128||Cayonlu, Arda|6339786|1896|0|TUR|ASML #2|3
+L|129||Marmey, Cedric|639788|1886|0|FRA|MiddleWay|3
+L|130||Boulnois, Boris|26052660|1882|0|FRA|Enedis|5
+L|131||Oupindrin, Timothy|26092662|1875|0|FRA|Societe Générale|4
+L|132||Szarwacki, Dominik|1136364|1869|0|POL|KPMG Poland|2
+L|133||Roux, Jean-Luc|636835|1866|0|FRA|Nextep|2
+L|134||Martine, Valentin|36019844|1860|0|FRA|Alstom #2|2
+L|135||Sundsbo, Sigve|1514393|1851|0|NOR|Ernest&Young|3
+L|136||Faure, Lionel|36018970|1845|0|FRA|Electricite de France|3
+L|137|WFM|Farhat Willemstein, Stela Souza|2109808|1842|0|BRA|UBS AG|3
+L|138||Kyrkjebo, Marte B.|1511602|1839|0|NOR|Ernest&Young|4
+L|139||Blanchard, Paul|645648|1838|0|FRA|PwC Europe|4
+L|140||Guy, Ange|635677|1834|0|FRA|Les Pyramides de Port-Marly #2|1
+L|141||Veskoukis, Konstantinos|4239490|1833|0|GRE|PwC Greece|4
+L|142||Geujon, Jean-Charles|26008416|1826|0|FRA|Atscaf Nord|3
+L|143||Castro Ros, Alejandro|651092310|1821|0|FRA|Google #2|1
+L|144|WFM|Banat, Rizlene|602825|1820|0|ALG|Alstom #A|3
+L|145||Ridel, Fabien|653019768|1809|0|FRA|Dassault Systèmes #1|1
+L|146||Catapano, Alberto Pasquale|2856161|1805|0|ITA|D-fine|5
+L|147||Beaudoire, Gregoire|26007312|1801|0|FRA|PwC France|1
+L|148||Mund, Hauke|80452582|1788|0|FRA|Les Pyramides de Port-Marly #1|4
+L|149||Benaggoun, Khaled|7912609|1778|0|ALG|Alstom #2|3
+L|150||Garcia-Almuzara Hernandez, Jaime|296333|1770|0|BEL|EuropeChess|2
+L|151||Quemener, Yann|651273|1761|0|FRA|Thalès|3
+L|152||De Temmerman, Paul|653043871|1757|0|FRA|Dassault Systèmes #1|2
+L|153||Rolland Piegue, Sacha|45104131|1750|0|FRA|PwC Europe|5
+L|154||Coriat, Caroline|26089971|1743|0|FRA|Région Ile-de-France|1
+L|155||Vaissaire, Julien|544011180|1740|0|FRA|MVCMI #1|5
+L|156||Heather, James|343459781|1739|0|ENG|Google #2|2
+L|157||Lapeyrere, Paul|653099486|1737|0|FRA|Electricite de France|4
+L|158||Sola, Alessandro|271268|1733|0|BEL|EuropeChess|3
+L|159||Dincer, Mehmet Alper|6373216|1731|0|TUR|EBRD|2
+L|160||Van Hees, Pepijn|40102289|1730|0|NED|ASML #3|1
+L|161||Boyer, Jean-Francois|650226|1726|0|FRA|Dassault Systèmes #2|2
+L|162||Dutertre, Jean-Michel|20647344|1723|0|FRA|Les Pyramides de Port-Marly #1|5
+L|163||Kowal, Cezary|1195417|1723|0|POL|KPMG Poland|3
+L|164||Leopardo, Julien|80464874|1718|0|FRA|Dassault Systèmes #2|3
+L|165||Benkaci, Massin|36020109|1709|0|FRA|ForChess Power|3
+L|166||Socko, Szymon|1166590|1705|0|POL|PwC France|2
+L|167||Fuchs, Louison|651081997|1698|0|FRA|SUDINOX Smart Industry|4
+L|168||Gujran, Krithik|40104753|1693|0|NED|ASML #3|2
+L|169||Nguyen, Gael|672670|1668|0|FRA|Atscaf Nord|4
+L|170||Bonnet, Francois|651041243|1662|0|FRA|Nextep|3
+L|171||Pendaries-Issaurat, Philippe|80420672|1658|0|FRA|UBS AG|4
+L|172||Dejean, Thomas|527047601|1655|0|FRA|Leonard #2|1
+L|173||Maguire, Tallann|2520257|1643|0|IRL|Google #1|4
+L|174||Simonnet, Raphael|80498019|1629|0|FRA|Societe Générale|5
+L|175||Boudonnet-Valerius, Nathalien|80407099|1628|0|FRA|PwC France|3
+L|176||Demko, Thomas|652037886|1616|0|FRA|Sodern|2
+L|177||Rosengren, Jon Even|1543415|1615|0|NOR|Accenture|2
+L|178||Hinkel, Kira|276782|1612|0|BEL|EuropeChess|4
+L|179||Liyanage, Nuwan|40102327|1607|0|NED|ASML #3|3
+L|180||Vaissaire, Michel|652089940|1606|0|FRA|MVCMI #2|4
+L|181||Strand, Hakan|26090120|1595|0|FRA|Les Pyramides de Port-Marly #2|2
+L|182||Kunchenko, Oleksandr|4009665|1580|0|LUX|UBS AG|5
+L|183||Ghrabi, Kilani|527095894|1566|0|FRA|Région Ile-de-France|2
+L|184||ZEMMOUR, Zaki|653009304|1564|0|FRA|OCTO Technology|2
+L|185||Benezra, David|26024810|1561|0|FRA|DOLE|4
+L|186||Sabat, Anna|1156330|1546|0|POL|KPMG Poland|4
+L|187||Costes, Arthur|651092832|1513|0|FRA|Nextep|4
+L|188||Dorofeev, Andrei|551016010|1513|0|FRA|Leonard #2|2
+L|189||Swidurski, Julien|551010992|1507|0|FRA|ASML #3|4
+L|190||AHMED, Wasim|527096076|0|1500|FRA|EBRD|3
+L|191||Allan, David|527095789|0|1500|FRA|EBRD|4
+L|192||ATANGA, Desire||0|1500|FRA|OCTO Technology|5
+L|193||Auneveux, Nicolas|652093603|0|1500|FRA|Nextep|5
+L|194||BEAUCAIRE, Charles|560031859|0|1500|FRA|Leonard #2|4
+L|195||BERNARD, Adrien|26001713|0|1500|FRA|MUREX|3
+L|196||BLEVINAL, Victor|560031867|0|1500|FRA|Leonard #2|3
+L|197||BOUHADJAR, Amine||0|1500|FRA|B-Workshop|3
+L|198||BOUTELDJA, Brahim||0|1500|FRA|Thalès|4
+L|199||Bressers, Effie|548005762|0|1500|BEL|EuropeChess|5
+L|200||CASTANO, Nicolas||0|1500|FRA|MiddleWay|4
+L|201||CHHUN, Labo||0|1500|FRA|ForChess Power|4
+L|202||DE LUCCA, Enrico||0|1500|FRA|SWISSto12|4
+L|203||De Moor, Jeroen|1037730|0|1500|NED|ASML #2|4
+L|204||DECUGIS, Christophe||0|1500|FRA|PwC France|5
+L|205||DROIN, Sebastien||0|1500|FRA|Kaissa|5
+L|206||DUPLA, Marc||0|1500|FRA|MUREX|5
+L|207||Fagard, Caroline|544087357|0|1500|FRA|MVCMI #2|5
+L|208||FAURE, Eric||0|1500|FRA|B-Workshop|2
+L|209||Ferreira, Isaque|653043979|0|1500|FRA|Dassault Systèmes #1|3
+L|210||Genestier, David|45193401|0|1500|FRA|Sodern|3
+L|211||GIRARD, Xavier||0|1500|FRA|Région Ile-de-France|4
+L|212||GLYNN, Laurence||0|1500|FRA|EBRD|5
+L|213||GOTTY, Jerome||0|1500|FRA|Accenture|3
+L|214||Guez, Jerome|527061493|0|1500|FRA|Les Pyramides de Port-Marly #2|3
+L|215||Guignard, Frederic|80447155|0|1500|FRA|Dassault Systèmes #2|4
+L|216||Habes, Khelil|7901593|0|1500|ALG|Alstom #A|5
+L|217||HERNOT, Emilie||0|1500|FRA|B-Workshop|4
+L|218||HOCQUARD, Arnaud||0|1500|FRA|Alstom #A|4
+L|219||HUY ADAMY, Pierre||0|1500|FRA|MUREX|4
+L|220||LARIVAIN, Laurent||0|1500|FRA|Thalès|5
+L|221||MADRANGE, Giullaume||0|1500|FRA|MUREX|1
+L|222||MOLCARD, Theophile||0|1500|FRA|OCTO Technology|4
+L|223||MONTANDON, Francois||0|1500|FRA|B-Workshop|1
+L|224||MUKTUBAYEVA, Dina|545042845|0|1500|POL|Google #2|4
+L|225||MUZARD, Pierre-Yves||0|1500|FRA|Accenture|5
+L|226||Nemeth, Julien|26007614|0|1500|FRA|Région Ile-de-France|3
+L|227||NUTHMANN, Thomas||0|1500|FRA|SWISSto12|3
+L|228||PARRAUD, Guillaume||0|1500|FRA|Alstom #2|5
+L|229||Pascal, Guillaume|527096009|0|1500|FRA|Sodern|4
+L|230||PELLERIN, Alexandre||0|1500|FRA|OCTO Technology|3
+L|231||Perret, Xavier|45193525|0|1500|FRA|Kaissa|4
+L|232||PUROHIT, Sachin||0|1500|FRA|Google #2|3
+L|233||Ricome, Juliette|527096033|0|1500|FRA|Sodern|5
+L|234||Rodrigues Miguel, Luca|560029099|0|1500|FRA|Dassault Systèmes #1|4
+L|235||SALINGUE, Guillaume|26069148|0|1500|FRA|MUREX|2
+L|236||Textoris, Pierre|36055778|0|1500|FRA|PwC France|4
+L|237||VETO, Celestin||0|1500|FRA|Accenture|4
+L|238||WANG, Cedric||0|1500|FRA|Alstom #2|4
+L|239||Wyler, Luc|36052809|1490|0|FRA|Les Pyramides de Port-Marly #2|4
+L|240||Spurgeon, Brad|20681119|1462|0|FRA|Région Ile-de-France|5
+L|241||Remtoula, Naushad|551060019|1461|0|FRA|Leonard #2|5
+L|242||Fuster, Jean Baptiste|80441122|1408|0|FRA|Les Pyramides de Port-Marly #2|5
+P|1||Rosengren, Jon Even|0|1615|1544|-26,6|1|197|NOR|0|1543415|1989
+G|1|2|185|FM|Redzisz, Michal|2193|0|POL|8|w|0
+G|2|2|12|WFM|Banat, Rizlene|1820|0|ALG|1,5|w|0
+G|3|1|135||Petrolo, Mauro|1918|0|ITA|4|w|0
+G|4|1|74||Castro Ros, Alejandro|1821|0|FRA|2|w|0
+G|6|1|172||Akl, Nabil|2097|0|FRA|7|b|0
+G|7|1|91||MONTANDON, Francois|0|1500|FRA|1|w|1
+G|8|1|165||Coriat, Caroline|1743|0|FRA|4|b|0
+G|9|1|116||Guy, Ange|1834|0|FRA|3|b|0
+P|2|GM|Topalov, Veselin|0|2617|2505|-9,6|5|79|BUL|0|2900084|1975
+G|1|1|53||Maleki, Nicolas|2005|0|FRA|0,5|b|1
+G|2|1|204|GM|Maurizzi, Marcandria|2489|0|FRA|7|w|0
+G|3|1|108|GM|Degraeve, Jean-Marc|2430|0|FRA|5|b|1
+G|4|1|104|GM|Urkedal, Frode Olav Olsen|2512|0|NOR|6|b|½
+G|5|1|81|GM|Kovalenko, Igor|2601|0|UKR|5,5|w|½
+G|6|1|168|GM|Andersen, Mads|2483|0|DEN|5|b|½
+G|7|1|179|GM|Mastrovasilis, Dimitrios|2500|0|GRE|6,5|w|½
+G|8|1|189|IM|Alexakis, Dimitris|2498|0|GRE|5,5|w|1
+G|9|1|138|GM|L'ami, Erwin|2640|0|NED|6,5|b|0
+P|3|GM|Rusev, Krasimir|0|2396|2413|4,6|6,5|34|BUL|0|2905434|1983
+G|1|2|54||Maugenest, Matthieu|1951|0|FRA|6|w|1
+G|2|2|205|IM|Govciyan, Pavel|2375|0|FRA|6,5|b|1
+G|3|2|240|CM|Kirszenberg, Marc|2062|0|FRA|2,5|w|1
+G|4|2|105|CM|Guttulsrud, Odd Martin|2184|0|NOR|6|w|½
+G|5|2|82|IM|Dehtiarov, Roman|2390|0|UKR|8|b|½
+G|6|2|169|IM|Skytte, Rasmus|2398|0|DEN|4,5|w|1
+G|7|2|180|WGM|Zawadzka, Jolanta|2224|0|POL|4,5|b|½
+G|8|2|190|IM|Spyropoulos, Nikolaos|2300|0|GRE|6|b|½
+G|9|2|139|GM|Brynell, Stellan|2343|0|SWE|3,5|w|½
+P|4|FM|Mitev, Valentin|0|2282|2280|2,8|6|37|BUL|0|2921707|2004
+G|1|3|55||Faure, Lionel|1845|0|FRA|2,5|b|1
+G|2|3|206||De Carvalho Massabo, Raphael|2142|0|FRA|5|w|0
+G|3|3|109|WIM|Moingt, Anne|2050|0|FRA|4,5|b|1
+G|4|3|106|WGM|Khalafova, Narmin|2133|0|AZE|3,5|b|1
+G|5|3|83|IM|Grinev, Valeriy|2342|0|UKR|5|w|0
+G|6|3|170|IM|Olsen, Filip Boe|2318|0|DEN|8,5|b|0
+G|7|3|182|FM|Miroslaw, Michal|2212|0|POL|5,5|w|1
+G|8|3|191||Alexakis, Georgios|2166|0|GRE|5,5|w|1
+G|9|3|140||Eklund, Joel|2184|0|SWE|2|b|1
+P|5||Hristova, Ivelina|0|1987|2056|27,2|4,5|137|BUL|0|2925885|2008
+G|1|4|56||Lapeyrere, Paul|1737|0|FRA|3|w|1
+G|2|4|207||Benezra, David|1561|0|FRA|1|b|1
+G|3|4|110||Belluire, Beatrice|1963|0|FRA|8|w|½
+G|6|4|171||Jarlskov, Daniel Tuk Hartso|1953|0|DEN|5|w|1
+G|7|4|183|CM|Jankowiak, Tomasz|1991|0|POL|9|b|0
+G|9|4|141||Sigeman, Johan|1975|0|SWE|6,5|w|1
+P|6||Sanchez Elena, Lucia|0|1954|2019|5,2|2|218|ESP|0|24591106|2004
+G|4|4|107||Kyrkjebo, Hanna B.|1897|0|NOR|6|w|1
+G|5|4|84||Kuftyrev, Pavlo|1951|0|UKR|4,5|b|1
+G|8|4|192||Veskoukis, Konstantinos|1833|0|GRE|6,5|b|0
+P|7|IM|Brahami, Lamine|0|2252|2289|6,4|3|178|ALG|0|7905637|2002
+G|5|1|184|IM|Daulyte-Cornette, Deimante|2348|0|FRA|4,5|w|1
+G|6|1|50|FM|Senlle Caride, Miguel|2336|0|ESP|6,5|b|0
+G|7|1|61|FM|Wu, Christopher|2347|0|USA|4,5|b|0
+G|8|1|8||Guerlach, Keigo|1974|0|FRA|2|w|1
+G|9|1|174||Roux, Olivier|2080|0|FRA|3,5|b|1
+P|8||Guerlach, Keigo|0|1974|1972|-2|2|203|FRA|0|20665865|1999
+G|5|1|151|IM|Alexieva, Silvia|2218|0|FRA|6|w|0
+G|6|1|18||Coronel, Joshua|2024|0|ITA|4|b|0
+G|7|1|47||Khallouf, Anas|1916|0|FRA|6|w|1
+G|8|1|7|IM|Brahami, Lamine|2252|0|ALG|3|b|0
+G|9|1|44||Ridel, Fabien|1809|0|FRA|1|b|1
+P|9|CM|Martine, Jean-Christophe|0|1937|1840|-28,4|2,5|159|FRA|0|603651|1967
+G|1|1|124|GM|Fressinet, Laurent|2584|0|FRA|7|b|0
+G|2|1|241||Marek, Yves|1973|0|FRA|1|w|0
+G|3|1|193|IM|Barski, Radoslaw|2267|0|POL|4|w|0
+G|4|1|197||Beaudoire, Gregoire|1801|0|FRA|3,5|b|½
+G|6|2|51||Dincer, Mehmet Alper|1731|0|TUR|3|w|1
+G|7|2|62||Machlik, Monika|2068|0|NOR|6,5|w|0
+G|8|2|11||Martine, Valentin|1860|0|FRA|5|b|0
+G|9|2|177||ZEMMOUR, Zaki|1564|0|FRA|1,5|w|1
+P|10||Habes, Khelil|1500|0|1753||5|84|ALG|0|7901593|1983
+G|1|4|128||Vaissaire, Julien|1740|0|FRA|1|w|1
+G|2|4|87||VETO, Celestin|0|1500|FRA|4|b|1
+G|3|4|196||Moscicka, Pola|1937|0|POL|7|b|0
+G|4|4|201||DECUGIS, Christophe|0|1500|FRA|4|w|1
+G|5|4|188||Rolland Piegue, Sacha|1750|0|FRA|2,5|b|0
+G|6|4|95||GLYNN, Laurence|0|1500|FRA|2|w|1
+G|7|4|64||Kyrkjebo, Marte B.|1839|0|NOR|6|w|0
+G|9|4|176||MOLCARD, Theophile|0|1500|FRA|7|w|1
+P|11||Martine, Valentin|0|1860|2027|28,4|5|67|FRA|0|36019844|2001
+G|1|1|189|IM|Alexakis, Dimitris|2498|0|GRE|5,5|b|0
+G|2|1|232||Dejean, Thomas|1655|0|FRA|2|w|1
+G|3|1|70|IM|Reimanis, Ritvars|2280|0|LAT|5|b|0
+G|4|1|53||Maleki, Nicolas|2005|0|FRA|0,5|w|1
+G|5|2|152||Ciarletta, Iris|2086|0|FRA|6,5|b|0
+G|6|2|20||Quintana Hernandez, Marcos Ivan|1913|0|MEX|2|w|1
+G|7|2|48||Boyer, Jean-Francois|1726|0|FRA|4|b|1
+G|8|2|9|CM|Martine, Jean-Christophe|1937|0|FRA|2,5|w|1
+G|9|2|45||De Temmerman, Paul|1757|0|FRA|3,5|w|0
+P|12|WFM|Banat, Rizlene|0|1820|1761|-16,2|1,5|205|ALG|0|602825|1998
+G|1|2|125|FM|Dalaud, Dorian|2323|0|FRA|6,5|w|0
+G|2|2|1||Rosengren, Jon Even|1615|0|NOR|1|b|1
+G|3|2|194||Galuszka, Tomasz|2112|0|POL|6,5|b|0
+G|4|2|198||Socko, Szymon|1705|0|POL|4|w|0
+G|5|2|185|FM|Redzisz, Michal|2193|0|POL|8|b|0
+G|8|3|13||Benaggoun, Khaled|1778|0|ALG|2,5|w|½
+P|13||Benaggoun, Khaled|0|1778|1736|-17,2|2,5|160|ALG|0|7912609|1989
+G|1|2|190|IM|Spyropoulos, Nikolaos|2300|0|GRE|6|w|0
+G|2|2|231||Dorofeev, Andrei|1513|0|FRA|0|b|1
+G|3|2|71||Kuhn, Patrick|2044|0|GER|4|w|0
+G|4|2|54||Maugenest, Matthieu|1951|0|FRA|6|b|0
+G|5|3|153|WIM|Roumegous, Marina|1990|0|FRA|5,5|w|0
+G|6|3|21||Cayonlu, Arda|1896|0|TUR|6,5|b|0
+G|8|3|12|WFM|Banat, Rizlene|1820|0|ALG|1,5|b|½
+G|9|3|46||Ferreira, Isaque|0|1500|FRA|3|b|1
+P|14|GM|Ferreira, Jorge Viterbo|0|2427|2479|7,8|6|42|POR|0|1910850|1994
+G|1|1|50|FM|Senlle Caride, Miguel|2336|0|ESP|6,5|w|1
+G|2|1|81|GM|Kovalenko, Igor|2601|0|UKR|5,5|b|½
+G|3|1|26|FM|Toulzac, Pierre-Yves|2263|0|FRA|4,5|w|1
+G|4|1|151|IM|Alexieva, Silvia|2218|0|FRA|6|b|1
+G|5|1|124|GM|Fressinet, Laurent|2584|0|FRA|7|b|0
+G|6|1|129|IM|Travadon, Loic|2503|0|FRA|7|w|0
+G|7|1|53||Maleki, Nicolas|2005|0|FRA|0,5|b|1
+G|8|1|193|IM|Barski, Radoslaw|2267|0|POL|4|w|1
+G|9|1|34|GM|Sochacki, Christophe|2412|0|FRA|5,5|b|½
+P|15||Meijer, Dolf|0|2183|1955|-42,6|2|191|NED|0|1006495|1977
+G|1|2|51||Dincer, Mehmet Alper|1731|0|TUR|3||
+G|2|2|82|IM|Dehtiarov, Roman|2390|0|UKR|8||
+G|3|2|27||Devecchi, Jorge|2009|0|FRA|6,5|b|½
+G|4|2|152||Ciarletta, Iris|2086|0|FRA|6,5|w|½
+G|5|2|125|FM|Dalaud, Dorian|2323|0|FRA|6,5|w|½
+G|6|2|130||Grigorian, Roudolph|2101|0|FRA|6|b|0
+G|7|2|54||Maugenest, Matthieu|1951|0|FRA|6|w|0
+G|8|2|194||Galuszka, Tomasz|2112|0|POL|6,5|b|½
+G|9|2|36|FM|Ternault, Mathieu|2212|0|FRA|7|w|0
+P|16||Margarido, Jose Miguel Teixeira|0|2076|2058|1,8|5,5|61|POR|0|1914227|1994
+G|1|3|94||AHMED, Wasim|0|1500|FRA|6|w|1
+G|2|3|83|IM|Grinev, Valeriy|2342|0|UKR|5|b|½
+G|3|3|28||Geujon, Jean-Charles|1826|0|FRA|5|w|1
+G|4|3|153|WIM|Roumegous, Marina|1990|0|FRA|5,5|b|½
+G|5|3|126|FM|Lux, Hugo De Melo|2236|0|BRA|4|b|0
+G|6|3|131||Warnier, Yanis|1960|0|FRA|8|w|0
+G|7|3|55||Faure, Lionel|1845|0|FRA|2,5|b|1
+G|8|3|195||Fritz, Antoni|2032|0|POL|5,5|w|½
+G|9|3|38|WIM|De Seroux, Camille|2073|0|SUI|1|b|1
+P|17||Weijers, Ralf|0|1931|2025|21,2|7,5|10|NED|0|1059815|1983
+G|1|4|52||Allan, David|0|1500|FRA|4|b|1
+G|2|4|84||Kuftyrev, Pavlo|1951|0|UKR|4,5|w|½
+G|3|4|29||Nguyen, Gael|1668|0|FRA|3,5|b|1
+G|4|4|154||Fuchs, Louison|1698|0|FRA|3|w|1
+G|5|4|128||Vaissaire, Julien|1740|0|FRA|1|w|1
+G|6|4|132||Vaissaire, Michel|1606|0|FRA|3|b|1
+G|7|4|56||Lapeyrere, Paul|1737|0|FRA|3|w|1
+G|8|4|196||Moscicka, Pola|1937|0|POL|7|b|0
+G|9|4|37||Kirk, Eden|1932|0|FRA|3|w|1
+P|18||Coronel, Joshua|0|2024|2127|14,2|4|112|ITA|0|887056|1997
+G|1|1|57|IM|Droin, Augustin|2533|0|FRA|6|w|0
+G|2|1|44||Ridel, Fabien|1809|0|FRA|1|b|1
+G|3|1|155||Goujon, Antoine|1903|0|FRA|1|w|1
+G|4|1|50|FM|Senlle Caride, Miguel|2336|0|ESP|6,5|b|0
+G|5|1|160|GM|Dourerassou, Jonathan|2480|0|FRA|5,5|w|0
+G|6|1|8||Guerlach, Keigo|1974|0|FRA|2|w|1
+G|7|1|121|FM|Brailly-Vignal, Bastien|2325|0|FRA|5,5|b|0
+G|8|1|30|CM|Croizier, Valery|2164|0|FRA|4,5|w|0
+G|9|1|53||Maleki, Nicolas|2005|0|FRA|0,5|b|1
+P|19||De Moor, Jeroen|1500|0|1877||5,5|82|NED|0|1037730|1983
+G|3|4|159||Ricome, Juliette|0|1500|FRA|3|b|1
+G|4|4|95||GLYNN, Laurence|0|1500|FRA|2|w|1
+G|5|4|164||Oupindrin, Timothy|1875|0|FRA|2,5|b|0
+G|6|4|89||PARRAUD, Guillaume|0|1500|FRA|5|b|1
+G|7|4|208||CASTANO, Nicolas|0|1500|FRA|0|w|1
+G|8|4|33||Charbit, Florent|1916|0|FRA|6,5|b|½
+G|9|4|56||Lapeyrere, Paul|1737|0|FRA|3|w|1
+P|20||Quintana Hernandez, Marcos Ivan|0|1913|1702|-30,6|2|163|MEX|0|5105650|1975
+G|1|2|218|IM|Dionisi, Thomas|2390|0|FRA|3|b|0
+G|2|2|45||De Temmerman, Paul|1757|0|FRA|3,5|w|1
+G|3|2|156||Demko, Thomas|1616|0|FRA|1|b|1
+G|4|2|94||AHMED, Wasim|0|1500|FRA|6|w|0
+G|5|2|161||Nemirovski, Laurent|2024|0|FRA|4,5|b|0
+G|6|2|11||Martine, Valentin|1860|0|FRA|5|b|0
+G|7|2|122||Trabet, Nicolas|2126|0|FRA|6|w|0
+G|8|2|31||Venard, Paul-Andre|2075|0|FRA|4,5|b|0
+G|9|2|54||Maugenest, Matthieu|1951|0|FRA|6|w|0
+P|21||Cayonlu, Arda|0|1896|2203|39,8|6,5|52|TUR|0|6339786|1998
+G|3|3|157||Genestier, David|0|1500|FRA|2,5|w|1
+G|4|3|52||Allan, David|0|1500|FRA|4|b|1
+G|5|3|162||Guerlach, Frederic|1951|0|FRA|5|w|½
+G|6|3|13||Benaggoun, Khaled|1778|0|ALG|2,5|w|1
+G|7|3|123||Marmey, Cedric|1886|0|FRA|4,5|b|1
+G|8|3|32||Renault, Fabien|2004|0|FRA|5,5|w|1
+G|9|3|55||Faure, Lionel|1845|0|FRA|2,5|b|1
+P|22||Van Hees, Pepijn|0|1730|1343|-46|0|217|NED|0|40102289|1998
+G|1|1|129|IM|Travadon, Loic|2503|0|FRA|7|w|0
+G|2|1|104|GM|Urkedal, Frode Olav Olsen|2512|0|NOR|6|b|0
+G|3|1|47||Khallouf, Anas|1916|0|FRA|6|w|0
+G|4|1|236||Zurkowski, Andrzej|2054|0|POL|4,5|b|0
+G|5|1|219||Bertram, Johannes|1915|0|GER|4,5|b|0
+G|6|1|228||Steinle, Thibaud|2009|0|FRA|5|w|0
+G|7|1|172||Akl, Nabil|2097|0|FRA|7|w|0
+G|8|1|99||Coupet, Pascal|2139|0|FRA|3,5|b|0
+P|23||Gujran, Krithik|0|1693|1578|-31,6|1|213|NED|0|40104753|1997
+G|1|2|130||Grigorian, Roudolph|2101|0|FRA|6||
+G|2|2|105|CM|Guttulsrud, Odd Martin|2184|0|NOR|6||
+G|3|2|48||Boyer, Jean-Francois|1726|0|FRA|4|b|1
+G|4|2|237||Szarwacki, Dominik|1869|0|POL|4|w|0
+G|5|2|221||Sola, Alessandro|1733|0|BEL|4|w|0
+G|6|2|96||Le Marquer, Pierre|1933|0|FRA|6,5|b|0
+G|7|2|215||Roux, Jean-Luc|1866|0|FRA|4,5|b|0
+G|8|2|100||Bernard, Serge|1976|0|FRA|6,5|w|0
+P|24||Liyanage, Nuwan|0|1607|1897|108|5|85|NED|0|40102327|1985
+G|1|3|131||Warnier, Yanis|1960|0|FRA|8|w|0
+G|2|3|106|WGM|Khalafova, Narmin|2133|0|AZE|3,5|b|0
+G|3|3|49||Leopardo, Julien|1718|0|FRA|6|w|1
+G|4|3|238||Kowal, Cezary|1723|0|POL|4,5|b|1
+G|5|3|222||Hinkel, Kira|1612|0|BEL|5|b|1
+G|6|3|97||Benkaci, Massin|1709|0|FRA|5|w|1
+G|7|3|173||Bonnet, Francois|1662|0|FRA|2|w|1
+G|8|3|101||Droin, Franck|1902|0|FRA|5|b|0
+P|25||Swidurski, Julien|0|1507|1665|-7,8|5|86|FRA|0|551010992|1993
+G|1|4|132||Vaissaire, Michel|1606|0|FRA|3|b|0
+G|2|4|107||Kyrkjebo, Hanna B.|1897|0|NOR|6|w|0
+G|3|4|93||Guignard, Frederic|0|1500|FRA|2,5|b|1
+G|4|4|239||Sabat, Anna|1546|0|POL|5|w|0
+G|5|4|223||Bressers, Effie|0|1500|BEL|1|w|1
+G|6|4|98||CHHUN, Labo|0|1500|FRA|0|b|1
+G|7|4|216||Costes, Arthur|1513|0|FRA|0,5|b|1
+G|8|4|103||DROIN, Sebastien|0|1500|FRA|1|w|1
+P|26|FM|Toulzac, Pierre-Yves|0|2263|2179|-9,6|4,5|88|FRA|0|604720|1970
+G|1|1|81|GM|Kovalenko, Igor|2601|0|UKR|5,5|w|0
+G|2|1|219||Bertram, Johannes|1915|0|GER|4,5|b|½
+G|3|1|14|GM|Ferreira, Jorge Viterbo|2427|0|POR|6|b|0
+G|4|1|172||Akl, Nabil|2097|0|FRA|7|w|1
+G|5|1|174||Roux, Olivier|2080|0|FRA|3,5|b|1
+G|6|1|209||MADRANGE, Giullaume|0|1500|FRA|1|w|1
+G|7|1|57|IM|Droin, Augustin|2533|0|FRA|6|b|0
+G|8|1|112|GM|Guliyev, Namig|2506|0|AZE|6,5|w|0
+G|9|1|142||Ibazizen, Abdelatif|1948|0|FRA|2|w|1
+P|27||Devecchi, Jorge|0|2009|2116|31,2|6,5|30|FRA|0|664022|1982
+G|1|2|82|IM|Dehtiarov, Roman|2390|0|UKR|8|b|0
+G|2|2|221||Sola, Alessandro|1733|0|BEL|4|w|1
+G|3|2|15||Meijer, Dolf|2183|0|NED|2|w|½
+G|4|2|215||Roux, Jean-Luc|1866|0|FRA|4,5|b|1
+G|5|2|177||ZEMMOUR, Zaki|1564|0|FRA|1,5|w|1
+G|6|2|210||SALINGUE, Guillaume|0|1500|FRA|1|b|1
+G|7|2|58||Makke, Laurent|2136|0|FRA|4|w|½
+G|8|2|113|IM|Skripchenko, Almira|2271|0|FRA|4,5|b|½
+G|9|2|143||Marty, Jean-Yves|1911|0|FRA|4,5|b|1
+P|28||Geujon, Jean-Charles|0|1826|1857|0,6|5|73|FRA|0|26008416|1978
+G|1|3|85|IM|Maly, Alexey|2267|0|UKR|1|w|0
+G|2|3|222||Hinkel, Kira|1612|0|BEL|5|b|0
+G|3|3|16||Margarido, Jose Miguel Teixeira|2076|0|POR|5,5|b|0
+G|4|3|173||Bonnet, Francois|1662|0|FRA|2|w|1
+G|5|3|175||PELLERIN, Alexandre|0|1500|FRA|5|b|1
+G|6|3|211||BERNARD, Adrien|0|1500|FRA|0|w|1
+G|7|3|59|WFM|Arzur, Maia|2028|0|FRA|3|b|½
+G|8|3|114||Loevenbruck, Charles|1917|0|FRA|3,5|w|½
+G|9|3|144||Quemener, Yann|1761|0|FRA|5,5|w|1
+P|29||Nguyen, Gael|0|1668|1592|-8,2|3,5|127|FRA|0|672670|1968
+G|1|4|84||Kuftyrev, Pavlo|1951|0|UKR|4,5|b|0
+G|2|4|223||Bressers, Effie|0|1500|BEL|1|w|1
+G|3|4|17||Weijers, Ralf|1931|0|NED|7,5|w|0
+G|4|4|217||Auneveux, Nicolas|0|1500|FRA|0|b|1
+G|5|4|176||MOLCARD, Theophile|0|1500|FRA|7|w|0
+G|6|4|213||DUPLA, Marc|0|1500|FRA|5|b|1
+G|7|4|60||Boulnois, Boris|1882|0|FRA|3,5|w|½
+G|8|4|115||Mund, Hauke|1788|0|FRA|8|b|0
+G|9|4|145||BOUTELDJA, Brahim|0|1500|FRA|2|b|0
+P|30|CM|Croizier, Valery|0|2164|2197|11,2|4,5|89|FRA|0|620904|1973
+G|1|1|156||Demko, Thomas|1616|0|FRA|1|w|1
+G|2|1|34|GM|Sochacki, Christophe|2412|0|FRA|5,5|w|0
+G|3|1|40|FM|Klein, Felix|2270|0|GER|4|b|½
+G|4|1|44||Ridel, Fabien|1809|0|FRA|1|b|1
+G|5|1|204|GM|Maurizzi, Marcandria|2489|0|FRA|7|w|0
+G|6|1|76|GM|Kumaran, Dharshan|2505|0|ENG|2|b|0
+G|7|1|99||Coupet, Pascal|2139|0|FRA|3,5|w|1
+G|8|1|18||Coronel, Joshua|2024|0|ITA|4|b|1
+G|9|1|104|GM|Urkedal, Frode Olav Olsen|2512|0|NOR|6|w|0
+P|31||Venard, Paul-Andre|0|2075|2049|-1,8|4,5|90|FRA|0|686522|1997
+G|1|2|157||Genestier, David|0|1500|FRA|2,5|b|1
+G|2|2|35|IM|Kirk, Ezra|2387|0|ENG|3,5|b|0
+G|3|2|41||Sundorf, Jannik|2154|0|GER|2,5|w|0
+G|4|2|45||De Temmerman, Paul|1757|0|FRA|3,5|w|1
+G|5|2|205|IM|Govciyan, Pavel|2375|0|FRA|6,5|b|0
+G|6|2|77||Cohen, Aron J|2195|0|ENG|2,5|w|½
+G|7|2|100||Bernard, Serge|1976|0|FRA|6,5|b|0
+G|8|2|20||Quintana Hernandez, Marcos Ivan|1913|0|MEX|2|w|1
+G|9|2|105|CM|Guttulsrud, Odd Martin|2184|0|NOR|6|b|1
+P|32||Renault, Fabien|0|2004|2021|11,6|5,5|54|FRA|0|627410|1978
+G|1|3|158||Pascal, Guillaume|0|1500|FRA|1|w|1
+G|2|3|38|WIM|De Seroux, Camille|2073|0|SUI|1|w|1
+G|3|3|42|CM|Seger, Jan Dr.|2137|0|GER|4,5|b|0
+G|4|3|46||Ferreira, Isaque|0|1500|FRA|3|b|1
+G|5|3|206||De Carvalho Massabo, Raphael|2142|0|FRA|5|w|½
+G|6|3|78|CM|Hassabis, Demis|2182|0|ENG|5,5|b|0
+G|7|3|101||Droin, Franck|1902|0|FRA|5|w|1
+G|8|3|21||Cayonlu, Arda|1896|0|TUR|6,5|b|0
+G|9|3|106|WGM|Khalafova, Narmin|2133|0|AZE|3,5|w|1
+P|33||Charbit, Florent|0|1916|1845|18,8|6,5|21|FRA|0|26002752|1986
+G|1|4|159||Ricome, Juliette|0|1500|FRA|3|b|1
+G|2|4|37||Kirk, Eden|1932|0|FRA|3|b|1
+G|3|4|43||Catapano, Alberto Pasquale|1805|0|ITA|4,5|w|1
+G|4|4|242||Rodrigues Miguel, Luca|0|1500|FRA|8|w|0
+G|5|4|207||Benezra, David|1561|0|FRA|1|b|1
+G|6|4|79||Hakimzadeh, Karim|1912|0|ENG|7|w|1
+G|7|4|103||DROIN, Sebastien|0|1500|FRA|1|b|1
+G|8|4|19||De Moor, Jeroen|0|1500|NED|5,5|w|½
+G|9|4|107||Kyrkjebo, Hanna B.|1897|0|NOR|6|b|0
+P|34|GM|Sochacki, Christophe|0|2412|2442|5|5,5|62|FRA|0|662569|1994
+G|1|1|236||Zurkowski, Andrzej|2054|0|POL|4,5|w|1
+G|2|1|30|CM|Croizier, Valery|2164|0|FRA|4,5|b|1
+G|3|1|61|FM|Wu, Christopher|2347|0|USA|4,5|b|½
+G|4|1|193|IM|Barski, Radoslaw|2267|0|POL|4|w|1
+G|5|1|129|IM|Travadon, Loic|2503|0|FRA|7|b|1
+G|6|1|104|GM|Urkedal, Frode Olav Olsen|2512|0|NOR|6|w|0
+G|7|1|81|GM|Kovalenko, Igor|2601|0|UKR|5,5|b|0
+G|8|1|39|IM|Meinhardt, Maximilian Dr.|2384|0|GER|4|b|½
+G|9|1|14|GM|Ferreira, Jorge Viterbo|2427|0|POR|6|w|½
+P|35|IM|Kirk, Ezra|0|2387|2171|-18,2|3,5|150|ENG|0|600067|1996
+G|2|2|31||Venard, Paul-Andre|2075|0|FRA|4,5|w|1
+G|3|2|62||Machlik, Monika|2068|0|NOR|6,5|w|½
+G|4|2|194||Galuszka, Tomasz|2112|0|POL|6,5|b|0
+G|5|2|130||Grigorian, Roudolph|2101|0|FRA|6|w|1
+G|6|2|105|CM|Guttulsrud, Odd Martin|2184|0|NOR|6|b|1
+G|7|2|82|IM|Dehtiarov, Roman|2390|0|UKR|8|w|0
+G|8|2|40|FM|Klein, Felix|2270|0|GER|4|w|0
+P|36|FM|Ternault, Mathieu|0|2212|2399|16|7|20|FRA|0|20641532|1993
+G|1|2|237||Szarwacki, Dominik|1869|0|POL|4|b|1
+G|3|3|63||Sundsbo, Sigve|1851|0|NOR|2|b|1
+G|4|3|195||Fritz, Antoni|2032|0|POL|5,5|w|1
+G|5|3|131||Warnier, Yanis|1960|0|FRA|8|b|0
+G|6|3|106|WGM|Khalafova, Narmin|2133|0|AZE|3,5|w|1
+G|7|3|83|IM|Grinev, Valeriy|2342|0|UKR|5|b|1
+G|8|3|42|CM|Seger, Jan Dr.|2137|0|GER|4,5|b|1
+G|9|2|15||Meijer, Dolf|2183|0|NED|2|b|1
+P|37||Kirk, Eden|0|1932|1700|-52,2|3|142|FRA|0|680290|1994
+G|1|4|239||Sabat, Anna|1546|0|POL|5|b|1
+G|2|4|33||Charbit, Florent|1916|0|FRA|6,5|w|0
+G|3|4|64||Kyrkjebo, Marte B.|1839|0|NOR|6|w|0
+G|4|4|196||Moscicka, Pola|1937|0|POL|7|b|0
+G|5|4|132||Vaissaire, Michel|1606|0|FRA|3|w|1
+G|6|4|107||Kyrkjebo, Hanna B.|1897|0|NOR|6|b|1
+G|7|4|84||Kuftyrev, Pavlo|1951|0|UKR|4,5|w|0
+G|8|4|43||Catapano, Alberto Pasquale|1805|0|ITA|4,5|w|0
+G|9|4|17||Weijers, Ralf|1931|0|NED|7,5|b|0
+P|38|WIM|De Seroux, Camille|0|2073|1809|-19,8|1|229|SUI|0|1305620|1993
+G|1|3|238||Kowal, Cezary|1723|0|POL|4,5|w|1
+G|2|3|32||Renault, Fabien|2004|0|FRA|5,5|b|0
+G|9|3|16||Margarido, Jose Miguel Teixeira|2076|0|POR|5,5|w|0
+P|39|IM|Meinhardt, Maximilian Dr.|0|2384|2381|0,6|4|126|GER|0|4668766|1986
+G|1|1|228||Steinle, Thibaud|2009|0|FRA|5|b|1
+G|2|1|61|FM|Wu, Christopher|2347|0|USA|4,5|w|0
+G|4|1|65|GM|Dudin, Gleb|2484|0|HUN|4,5|b|0
+G|5|1|193|IM|Barski, Radoslaw|2267|0|POL|4|b|1
+G|6|1|81|GM|Kovalenko, Igor|2601|0|UKR|5,5|w|0
+G|7|1|108|GM|Degraeve, Jean-Marc|2430|0|FRA|5|b|1
+G|8|1|34|GM|Sochacki, Christophe|2412|0|FRA|5,5|w|½
+G|9|1|189|IM|Alexakis, Dimitris|2498|0|GRE|5,5|b|½
+P|40|FM|Klein, Felix|0|2270|2248|-2,8|4|146|GER|0|24600458|1990
+G|2|2|62||Machlik, Monika|2068|0|NOR|6,5|b|½
+G|3|1|30|CM|Croizier, Valery|2164|0|FRA|4,5|w|½
+G|4|2|66|IM|Matros, Alexander|2305|0|KAZ|5,5|w|½
+G|5|2|194||Galuszka, Tomasz|2112|0|POL|6,5|w|½
+G|7|2|109|WIM|Moingt, Anne|2050|0|FRA|4,5|w|1
+G|8|2|35|IM|Kirk, Ezra|2387|0|ENG|3,5|b|1
+G|9|2|190|IM|Spyropoulos, Nikolaos|2300|0|GRE|6|w|0
+P|41||Sundorf, Jannik|0|2154|2085|-11,8|2,5|182|GER|0|12905380|1992
+G|1|2|96||Le Marquer, Pierre|1933|0|FRA|6,5|w|0
+G|3|2|31||Venard, Paul-Andre|2075|0|FRA|4,5|b|1
+G|4|3|67|IM|Badelka, Olga|2238|0|AUT|7,5|b|0
+G|6|2|82|IM|Dehtiarov, Roman|2390|0|UKR|8|b|0
+G|7|3|111|FM|Moingt, Jean-Claude|2049|0|FRA|1|b|1
+G|9|3|191||Alexakis, Georgios|2166|0|GRE|5,5|b|½
+P|42|CM|Seger, Jan Dr.|0|2137|2218|31,2|4,5|138|GER|0|24617121|1985
+G|1|3|97||Benkaci, Massin|1709|0|FRA|5|b|1
+G|2|3|63||Sundsbo, Sigve|1851|0|NOR|2|w|1
+G|3|3|32||Renault, Fabien|2004|0|FRA|5,5|w|1
+G|5|3|195||Fritz, Antoni|2032|0|POL|5,5|b|1
+G|6|3|83|IM|Grinev, Valeriy|2342|0|UKR|5|w|½
+G|8|3|36|FM|Ternault, Mathieu|2212|0|FRA|7|w|0
+P|43||Catapano, Alberto Pasquale|0|1805|1869|14|4,5|91|ITA|0|2856161|2000
+G|1|4|98||CHHUN, Labo|0|1500|FRA|0|w|1
+G|2|4|64||Kyrkjebo, Marte B.|1839|0|NOR|6|b|½
+G|3|4|33||Charbit, Florent|1916|0|FRA|6,5|b|0
+G|4|4|69||Bilunov, Denis B.|1953|0|CZE|3,5|w|1
+G|5|4|196||Moscicka, Pola|1937|0|POL|7|w|0
+G|6|4|84||Kuftyrev, Pavlo|1951|0|UKR|4,5|b|0
+G|7|4|110||Belluire, Beatrice|1963|0|FRA|8|w|0
+G|8|4|37||Kirk, Eden|1932|0|FRA|3|b|1
+G|9|4|192||Veskoukis, Konstantinos|1833|0|GRE|6,5|w|1
+P|44||Ridel, Fabien|0|1809|1746|-41,6|1|188|FRA|0|653019768|1988
+G|1|1|193|IM|Barski, Radoslaw|2267|0|POL|4|w|0
+G|2|1|18||Coronel, Joshua|2024|0|ITA|4|w|0
+G|3|1|147|GM|Moussard, Jules|2605|0|FRA|8,5|b|0
+G|4|1|30|CM|Croizier, Valery|2164|0|FRA|4,5|w|0
+G|5|1|142||Ibazizen, Abdelatif|1948|0|FRA|2|b|0
+G|6|1|99||Coupet, Pascal|2139|0|FRA|3,5|b|0
+G|7|1|116||Guy, Ange|1834|0|FRA|3|w|0
+G|8|1|219||Bertram, Johannes|1915|0|GER|4,5|b|1
+G|9|1|8||Guerlach, Keigo|1974|0|FRA|2|w|0
+P|45||De Temmerman, Paul|0|1757|1822|12|3,5|128|FRA|0|653043871|1990
+G|1|2|194||Galuszka, Tomasz|2112|0|POL|6,5|b|0
+G|2|2|20||Quintana Hernandez, Marcos Ivan|1913|0|MEX|2|b|0
+G|3|2|148|AIM|Dimitriadis, Alexandros|1941|0|GRE|4,5|w|1
+G|4|2|31||Venard, Paul-Andre|2075|0|FRA|4,5|b|0
+G|5|2|143||Marty, Jean-Yves|1911|0|FRA|4,5|w|0
+G|6|2|100||Bernard, Serge|1976|0|FRA|6,5|w|0
+G|7|2|117||Strand, Hakan|1595|0|FRA|4|b|1
+G|8|2|221||Sola, Alessandro|1733|0|BEL|4|w|½
+G|9|2|11||Martine, Valentin|1860|0|FRA|5|b|1
+P|46||Ferreira, Isaque|1500|0|1567||3|148|FRA|0|653043979|1987
+G|1|3|195||Fritz, Antoni|2032|0|POL|5,5|w|0
+G|2|3|0||Brett nicht besetzt,|0|0||0||
+G|3|3|149||NUTHMANN, Thomas|0|1500|FRA|1,5|b|1
+G|4|3|32||Renault, Fabien|2004|0|FRA|5,5|w|0
+G|5|3|144||Quemener, Yann|1761|0|FRA|5,5|b|0
+G|6|3|101||Droin, Franck|1902|0|FRA|5|b|0
+G|7|3|118||Wyler, Luc|1490|0|FRA|1|w|1
+G|8|3|222||Hinkel, Kira|1612|0|BEL|5|b|0
+G|9|3|13||Benaggoun, Khaled|1778|0|ALG|2,5|w|0
+P|47||Khallouf, Anas|0|1916|2014|38,4|6|43|FRA|0|653019580|1992
+G|1|1|108|GM|Degraeve, Jean-Marc|2430|0|FRA|5|w|0
+G|2|1|53||Maleki, Nicolas|2005|0|FRA|0,5|w|½
+G|3|1|22||Van Hees, Pepijn|1730|0|NED|0|b|1
+G|4|1|116||Guy, Ange|1834|0|FRA|3|b|1
+G|5|1|197||Beaudoire, Gregoire|1801|0|FRA|3,5|w|½
+G|6|1|91||MONTANDON, Francois|0|1500|FRA|1|w|1
+G|7|1|8||Guerlach, Keigo|1974|0|FRA|2|b|0
+G|8|1|155||Goujon, Antoine|1903|0|FRA|1|w|1
+G|9|1|74||Castro Ros, Alejandro|1821|0|FRA|2|b|1
+P|48||Boyer, Jean-Francois|0|1726|1704|-11|4|113|FRA|0|650226|1968
+G|1|2|240|CM|Kirszenberg, Marc|2062|0|FRA|2,5|b|0
+G|2|2|54||Maugenest, Matthieu|1951|0|FRA|6|b|0
+G|3|2|23||Gujran, Krithik|1693|0|NED|1|w|0
+G|4|2|117||Strand, Hakan|1595|0|FRA|4|w|1
+G|5|2|198||Socko, Szymon|1705|0|POL|4|b|0
+G|6|2|90||FAURE, Eric|0|1500|FRA|1|b|1
+G|7|2|11||Martine, Valentin|1860|0|FRA|5|w|0
+G|8|2|156||Demko, Thomas|1616|0|FRA|1|b|1
+G|9|2|75||Heather, James|1739|0|ENG|3,5|w|1
+P|49||Leopardo, Julien|0|1718|1736|-44|6|38|FRA|0|80464874|2000
+G|1|3|109|WIM|Moingt, Anne|2050|0|FRA|4,5|w|0
+G|2|3|55||Faure, Lionel|1845|0|FRA|2,5|w|0
+G|3|3|24||Liyanage, Nuwan|1607|0|NED|5|b|0
+G|4|3|120||Guez, Jerome|0|1500|FRA|0|b|1
+G|5|3|200||Textoris, Pierre|0|1500|FRA|0|w|1
+G|6|3|92||BOUHADJAR, Amine|0|1500|FRA|1|w|1
+G|7|3|214||WANG, Cedric|0|1500|FRA|1|b|1
+G|8|3|157||Genestier, David|0|1500|FRA|2,5|w|1
+G|9|3|202||PUROHIT, Sachin|0|1500|FRA|2,5|b|1
+P|50|FM|Senlle Caride, Miguel|0|2336|2254|12,6|6,5|22|ESP|0|2282500|1992
+G|1|1|14|GM|Ferreira, Jorge Viterbo|2427|0|POR|6|b|0
+G|2|1|147|GM|Moussard, Jules|2605|0|FRA|8,5|b|0
+G|3|1|91||MONTANDON, Francois|0|1500|FRA|1|w|1
+G|4|1|18||Coronel, Joshua|2024|0|ITA|4|w|1
+G|5|1|121|FM|Brailly-Vignal, Bastien|2325|0|FRA|5,5|b|½
+G|6|1|7|IM|Brahami, Lamine|2252|0|ALG|3|w|1
+G|7|1|197||Beaudoire, Gregoire|1801|0|FRA|3,5|w|1
+G|8|1|231||Dorofeev, Andrei|1513|0|FRA|0|b|1
+G|9|1|61|FM|Wu, Christopher|2347|0|USA|4,5|w|1
+P|51||Dincer, Mehmet Alper|0|1731|1755|-8,4|3|158|TUR|0|6373216|1990
+G|1|2|15||Meijer, Dolf|2183|0|NED|2||
+G|2|2|148|AIM|Dimitriadis, Alexandros|1941|0|GRE|4,5|w|0
+G|3|2|90||FAURE, Eric|0|1500|FRA|1|b|1
+G|5|2|122||Trabet, Nicolas|2126|0|FRA|6|w|0
+G|6|2|9|CM|Martine, Jean-Christophe|1937|0|FRA|2,5|b|0
+G|7|2|198||Socko, Szymon|1705|0|POL|4|b|1
+G|9|2|62||Machlik, Monika|2068|0|NOR|6,5|b|0
+P|52||Allan, David|1500|0|1646||4|121|FRA|0|527095789|2000
+G|1|4|17||Weijers, Ralf|1931|0|NED|7,5|w|0
+G|2|4|150||DE LUCCA, Enrico|0|1500|FRA|2|w|1
+G|4|3|21||Cayonlu, Arda|1896|0|TUR|6,5|w|0
+G|5|4|208||CASTANO, Nicolas|0|1500|FRA|0|w|1
+G|6|3|88||HOCQUARD, Arnaud|0|1500|FRA|4,5|w|0
+G|7|4|201||DECUGIS, Christophe|0|1500|FRA|4|b|1
+G|8|3|235||BEAUCAIRE, Charles|0|1500|FRA|2|b|1
+G|9|4|64||Kyrkjebo, Marte B.|1839|0|NOR|6|b|0
+P|53||Maleki, Nicolas|0|2005|1712|-59,2|0,5|201|FRA|0|622133|1975
+G|1|1|2|GM|Topalov, Veselin|2617|0|BUL|5|w|0
+G|2|1|47||Khallouf, Anas|1916|0|FRA|6|b|½
+G|3|1|112|GM|Guliyev, Namig|2506|0|AZE|6,5|w|0
+G|4|1|11||Martine, Valentin|1860|0|FRA|5|b|0
+G|5|1|172||Akl, Nabil|2097|0|FRA|7|b|0
+G|6|1|142||Ibazizen, Abdelatif|1948|0|FRA|2|w|0
+G|7|1|14|GM|Ferreira, Jorge Viterbo|2427|0|POR|6|w|0
+G|8|1|228||Steinle, Thibaud|2009|0|FRA|5|b|0
+G|9|1|18||Coronel, Joshua|2024|0|ITA|4|w|0
+P|54||Maugenest, Matthieu|0|1951|2122|36,2|6|39|FRA|0|36065544|2000
+G|1|2|3|GM|Rusev, Krasimir|2396|0|BUL|6,5|b|0
+G|2|2|48||Boyer, Jean-Francois|1726|0|FRA|4|w|1
+G|3|2|113|IM|Skripchenko, Almira|2271|0|FRA|4,5|b|0
+G|4|2|13||Benaggoun, Khaled|1778|0|ALG|2,5|w|1
+G|5|2|215||Roux, Jean-Luc|1866|0|FRA|4,5|w|1
+G|6|2|143||Marty, Jean-Yves|1911|0|FRA|4,5|b|1
+G|7|2|15||Meijer, Dolf|2183|0|NED|2|b|1
+G|8|2|96||Le Marquer, Pierre|1933|0|FRA|6,5|w|0
+G|9|2|20||Quintana Hernandez, Marcos Ivan|1913|0|MEX|2|b|1
+P|55||Faure, Lionel|0|1845|1670|-26,6|2,5|154|FRA|0|36018970|1971
+G|1|3|4|FM|Mitev, Valentin|2282|0|BUL|6|w|0
+G|2|3|49||Leopardo, Julien|1718|0|FRA|6|b|1
+G|3|3|114||Loevenbruck, Charles|1917|0|FRA|3,5|w|0
+G|4|3|214||WANG, Cedric|0|1500|FRA|1|b|0
+G|5|3|173||Bonnet, Francois|1662|0|FRA|2|b|1
+G|6|3|144||Quemener, Yann|1761|0|FRA|5,5|w|½
+G|7|3|16||Margarido, Jose Miguel Teixeira|2076|0|POR|5,5|w|0
+G|8|3|97||Benkaci, Massin|1709|0|FRA|5|b|0
+G|9|3|21||Cayonlu, Arda|1896|0|TUR|6,5|w|0
+P|56||Lapeyrere, Paul|0|1737|1510|-26|3|143|FRA|0|653099486|1999
+G|1|4|5||Hristova, Ivelina|1987|0|BUL|4,5|b|0
+G|2|4|93||Guignard, Frederic|0|1500|FRA|2,5|w|0
+G|3|4|115||Mund, Hauke|1788|0|FRA|8|b|0
+G|4|4|89||PARRAUD, Guillaume|0|1500|FRA|5|w|0
+G|5|4|216||Costes, Arthur|1513|0|FRA|0,5|w|1
+G|6|4|145||BOUTELDJA, Brahim|0|1500|FRA|2|b|1
+G|7|4|17||Weijers, Ralf|1931|0|NED|7,5|b|0
+G|8|4|98||CHHUN, Labo|0|1500|FRA|0|w|1
+G|9|4|19||De Moor, Jeroen|0|1500|NED|5,5|b|0
+P|57|IM|Droin, Augustin|0|2533|2525|1,9|6|40|FRA|0|45105987|2006
+G|1|1|18||Coronel, Joshua|2024|0|ITA|4|b|1
+G|2|1|160|GM|Dourerassou, Jonathan|2480|0|FRA|5,5|w|1
+G|3|1|129|IM|Travadon, Loic|2503|0|FRA|7|b|0
+G|4|1|168|GM|Andersen, Mads|2483|0|DEN|5|w|0
+G|5|1|104|GM|Urkedal, Frode Olav Olsen|2512|0|NOR|6|b|1
+G|6|1|204|GM|Maurizzi, Marcandria|2489|0|FRA|7|b|1
+G|7|1|26|FM|Toulzac, Pierre-Yves|2263|0|FRA|4,5|w|1
+G|8|1|184|IM|Daulyte-Cornette, Deimante|2348|0|FRA|4,5|w|1
+G|9|1|179|GM|Mastrovasilis, Dimitrios|2500|0|GRE|6,5|b|0
+P|58||Makke, Laurent|0|2136|2065|-16,6|4|120|FRA|0|624314|1986
+G|1|3|0||Brett nicht besetzt,|0|0||0||
+G|2|3|162||Guerlach, Frederic|1951|0|FRA|5|w|1
+G|3|3|131||Warnier, Yanis|1960|0|FRA|8|b|½
+G|4|3|170|IM|Olsen, Filip Boe|2318|0|DEN|8,5|w|0
+G|5|2|105|CM|Guttulsrud, Odd Martin|2184|0|NOR|6|w|0
+G|6|2|205|IM|Govciyan, Pavel|2375|0|FRA|6,5|w|0
+G|7|2|27||Devecchi, Jorge|2009|0|FRA|6,5|b|½
+G|8|2|185|FM|Redzisz, Michal|2193|0|POL|8|b|1
+G|9|2|180|WGM|Zawadzka, Jolanta|2224|0|POL|4,5|w|0
+P|59|WFM|Arzur, Maia|0|2028|2129|28|3|181|FRA|0|45161127|2009
+G|5|3|106|WGM|Khalafova, Narmin|2133|0|AZE|3,5|b|1
+G|6|3|206||De Carvalho Massabo, Raphael|2142|0|FRA|5|b|½
+G|7|3|28||Geujon, Jean-Charles|1826|0|FRA|5|w|½
+G|8|3|186||Budzinski, Jan|1974|0|POL|6|w|1
+G|9|3|182|FM|Miroslaw, Michal|2212|0|POL|5,5|b|0
+P|60||Boulnois, Boris|0|1882|1616|-53,8|3,5|134|FRA|0|26052660|2001
+G|1|4|0||Brett nicht besetzt,|0|0||0||
+G|2|4|163||Simonnet, Raphael|1629|0|FRA|2,5|b|½
+G|3|4|132||Vaissaire, Michel|1606|0|FRA|3|w|1
+G|4|4|171||Jarlskov, Daniel Tuk Hartso|1953|0|DEN|5|b|0
+G|5|4|107||Kyrkjebo, Hanna B.|1897|0|NOR|6|w|0
+G|6|4|207||Benezra, David|1561|0|FRA|1|w|0
+G|7|4|29||Nguyen, Gael|1668|0|FRA|3,5|b|½
+G|8|4|188||Rolland Piegue, Sacha|1750|0|FRA|2,5|b|½
+G|9|4|183|CM|Jankowiak, Tomasz|1991|0|POL|9|w|0
+P|61|FM|Wu, Christopher|0|2347|2306|-3,8|4,5|92|USA|0|2040875|1998
+G|1|1|116||Guy, Ange|1834|0|FRA|3|b|1
+G|2|1|39|IM|Meinhardt, Maximilian Dr.|2384|0|GER|4|b|1
+G|3|1|34|GM|Sochacki, Christophe|2412|0|FRA|5,5|w|½
+G|4|1|189|IM|Alexakis, Dimitris|2498|0|GRE|5,5|w|0
+G|5|1|236||Zurkowski, Andrzej|2054|0|POL|4,5|b|1
+G|6|1|112|GM|Guliyev, Namig|2506|0|AZE|6,5|b|0
+G|7|1|7|IM|Brahami, Lamine|2252|0|ALG|3|w|1
+G|8|1|160|GM|Dourerassou, Jonathan|2480|0|FRA|5,5|w|0
+G|9|1|50|FM|Senlle Caride, Miguel|2336|0|ESP|6,5|b|0
+P|62||Machlik, Monika|0|2068|2209|37,6|6,5|35|NOR|0|1513621|1997
+G|1|2|117||Strand, Hakan|1595|0|FRA|4|w|1
+G|2|2|40|FM|Klein, Felix|2270|0|GER|4|w|½
+G|3|2|35|IM|Kirk, Ezra|2387|0|ENG|3,5|b|½
+G|4|2|190|IM|Spyropoulos, Nikolaos|2300|0|GRE|6|b|½
+G|5|2|237||Szarwacki, Dominik|1869|0|POL|4|w|½
+G|6|2|113|IM|Skripchenko, Almira|2271|0|FRA|4,5|w|½
+G|7|2|9|CM|Martine, Jean-Christophe|1937|0|FRA|2,5|b|1
+G|8|2|161||Nemirovski, Laurent|2024|0|FRA|4,5|b|1
+G|9|2|51||Dincer, Mehmet Alper|1731|0|TUR|3|w|1
+P|63||Sundsbo, Sigve|0|1851|1625|-26,8|2|168|NOR|0|1514393|2000
+G|1|3|120||Guez, Jerome|0|1500|FRA|0|b|1
+G|2|3|42|CM|Seger, Jan Dr.|2137|0|GER|4,5|b|0
+G|3|3|36|FM|Ternault, Mathieu|2212|0|FRA|7|w|0
+G|4|3|191||Alexakis, Georgios|2166|0|GRE|5,5|w|0
+G|5|3|238||Kowal, Cezary|1723|0|POL|4,5|b|0
+G|6|3|114||Loevenbruck, Charles|1917|0|FRA|3,5|b|½
+G|7|3|88||HOCQUARD, Arnaud|0|1500|FRA|4,5|w|½
+G|8|3|162||Guerlach, Frederic|1951|0|FRA|5|w|0
+G|9|3|94||AHMED, Wasim|0|1500|FRA|6|b|0
+P|64||Kyrkjebo, Marte B.|0|1839|1812|-4,4|6|44|NOR|0|1511602|1998
+G|1|4|119||Fuster, Jean Baptiste|1408|0|FRA|3|w|1
+G|2|4|43||Catapano, Alberto Pasquale|1805|0|ITA|4,5|w|½
+G|3|4|37||Kirk, Eden|1932|0|FRA|3|b|1
+G|4|4|192||Veskoukis, Konstantinos|1833|0|GRE|6,5|b|0
+G|5|4|239||Sabat, Anna|1546|0|POL|5|w|1
+G|6|4|115||Mund, Hauke|1788|0|FRA|8|w|0
+G|7|4|10||Habes, Khelil|0|1500|ALG|5|b|1
+G|8|4|164||Oupindrin, Timothy|1875|0|FRA|2,5|b|½
+G|9|4|52||Allan, David|0|1500|FRA|4|w|1
+P|65|GM|Dudin, Gleb|0|2484|2474|-1,2|4,5|107|HUN|0|34184934|2004
+G|1|1|147|GM|Moussard, Jules|2605|0|FRA|8,5|w|½
+G|2|1|108|GM|Degraeve, Jean-Marc|2430|0|FRA|5|b|0
+G|3|1|204|GM|Maurizzi, Marcandria|2489|0|FRA|7|w|0
+G|4|1|39|IM|Meinhardt, Maximilian Dr.|2384|0|GER|4|w|1
+G|5|1|189|IM|Alexakis, Dimitris|2498|0|GRE|5,5|b|0
+G|6|1|70|IM|Reimanis, Ritvars|2280|0|LAT|5|b|1
+G|7|1|160|GM|Dourerassou, Jonathan|2480|0|FRA|5,5|w|½
+G|8|1|179|GM|Mastrovasilis, Dimitrios|2500|0|GRE|6,5|b|½
+G|9|1|81|GM|Kovalenko, Igor|2601|0|UKR|5,5|w|1
+P|66|IM|Matros, Alexander|0|2305|2366|6|5,5|83|KAZ|0|13700251|1970
+G|1|2|148|AIM|Dimitriadis, Alexandros|1941|0|GRE|4,5|b|1
+G|2|2|240|CM|Kirszenberg, Marc|2062|0|FRA|2,5|w|1
+G|4|2|40|FM|Klein, Felix|2270|0|GER|4|b|½
+G|6|2|71||Kuhn, Patrick|2044|0|GER|4|w|1
+G|7|2|161||Nemirovski, Laurent|2024|0|FRA|4,5|b|1
+G|8|2|180|WGM|Zawadzka, Jolanta|2224|0|POL|4,5|w|1
+G|9|2|82|IM|Dehtiarov, Roman|2390|0|UKR|8|b|0
+P|67|IM|Badelka, Olga|0|2238|2557|22,8|7,5|11|AUT|0|13509926|2002
+G|2|3|109|WIM|Moingt, Anne|2050|0|FRA|4,5|b|1
+G|3|3|206||De Carvalho Massabo, Raphael|2142|0|FRA|5|w|1
+G|4|3|41||Sundorf, Jannik|2154|0|GER|2,5|w|1
+G|5|3|191||Alexakis, Georgios|2166|0|GRE|5,5|b|1
+G|6|3|72||Kralj, Samo|1966|0|SLO|4,5|b|1
+G|7|3|164||Oupindrin, Timothy|1875|0|FRA|2,5|w|1
+G|8|3|182|FM|Miroslaw, Michal|2212|0|POL|5,5|b|1
+G|9|3|83|IM|Grinev, Valeriy|2342|0|UKR|5|w|½
+P|68|IM|Reprintsev, Alexander|0|2292|2058|-3,8|1,5|222|UKR|0|14100541|1958
+G|1|3|149||NUTHMANN, Thomas|0|1500|FRA|1,5|w|1
+G|3|2|205|IM|Govciyan, Pavel|2375|0|FRA|6,5|b|0
+G|5|2|190|IM|Spyropoulos, Nikolaos|2300|0|GRE|6|w|½
+P|69||Bilunov, Denis B.|0|1953|1684|-59|3,5|129|CZE|0|24202312|1969
+G|1|4|150||DE LUCCA, Enrico|0|1500|FRA|2|b|1
+G|2|4|110||Belluire, Beatrice|1963|0|FRA|8|w|0
+G|3|4|207||Benezra, David|1561|0|FRA|1|b|1
+G|4|4|43||Catapano, Alberto Pasquale|1805|0|ITA|4,5|b|0
+G|5|4|192||Veskoukis, Konstantinos|1833|0|GRE|6,5|w|0
+G|6|4|73||Maguire, Tallann|1643|0|IRL|4|w|½
+G|7|4|163||Simonnet, Raphael|1629|0|FRA|2,5|b|1
+G|8|4|183|CM|Jankowiak, Tomasz|1991|0|POL|9|w|0
+G|9|4|84||Kuftyrev, Pavlo|1951|0|UKR|4,5|b|0
+P|70|IM|Reimanis, Ritvars|0|2280|2254|1,8|5|74|LAT|0|11602988|1991
+G|1|1|232||Dejean, Thomas|1655|0|FRA|2|b|1
+G|2|1|77||Cohen, Aron J|2195|0|ENG|2,5|b|½
+G|3|1|11||Martine, Valentin|1860|0|FRA|5|w|1
+G|4|1|204|GM|Maurizzi, Marcandria|2489|0|FRA|7|b|0
+G|5|1|108|GM|Degraeve, Jean-Marc|2430|0|FRA|5|w|½
+G|6|1|65|GM|Dudin, Gleb|2484|0|HUN|4,5|w|0
+G|7|1|104|GM|Urkedal, Frode Olav Olsen|2512|0|NOR|6|b|0
+G|8|1|151|IM|Alexieva, Silvia|2218|0|FRA|6|w|1
+G|9|1|236||Zurkowski, Andrzej|2054|0|POL|4,5|b|1
+P|71||Kuhn, Patrick|0|2044|1996|-6|4|114|GER|0|12910260|1995
+G|1|2|231||Dorofeev, Andrei|1513|0|FRA|0|w|1
+G|2|2|78|CM|Hassabis, Demis|2182|0|ENG|5,5|w|0
+G|3|2|13||Benaggoun, Khaled|1778|0|ALG|2,5|b|1
+G|4|2|205|IM|Govciyan, Pavel|2375|0|FRA|6,5|w|0
+G|5|2|240|CM|Kirszenberg, Marc|2062|0|FRA|2,5|b|1
+G|6|2|66|IM|Matros, Alexander|2305|0|KAZ|5,5|b|0
+G|7|2|105|CM|Guttulsrud, Odd Martin|2184|0|NOR|6|w|0
+G|8|2|152||Ciarletta, Iris|2086|0|FRA|6,5|b|0
+G|9|2|237||Szarwacki, Dominik|1869|0|POL|4|w|1
+P|72||Kralj, Samo|0|1966|1923|-5,6|4,5|93|SLO|0|14608928|1995
+G|1|3|234||BLEVINAL, Victor|0|1500|FRA|2,5|b|1
+G|2|3|80||Tomasev, Nenad|2033|0|SRB|2|b|0
+G|3|3|214||WANG, Cedric|0|1500|FRA|1|w|1
+G|4|3|206||De Carvalho Massabo, Raphael|2142|0|FRA|5|b|1
+G|5|3|109|WIM|Moingt, Anne|2050|0|FRA|4,5|w|1
+G|6|3|67|IM|Badelka, Olga|2238|0|AUT|7,5|w|0
+G|7|3|106|WGM|Khalafova, Narmin|2133|0|AZE|3,5|b|½
+G|8|3|153|WIM|Roumegous, Marina|1990|0|FRA|5,5|w|0
+G|9|3|238||Kowal, Cezary|1723|0|POL|4,5|b|0
+P|73||Maguire, Tallann|0|1643|1683|14,2|4|116|IRL|0|2520257|1998
+G|1|4|235||BEAUCAIRE, Charles|0|1500|FRA|2|w|1
+G|2|4|79||Hakimzadeh, Karim|1912|0|ENG|7|w|½
+G|3|4|89||PARRAUD, Guillaume|0|1500|FRA|5|b|0
+G|4|4|207||Benezra, David|1561|0|FRA|1|w|1
+G|5|4|110||Belluire, Beatrice|1963|0|FRA|8|b|0
+G|6|4|69||Bilunov, Denis B.|1953|0|CZE|3,5|b|½
+G|7|4|107||Kyrkjebo, Hanna B.|1897|0|NOR|6|w|0
+G|8|4|154||Fuchs, Louison|1698|0|FRA|3|b|1
+G|9|4|239||Sabat, Anna|1546|0|POL|5|w|0
+P|74||Castro Ros, Alejandro|0|1821|1717|-32,4|2|164|FRA|0|651092310|1994
+G|1|1|160|GM|Dourerassou, Jonathan|2480|0|FRA|5,5|b|0
+G|2|1|236||Zurkowski, Andrzej|2054|0|POL|4,5|b|0
+G|3|1|219||Bertram, Johannes|1915|0|GER|4,5|w|0
+G|4|1|1||Rosengren, Jon Even|1615|0|NOR|1|b|1
+G|5|1|99||Coupet, Pascal|2139|0|FRA|3,5|w|0
+G|6|1|232||Dejean, Thomas|1655|0|FRA|2|w|0
+G|7|1|166||Ghrabi, Kilani|1566|0|FRA|2,5|b|1
+G|8|1|172||Akl, Nabil|2097|0|FRA|7|b|0
+G|9|1|47||Khallouf, Anas|1916|0|FRA|6|w|0
+P|75||Heather, James|0|1739|1665|-33,2|3,5|133|ENG|0|343459781|1975
+G|1|2|161||Nemirovski, Laurent|2024|0|FRA|4,5|w|0
+G|2|2|237||Szarwacki, Dominik|1869|0|POL|4|w|0
+G|3|2|221||Sola, Alessandro|1733|0|BEL|4|b|0
+G|4|2|86||GOTTY, Jerome|0|1500|FRA|2|w|1
+G|5|2|100||Bernard, Serge|1976|0|FRA|6,5|b|½
+G|6|2|231||Dorofeev, Andrei|1513|0|FRA|0|b|1
+G|7|2|167||Nemeth, Julien|0|1500|FRA|2,5|w|½
+G|8|2|215||Roux, Jean-Luc|1866|0|FRA|4,5|w|½
+G|9|2|48||Boyer, Jean-Francois|1726|0|FRA|4|b|0
+P|76|GM|Kumaran, Dharshan|0|2505|2174|-22,3|2|195|ENG|0|401978|1975
+G|1|1|142||Ibazizen, Abdelatif|1948|0|FRA|2|b|1
+G|3|1|168|GM|Andersen, Mads|2483|0|DEN|5|b|0
+G|4|1|129|IM|Travadon, Loic|2503|0|FRA|7|w|0
+G|6|1|30|CM|Croizier, Valery|2164|0|FRA|4,5|w|1
+G|7|1|193|IM|Barski, Radoslaw|2267|0|POL|4|w|0
+G|9|1|108|GM|Degraeve, Jean-Marc|2430|0|FRA|5|b|0
+P|77||Cohen, Aron J|0|2195|1984|-50|2,5|157|ENG|0|404357|1976
+G|1|2|143||Marty, Jean-Yves|1911|0|FRA|4,5|w|1
+G|2|1|70|IM|Reimanis, Ritvars|2280|0|LAT|5|w|½
+G|3|2|169|IM|Skytte, Rasmus|2398|0|DEN|4,5|w|0
+G|4|2|130||Grigorian, Roudolph|2101|0|FRA|6|b|0
+G|5|1|134||Ilecki, Wojciech|2101|0|POL|2|b|0
+G|6|2|31||Venard, Paul-Andre|2075|0|FRA|4,5|b|½
+G|7|2|194||Galuszka, Tomasz|2112|0|POL|6,5|b|0
+G|8|1|121|FM|Brailly-Vignal, Bastien|2325|0|FRA|5,5|b|0
+G|9|2|109|WIM|Moingt, Anne|2050|0|FRA|4,5|w|½
+P|78|CM|Hassabis, Demis|0|2182|2118|-9,2|5,5|66|ENG|0|401307|1976
+G|1|3|144||Quemener, Yann|1761|0|FRA|5,5|b|1
+G|2|2|71||Kuhn, Patrick|2044|0|GER|4|b|1
+G|4|3|131||Warnier, Yanis|1960|0|FRA|8|w|0
+G|5|2|225|WFM|Farhat Willemstein, Stela Souza|1842|0|BRA|2|w|1
+G|6|3|32||Renault, Fabien|2004|0|FRA|5,5|w|1
+G|7|3|195||Fritz, Antoni|2032|0|POL|5,5|w|0
+G|8|2|122||Trabet, Nicolas|2126|0|FRA|6|w|½
+G|9|3|111|FM|Moingt, Jean-Claude|2049|0|FRA|1|b|1
+P|79||Hakimzadeh, Karim|0|1912|1953|0|7|15|ENG|0|440663|1986
+G|1|4|146||LARIVAIN, Laurent|0|1500|FRA|1|w|1
+G|2|4|73||Maguire, Tallann|1643|0|IRL|4|b|½
+G|3|4|171||Jarlskov, Daniel Tuk Hartso|1953|0|DEN|5|w|1
+G|4|4|132||Vaissaire, Michel|1606|0|FRA|3|b|1
+G|5|4|137||Kunchenko, Oleksandr|1580|0|LUX|3|w|1
+G|6|4|33||Charbit, Florent|1916|0|FRA|6,5|b|0
+G|7|4|196||Moscicka, Pola|1937|0|POL|7|b|1
+G|8|4|208||CASTANO, Nicolas|0|1500|FRA|0|w|1
+G|9|4|110||Belluire, Beatrice|1963|0|FRA|8|w|½
+P|80||Tomasev, Nenad|0|2033|1957|-7,2|2|210|SRB|0|911704|1985
+G|2|3|72||Kralj, Samo|1966|0|SLO|4,5|w|1
+G|3|3|170|IM|Olsen, Filip Boe|2318|0|DEN|8,5|b|0
+G|5|3|136||Pendaries-Issaurat, Philippe|1658|0|FRA|3|b|0
+G|8|3|123||Marmey, Cedric|1886|0|FRA|4,5|b|1
+P|81|GM|Kovalenko, Igor|0|2601|2548|-5,3|5,5|63|UKR|0|14117908|1988
+G|1|1|26|FM|Toulzac, Pierre-Yves|2263|0|FRA|4,5|b|1
+G|2|1|14|GM|Ferreira, Jorge Viterbo|2427|0|POR|6|w|½
+G|3|1|179|GM|Mastrovasilis, Dimitrios|2500|0|GRE|6,5|b|½
+G|4|1|138|GM|L'ami, Erwin|2640|0|NED|6,5|w|0
+G|5|1|2|GM|Topalov, Veselin|2617|0|BUL|5|b|½
+G|6|1|39|IM|Meinhardt, Maximilian Dr.|2384|0|GER|4|b|1
+G|7|1|34|GM|Sochacki, Christophe|2412|0|FRA|5,5|w|1
+G|8|1|168|GM|Andersen, Mads|2483|0|DEN|5|w|1
+G|9|1|65|GM|Dudin, Gleb|2484|0|HUN|4,5|b|0
+P|82|IM|Dehtiarov, Roman|0|2390|2613|19|8|9|UKR|0|14186640|2008
+G|1|2|27||Devecchi, Jorge|2009|0|FRA|6,5|w|1
+G|2|2|15||Meijer, Dolf|2183|0|NED|2||
+G|3|2|180|WGM|Zawadzka, Jolanta|2224|0|POL|4,5|w|1
+G|4|2|139|GM|Brynell, Stellan|2343|0|SWE|3,5|b|½
+G|5|2|3|GM|Rusev, Krasimir|2396|0|BUL|6,5|w|½
+G|6|2|41||Sundorf, Jannik|2154|0|GER|2,5|w|1
+G|7|2|35|IM|Kirk, Ezra|2387|0|ENG|3,5|b|1
+G|8|2|169|IM|Skytte, Rasmus|2398|0|DEN|4,5|b|1
+G|9|2|66|IM|Matros, Alexander|2305|0|KAZ|5,5|w|1
+P|83|IM|Grinev, Valeriy|0|2342|2302|-4|5|106|UKR|0|14117517|1989
+G|2|3|16||Margarido, Jose Miguel Teixeira|2076|0|POR|5,5|w|½
+G|3|3|182|FM|Miroslaw, Michal|2212|0|POL|5,5|b|1
+G|4|3|140||Eklund, Joel|2184|0|SWE|2|w|1
+G|5|3|4|FM|Mitev, Valentin|2282|0|BUL|6|b|1
+G|6|3|42|CM|Seger, Jan Dr.|2137|0|GER|4,5|b|½
+G|7|3|36|FM|Ternault, Mathieu|2212|0|FRA|7|w|0
+G|8|3|170|IM|Olsen, Filip Boe|2318|0|DEN|8,5|w|½
+G|9|3|67|IM|Badelka, Olga|2238|0|AUT|7,5|b|½
+P|84||Kuftyrev, Pavlo|0|1951|1907|-10,2|4,5|94|UKR|0|14153246|1981
+G|1|4|29||Nguyen, Gael|1668|0|FRA|3,5|w|1
+G|2|4|17||Weijers, Ralf|1931|0|NED|7,5|b|½
+G|3|4|183|CM|Jankowiak, Tomasz|1991|0|POL|9|w|0
+G|4|4|141||Sigeman, Johan|1975|0|SWE|6,5|b|0
+G|5|4|6||Sanchez Elena, Lucia|1954|0|ESP|2|w|0
+G|6|4|43||Catapano, Alberto Pasquale|1805|0|ITA|4,5|w|1
+G|7|4|37||Kirk, Eden|1932|0|FRA|3|b|1
+G|8|4|171||Jarlskov, Daniel Tuk Hartso|1953|0|DEN|5|b|0
+G|9|4|69||Bilunov, Denis B.|1953|0|CZE|3,5|w|1
+P|85|IM|Maly, Alexey|0|2267|0|0,8|1|235|UKR|0|14103184|1982
+G|1|3|28||Geujon, Jean-Charles|1826|0|FRA|5|b|1
+P|86||GOTTY, Jerome|1500|0|1505||2|175|FRA|0||1977
+G|1|3|186||Budzinski, Jan|1974|0|POL|6|b|0
+G|2|3|88||HOCQUARD, Arnaud|0|1500|FRA|4,5|b|0
+G|3|2|225|WFM|Farhat Willemstein, Stela Souza|1842|0|BRA|2|b|1
+G|4|2|75||Heather, James|1739|0|ENG|3,5|b|0
+G|6|2|215||Roux, Jean-Luc|1866|0|FRA|4,5|w|0
+G|7|2|90||FAURE, Eric|0|1500|FRA|1|b|1
+G|8|2|166||Ghrabi, Kilani|1566|0|FRA|2,5|w|0
+G|9|2|117||Strand, Hakan|1595|0|FRA|4|w|0
+P|87||VETO, Celestin|1500|0|1594||4|139|FRA|0||2000
+G|2|4|10||Habes, Khelil|0|1500|ALG|5|w|0
+G|3|3|136||Pendaries-Issaurat, Philippe|1658|0|FRA|3|w|0
+G|4|3|202||PUROHIT, Sachin|0|1500|FRA|2,5|w|1
+G|6|3|173||Bonnet, Francois|1662|0|FRA|2|b|0
+G|7|3|92||BOUHADJAR, Amine|0|1500|FRA|1|w|1
+G|8|3|167||Nemeth, Julien|0|1500|FRA|2,5|b|1
+G|9|3|118||Wyler, Luc|1490|0|FRA|1|b|1
+P|88||HOCQUARD, Arnaud|1500|0|1747||4,5|95|FRA|0||1958
+G|1|3|126|FM|Lux, Hugo De Melo|2236|0|BRA|4|b|0
+G|2|3|86||GOTTY, Jerome|0|1500|FRA|2|w|1
+G|3|3|195||Fritz, Antoni|2032|0|POL|5,5|w|0
+G|4|3|199||Boudonnet-Valerius, Nathalien|1628|0|FRA|0,5|b|1
+G|5|3|186||Budzinski, Jan|1974|0|POL|6|w|0
+G|6|3|52||Allan, David|0|1500|FRA|4|b|1
+G|7|3|63||Sundsbo, Sigve|1851|0|NOR|2|b|½
+G|8|4|89||PARRAUD, Guillaume|0|1500|FRA|5|b|1
+G|9|3|175||PELLERIN, Alexandre|0|1500|FRA|5|b|0
+P|89||PARRAUD, Guillaume|1500|0|1644||5|68|FRA|0||1980
+G|1|4|192||Veskoukis, Konstantinos|1833|0|GRE|6,5|w|0
+G|2|4|235||BEAUCAIRE, Charles|0|1500|FRA|2|b|1
+G|3|4|73||Maguire, Tallann|1643|0|IRL|4|w|1
+G|4|4|56||Lapeyrere, Paul|1737|0|FRA|3|b|1
+G|5|4|154||Fuchs, Louison|1698|0|FRA|3|b|1
+G|6|4|19||De Moor, Jeroen|0|1500|NED|5,5|w|0
+G|7|4|93||Guignard, Frederic|0|1500|FRA|2,5|b|1
+G|8|4|88||HOCQUARD, Arnaud|0|1500|FRA|4,5|w|0
+G|9|4|242||Rodrigues Miguel, Luca|0|1500|FRA|8|w|0
+P|90||FAURE, Eric|1500|0|1374||1|198|FRA|0||1972
+G|2|2|130||Grigorian, Roudolph|2101|0|FRA|6|w|0
+G|3|2|51||Dincer, Mehmet Alper|1731|0|TUR|3|w|0
+G|4|2|156||Demko, Thomas|1616|0|FRA|1|b|0
+G|5|2|166||Ghrabi, Kilani|1566|0|FRA|2,5|b|1
+G|6|2|48||Boyer, Jean-Francois|1726|0|FRA|4|w|0
+G|7|2|86||GOTTY, Jerome|0|1500|FRA|2|w|0
+G|8|2|117||Strand, Hakan|1595|0|FRA|4|b|0
+G|9|2|221||Sola, Alessandro|1733|0|BEL|4|b|0
+P|91||MONTANDON, Francois|1500|0|1649||1|199|FRA|0||1997
+G|2|1|129|IM|Travadon, Loic|2503|0|FRA|7|b|0
+G|3|1|50|FM|Senlle Caride, Miguel|2336|0|ESP|6,5|b|0
+G|4|1|155||Goujon, Antoine|1903|0|FRA|1|w|0
+G|5|1|165||Coriat, Caroline|1743|0|FRA|4|w|0
+G|6|1|47||Khallouf, Anas|1916|0|FRA|6|b|0
+G|7|1|1||Rosengren, Jon Even|1615|0|NOR|1|b|0
+G|8|1|116||Guy, Ange|1834|0|FRA|3|w|0
+G|9|1|219||Bertram, Johannes|1915|0|GER|4,5|w|1
+P|92||BOUHADJAR, Amine|1500|0|1276||1|200|FRA|0||1996
+G|2|3|131||Warnier, Yanis|1960|0|FRA|8|b|0
+G|3|3|94||AHMED, Wasim|0|1500|FRA|6|b|0
+G|4|3|158||Pascal, Guillaume|0|1500|FRA|1|w|1
+G|5|3|167||Nemeth, Julien|0|1500|FRA|2,5|w|0
+G|6|3|49||Leopardo, Julien|1718|0|FRA|6|b|0
+G|7|3|87||VETO, Celestin|0|1500|FRA|4|b|0
+G|8|3|118||Wyler, Luc|1490|0|FRA|1|w|0
+G|9|3|222||Hinkel, Kira|1612|0|BEL|5|w|0
+P|93||Guignard, Frederic|1500|0|1402||2,5|155|FRA|0|80447155|1988
+G|1|4|110||Belluire, Beatrice|1963|0|FRA|8|b|0
+G|2|4|56||Lapeyrere, Paul|1737|0|FRA|3|b|1
+G|3|4|25||Swidurski, Julien|1507|0|FRA|5|w|0
+G|4|4|119||Fuster, Jean Baptiste|1408|0|FRA|3|w|0
+G|5|4|201||DECUGIS, Christophe|0|1500|FRA|4|b|0
+G|6|4|224||HERNOT, Emilie|0|1500|FRA|3,5|b|½
+G|7|4|89||PARRAUD, Guillaume|0|1500|FRA|5|w|0
+G|8|4|158||Pascal, Guillaume|0|1500|FRA|1|b|1
+G|9|4|203||MUKTUBAYEVA, Dina|0|1500|POL|7|w|0
+P|94||AHMED, Wasim|1500|0|1925||6|53|FRA|0|527096076|2000
+G|1|3|16||Margarido, Jose Miguel Teixeira|2076|0|POR|5,5|b|0
+G|2|3|149||NUTHMANN, Thomas|0|1500|FRA|1,5|b|1
+G|3|3|92||BOUHADJAR, Amine|0|1500|FRA|1|w|1
+G|4|2|20||Quintana Hernandez, Marcos Ivan|1913|0|MEX|2|b|1
+G|5|3|123||Marmey, Cedric|1886|0|FRA|4,5|b|0
+G|7|3|199||Boudonnet-Valerius, Nathalien|1628|0|FRA|0,5|w|1
+G|8|2|234||BLEVINAL, Victor|0|1500|FRA|2,5|w|1
+G|9|3|63||Sundsbo, Sigve|1851|0|NOR|2|w|1
+P|95||GLYNN, Laurence|1500|0|1490||2|211|FRA|0||2012
+G|3|4|224||HERNOT, Emilie|0|1500|FRA|3,5|b|1
+G|4|4|19||De Moor, Jeroen|0|1500|NED|5,5|b|0
+G|6|4|10||Habes, Khelil|0|1500|ALG|5|b|0
+G|8|4|233||Remtoula, Naushad|1461|0|FRA|3|w|1
+P|96||Le Marquer, Pierre|0|1933|2023|25|6,5|23|FRA|0|26011980|1993
+G|1|2|41||Sundorf, Jannik|2154|0|GER|2,5|b|1
+G|2|2|157||Genestier, David|0|1500|FRA|2,5|w|1
+G|3|2|117||Strand, Hakan|1595|0|FRA|4|b|1
+G|4|2|240|CM|Kirszenberg, Marc|2062|0|FRA|2,5|b|0
+G|5|2|148|AIM|Dimitriadis, Alexandros|1941|0|GRE|4,5|w|½
+G|6|2|23||Gujran, Krithik|1693|0|NED|1|w|1
+G|7|2|221||Sola, Alessandro|1733|0|BEL|4|b|1
+G|8|2|54||Maugenest, Matthieu|1951|0|FRA|6|b|1
+G|9|2|152||Ciarletta, Iris|2086|0|FRA|6,5|w|0
+P|97||Benkaci, Massin|0|1709|1791|25,4|5|69|FRA|0|36020109|1985
+G|1|3|42|CM|Seger, Jan Dr.|2137|0|GER|4,5|w|0
+G|2|3|158||Pascal, Guillaume|0|1500|FRA|1|b|0
+G|3|3|118||Wyler, Luc|1490|0|FRA|1|w|1
+G|4|3|109|WIM|Moingt, Anne|2050|0|FRA|4,5|w|0
+G|5|3|149||NUTHMANN, Thomas|0|1500|FRA|1,5|b|1
+G|6|3|24||Liyanage, Nuwan|1607|0|NED|5|b|0
+G|7|3|222||Hinkel, Kira|1612|0|BEL|5|w|1
+G|8|3|55||Faure, Lionel|1845|0|FRA|2,5|w|1
+G|9|3|153|WIM|Roumegous, Marina|1990|0|FRA|5,5|b|1
+P|98||CHHUN, Labo|1500|0|824||0|208|FRA|0||1981
+G|1|4|43||Catapano, Alberto Pasquale|1805|0|ITA|4,5|b|0
+G|2|4|159||Ricome, Juliette|0|1500|FRA|3|w|0
+G|3|4|119||Fuster, Jean Baptiste|1408|0|FRA|3|b|0
+G|4|4|110||Belluire, Beatrice|1963|0|FRA|8|b|0
+G|5|4|150||DE LUCCA, Enrico|0|1500|FRA|2|w|0
+G|6|4|25||Swidurski, Julien|1507|0|FRA|5|w|0
+G|7|4|223||Bressers, Effie|0|1500|BEL|1|b|0
+G|8|4|56||Lapeyrere, Paul|1737|0|FRA|3|b|0
+G|9|4|154||Fuchs, Louison|1698|0|FRA|3|w|0
+P|99||Coupet, Pascal|0|2139|2031|-29,8|3,5|130|FRA|0|600709|1962
+G|1|1|138|GM|L'ami, Erwin|2640|0|NED|6,5|w|0
+G|2|1|197||Beaudoire, Gregoire|1801|0|FRA|3,5|b|½
+G|3|1|184|IM|Daulyte-Cornette, Deimante|2348|0|FRA|4,5|b|0
+G|4|1|174||Roux, Olivier|2080|0|FRA|3,5|w|0
+G|5|1|74||Castro Ros, Alejandro|1821|0|FRA|2|b|1
+G|6|1|44||Ridel, Fabien|1809|0|FRA|1|w|1
+G|7|1|30|CM|Croizier, Valery|2164|0|FRA|4,5|b|0
+G|8|1|22||Van Hees, Pepijn|1730|0|NED|0|w|1
+G|9|1|147|GM|Moussard, Jules|2605|0|FRA|8,5|b|0
+P|100||Bernard, Serge|0|1976|2056|22|6,5|24|FRA|0|650200|1960
+G|1|2|139|GM|Brynell, Stellan|2343|0|SWE|3,5|b|0
+G|2|2|198||Socko, Szymon|1705|0|POL|4|w|1
+G|3|2|185|FM|Redzisz, Michal|2193|0|POL|8|w|0
+G|4|2|177||ZEMMOUR, Zaki|1564|0|FRA|1,5|b|1
+G|5|2|75||Heather, James|1739|0|ENG|3,5|w|½
+G|6|2|45||De Temmerman, Paul|1757|0|FRA|3,5|b|1
+G|7|2|31||Venard, Paul-Andre|2075|0|FRA|4,5|w|1
+G|8|2|23||Gujran, Krithik|1693|0|NED|1|b|1
+G|9|2|148|AIM|Dimitriadis, Alexandros|1941|0|GRE|4,5|w|1
+P|101||Droin, Franck|0|1902|1754|-4|5|75|FRA|0|26067641|1966
+G|1|3|140||Eklund, Joel|2184|0|SWE|2|w|½
+G|2|3|199||Boudonnet-Valerius, Nathalien|1628|0|FRA|0,5|b|1
+G|3|3|186||Budzinski, Jan|1974|0|POL|6|b|0
+G|4|3|175||PELLERIN, Alexandre|0|1500|FRA|5|w|0
+G|5|3|202||PUROHIT, Sachin|0|1500|FRA|2,5|b|½
+G|6|3|46||Ferreira, Isaque|0|1500|FRA|3|w|1
+G|7|3|32||Renault, Fabien|2004|0|FRA|5,5|b|0
+G|8|3|24||Liyanage, Nuwan|1607|0|NED|5|w|1
+G|9|3|149||NUTHMANN, Thomas|0|1500|FRA|1,5|b|1
+P|102||Perret, Xavier|1500|0|903||0|234|FRA|0|45193525|1989
+G|1|4|141||Sigeman, Johan|1975|0|SWE|6,5|b|0
+G|2|4|201||DECUGIS, Christophe|0|1500|FRA|4|w|0
+G|3|4|187||Blanchard, Paul|1838|0|FRA|3|w|0
+G|4|4|176||MOLCARD, Theophile|0|1500|FRA|7|b|0
+P|103||DROIN, Sebastien|1500|0|1413||1|223|FRA|0||1997
+G|5|4|203||MUKTUBAYEVA, Dina|0|1500|POL|7||
+G|6|4|242||Rodrigues Miguel, Luca|0|1500|FRA|8|b|0
+G|7|4|33||Charbit, Florent|1916|0|FRA|6,5|w|0
+G|8|4|25||Swidurski, Julien|1507|0|FRA|5|b|0
+G|9|4|150||DE LUCCA, Enrico|0|1500|FRA|2|w|1
+P|104|GM|Urkedal, Frode Olav Olsen|0|2512|2444|2,8|6|45|NOR|0|1506102|1993
+G|1|1|219||Bertram, Johannes|1915|0|GER|4,5|b|1
+G|2|1|22||Van Hees, Pepijn|1730|0|NED|0|w|1
+G|3|1|124|GM|Fressinet, Laurent|2584|0|FRA|7|b|½
+G|4|1|2|GM|Topalov, Veselin|2617|0|BUL|5|w|½
+G|5|1|57|IM|Droin, Augustin|2533|0|FRA|6|w|0
+G|6|1|34|GM|Sochacki, Christophe|2412|0|FRA|5,5|b|1
+G|7|1|70|IM|Reimanis, Ritvars|2280|0|LAT|5|w|1
+G|8|1|138|GM|L'ami, Erwin|2640|0|NED|6,5|b|0
+G|9|1|30|CM|Croizier, Valery|2164|0|FRA|4,5|b|1
+P|105|CM|Guttulsrud, Odd Martin|0|2184|2275|22|6|50|NOR|0|1507249|1994
+G|1|2|221||Sola, Alessandro|1733|0|BEL|4|w|1
+G|2|2|23||Gujran, Krithik|1693|0|NED|1||
+G|3|2|125|FM|Dalaud, Dorian|2323|0|FRA|6,5|w|1
+G|4|2|3|GM|Rusev, Krasimir|2396|0|BUL|6,5|b|½
+G|5|2|58||Makke, Laurent|2136|0|FRA|4|b|1
+G|6|2|35|IM|Kirk, Ezra|2387|0|ENG|3,5|w|0
+G|7|2|71||Kuhn, Patrick|2044|0|GER|4|b|1
+G|8|2|139|GM|Brynell, Stellan|2343|0|SWE|3,5|w|½
+G|9|2|31||Venard, Paul-Andre|2075|0|FRA|4,5|w|0
+P|106|WGM|Khalafova, Narmin|0|2133|1935|-37|3,5|131|AZE|0|13402625|1994
+G|1|3|222||Hinkel, Kira|1612|0|BEL|5|b|1
+G|2|3|24||Liyanage, Nuwan|1607|0|NED|5|w|1
+G|3|3|126|FM|Lux, Hugo De Melo|2236|0|BRA|4|b|0
+G|4|3|4|FM|Mitev, Valentin|2282|0|BUL|6|w|0
+G|5|3|59|WFM|Arzur, Maia|2028|0|FRA|3|w|0
+G|6|3|36|FM|Ternault, Mathieu|2212|0|FRA|7|b|0
+G|7|3|72||Kralj, Samo|1966|0|SLO|4,5|w|½
+G|8|3|140||Eklund, Joel|2184|0|SWE|2|b|1
+G|9|3|32||Renault, Fabien|2004|0|FRA|5,5|b|0
+P|107||Kyrkjebo, Hanna B.|0|1897|1908|6,4|6|41|NOR|0|1511599|1998
+G|1|4|223||Bressers, Effie|0|1500|BEL|1|w|1
+G|2|4|25||Swidurski, Julien|1507|0|FRA|5|b|1
+G|3|4|128||Vaissaire, Julien|1740|0|FRA|1|w|1
+G|4|4|6||Sanchez Elena, Lucia|1954|0|ESP|2|b|0
+G|5|4|60||Boulnois, Boris|1882|0|FRA|3,5|b|1
+G|6|4|37||Kirk, Eden|1932|0|FRA|3|w|0
+G|7|4|73||Maguire, Tallann|1643|0|IRL|4|b|1
+G|8|4|141||Sigeman, Johan|1975|0|SWE|6,5|w|0
+G|9|4|33||Charbit, Florent|1916|0|FRA|6,5|w|1
+P|108|GM|Degraeve, Jean-Marc|0|2430|2365|-3,3|5|76|FRA|0|600270|1971
+G|1|1|47||Khallouf, Anas|1916|0|FRA|6|b|1
+G|2|1|65|GM|Dudin, Gleb|2484|0|HUN|4,5|w|1
+G|3|1|2|GM|Topalov, Veselin|2617|0|BUL|5|w|0
+G|4|1|228||Steinle, Thibaud|2009|0|FRA|5|b|½
+G|5|1|70|IM|Reimanis, Ritvars|2280|0|LAT|5|b|½
+G|6|1|147|GM|Moussard, Jules|2605|0|FRA|8,5|w|0
+G|7|1|39|IM|Meinhardt, Maximilian Dr.|2384|0|GER|4|w|0
+G|8|1|134||Ilecki, Wojciech|2101|0|POL|2|b|1
+G|9|1|76|GM|Kumaran, Dharshan|2505|0|ENG|2|w|1
+P|109|WIM|Moingt, Anne|0|2050|1977|-11,2|4,5|96|FRA|0|604674|1974
+G|1|3|49||Leopardo, Julien|1718|0|FRA|6|b|1
+G|2|3|67|IM|Badelka, Olga|2238|0|AUT|7,5|w|0
+G|3|3|4|FM|Mitev, Valentin|2282|0|BUL|6|w|0
+G|4|3|97||Benkaci, Massin|1709|0|FRA|5|b|1
+G|5|3|72||Kralj, Samo|1966|0|SLO|4,5|b|0
+G|6|3|149||NUTHMANN, Thomas|0|1500|FRA|1,5|w|1
+G|7|2|40|FM|Klein, Felix|2270|0|GER|4|b|0
+G|8|2|135||Petrolo, Mauro|1918|0|ITA|4|w|1
+G|9|2|77||Cohen, Aron J|2195|0|ENG|2,5|b|½
+P|110||Belluire, Beatrice|0|1963|2069|20,2|8|6|FRA|0|26017296|2001
+G|1|4|93||Guignard, Frederic|0|1500|FRA|2,5|w|1
+G|2|4|69||Bilunov, Denis B.|1953|0|CZE|3,5|b|1
+G|3|4|5||Hristova, Ivelina|1987|0|BUL|4,5|b|½
+G|4|4|98||CHHUN, Labo|0|1500|FRA|0|w|1
+G|5|4|73||Maguire, Tallann|1643|0|IRL|4|w|1
+G|6|4|150||DE LUCCA, Enrico|0|1500|FRA|2|b|1
+G|7|4|43||Catapano, Alberto Pasquale|1805|0|ITA|4,5|b|1
+G|8|4|136||Pendaries-Issaurat, Philippe|1658|0|FRA|3|w|1
+G|9|4|79||Hakimzadeh, Karim|1912|0|ENG|7|b|½
+P|111|FM|Moingt, Jean-Claude|0|2049|1934|-9|1|230|FRA|0|601608|1963
+G|7|3|41||Sundorf, Jannik|2154|0|GER|2,5|w|0
+G|8|3|225|WFM|Farhat Willemstein, Stela Souza|1842|0|BRA|2|b|1
+G|9|3|78|CM|Hassabis, Demis|2182|0|ENG|5,5|w|0
+P|112|GM|Guliyev, Namig|0|2506|2452|1,6|6,5|31|AZE|0|13400363|1974
+G|1|1|197||Beaudoire, Gregoire|1801|0|FRA|3,5|b|1
+G|2|1|168|GM|Andersen, Mads|2483|0|DEN|5|w|½
+G|3|1|53||Maleki, Nicolas|2005|0|FRA|0,5|b|1
+G|4|1|121|FM|Brailly-Vignal, Bastien|2325|0|FRA|5,5|w|1
+G|5|1|179|GM|Mastrovasilis, Dimitrios|2500|0|GRE|6,5|b|½
+G|6|1|61|FM|Wu, Christopher|2347|0|USA|4,5|w|1
+G|7|1|184|IM|Daulyte-Cornette, Deimante|2348|0|FRA|4,5|b|0
+G|8|1|26|FM|Toulzac, Pierre-Yves|2263|0|FRA|4,5|b|1
+G|9|1|129|IM|Travadon, Loic|2503|0|FRA|7|w|½
+P|113|IM|Skripchenko, Almira|0|2271|2086|-17,9|4,5|108|FRA|0|13900145|1976
+G|1|2|198||Socko, Szymon|1705|0|POL|4|w|1
+G|2|2|169|IM|Skytte, Rasmus|2398|0|DEN|4,5|b|0
+G|3|2|54||Maugenest, Matthieu|1951|0|FRA|6|w|1
+G|4|2|122||Trabet, Nicolas|2126|0|FRA|6|b|½
+G|5|2|180|WGM|Zawadzka, Jolanta|2224|0|POL|4,5|w|1
+G|6|2|62||Machlik, Monika|2068|0|NOR|6,5|b|½
+G|7|2|185|FM|Redzisz, Michal|2193|0|POL|8|w|0
+G|8|2|27||Devecchi, Jorge|2009|0|FRA|6,5|w|½
+G|9|2|130||Grigorian, Roudolph|2101|0|FRA|6|b|0
+P|114||Loevenbruck, Charles|0|1917|1864|-15,6|3,5|135|FRA|0|644420|1988
+G|1|3|199||Boudonnet-Valerius, Nathalien|1628|0|FRA|0,5|b|½
+G|2|3|170|IM|Olsen, Filip Boe|2318|0|DEN|8,5|w|0
+G|3|3|55||Faure, Lionel|1845|0|FRA|2,5|b|1
+G|4|3|123||Marmey, Cedric|1886|0|FRA|4,5|w|½
+G|5|3|182|FM|Miroslaw, Michal|2212|0|POL|5,5|b|0
+G|6|3|63||Sundsbo, Sigve|1851|0|NOR|2|w|½
+G|7|3|186||Budzinski, Jan|1974|0|POL|6|b|0
+G|8|3|28||Geujon, Jean-Charles|1826|0|FRA|5|b|½
+G|9|3|131||Warnier, Yanis|1960|0|FRA|8|w|½
+P|115||Mund, Hauke|0|1788|2088|0|8|4|FRA|0|80452582|1984
+G|1|4|201||DECUGIS, Christophe|0|1500|FRA|4|w|1
+G|2|4|171||Jarlskov, Daniel Tuk Hartso|1953|0|DEN|5|b|1
+G|3|4|56||Lapeyrere, Paul|1737|0|FRA|3|w|1
+G|4|4|208||CASTANO, Nicolas|0|1500|FRA|0|b|1
+G|5|4|183|CM|Jankowiak, Tomasz|1991|0|POL|9|w|0
+G|6|4|64||Kyrkjebo, Marte B.|1839|0|NOR|6|b|1
+G|7|4|187||Blanchard, Paul|1838|0|FRA|3|w|1
+G|8|4|29||Nguyen, Gael|1668|0|FRA|3,5|w|1
+G|9|4|132||Vaissaire, Michel|1606|0|FRA|3|b|1
+P|116||Guy, Ange|0|1834|1782|-19,2|3|151|FRA|0|635677|1965
+G|1|1|61|FM|Wu, Christopher|2347|0|USA|4,5|w|0
+G|2|1|172||Akl, Nabil|2097|0|FRA|7|b|0
+G|3|1|228||Steinle, Thibaud|2009|0|FRA|5|b|0
+G|4|1|47||Khallouf, Anas|1916|0|FRA|6|w|0
+G|5|1|232||Dejean, Thomas|1655|0|FRA|2|w|0
+G|7|1|44||Ridel, Fabien|1809|0|FRA|1|b|1
+G|8|1|91||MONTANDON, Francois|0|1500|FRA|1|b|1
+G|9|1|1||Rosengren, Jon Even|1615|0|NOR|1|w|1
+P|117||Strand, Hakan|0|1595|1733|8,2|4|122|FRA|0|26090120|1975
+G|1|2|62||Machlik, Monika|2068|0|NOR|6,5|b|0
+G|2|2|215||Roux, Jean-Luc|1866|0|FRA|4,5|w|1
+G|3|2|96||Le Marquer, Pierre|1933|0|FRA|6,5|w|0
+G|4|2|48||Boyer, Jean-Francois|1726|0|FRA|4|b|0
+G|5|2|231||Dorofeev, Andrei|1513|0|FRA|0|b|1
+G|7|2|45||De Temmerman, Paul|1757|0|FRA|3,5|w|0
+G|8|2|90||FAURE, Eric|0|1500|FRA|1|w|1
+G|9|2|86||GOTTY, Jerome|0|1500|FRA|2|b|1
+P|118||Wyler, Luc|0|1490|1302|-8,8|1|219|FRA|0|36052809|1964
+G|3|3|97||Benkaci, Massin|1709|0|FRA|5|b|0
+G|5|3|234||BLEVINAL, Victor|0|1500|FRA|2,5|w|0
+G|7|3|46||Ferreira, Isaque|0|1500|FRA|3|b|0
+G|8|3|92||BOUHADJAR, Amine|0|1500|FRA|1|b|1
+G|9|3|87||VETO, Celestin|0|1500|FRA|4|w|0
+P|119||Fuster, Jean Baptiste|0|1408|1451|-20,4|3|152|FRA|0|80441122|1956
+G|1|4|64||Kyrkjebo, Marte B.|1839|0|NOR|6|b|0
+G|2|4|217||Auneveux, Nicolas|0|1500|FRA|0|w|1
+G|3|4|98||CHHUN, Labo|0|1500|FRA|0|w|1
+G|4|4|93||Guignard, Frederic|0|1500|FRA|2,5|b|1
+G|5|4|233||Remtoula, Naushad|1461|0|FRA|3|b|0
+G|7|4|242||Rodrigues Miguel, Luca|0|1500|FRA|8|w|0
+G|8|4|224||HERNOT, Emilie|0|1500|FRA|3,5|w|0
+G|9|4|229||MUZARD, Pierre-Yves|0|1500|FRA|2,5|b|0
+P|120||Guez, Jerome|1500|0|944||0|236|FRA|0|527061493|1970
+G|1|3|63||Sundsbo, Sigve|1851|0|NOR|2|w|0
+G|2|3|173||Bonnet, Francois|1662|0|FRA|2|b|0
+G|4|3|49||Leopardo, Julien|1718|0|FRA|6|w|0
+P|121|FM|Brailly-Vignal, Bastien|0|2325|2271|0,9|5,5|55|FRA|0|658804|1988
+G|1|1|209||MADRANGE, Giullaume|0|1500|FRA|1|w|1
+G|2|1|189|IM|Alexakis, Dimitris|2498|0|GRE|5,5|w|0
+G|3|1|174||Roux, Olivier|2080|0|FRA|3,5|b|1
+G|4|1|112|GM|Guliyev, Namig|2506|0|AZE|6,5|b|0
+G|5|1|50|FM|Senlle Caride, Miguel|2336|0|ESP|6,5|w|½
+G|6|1|160|GM|Dourerassou, Jonathan|2480|0|FRA|5,5|b|0
+G|7|1|18||Coronel, Joshua|2024|0|ITA|4|w|1
+G|8|1|77||Cohen, Aron J|2195|0|ENG|2,5|w|1
+G|9|1|134||Ilecki, Wojciech|2101|0|POL|2|b|1
+P|122||Trabet, Nicolas|0|2126|2059|-0,4|6|46|FRA|0|26053497|2001
+G|1|2|210||SALINGUE, Guillaume|0|1500|FRA|1|b|1
+G|2|2|190|IM|Spyropoulos, Nikolaos|2300|0|GRE|6|b|0
+G|3|2|177||ZEMMOUR, Zaki|1564|0|FRA|1,5|w|1
+G|4|2|113|IM|Skripchenko, Almira|2271|0|FRA|4,5|w|½
+G|5|2|51||Dincer, Mehmet Alper|1731|0|TUR|3|b|1
+G|6|2|161||Nemirovski, Laurent|2024|0|FRA|4,5|w|0
+G|7|2|20||Quintana Hernandez, Marcos Ivan|1913|0|MEX|2|b|1
+G|8|2|78|CM|Hassabis, Demis|2182|0|ENG|5,5|b|½
+G|9|2|135||Petrolo, Mauro|1918|0|ITA|4|w|1
+P|123||Marmey, Cedric|0|1886|1791|-22,2|4,5|97|FRA|0|639788|1982
+G|1|3|212||HUY ADAMY, Pierre|0|1500|FRA|4|w|1
+G|2|3|191||Alexakis, Georgios|2166|0|GRE|5,5|w|0
+G|3|3|175||PELLERIN, Alexandre|0|1500|FRA|5|b|1
+G|4|3|114||Loevenbruck, Charles|1917|0|FRA|3,5|b|½
+G|5|3|94||AHMED, Wasim|0|1500|FRA|6|w|1
+G|6|3|162||Guerlach, Frederic|1951|0|FRA|5|b|0
+G|7|3|21||Cayonlu, Arda|1896|0|TUR|6,5|w|0
+G|8|3|80||Tomasev, Nenad|2033|0|SRB|2|w|0
+G|9|3|136||Pendaries-Issaurat, Philippe|1658|0|FRA|3|b|1
+P|124|GM|Fressinet, Laurent|0|2584|2605|6|7|19|FRA|0|608742|1981
+G|1|1|9|CM|Martine, Jean-Christophe|1937|0|FRA|2,5|w|1
+G|2|1|193|IM|Barski, Radoslaw|2267|0|POL|4|b|1
+G|3|1|104|GM|Urkedal, Frode Olav Olsen|2512|0|NOR|6|w|½
+G|4|1|184|IM|Daulyte-Cornette, Deimante|2348|0|FRA|4,5|b|1
+G|5|1|14|GM|Ferreira, Jorge Viterbo|2427|0|POR|6|w|1
+G|6|1|189|IM|Alexakis, Dimitris|2498|0|GRE|5,5|b|½
+G|7|1|129|IM|Travadon, Loic|2503|0|FRA|7|w|½
+G|8|1|204|GM|Maurizzi, Marcandria|2489|0|FRA|7|w|½
+G|9|1|168|GM|Andersen, Mads|2483|0|DEN|5|b|1
+P|125|FM|Dalaud, Dorian|0|2323|2351|12,2|6,5|25|FRA|0|36093270|2003
+G|1|2|12|WFM|Banat, Rizlene|1820|0|ALG|1,5|b|1
+G|2|2|194||Galuszka, Tomasz|2112|0|POL|6,5|w|1
+G|3|2|105|CM|Guttulsrud, Odd Martin|2184|0|NOR|6|b|0
+G|4|2|185|FM|Redzisz, Michal|2193|0|POL|8|w|0
+G|5|2|15||Meijer, Dolf|2183|0|NED|2|b|½
+G|6|2|190|IM|Spyropoulos, Nikolaos|2300|0|GRE|6|w|1
+G|7|2|130||Grigorian, Roudolph|2101|0|FRA|6|b|1
+G|8|2|205|IM|Govciyan, Pavel|2375|0|FRA|6,5|b|1
+G|9|2|169|IM|Skytte, Rasmus|2398|0|DEN|4,5|w|1
+P|126|FM|Lux, Hugo De Melo|0|2236|1990|-23,8|4|117|BRA|0|2138298|2002
+G|1|3|88||HOCQUARD, Arnaud|0|1500|FRA|4,5|w|1
+G|2|3|195||Fritz, Antoni|2032|0|POL|5,5|b|0
+G|3|3|106|WGM|Khalafova, Narmin|2133|0|AZE|3,5|w|1
+G|4|3|186||Budzinski, Jan|1974|0|POL|6|b|½
+G|5|3|16||Margarido, Jose Miguel Teixeira|2076|0|POR|5,5|w|1
+G|6|3|191||Alexakis, Georgios|2166|0|GRE|5,5|b|0
+G|7|3|131||Warnier, Yanis|1960|0|FRA|8|w|0
+G|8|3|206||De Carvalho Massabo, Raphael|2142|0|FRA|5|w|½
+G|9|3|170|IM|Olsen, Filip Boe|2318|0|DEN|8,5|b|0
+P|127||Destic, Elena|0|1998|1879|-11,8|3|179|FRA|0|36001988|2003
+G|2|4|196||Moscicka, Pola|1937|0|POL|7|w|1
+G|4|4|188||Rolland Piegue, Sacha|1750|0|FRA|2,5|w|1
+G|6|4|192||Veskoukis, Konstantinos|1833|0|GRE|6,5|w|0
+G|8|4|207||Benezra, David|1561|0|FRA|1|b|1
+G|9|4|171||Jarlskov, Daniel Tuk Hartso|1953|0|DEN|5|w|0
+P|128||Vaissaire, Julien|0|1740|1541|-8,8|1|224|FRA|0|544011180|1991
+G|1|4|10||Habes, Khelil|0|1500|ALG|5|b|0
+G|3|4|107||Kyrkjebo, Hanna B.|1897|0|NOR|6|b|0
+G|5|4|17||Weijers, Ralf|1931|0|NED|7,5|b|0
+G|7|4|132||Vaissaire, Michel|1606|0|FRA|3|b|1
+P|129|IM|Travadon, Loic|0|2503|2473|10,9|7|16|FRA|0|26092131|2002
+G|1|1|22||Van Hees, Pepijn|1730|0|NED|0|b|1
+G|2|1|91||MONTANDON, Francois|0|1500|FRA|1|w|1
+G|3|1|57|IM|Droin, Augustin|2533|0|FRA|6|w|1
+G|4|1|76|GM|Kumaran, Dharshan|2505|0|ENG|2|b|1
+G|5|1|34|GM|Sochacki, Christophe|2412|0|FRA|5,5|w|0
+G|6|1|14|GM|Ferreira, Jorge Viterbo|2427|0|POR|6|b|1
+G|7|1|124|GM|Fressinet, Laurent|2584|0|FRA|7|b|½
+G|8|1|174||Roux, Olivier|2080|0|FRA|3,5|w|1
+G|9|1|112|GM|Guliyev, Namig|2506|0|AZE|6,5|b|½
+P|130||Grigorian, Roudolph|0|2101|2197|30|6|47|FRA|0|675768|1995
+G|1|2|23||Gujran, Krithik|1693|0|NED|1||
+G|2|2|90||FAURE, Eric|0|1500|FRA|1|b|1
+G|3|2|218|IM|Dionisi, Thomas|2390|0|FRA|3|b|0
+G|4|2|77||Cohen, Aron J|2195|0|ENG|2,5|w|1
+G|5|2|35|IM|Kirk, Ezra|2387|0|ENG|3,5|b|0
+G|6|2|15||Meijer, Dolf|2183|0|NED|2|w|1
+G|7|2|125|FM|Dalaud, Dorian|2323|0|FRA|6,5|w|0
+G|8|2|177||ZEMMOUR, Zaki|1564|0|FRA|1,5|b|1
+G|9|2|113|IM|Skripchenko, Almira|2271|0|FRA|4,5|w|1
+P|131||Warnier, Yanis|0|1960|2281|67,2|8|7|FRA|0|36084565|2006
+G|1|3|24||Liyanage, Nuwan|1607|0|NED|5|b|1
+G|2|3|92||BOUHADJAR, Amine|0|1500|FRA|1|w|1
+G|3|3|58||Makke, Laurent|2136|0|FRA|4|w|½
+G|4|3|78|CM|Hassabis, Demis|2182|0|ENG|5,5|b|1
+G|5|3|36|FM|Ternault, Mathieu|2212|0|FRA|7|w|1
+G|6|3|16||Margarido, Jose Miguel Teixeira|2076|0|POR|5,5|b|1
+G|7|3|126|FM|Lux, Hugo De Melo|2236|0|BRA|4|b|1
+G|8|3|175||PELLERIN, Alexandre|0|1500|FRA|5|w|1
+G|9|3|114||Loevenbruck, Charles|1917|0|FRA|3,5|b|½
+P|132||Vaissaire, Michel|0|1606|1619|-31,6|3|144|FRA|0|652089940|1962
+G|1|4|25||Swidurski, Julien|1507|0|FRA|5|w|1
+G|2|4|224||HERNOT, Emilie|0|1500|FRA|3,5|b|1
+G|3|4|60||Boulnois, Boris|1882|0|FRA|3,5|b|0
+G|4|4|79||Hakimzadeh, Karim|1912|0|ENG|7|w|0
+G|5|4|37||Kirk, Eden|1932|0|FRA|3|b|0
+G|6|4|17||Weijers, Ralf|1931|0|NED|7,5|w|0
+G|7|4|128||Vaissaire, Julien|1740|0|FRA|1|w|0
+G|8|4|176||MOLCARD, Theophile|0|1500|FRA|7|b|1
+G|9|4|115||Mund, Hauke|1788|0|FRA|8|w|0
+P|134||Ilecki, Wojciech|0|2101|2084|-7|2|187|POL|0|1110128|1971
+G|1|1|168|GM|Andersen, Mads|2483|0|DEN|5|b|0
+G|2|1|174||Roux, Olivier|2080|0|FRA|3,5|w|½
+G|4|1|219||Bertram, Johannes|1915|0|GER|4,5|w|½
+G|5|1|77||Cohen, Aron J|2195|0|ENG|2,5|w|1
+G|6|1|193|IM|Barski, Radoslaw|2267|0|POL|4|b|0
+G|8|1|108|GM|Degraeve, Jean-Marc|2430|0|FRA|5|w|0
+G|9|1|121|FM|Brailly-Vignal, Bastien|2325|0|FRA|5,5|w|0
+P|135||Petrolo, Mauro|0|1918|1887|-7,4|4|123|ITA|0|837059|1971
+G|1|2|169|IM|Skytte, Rasmus|2398|0|DEN|4,5|w|0
+G|2|2|177||ZEMMOUR, Zaki|1564|0|FRA|1,5|b|1
+G|3|1|1||Rosengren, Jon Even|1615|0|NOR|1|b|1
+G|4|2|221||Sola, Alessandro|1733|0|BEL|4|b|1
+G|6|2|194||Galuszka, Tomasz|2112|0|POL|6,5|w|0
+G|7|1|209||MADRANGE, Giullaume|0|1500|FRA|1|b|1
+G|8|2|109|WIM|Moingt, Anne|2050|0|FRA|4,5|b|0
+G|9|2|122||Trabet, Nicolas|2126|0|FRA|6|b|0
+P|136||Pendaries-Issaurat, Philippe|0|1658|1743|12,8|3|153|FRA|0|80420672|1999
+G|1|3|170|IM|Olsen, Filip Boe|2318|0|DEN|8,5|b|0
+G|2|4|176||MOLCARD, Theophile|0|1500|FRA|7|b|0
+G|3|3|87||VETO, Celestin|0|1500|FRA|4|b|1
+G|5|3|80||Tomasev, Nenad|2033|0|SRB|2|w|1
+G|6|4|196||Moscicka, Pola|1937|0|POL|7|w|0
+G|7|3|212||HUY ADAMY, Pierre|0|1500|FRA|4|b|1
+G|8|4|110||Belluire, Beatrice|1963|0|FRA|8|b|0
+G|9|3|123||Marmey, Cedric|1886|0|FRA|4,5|w|0
+P|137||Kunchenko, Oleksandr|0|1580|1644|-8,8|3|170|LUX|0|4009665|1985
+G|1|4|171||Jarlskov, Daniel Tuk Hartso|1953|0|DEN|5|w|0
+G|3|4|229||MUZARD, Pierre-Yves|0|1500|FRA|2,5|w|1
+G|4|4|223||Bressers, Effie|0|1500|BEL|1|b|1
+G|5|4|79||Hakimzadeh, Karim|1912|0|ENG|7|b|0
+G|7|4|213||DUPLA, Marc|0|1500|FRA|5|w|0
+G|9|4|208||CASTANO, Nicolas|0|1500|FRA|0|b|1
+P|138|GM|L'ami, Erwin|0|2640|2631|1,9|6,5|32|NED|0|1007998|1985
+G|1|1|99||Coupet, Pascal|2139|0|FRA|3,5|b|1
+G|2|1|184|IM|Daulyte-Cornette, Deimante|2348|0|FRA|4,5|w|½
+G|3|1|189|IM|Alexakis, Dimitris|2498|0|GRE|5,5|b|1
+G|4|1|81|GM|Kovalenko, Igor|2601|0|UKR|5,5|b|1
+G|5|1|168|GM|Andersen, Mads|2483|0|DEN|5|w|½
+G|6|1|179|GM|Mastrovasilis, Dimitrios|2500|0|GRE|6,5|w|0
+G|7|1|204|GM|Maurizzi, Marcandria|2489|0|FRA|7|b|½
+G|8|1|104|GM|Urkedal, Frode Olav Olsen|2512|0|NOR|6|w|1
+G|9|1|2|GM|Topalov, Veselin|2617|0|BUL|5|w|1
+P|139|GM|Brynell, Stellan|0|2343|2191|-17,7|3,5|136|SWE|0|1700219|1962
+G|1|2|100||Bernard, Serge|1976|0|FRA|6,5|w|1
+G|2|2|185|FM|Redzisz, Michal|2193|0|POL|8|b|0
+G|3|2|190|IM|Spyropoulos, Nikolaos|2300|0|GRE|6|w|½
+G|4|2|82|IM|Dehtiarov, Roman|2390|0|UKR|8|w|½
+G|5|2|169|IM|Skytte, Rasmus|2398|0|DEN|4,5|b|½
+G|6|2|180|WGM|Zawadzka, Jolanta|2224|0|POL|4,5|b|0
+G|7|2|205|IM|Govciyan, Pavel|2375|0|FRA|6,5|w|0
+G|8|2|105|CM|Guttulsrud, Odd Martin|2184|0|NOR|6|b|½
+G|9|2|3|GM|Rusev, Krasimir|2396|0|BUL|6,5|b|½
+P|140||Eklund, Joel|0|2184|1943|-54,2|2|169|SWE|0|1705288|1980
+G|1|3|101||Droin, Franck|1902|0|FRA|5|b|½
+G|2|3|186||Budzinski, Jan|1974|0|POL|6|w|1
+G|3|3|191||Alexakis, Georgios|2166|0|GRE|5,5|b|0
+G|4|3|83|IM|Grinev, Valeriy|2342|0|UKR|5|b|0
+G|5|3|170|IM|Olsen, Filip Boe|2318|0|DEN|8,5|w|0
+G|6|3|182|FM|Miroslaw, Michal|2212|0|POL|5,5|w|0
+G|7|3|206||De Carvalho Massabo, Raphael|2142|0|FRA|5|b|½
+G|8|3|106|WGM|Khalafova, Narmin|2133|0|AZE|3,5|w|0
+G|9|3|4|FM|Mitev, Valentin|2282|0|BUL|6|w|0
+P|141||Sigeman, Johan|0|1975|1991|9,6|6,5|26|SWE|0|1705601|1957
+G|1|4|102||Perret, Xavier|0|1500|FRA|0|w|1
+G|2|4|188||Rolland Piegue, Sacha|1750|0|FRA|2,5|b|1
+G|3|4|192||Veskoukis, Konstantinos|1833|0|GRE|6,5|w|1
+G|4|4|84||Kuftyrev, Pavlo|1951|0|UKR|4,5|w|1
+G|5|4|171||Jarlskov, Daniel Tuk Hartso|1953|0|DEN|5|b|½
+G|6|4|183|CM|Jankowiak, Tomasz|1991|0|POL|9|b|0
+G|7|4|207||Benezra, David|1561|0|FRA|1|w|1
+G|8|4|107||Kyrkjebo, Hanna B.|1897|0|NOR|6|b|1
+G|9|4|5||Hristova, Ivelina|1987|0|BUL|4,5|b|0
+P|142||Ibazizen, Abdelatif|0|1948|1858|-14|2|165|FRA|0|650099|1972
+G|1|1|76|GM|Kumaran, Dharshan|2505|0|ENG|2|w|0
+G|2|1|165||Coriat, Caroline|1743|0|FRA|4|b|0
+G|3|1|151|IM|Alexieva, Silvia|2218|0|FRA|6|w|0
+G|4|1|209||MADRANGE, Giullaume|0|1500|FRA|1|b|0
+G|5|1|44||Ridel, Fabien|1809|0|FRA|1|w|1
+G|6|1|53||Maleki, Nicolas|2005|0|FRA|0,5|b|1
+G|7|1|147|GM|Moussard, Jules|2605|0|FRA|8,5|w|0
+G|8|1|236||Zurkowski, Andrzej|2054|0|POL|4,5|w|0
+G|9|1|26|FM|Toulzac, Pierre-Yves|2263|0|FRA|4,5|b|0
+P|143||Marty, Jean-Yves|0|1911|1875|-7,2|4,5|98|FRA|0|26072050|1996
+G|1|2|77||Cohen, Aron J|2195|0|ENG|2,5|b|0
+G|2|2|166||Ghrabi, Kilani|1566|0|FRA|2,5|w|1
+G|3|2|152||Ciarletta, Iris|2086|0|FRA|6,5|b|0
+G|4|2|210||SALINGUE, Guillaume|0|1500|FRA|1|w|1
+G|5|2|45||De Temmerman, Paul|1757|0|FRA|3,5|b|1
+G|6|2|54||Maugenest, Matthieu|1951|0|FRA|6|w|0
+G|7|2|148|AIM|Dimitriadis, Alexandros|1941|0|GRE|4,5|b|½
+G|8|2|237||Szarwacki, Dominik|1869|0|POL|4|b|1
+G|9|2|27||Devecchi, Jorge|2009|0|FRA|6,5|w|0
+P|144||Quemener, Yann|0|1761|1810|-2,6|5,5|56|FRA|0|651273|1973
+G|1|3|78|CM|Hassabis, Demis|2182|0|ENG|5,5|w|0
+G|2|3|167||Nemeth, Julien|0|1500|FRA|2,5|b|1
+G|3|3|153|WIM|Roumegous, Marina|1990|0|FRA|5,5|w|0
+G|4|3|211||BERNARD, Adrien|0|1500|FRA|0|b|1
+G|5|3|46||Ferreira, Isaque|0|1500|FRA|3|w|1
+G|6|3|55||Faure, Lionel|1845|0|FRA|2,5|b|½
+G|7|3|149||NUTHMANN, Thomas|0|1500|FRA|1,5|w|1
+G|8|3|238||Kowal, Cezary|1723|0|POL|4,5|w|1
+G|9|3|28||Geujon, Jean-Charles|1826|0|FRA|5|b|0
+P|145||BOUTELDJA, Brahim|1500|0|1518||2|204|FRA|0||1998
+G|5|4|242||Rodrigues Miguel, Luca|0|1500|FRA|8|b|0
+G|6|4|56||Lapeyrere, Paul|1737|0|FRA|3|w|0
+G|7|4|150||DE LUCCA, Enrico|0|1500|FRA|2|b|1
+G|8|4|239||Sabat, Anna|1546|0|POL|5|b|0
+G|9|4|29||Nguyen, Gael|1668|0|FRA|3,5|w|1
+P|146||LARIVAIN, Laurent|1500|0|1450||1|225|FRA|0||1995
+G|1|4|79||Hakimzadeh, Karim|1912|0|ENG|7|b|0
+G|2|4|226||Spurgeon, Brad|1462|0|FRA|0|w|1
+G|3|4|154||Fuchs, Louison|1698|0|FRA|3|b|0
+G|4|4|212||HUY ADAMY, Pierre|0|1500|FRA|4|w|0
+P|147|GM|Moussard, Jules|0|2605|2478|6,8|8,5|2|FRA|0|642908|1995
+G|1|1|65|GM|Dudin, Gleb|2484|0|HUN|4,5|b|½
+G|2|1|50|FM|Senlle Caride, Miguel|2336|0|ESP|6,5|w|1
+G|3|1|44||Ridel, Fabien|1809|0|FRA|1|w|1
+G|4|1|232||Dejean, Thomas|1655|0|FRA|2|b|1
+G|5|1|228||Steinle, Thibaud|2009|0|FRA|5|w|1
+G|6|1|108|GM|Degraeve, Jean-Marc|2430|0|FRA|5|b|1
+G|7|1|142||Ibazizen, Abdelatif|1948|0|FRA|2|b|1
+G|8|1|209||MADRANGE, Giullaume|0|1500|FRA|1|w|1
+G|9|1|99||Coupet, Pascal|2139|0|FRA|3,5|w|1
+P|148|AIM|Dimitriadis, Alexandros|0|1941|1854|-17,4|4,5|109|GRE|0|4208773|1985
+G|1|2|66|IM|Matros, Alexander|2305|0|KAZ|5,5|w|0
+G|2|2|51||Dincer, Mehmet Alper|1731|0|TUR|3|b|1
+G|3|2|45||De Temmerman, Paul|1757|0|FRA|3,5|b|0
+G|4|2|231||Dorofeev, Andrei|1513|0|FRA|0|w|1
+G|5|2|96||Le Marquer, Pierre|1933|0|FRA|6,5|b|½
+G|6|2|240|CM|Kirszenberg, Marc|2062|0|FRA|2,5|w|½
+G|7|2|143||Marty, Jean-Yves|1911|0|FRA|4,5|w|½
+G|8|2|210||SALINGUE, Guillaume|0|1500|FRA|1|b|1
+G|9|2|100||Bernard, Serge|1976|0|FRA|6,5|b|0
+P|149||NUTHMANN, Thomas|1500|0|1473||1,5|176|FRA|0||
+G|1|3|68|IM|Reprintsev, Alexander|2292|0|UKR|1,5|b|0
+G|2|3|94||AHMED, Wasim|0|1500|FRA|6|w|0
+G|3|3|46||Ferreira, Isaque|0|1500|FRA|3|w|0
+G|4|3|234||BLEVINAL, Victor|0|1500|FRA|2,5|b|½
+G|5|3|97||Benkaci, Massin|1709|0|FRA|5|w|0
+G|6|3|109|WIM|Moingt, Anne|2050|0|FRA|4,5|b|0
+G|7|3|144||Quemener, Yann|1761|0|FRA|5,5|b|0
+G|8|3|211||BERNARD, Adrien|0|1500|FRA|0|w|1
+G|9|3|101||Droin, Franck|1902|0|FRA|5|w|0
+P|150||DE LUCCA, Enrico|1500|0|1382||2|166|FRA|0||
+G|1|4|69||Bilunov, Denis B.|1953|0|CZE|3,5|w|0
+G|2|4|52||Allan, David|0|1500|FRA|4|b|0
+G|3|4|242||Rodrigues Miguel, Luca|0|1500|FRA|8|b|0
+G|4|4|235||BEAUCAIRE, Charles|0|1500|FRA|2|w|1
+G|5|4|98||CHHUN, Labo|0|1500|FRA|0|b|1
+G|6|4|110||Belluire, Beatrice|1963|0|FRA|8|w|0
+G|7|4|145||BOUTELDJA, Brahim|0|1500|FRA|2|w|0
+G|8|4|213||DUPLA, Marc|0|1500|FRA|5|b|0
+G|9|4|103||DROIN, Sebastien|0|1500|FRA|1|b|0
+P|151|IM|Alexieva, Silvia|0|2218|2268|8,4|6|48|FRA|0|2902265|1974
+G|1|1|165||Coriat, Caroline|1743|0|FRA|4|w|1
+G|2|1|179|GM|Mastrovasilis, Dimitrios|2500|0|GRE|6,5|w|½
+G|3|1|142||Ibazizen, Abdelatif|1948|0|FRA|2|b|1
+G|4|1|14|GM|Ferreira, Jorge Viterbo|2427|0|POR|6|w|0
+G|5|1|8||Guerlach, Keigo|1974|0|FRA|2|b|1
+G|6|1|184|IM|Daulyte-Cornette, Deimante|2348|0|FRA|4,5|w|1
+G|7|1|236||Zurkowski, Andrzej|2054|0|POL|4,5|b|½
+G|8|1|70|IM|Reimanis, Ritvars|2280|0|LAT|5|b|0
+G|9|1|228||Steinle, Thibaud|2009|0|FRA|5|w|1
+P|152||Ciarletta, Iris|0|2086|2142|39,6|6,5|27|FRA|0|45133263|2009
+G|1|2|166||Ghrabi, Kilani|1566|0|FRA|2,5|b|1
+G|2|2|180|WGM|Zawadzka, Jolanta|2224|0|POL|4,5|b|0
+G|3|2|143||Marty, Jean-Yves|1911|0|FRA|4,5|w|1
+G|4|2|15||Meijer, Dolf|2183|0|NED|2|b|½
+G|5|2|11||Martine, Valentin|1860|0|FRA|5|w|1
+G|6|2|185|FM|Redzisz, Michal|2193|0|POL|8|b|0
+G|7|2|237||Szarwacki, Dominik|1869|0|POL|4|w|1
+G|8|2|71||Kuhn, Patrick|2044|0|GER|4|w|1
+G|9|2|96||Le Marquer, Pierre|1933|0|FRA|6,5|b|1
+P|153|WIM|Roumegous, Marina|0|1990|1935|-7,4|5,5|64|FRA|0|620416|1964
+G|1|3|167||Nemeth, Julien|0|1500|FRA|2,5|w|1
+G|2|3|182|FM|Miroslaw, Michal|2212|0|POL|5,5|w|0
+G|3|3|144||Quemener, Yann|1761|0|FRA|5,5|b|1
+G|4|3|16||Margarido, Jose Miguel Teixeira|2076|0|POR|5,5|w|½
+G|5|3|13||Benaggoun, Khaled|1778|0|ALG|2,5|b|1
+G|6|3|186||Budzinski, Jan|1974|0|POL|6|w|½
+G|7|3|238||Kowal, Cezary|1723|0|POL|4,5|b|½
+G|8|3|72||Kralj, Samo|1966|0|SLO|4,5|b|1
+G|9|3|97||Benkaci, Massin|1709|0|FRA|5|w|0
+P|154||Fuchs, Louison|0|1698|1532|-70|3|145|FRA|0|651081997|2009
+G|1|4|226||Spurgeon, Brad|1462|0|FRA|0|b|1
+G|2|4|183|CM|Jankowiak, Tomasz|1991|0|POL|9|b|0
+G|3|4|146||LARIVAIN, Laurent|0|1500|FRA|1|w|1
+G|4|4|17||Weijers, Ralf|1931|0|NED|7,5|b|0
+G|5|4|89||PARRAUD, Guillaume|0|1500|FRA|5|w|0
+G|6|4|187||Blanchard, Paul|1838|0|FRA|3|b|0
+G|7|4|239||Sabat, Anna|1546|0|POL|5|w|0
+G|8|4|73||Maguire, Tallann|1643|0|IRL|4|w|0
+G|9|4|98||CHHUN, Labo|0|1500|FRA|0|b|1
+P|155||Goujon, Antoine|0|1903|1578|-47,4|1|214|FRA|0|639303|1973
+G|2|1|228||Steinle, Thibaud|2009|0|FRA|5|w|0
+G|3|1|18||Coronel, Joshua|2024|0|ITA|4|b|0
+G|4|1|91||MONTANDON, Francois|0|1500|FRA|1|b|1
+G|6|1|219||Bertram, Johannes|1915|0|GER|4,5|w|0
+G|8|1|47||Khallouf, Anas|1916|0|FRA|6|b|0
+G|9|1|165||Coriat, Caroline|1743|0|FRA|4|w|0
+P|156||Demko, Thomas|0|1616|1455|-46|1|215|FRA|0|652037886|1993
+G|1|1|30|CM|Croizier, Valery|2164|0|FRA|4,5|b|0
+G|3|2|20||Quintana Hernandez, Marcos Ivan|1913|0|MEX|2|w|0
+G|4|2|90||FAURE, Eric|0|1500|FRA|1|w|1
+G|5|1|210||SALINGUE, Guillaume|0|1500|FRA|1|w|0
+G|8|2|48||Boyer, Jean-Francois|1726|0|FRA|4|w|0
+G|9|2|166||Ghrabi, Kilani|1566|0|FRA|2,5|b|0
+P|157||Genestier, David|1500|0|1663||2,5|172|FRA|0|45193401|1970
+G|1|2|31||Venard, Paul-Andre|2075|0|FRA|4,5|w|0
+G|2|2|96||Le Marquer, Pierre|1933|0|FRA|6,5|b|0
+G|3|3|21||Cayonlu, Arda|1896|0|TUR|6,5|b|0
+G|5|2|211||BERNARD, Adrien|0|1500|FRA|0|b|1
+G|6|2|221||Sola, Alessandro|1733|0|BEL|4|b|½
+G|8|3|49||Leopardo, Julien|1718|0|FRA|6|b|0
+G|9|3|167||Nemeth, Julien|0|1500|FRA|2,5|w|1
+P|158||Pascal, Guillaume|1500|0|1309||1|206|FRA|0|527096009|1998
+G|1|3|32||Renault, Fabien|2004|0|FRA|5,5|b|0
+G|2|3|97||Benkaci, Massin|1709|0|FRA|5|w|1
+G|4|3|92||BOUHADJAR, Amine|0|1500|FRA|1|b|0
+G|5|3|212||HUY ADAMY, Pierre|0|1500|FRA|4|w|0
+G|6|3|222||Hinkel, Kira|1612|0|BEL|5|w|0
+G|8|4|93||Guignard, Frederic|0|1500|FRA|2,5|w|0
+G|9|4|227||GIRARD, Xavier|0|1500|FRA|2|b|0
+P|159||Ricome, Juliette|1500|0|1569||3|171|FRA|0|527096033|1996
+G|1|4|33||Charbit, Florent|1916|0|FRA|6,5|w|0
+G|2|4|98||CHHUN, Labo|0|1500|FRA|0|b|1
+G|3|4|19||De Moor, Jeroen|0|1500|NED|5,5|w|0
+G|4|4|224||HERNOT, Emilie|0|1500|FRA|3,5|w|1
+G|5|4|213||DUPLA, Marc|0|1500|FRA|5|b|0
+G|6|4|223||Bressers, Effie|0|1500|BEL|1|b|1
+P|160|GM|Dourerassou, Jonathan|0|2480|2351|-7,2|5,5|57|FRA|0|628050|1989
+G|1|1|74||Castro Ros, Alejandro|1821|0|FRA|2|w|1
+G|2|1|57|IM|Droin, Augustin|2533|0|FRA|6|b|0
+G|3|1|236||Zurkowski, Andrzej|2054|0|POL|4,5|w|1
+G|4|1|179|GM|Mastrovasilis, Dimitrios|2500|0|GRE|6,5|w|0
+G|5|1|18||Coronel, Joshua|2024|0|ITA|4|b|1
+G|6|1|121|FM|Brailly-Vignal, Bastien|2325|0|FRA|5,5|w|1
+G|7|1|65|GM|Dudin, Gleb|2484|0|HUN|4,5|b|½
+G|8|1|61|FM|Wu, Christopher|2347|0|USA|4,5|b|1
+G|9|1|184|IM|Daulyte-Cornette, Deimante|2348|0|FRA|4,5|w|0
+P|161||Nemirovski, Laurent|0|2024|2092|14,4|4,5|99|FRA|0|610690|1971
+G|1|2|75||Heather, James|1739|0|ENG|3,5|b|1
+G|2|2|218|IM|Dionisi, Thomas|2390|0|FRA|3|w|0
+G|3|2|237||Szarwacki, Dominik|1869|0|POL|4|b|½
+G|4|2|180|WGM|Zawadzka, Jolanta|2224|0|POL|4,5|b|1
+G|5|2|20||Quintana Hernandez, Marcos Ivan|1913|0|MEX|2|w|1
+G|6|2|122||Trabet, Nicolas|2126|0|FRA|6|b|1
+G|7|2|66|IM|Matros, Alexander|2305|0|KAZ|5,5|w|0
+G|8|2|62||Machlik, Monika|2068|0|NOR|6,5|w|0
+G|9|2|185|FM|Redzisz, Michal|2193|0|POL|8|b|0
+P|162||Guerlach, Frederic|0|1951|1992|9,8|5|87|FRA|0|694193|1966
+G|1|3|202||PUROHIT, Sachin|0|1500|FRA|2,5|w|1
+G|2|3|58||Makke, Laurent|2136|0|FRA|4|b|0
+G|3|3|238||Kowal, Cezary|1723|0|POL|4,5|w|1
+G|4|3|182|FM|Miroslaw, Michal|2212|0|POL|5,5|w|½
+G|5|3|21||Cayonlu, Arda|1896|0|TUR|6,5|b|½
+G|6|3|123||Marmey, Cedric|1886|0|FRA|4,5|w|1
+G|8|3|63||Sundsbo, Sigve|1851|0|NOR|2|b|1
+G|9|3|186||Budzinski, Jan|1974|0|POL|6|w|0
+P|163||Simonnet, Raphael|0|1629|1713|5,2|2,5|183|FRA|0|80498019|1987
+G|1|4|203||MUKTUBAYEVA, Dina|0|1500|POL|7|b|1
+G|2|4|60||Boulnois, Boris|1882|0|FRA|3,5|w|½
+G|3|4|239||Sabat, Anna|1546|0|POL|5|b|1
+G|4|4|183|CM|Jankowiak, Tomasz|1991|0|POL|9|b|0
+G|7|4|69||Bilunov, Denis B.|1953|0|CZE|3,5|w|0
+G|9|4|188||Rolland Piegue, Sacha|1750|0|FRA|2,5|b|0
+P|164||Oupindrin, Timothy|0|1875|1864|-3|2,5|202|FRA|0|26092662|2004
+G|5|4|19||De Moor, Jeroen|0|1500|NED|5,5|w|1
+G|6|4|208||CASTANO, Nicolas|0|1500|FRA|0|b|1
+G|7|3|67|IM|Badelka, Olga|2238|0|AUT|7,5|b|0
+G|8|4|64||Kyrkjebo, Marte B.|1839|0|NOR|6|w|½
+P|165||Coriat, Caroline|0|1743|1916|23,6|4|140|FRA|0|26089971|1987
+G|1|1|151|IM|Alexieva, Silvia|2218|0|FRA|6|b|0
+G|2|1|142||Ibazizen, Abdelatif|1948|0|FRA|2|w|1
+G|3|1|197||Beaudoire, Gregoire|1801|0|FRA|3,5|w|0
+G|5|1|91||MONTANDON, Francois|0|1500|FRA|1|b|1
+G|6|1|174||Roux, Olivier|2080|0|FRA|3,5|b|0
+G|8|1|1||Rosengren, Jon Even|1615|0|NOR|1|w|1
+G|9|1|155||Goujon, Antoine|1903|0|FRA|1|b|1
+P|166||Ghrabi, Kilani|0|1566|1572|-2,4|2,5|161|FRA|0|527095894|1983
+G|1|2|152||Ciarletta, Iris|2086|0|FRA|6,5|w|0
+G|2|2|143||Marty, Jean-Yves|1911|0|FRA|4,5|b|0
+G|3|2|198||Socko, Szymon|1705|0|POL|4|b|0
+G|5|2|90||FAURE, Eric|0|1500|FRA|1|w|0
+G|6|2|177||ZEMMOUR, Zaki|1564|0|FRA|1,5|w|½
+G|7|1|74||Castro Ros, Alejandro|1821|0|FRA|2|w|0
+G|8|2|86||GOTTY, Jerome|0|1500|FRA|2|b|1
+G|9|2|156||Demko, Thomas|1616|0|FRA|1|w|1
+P|167||Nemeth, Julien|1500|0|1499||2,5|162|FRA|0|26007614|1981
+G|1|3|153|WIM|Roumegous, Marina|1990|0|FRA|5,5|b|0
+G|2|3|144||Quemener, Yann|1761|0|FRA|5,5|w|0
+G|3|3|199||Boudonnet-Valerius, Nathalien|1628|0|FRA|0,5|w|1
+G|5|3|92||BOUHADJAR, Amine|0|1500|FRA|1|b|1
+G|6|3|175||PELLERIN, Alexandre|0|1500|FRA|5|b|0
+G|7|2|75||Heather, James|1739|0|ENG|3,5|b|½
+G|8|3|87||VETO, Celestin|0|1500|FRA|4|w|0
+G|9|3|157||Genestier, David|0|1500|FRA|2,5|b|0
+P|168|GM|Andersen, Mads|0|2483|2552|9,3|5|80|DEN|0|1413864|1995
+G|1|1|134||Ilecki, Wojciech|2101|0|POL|2|w|1
+G|2|1|112|GM|Guliyev, Namig|2506|0|AZE|6,5|b|½
+G|3|1|76|GM|Kumaran, Dharshan|2505|0|ENG|2|w|1
+G|4|1|57|IM|Droin, Augustin|2533|0|FRA|6|b|1
+G|5|1|138|GM|L'ami, Erwin|2640|0|NED|6,5|b|½
+G|6|1|2|GM|Topalov, Veselin|2617|0|BUL|5|w|½
+G|7|1|189|IM|Alexakis, Dimitris|2498|0|GRE|5,5|w|½
+G|8|1|81|GM|Kovalenko, Igor|2601|0|UKR|5,5|b|0
+G|9|1|124|GM|Fressinet, Laurent|2584|0|FRA|7|w|0
+P|169|IM|Skytte, Rasmus|0|2398|2281|-11,8|4,5|100|DEN|0|1404210|1980
+G|1|2|135||Petrolo, Mauro|1918|0|ITA|4|b|1
+G|2|2|113|IM|Skripchenko, Almira|2271|0|FRA|4,5|w|1
+G|3|2|77||Cohen, Aron J|2195|0|ENG|2,5|b|1
+G|4|2|218|IM|Dionisi, Thomas|2390|0|FRA|3|w|1
+G|5|2|139|GM|Brynell, Stellan|2343|0|SWE|3,5|w|½
+G|6|2|3|GM|Rusev, Krasimir|2396|0|BUL|6,5|b|0
+G|7|2|190|IM|Spyropoulos, Nikolaos|2300|0|GRE|6|b|0
+G|8|2|82|IM|Dehtiarov, Roman|2390|0|UKR|8|w|0
+G|9|2|125|FM|Dalaud, Dorian|2323|0|FRA|6,5|b|0
+P|170|IM|Olsen, Filip Boe|0|2318|2550|20,7|8,5|3|DEN|0|1440640|2003
+G|1|3|136||Pendaries-Issaurat, Philippe|1658|0|FRA|3|w|1
+G|2|3|114||Loevenbruck, Charles|1917|0|FRA|3,5|b|1
+G|3|3|80||Tomasev, Nenad|2033|0|SRB|2|w|1
+G|4|3|58||Makke, Laurent|2136|0|FRA|4|b|1
+G|5|3|140||Eklund, Joel|2184|0|SWE|2|b|1
+G|6|3|4|FM|Mitev, Valentin|2282|0|BUL|6|w|1
+G|7|3|191||Alexakis, Georgios|2166|0|GRE|5,5|w|1
+G|8|3|83|IM|Grinev, Valeriy|2342|0|UKR|5|b|½
+G|9|3|126|FM|Lux, Hugo De Melo|2236|0|BRA|4|w|1
+P|171||Jarlskov, Daniel Tuk Hartso|0|1953|1921|-6|5|77|DEN|0|1463896|2006
+G|1|4|137||Kunchenko, Oleksandr|1580|0|LUX|3|b|1
+G|2|4|115||Mund, Hauke|1788|0|FRA|8|w|0
+G|3|4|79||Hakimzadeh, Karim|1912|0|ENG|7|b|0
+G|4|4|60||Boulnois, Boris|1882|0|FRA|3,5|w|1
+G|5|4|141||Sigeman, Johan|1975|0|SWE|6,5|w|½
+G|6|4|5||Hristova, Ivelina|1987|0|BUL|4,5|b|0
+G|7|4|192||Veskoukis, Konstantinos|1833|0|GRE|6,5|b|½
+G|8|4|84||Kuftyrev, Pavlo|1951|0|UKR|4,5|w|1
+G|9|4|127||Destic, Elena|1998|0|FRA|3|b|1
+P|172||Akl, Nabil|0|2097|2100|12,4|7|12|FRA|0|607886|1966
+G|1|1|179|GM|Mastrovasilis, Dimitrios|2500|0|GRE|6,5|b|0
+G|2|1|116||Guy, Ange|1834|0|FRA|3|w|1
+G|3|1|209||MADRANGE, Giullaume|0|1500|FRA|1|b|1
+G|4|1|26|FM|Toulzac, Pierre-Yves|2263|0|FRA|4,5|b|0
+G|5|1|53||Maleki, Nicolas|2005|0|FRA|0,5|w|1
+G|6|1|1||Rosengren, Jon Even|1615|0|NOR|1|w|1
+G|7|1|22||Van Hees, Pepijn|1730|0|NED|0|b|1
+G|8|1|74||Castro Ros, Alejandro|1821|0|FRA|2|w|1
+G|9|1|232||Dejean, Thomas|1655|0|FRA|2|w|1
+P|173||Bonnet, Francois|0|1662|1446|-24|2|167|FRA|0|651041243|1962
+G|1|3|182|FM|Miroslaw, Michal|2212|0|POL|5,5|b|0
+G|2|3|120||Guez, Jerome|0|1500|FRA|0|w|1
+G|3|3|212||HUY ADAMY, Pierre|0|1500|FRA|4|b|0
+G|4|3|28||Geujon, Jean-Charles|1826|0|FRA|5|b|0
+G|5|3|55||Faure, Lionel|1845|0|FRA|2,5|w|0
+G|6|3|87||VETO, Celestin|0|1500|FRA|4|w|1
+G|7|3|24||Liyanage, Nuwan|1607|0|NED|5|b|0
+G|8|3|202||PUROHIT, Sachin|0|1500|FRA|2,5|w|0
+G|9|3|235||BEAUCAIRE, Charles|0|1500|FRA|2|w|0
+P|174||Roux, Olivier|0|2080|2083|-1,6|3,5|132|FRA|0|615951|1980
+G|1|1|204|GM|Maurizzi, Marcandria|2489|0|FRA|7|b|0
+G|2|1|134||Ilecki, Wojciech|2101|0|POL|2|b|½
+G|3|1|121|FM|Brailly-Vignal, Bastien|2325|0|FRA|5,5|w|0
+G|4|1|99||Coupet, Pascal|2139|0|FRA|3,5|b|1
+G|5|1|26|FM|Toulzac, Pierre-Yves|2263|0|FRA|4,5|w|0
+G|6|1|165||Coriat, Caroline|1743|0|FRA|4|w|1
+G|7|1|232||Dejean, Thomas|1655|0|FRA|2|b|1
+G|8|1|129|IM|Travadon, Loic|2503|0|FRA|7|b|0
+G|9|1|7|IM|Brahami, Lamine|2252|0|ALG|3|w|0
+P|175||PELLERIN, Alexandre|1500|0|1827||5|70|FRA|0||1992
+G|1|3|206||De Carvalho Massabo, Raphael|2142|0|FRA|5|b|0
+G|2|3|225|WFM|Farhat Willemstein, Stela Souza|1842|0|BRA|2|b|1
+G|3|3|123||Marmey, Cedric|1886|0|FRA|4,5|w|0
+G|4|3|101||Droin, Franck|1902|0|FRA|5|b|1
+G|5|3|28||Geujon, Jean-Charles|1826|0|FRA|5|w|0
+G|6|3|167||Nemeth, Julien|0|1500|FRA|2,5|w|1
+G|7|3|234||BLEVINAL, Victor|0|1500|FRA|2,5|b|1
+G|8|3|131||Warnier, Yanis|1960|0|FRA|8|b|0
+G|9|3|88||HOCQUARD, Arnaud|0|1500|FRA|4,5|w|1
+P|176||MOLCARD, Theophile|1500|0|1770||7|13|FRA|0||1997
+G|1|4|207||Benezra, David|1561|0|FRA|1|w|1
+G|2|4|136||Pendaries-Issaurat, Philippe|1658|0|FRA|3|w|1
+G|3|4|208||CASTANO, Nicolas|0|1500|FRA|0|b|1
+G|4|4|102||Perret, Xavier|0|1500|FRA|0|w|1
+G|5|4|29||Nguyen, Gael|1668|0|FRA|3,5|b|1
+G|6|4|227||GIRARD, Xavier|0|1500|FRA|2|b|1
+G|7|4|233||Remtoula, Naushad|1461|0|FRA|3|w|1
+G|8|4|132||Vaissaire, Michel|1606|0|FRA|3|w|0
+G|9|4|10||Habes, Khelil|0|1500|ALG|5|b|0
+P|177||ZEMMOUR, Zaki|0|1564|1674|-7,2|1,5|177|FRA|0|653009304|1993
+G|1|2|205|IM|Govciyan, Pavel|2375|0|FRA|6,5|w|0
+G|2|2|135||Petrolo, Mauro|1918|0|ITA|4|w|0
+G|3|2|122||Trabet, Nicolas|2126|0|FRA|6|b|0
+G|4|2|100||Bernard, Serge|1976|0|FRA|6,5|w|0
+G|5|2|27||Devecchi, Jorge|2009|0|FRA|6,5|b|0
+G|6|2|166||Ghrabi, Kilani|1566|0|FRA|2,5|b|½
+G|7|2|231||Dorofeev, Andrei|1513|0|FRA|0|w|1
+G|8|2|130||Grigorian, Roudolph|2101|0|FRA|6|w|0
+G|9|2|9|CM|Martine, Jean-Christophe|1937|0|FRA|2,5|b|0
+P|179|GM|Mastrovasilis, Dimitrios|0|2500|2630|17,4|6,5|36|GRE|0|4202694|1983
+G|1|1|172||Akl, Nabil|2097|0|FRA|7|w|1
+G|2|1|151|IM|Alexieva, Silvia|2218|0|FRA|6|b|½
+G|3|1|81|GM|Kovalenko, Igor|2601|0|UKR|5,5|w|½
+G|4|1|160|GM|Dourerassou, Jonathan|2480|0|FRA|5,5|b|1
+G|5|1|112|GM|Guliyev, Namig|2506|0|AZE|6,5|w|½
+G|6|1|138|GM|L'ami, Erwin|2640|0|NED|6,5|b|1
+G|7|1|2|GM|Topalov, Veselin|2617|0|BUL|5|b|½
+G|8|1|65|GM|Dudin, Gleb|2484|0|HUN|4,5|w|½
+G|9|1|57|IM|Droin, Augustin|2533|0|FRA|6|w|1
+P|180|WGM|Zawadzka, Jolanta|0|2224|2202|-1,8|4,5|101|POL|0|1122320|1987
+G|1|2|215||Roux, Jean-Luc|1866|0|FRA|4,5|b|1
+G|2|2|152||Ciarletta, Iris|2086|0|FRA|6,5|w|1
+G|3|2|82|IM|Dehtiarov, Roman|2390|0|UKR|8|b|0
+G|4|2|161||Nemirovski, Laurent|2024|0|FRA|4,5|w|0
+G|5|2|113|IM|Skripchenko, Almira|2271|0|FRA|4,5|b|0
+G|6|2|139|GM|Brynell, Stellan|2343|0|SWE|3,5|w|1
+G|7|2|3|GM|Rusev, Krasimir|2396|0|BUL|6,5|w|½
+G|8|2|66|IM|Matros, Alexander|2305|0|KAZ|5,5|b|0
+G|9|2|58||Makke, Laurent|2136|0|FRA|4|b|1
+P|182|FM|Miroslaw, Michal|0|2212|2146|-6,6|5,5|58|POL|0|1117505|1985
+G|1|3|173||Bonnet, Francois|1662|0|FRA|2|w|1
+G|2|3|153|WIM|Roumegous, Marina|1990|0|FRA|5,5|b|1
+G|3|3|83|IM|Grinev, Valeriy|2342|0|UKR|5|w|0
+G|4|3|162||Guerlach, Frederic|1951|0|FRA|5|b|½
+G|5|3|114||Loevenbruck, Charles|1917|0|FRA|3,5|w|1
+G|6|3|140||Eklund, Joel|2184|0|SWE|2|b|1
+G|7|3|4|FM|Mitev, Valentin|2282|0|BUL|6|b|0
+G|8|3|67|IM|Badelka, Olga|2238|0|AUT|7,5|w|0
+G|9|3|59|WFM|Arzur, Maia|2028|0|FRA|3|w|1
+P|183|CM|Jankowiak, Tomasz|0|1991|2618|54|9|1|POL|0|1185357|1999
+G|1|4|217||Auneveux, Nicolas|0|1500|FRA|0|b|1
+G|2|4|154||Fuchs, Louison|1698|0|FRA|3|w|1
+G|3|4|84||Kuftyrev, Pavlo|1951|0|UKR|4,5|b|1
+G|4|4|163||Simonnet, Raphael|1629|0|FRA|2,5|w|1
+G|5|4|115||Mund, Hauke|1788|0|FRA|8|b|1
+G|6|4|141||Sigeman, Johan|1975|0|SWE|6,5|w|1
+G|7|4|5||Hristova, Ivelina|1987|0|BUL|4,5|w|1
+G|8|4|69||Bilunov, Denis B.|1953|0|CZE|3,5|b|1
+G|9|4|60||Boulnois, Boris|1882|0|FRA|3,5|b|1
+P|184|IM|Daulyte-Cornette, Deimante|0|2348|2369|2,9|4,5|102|FRA|0|12802859|1989
+G|1|1|241||Marek, Yves|1973|0|FRA|1|w|1
+G|2|1|138|GM|L'ami, Erwin|2640|0|NED|6,5|b|½
+G|3|1|99||Coupet, Pascal|2139|0|FRA|3,5|w|1
+G|4|1|124|GM|Fressinet, Laurent|2584|0|FRA|7|w|0
+G|5|1|7|IM|Brahami, Lamine|2252|0|ALG|3|b|0
+G|6|1|151|IM|Alexieva, Silvia|2218|0|FRA|6|b|0
+G|7|1|112|GM|Guliyev, Namig|2506|0|AZE|6,5|w|1
+G|8|1|57|IM|Droin, Augustin|2533|0|FRA|6|b|0
+G|9|1|160|GM|Dourerassou, Jonathan|2480|0|FRA|5,5|b|1
+P|185|FM|Redzisz, Michal|0|2193|2417|48,8|8|5|POL|0|21816107|2004
+G|1|2|1||Rosengren, Jon Even|1615|0|NOR|1|b|1
+G|2|2|139|GM|Brynell, Stellan|2343|0|SWE|3,5|w|1
+G|3|2|100||Bernard, Serge|1976|0|FRA|6,5|b|1
+G|4|2|125|FM|Dalaud, Dorian|2323|0|FRA|6,5|b|1
+G|5|2|12|WFM|Banat, Rizlene|1820|0|ALG|1,5|w|1
+G|6|2|152||Ciarletta, Iris|2086|0|FRA|6,5|w|1
+G|7|2|113|IM|Skripchenko, Almira|2271|0|FRA|4,5|b|1
+G|8|2|58||Makke, Laurent|2136|0|FRA|4|w|0
+G|9|2|161||Nemirovski, Laurent|2024|0|FRA|4,5|w|1
+P|186||Budzinski, Jan|0|1974|2037|19,6|6|49|POL|0|1177133|1996
+G|1|3|86||GOTTY, Jerome|0|1500|FRA|2|w|1
+G|2|3|140||Eklund, Joel|2184|0|SWE|2|b|0
+G|3|3|101||Droin, Franck|1902|0|FRA|5|w|1
+G|4|3|126|FM|Lux, Hugo De Melo|2236|0|BRA|4|w|½
+G|5|3|88||HOCQUARD, Arnaud|0|1500|FRA|4,5|b|1
+G|6|3|153|WIM|Roumegous, Marina|1990|0|FRA|5,5|b|½
+G|7|3|114||Loevenbruck, Charles|1917|0|FRA|3,5|w|1
+G|8|3|59|WFM|Arzur, Maia|2028|0|FRA|3|b|0
+G|9|3|162||Guerlach, Frederic|1951|0|FRA|5|b|1
+P|187||Blanchard, Paul|0|1838|1815|-5,2|3|192|FRA|0|645648|1987
+G|1|4|229||MUZARD, Pierre-Yves|0|1500|FRA|2,5|b|1
+G|3|4|102||Perret, Xavier|0|1500|FRA|0|b|1
+G|6|4|154||Fuchs, Louison|1698|0|FRA|3|w|1
+G|7|4|115||Mund, Hauke|1788|0|FRA|8|b|0
+P|188||Rolland Piegue, Sacha|0|1750|1797|2,2|2,5|194|FRA|0|45104131|1993
+G|2|4|141||Sigeman, Johan|1975|0|SWE|6,5|w|0
+G|4|4|127||Destic, Elena|1998|0|FRA|3|b|0
+G|5|4|10||Habes, Khelil|0|1500|ALG|5|w|1
+G|8|4|60||Boulnois, Boris|1882|0|FRA|3,5|w|½
+G|9|4|163||Simonnet, Raphael|1629|0|FRA|2,5|w|1
+P|189|IM|Alexakis, Dimitris|0|2498|2494|4,2|5,5|65|GRE|0|4277023|2003
+G|1|1|11||Martine, Valentin|1860|0|FRA|5|w|1
+G|2|1|121|FM|Brailly-Vignal, Bastien|2325|0|FRA|5,5|b|1
+G|3|1|138|GM|L'ami, Erwin|2640|0|NED|6,5|w|0
+G|4|1|61|FM|Wu, Christopher|2347|0|USA|4,5|b|1
+G|5|1|65|GM|Dudin, Gleb|2484|0|HUN|4,5|w|1
+G|6|1|124|GM|Fressinet, Laurent|2584|0|FRA|7|w|½
+G|7|1|168|GM|Andersen, Mads|2483|0|DEN|5|b|½
+G|8|1|2|GM|Topalov, Veselin|2617|0|BUL|5|b|0
+G|9|1|39|IM|Meinhardt, Maximilian Dr.|2384|0|GER|4|w|½
+P|190|IM|Spyropoulos, Nikolaos|0|2300|2347|8,6|6|51|GRE|0|4298977|2004
+G|1|2|13||Benaggoun, Khaled|1778|0|ALG|2,5|b|1
+G|2|2|122||Trabet, Nicolas|2126|0|FRA|6|w|1
+G|3|2|139|GM|Brynell, Stellan|2343|0|SWE|3,5|b|½
+G|4|2|62||Machlik, Monika|2068|0|NOR|6,5|w|½
+G|5|2|68|IM|Reprintsev, Alexander|2292|0|UKR|1,5|b|½
+G|6|2|125|FM|Dalaud, Dorian|2323|0|FRA|6,5|b|0
+G|7|2|169|IM|Skytte, Rasmus|2398|0|DEN|4,5|w|1
+G|8|2|3|GM|Rusev, Krasimir|2396|0|BUL|6,5|w|½
+G|9|2|40|FM|Klein, Felix|2270|0|GER|4|b|1
+P|191||Alexakis, Georgios|0|2166|2152|7,4|5,5|59|GRE|0|4255038|2001
+G|1|3|214||WANG, Cedric|0|1500|FRA|1|w|1
+G|2|3|123||Marmey, Cedric|1886|0|FRA|4,5|b|1
+G|3|3|140||Eklund, Joel|2184|0|SWE|2|w|1
+G|4|3|63||Sundsbo, Sigve|1851|0|NOR|2|b|1
+G|5|3|67|IM|Badelka, Olga|2238|0|AUT|7,5|w|0
+G|6|3|126|FM|Lux, Hugo De Melo|2236|0|BRA|4|w|1
+G|7|3|170|IM|Olsen, Filip Boe|2318|0|DEN|8,5|b|0
+G|8|3|4|FM|Mitev, Valentin|2282|0|BUL|6|b|0
+G|9|3|41||Sundorf, Jannik|2154|0|GER|2,5|w|½
+P|192||Veskoukis, Konstantinos|0|1833|1997|37,2|6,5|28|GRE|0|4239490|1996
+G|1|4|89||PARRAUD, Guillaume|0|1500|FRA|5|b|1
+G|2|4|208||CASTANO, Nicolas|0|1500|FRA|0|w|1
+G|3|4|141||Sigeman, Johan|1975|0|SWE|6,5|b|0
+G|4|4|64||Kyrkjebo, Marte B.|1839|0|NOR|6|w|1
+G|5|4|69||Bilunov, Denis B.|1953|0|CZE|3,5|b|1
+G|6|4|127||Destic, Elena|1998|0|FRA|3|b|1
+G|7|4|171||Jarlskov, Daniel Tuk Hartso|1953|0|DEN|5|w|½
+G|8|4|6||Sanchez Elena, Lucia|1954|0|ESP|2|w|1
+G|9|4|43||Catapano, Alberto Pasquale|1805|0|ITA|4,5|b|0
+P|193|IM|Barski, Radoslaw|0|2267|2251|-0,1|4|115|POL|0|1131710|1993
+G|1|1|44||Ridel, Fabien|1809|0|FRA|1|b|1
+G|2|1|124|GM|Fressinet, Laurent|2584|0|FRA|7|w|0
+G|3|1|9|CM|Martine, Jean-Christophe|1937|0|FRA|2,5|b|1
+G|4|1|34|GM|Sochacki, Christophe|2412|0|FRA|5,5|b|0
+G|5|1|39|IM|Meinhardt, Maximilian Dr.|2384|0|GER|4|w|0
+G|6|1|134||Ilecki, Wojciech|2101|0|POL|2|w|1
+G|7|1|76|GM|Kumaran, Dharshan|2505|0|ENG|2|b|1
+G|8|1|14|GM|Ferreira, Jorge Viterbo|2427|0|POR|6|b|0
+G|9|1|204|GM|Maurizzi, Marcandria|2489|0|FRA|7|w|0
+P|194||Galuszka, Tomasz|0|2112|2302|47|6,5|33|POL|0|21816409|2002
+G|1|2|45||De Temmerman, Paul|1757|0|FRA|3,5|w|1
+G|2|2|125|FM|Dalaud, Dorian|2323|0|FRA|6,5|b|0
+G|3|2|12|WFM|Banat, Rizlene|1820|0|ALG|1,5|w|1
+G|4|2|35|IM|Kirk, Ezra|2387|0|ENG|3,5|w|1
+G|5|2|40|FM|Klein, Felix|2270|0|GER|4|b|½
+G|6|2|135||Petrolo, Mauro|1918|0|ITA|4|b|1
+G|7|2|77||Cohen, Aron J|2195|0|ENG|2,5|w|1
+G|8|2|15||Meijer, Dolf|2183|0|NED|2|w|½
+G|9|2|205|IM|Govciyan, Pavel|2375|0|FRA|6,5|b|½
+P|195||Fritz, Antoni|0|2032|2061|16|5,5|60|POL|0|1169327|2000
+G|1|3|46||Ferreira, Isaque|0|1500|FRA|3|b|1
+G|2|3|126|FM|Lux, Hugo De Melo|2236|0|BRA|4|w|1
+G|3|3|88||HOCQUARD, Arnaud|0|1500|FRA|4,5|b|1
+G|4|3|36|FM|Ternault, Mathieu|2212|0|FRA|7|b|0
+G|5|3|42|CM|Seger, Jan Dr.|2137|0|GER|4,5|w|0
+G|6|3|225|WFM|Farhat Willemstein, Stela Souza|1842|0|BRA|2|w|1
+G|7|3|78|CM|Hassabis, Demis|2182|0|ENG|5,5|b|1
+G|8|3|16||Margarido, Jose Miguel Teixeira|2076|0|POR|5,5|b|½
+G|9|3|206||De Carvalho Massabo, Raphael|2142|0|FRA|5|w|0
+P|196||Moscicka, Pola|0|1937|1975|12|7|14|POL|0|1184032|2002
+G|1|4|242||Rodrigues Miguel, Luca|0|1500|FRA|8|w|1
+G|2|4|127||Destic, Elena|1998|0|FRA|3|b|0
+G|3|4|10||Habes, Khelil|0|1500|ALG|5|w|1
+G|4|4|37||Kirk, Eden|1932|0|FRA|3|w|1
+G|5|4|43||Catapano, Alberto Pasquale|1805|0|ITA|4,5|b|1
+G|6|4|136||Pendaries-Issaurat, Philippe|1658|0|FRA|3|b|1
+G|7|4|79||Hakimzadeh, Karim|1912|0|ENG|7|w|0
+G|8|4|17||Weijers, Ralf|1931|0|NED|7,5|w|1
+G|9|4|207||Benezra, David|1561|0|FRA|1|b|1
+P|197||Beaudoire, Gregoire|0|1801|1973|15,8|3,5|147|FRA|0|26007312|1995
+G|1|1|112|GM|Guliyev, Namig|2506|0|AZE|6,5|w|0
+G|2|1|99||Coupet, Pascal|2139|0|FRA|3,5|w|½
+G|3|1|165||Coriat, Caroline|1743|0|FRA|4|b|1
+G|4|1|9|CM|Martine, Jean-Christophe|1937|0|FRA|2,5|w|½
+G|5|1|47||Khallouf, Anas|1916|0|FRA|6|b|½
+G|6|1|236||Zurkowski, Andrzej|2054|0|POL|4,5|w|0
+G|7|1|50|FM|Senlle Caride, Miguel|2336|0|ESP|6,5|b|0
+G|9|1|209||MADRANGE, Giullaume|0|1500|FRA|1|b|1
+P|198||Socko, Szymon|0|1705|1807|10,2|4|124|POL|0|1166590|2002
+G|1|2|113|IM|Skripchenko, Almira|2271|0|FRA|4,5|b|0
+G|2|2|100||Bernard, Serge|1976|0|FRA|6,5|b|0
+G|3|2|166||Ghrabi, Kilani|1566|0|FRA|2,5|w|1
+G|4|2|12|WFM|Banat, Rizlene|1820|0|ALG|1,5|b|1
+G|5|2|48||Boyer, Jean-Francois|1726|0|FRA|4|w|1
+G|6|2|237||Szarwacki, Dominik|1869|0|POL|4|b|0
+G|7|2|51||Dincer, Mehmet Alper|1731|0|TUR|3|w|0
+G|9|2|211||BERNARD, Adrien|0|1500|FRA|0|w|1
+P|199||Boudonnet-Valerius, Nathalien|0|1628|1298|6,8|0,5|226|FRA|0|80407099|1990
+G|1|3|114||Loevenbruck, Charles|1917|0|FRA|3,5|w|½
+G|2|3|101||Droin, Franck|1902|0|FRA|5|w|0
+G|3|3|167||Nemeth, Julien|0|1500|FRA|2,5|b|0
+G|4|3|88||HOCQUARD, Arnaud|0|1500|FRA|4,5|w|0
+G|7|3|94||AHMED, Wasim|0|1500|FRA|6|b|0
+P|200||Textoris, Pierre|1500|0|847||0|237|FRA|0|36055778|1999
+G|5|3|49||Leopardo, Julien|1718|0|FRA|6|b|0
+G|6|3|238||Kowal, Cezary|1723|0|POL|4,5|w|0
+G|9|3|212||HUY ADAMY, Pierre|0|1500|FRA|4|b|0
+P|201||DECUGIS, Christophe|1500|0|1537||4|125|FRA|0||1974
+G|1|4|115||Mund, Hauke|1788|0|FRA|8|b|0
+G|2|4|102||Perret, Xavier|0|1500|FRA|0|b|1
+G|3|4|226||Spurgeon, Brad|1462|0|FRA|0|w|1
+G|4|4|10||Habes, Khelil|0|1500|ALG|5|b|0
+G|5|4|93||Guignard, Frederic|0|1500|FRA|2,5|w|1
+G|6|4|239||Sabat, Anna|1546|0|POL|5|b|0
+G|7|4|52||Allan, David|0|1500|FRA|4|w|0
+G|9|4|213||DUPLA, Marc|0|1500|FRA|5|w|1
+P|202||PUROHIT, Sachin|1500|0|1508||2,5|156|FRA|0||1993
+G|1|3|162||Guerlach, Frederic|1951|0|FRA|5|b|0
+G|2|3|238||Kowal, Cezary|1723|0|POL|4,5|b|0
+G|3|3|222||Hinkel, Kira|1612|0|BEL|5|w|0
+G|4|3|87||VETO, Celestin|0|1500|FRA|4|b|0
+G|5|3|101||Droin, Franck|1902|0|FRA|5|w|½
+G|6|3|235||BEAUCAIRE, Charles|0|1500|FRA|2|w|0
+G|7|3|227||GIRARD, Xavier|0|1500|FRA|2|b|1
+G|8|3|173||Bonnet, Francois|1662|0|FRA|2|b|1
+G|9|3|49||Leopardo, Julien|1718|0|FRA|6|w|0
+P|203||MUKTUBAYEVA, Dina|1500|0|1705||7|17|POL|0|545042845|1999
+G|1|4|163||Simonnet, Raphael|1629|0|FRA|2,5|w|0
+G|2|4|239||Sabat, Anna|1546|0|POL|5|w|1
+G|3|4|223||Bressers, Effie|0|1500|BEL|1|b|1
+G|4|4|229||MUZARD, Pierre-Yves|0|1500|FRA|2,5|w|1
+G|5|4|103||DROIN, Sebastien|0|1500|FRA|1||
+G|6|4|233||Remtoula, Naushad|1461|0|FRA|3|b|0
+G|7|4|226||Spurgeon, Brad|1462|0|FRA|0|w|1
+G|8|4|217||Auneveux, Nicolas|0|1500|FRA|0|w|1
+G|9|4|93||Guignard, Frederic|0|1500|FRA|2,5|b|1
+P|204|GM|Maurizzi, Marcandria|0|2489|2625|17,1|7|18|FRA|0|36083534|2007
+G|1|1|174||Roux, Olivier|2080|0|FRA|3,5|w|1
+G|2|1|2|GM|Topalov, Veselin|2617|0|BUL|5|b|1
+G|3|1|65|GM|Dudin, Gleb|2484|0|HUN|4,5|b|1
+G|4|1|70|IM|Reimanis, Ritvars|2280|0|LAT|5|w|1
+G|5|1|30|CM|Croizier, Valery|2164|0|FRA|4,5|b|1
+G|6|1|57|IM|Droin, Augustin|2533|0|FRA|6|w|0
+G|7|1|138|GM|L'ami, Erwin|2640|0|NED|6,5|w|½
+G|8|1|124|GM|Fressinet, Laurent|2584|0|FRA|7|b|½
+G|9|1|193|IM|Barski, Radoslaw|2267|0|POL|4|b|1
+P|205|IM|Govciyan, Pavel|0|2375|2309|0,4|6,5|29|FRA|0|621838|1984
+G|1|2|177||ZEMMOUR, Zaki|1564|0|FRA|1,5|b|1
+G|2|2|3|GM|Rusev, Krasimir|2396|0|BUL|6,5|w|0
+G|3|2|68|IM|Reprintsev, Alexander|2292|0|UKR|1,5|w|1
+G|4|2|71||Kuhn, Patrick|2044|0|GER|4|b|1
+G|5|2|31||Venard, Paul-Andre|2075|0|FRA|4,5|w|1
+G|6|2|58||Makke, Laurent|2136|0|FRA|4|b|1
+G|7|2|139|GM|Brynell, Stellan|2343|0|SWE|3,5|b|1
+G|8|2|125|FM|Dalaud, Dorian|2323|0|FRA|6,5|w|0
+G|9|2|194||Galuszka, Tomasz|2112|0|POL|6,5|w|½
+P|206||De Carvalho Massabo, Raphael|0|2142|2095|-8,8|5|81|FRA|0|45108021|2007
+G|1|3|175||PELLERIN, Alexandre|0|1500|FRA|5|w|1
+G|2|3|4|FM|Mitev, Valentin|2282|0|BUL|6|b|1
+G|3|3|67|IM|Badelka, Olga|2238|0|AUT|7,5|b|0
+G|4|3|72||Kralj, Samo|1966|0|SLO|4,5|w|0
+G|5|3|32||Renault, Fabien|2004|0|FRA|5,5|b|½
+G|6|3|59|WFM|Arzur, Maia|2028|0|FRA|3|w|½
+G|7|3|140||Eklund, Joel|2184|0|SWE|2|w|½
+G|8|3|126|FM|Lux, Hugo De Melo|2236|0|BRA|4|b|½
+G|9|3|195||Fritz, Antoni|2032|0|POL|5,5|b|1
+P|207||Benezra, David|0|1561|1515|-0,8|1|189|FRA|0|26024810|1969
+G|1|4|176||MOLCARD, Theophile|0|1500|FRA|7|b|0
+G|2|4|5||Hristova, Ivelina|1987|0|BUL|4,5|w|0
+G|3|4|69||Bilunov, Denis B.|1953|0|CZE|3,5|w|0
+G|4|4|73||Maguire, Tallann|1643|0|IRL|4|b|0
+G|5|4|33||Charbit, Florent|1916|0|FRA|6,5|w|0
+G|6|4|60||Boulnois, Boris|1882|0|FRA|3,5|b|1
+G|7|4|141||Sigeman, Johan|1975|0|SWE|6,5|b|0
+G|8|4|127||Destic, Elena|1998|0|FRA|3|w|0
+G|9|4|196||Moscicka, Pola|1937|0|POL|7|w|0
+P|208||CASTANO, Nicolas|1500|0|865||0|209|FRA|0||1997
+G|1|4|213||DUPLA, Marc|0|1500|FRA|5|b|0
+G|2|4|192||Veskoukis, Konstantinos|1833|0|GRE|6,5|b|0
+G|3|4|176||MOLCARD, Theophile|0|1500|FRA|7|w|0
+G|4|4|115||Mund, Hauke|1788|0|FRA|8|w|0
+G|5|4|52||Allan, David|0|1500|FRA|4|b|0
+G|6|4|164||Oupindrin, Timothy|1875|0|FRA|2,5|w|0
+G|7|4|19||De Moor, Jeroen|0|1500|NED|5,5|b|0
+G|8|4|79||Hakimzadeh, Karim|1912|0|ENG|7|b|0
+G|9|4|137||Kunchenko, Oleksandr|1580|0|LUX|3|w|0
+P|209||MADRANGE, Giullaume|1500|0|1828||1|207|FRA|0||1975
+G|1|1|121|FM|Brailly-Vignal, Bastien|2325|0|FRA|5,5|b|0
+G|3|1|172||Akl, Nabil|2097|0|FRA|7|w|0
+G|4|1|142||Ibazizen, Abdelatif|1948|0|FRA|2|w|1
+G|6|1|26|FM|Toulzac, Pierre-Yves|2263|0|FRA|4,5|b|0
+G|7|1|135||Petrolo, Mauro|1918|0|ITA|4|w|0
+G|8|1|147|GM|Moussard, Jules|2605|0|FRA|8,5|b|0
+G|9|1|197||Beaudoire, Gregoire|1801|0|FRA|3,5|w|0
+P|210||SALINGUE, Guillaume|1500|0|1635||1|216|FRA|0|26069148|2000
+G|1|2|122||Trabet, Nicolas|2126|0|FRA|6|w|0
+G|4|2|143||Marty, Jean-Yves|1911|0|FRA|4,5|b|0
+G|5|1|156||Demko, Thomas|1616|0|FRA|1|b|1
+G|6|2|27||Devecchi, Jorge|2009|0|FRA|6,5|w|0
+G|7|2|225|WFM|Farhat Willemstein, Stela Souza|1842|0|BRA|2|b|0
+G|8|2|148|AIM|Dimitriadis, Alexandros|1941|0|GRE|4,5|w|0
+P|211||BERNARD, Adrien|1500|0|893||0|227|FRA|0|26001713|1995
+G|3|2|215||Roux, Jean-Luc|1866|0|FRA|4,5|b|0
+G|4|3|144||Quemener, Yann|1761|0|FRA|5,5|w|0
+G|5|2|157||Genestier, David|0|1500|FRA|2,5|w|0
+G|6|3|28||Geujon, Jean-Charles|1826|0|FRA|5|b|0
+G|8|3|149||NUTHMANN, Thomas|0|1500|FRA|1,5|b|0
+G|9|2|198||Socko, Szymon|1705|0|POL|4|b|0
+P|212||HUY ADAMY, Pierre|1500|0|1743||4|149|FRA|0||1996
+G|1|3|123||Marmey, Cedric|1886|0|FRA|4,5|b|0
+G|3|3|173||Bonnet, Francois|1662|0|FRA|2|w|1
+G|4|4|146||LARIVAIN, Laurent|0|1500|FRA|1|b|1
+G|5|3|158||Pascal, Guillaume|0|1500|FRA|1|b|1
+G|7|3|136||Pendaries-Issaurat, Philippe|1658|0|FRA|3|w|0
+G|9|3|200||Textoris, Pierre|0|1500|FRA|0|w|1
+P|213||DUPLA, Marc|1500|0|1693||5|111|FRA|0||1976
+G|1|4|208||CASTANO, Nicolas|0|1500|FRA|0|w|1
+G|3|4|217||Auneveux, Nicolas|0|1500|FRA|0|b|1
+G|5|4|159||Ricome, Juliette|0|1500|FRA|3|w|1
+G|6|4|29||Nguyen, Gael|1668|0|FRA|3,5|w|0
+G|7|4|137||Kunchenko, Oleksandr|1580|0|LUX|3|b|1
+G|8|4|150||DE LUCCA, Enrico|0|1500|FRA|2|w|1
+G|9|4|201||DECUGIS, Christophe|0|1500|FRA|4|b|0
+P|214||WANG, Cedric|1500|0|1599||1|220|FRA|0||2002
+G|1|3|191||Alexakis, Georgios|2166|0|GRE|5,5|b|0
+G|2|3|234||BLEVINAL, Victor|0|1500|FRA|2,5|w|0
+G|3|3|72||Kralj, Samo|1966|0|SLO|4,5|b|0
+G|4|3|55||Faure, Lionel|1845|0|FRA|2,5|w|1
+G|7|3|49||Leopardo, Julien|1718|0|FRA|6|w|0
+P|215||Roux, Jean-Luc|0|1866|1746|-30,4|4,5|103|FRA|0|636835|1953
+G|1|2|180|WGM|Zawadzka, Jolanta|2224|0|POL|4,5|w|0
+G|2|2|117||Strand, Hakan|1595|0|FRA|4|b|0
+G|3|2|211||BERNARD, Adrien|0|1500|FRA|0|w|1
+G|4|2|27||Devecchi, Jorge|2009|0|FRA|6,5|w|0
+G|5|2|54||Maugenest, Matthieu|1951|0|FRA|6|b|0
+G|6|2|86||GOTTY, Jerome|0|1500|FRA|2|b|1
+G|7|2|23||Gujran, Krithik|1693|0|NED|1|w|1
+G|8|2|75||Heather, James|1739|0|ENG|3,5|b|½
+G|9|2|234||BLEVINAL, Victor|0|1500|FRA|2,5|b|1
+P|216||Costes, Arthur|0|1513|1308|-14,6|0,5|233|FRA|0|651092832|2000
+G|5|4|56||Lapeyrere, Paul|1737|0|FRA|3|b|0
+G|6|4|229||MUZARD, Pierre-Yves|0|1500|FRA|2,5|b|½
+G|7|4|25||Swidurski, Julien|1507|0|FRA|5|w|0
+P|217||Auneveux, Nicolas|1500|0|788||0|228|FRA|0|652093603|1957
+G|1|4|183|CM|Jankowiak, Tomasz|1991|0|POL|9|w|0
+G|2|4|119||Fuster, Jean Baptiste|1408|0|FRA|3|b|0
+G|3|4|213||DUPLA, Marc|0|1500|FRA|5|w|0
+G|4|4|29||Nguyen, Gael|1668|0|FRA|3,5|w|0
+G|8|4|203||MUKTUBAYEVA, Dina|0|1500|POL|7|b|0
+G|9|4|233||Remtoula, Naushad|1461|0|FRA|3|b|0
+P|218|IM|Dionisi, Thomas|0|2390|2302|-1,5|3|193|FRA|0|651893|1993
+G|1|2|20||Quintana Hernandez, Marcos Ivan|1913|0|MEX|2|w|1
+G|2|2|161||Nemirovski, Laurent|2024|0|FRA|4,5|b|1
+G|3|2|130||Grigorian, Roudolph|2101|0|FRA|6|w|1
+G|4|2|169|IM|Skytte, Rasmus|2398|0|DEN|4,5|b|0
+P|219||Bertram, Johannes|0|1915|1961|23|4,5|110|GER|0|24630985|1978
+G|1|1|104|GM|Urkedal, Frode Olav Olsen|2512|0|NOR|6|w|0
+G|2|1|26|FM|Toulzac, Pierre-Yves|2263|0|FRA|4,5|w|½
+G|3|1|74||Castro Ros, Alejandro|1821|0|FRA|2|b|1
+G|4|1|134||Ilecki, Wojciech|2101|0|POL|2|b|½
+G|5|1|22||Van Hees, Pepijn|1730|0|NED|0|w|1
+G|6|1|155||Goujon, Antoine|1903|0|FRA|1|b|1
+G|7|1|228||Steinle, Thibaud|2009|0|FRA|5|b|½
+G|8|1|44||Ridel, Fabien|1809|0|FRA|1|w|0
+G|9|1|91||MONTANDON, Francois|0|1500|FRA|1|b|0
+P|221||Sola, Alessandro|0|1733|1761|4,6|4|118|BEL|0|271268|1992
+G|1|2|105|CM|Guttulsrud, Odd Martin|2184|0|NOR|6|b|0
+G|2|2|27||Devecchi, Jorge|2009|0|FRA|6,5|b|0
+G|3|2|75||Heather, James|1739|0|ENG|3,5|w|1
+G|4|2|135||Petrolo, Mauro|1918|0|ITA|4|w|0
+G|5|2|23||Gujran, Krithik|1693|0|NED|1|b|1
+G|6|2|157||Genestier, David|0|1500|FRA|2,5|w|½
+G|7|2|96||Le Marquer, Pierre|1933|0|FRA|6,5|w|0
+G|8|2|45||De Temmerman, Paul|1757|0|FRA|3,5|b|½
+G|9|2|90||FAURE, Eric|0|1500|FRA|1|w|1
+P|222||Hinkel, Kira|0|1612|1723|-16|5|71|BEL|0|276782|1988
+G|1|3|106|WGM|Khalafova, Narmin|2133|0|AZE|3,5|w|0
+G|2|3|28||Geujon, Jean-Charles|1826|0|FRA|5|w|1
+G|3|3|202||PUROHIT, Sachin|0|1500|FRA|2,5|b|1
+G|4|3|225|WFM|Farhat Willemstein, Stela Souza|1842|0|BRA|2|b|0
+G|5|3|24||Liyanage, Nuwan|1607|0|NED|5|w|0
+G|6|3|158||Pascal, Guillaume|0|1500|FRA|1|b|1
+G|7|3|97||Benkaci, Massin|1709|0|FRA|5|b|0
+G|8|3|46||Ferreira, Isaque|0|1500|FRA|3|w|1
+G|9|3|92||BOUHADJAR, Amine|0|1500|FRA|1|b|1
+P|223||Bressers, Effie|1500|0|1221||1|190|BEL|0|548005762|1984
+G|1|4|107||Kyrkjebo, Hanna B.|1897|0|NOR|6|b|0
+G|2|4|29||Nguyen, Gael|1668|0|FRA|3,5|b|0
+G|3|4|203||MUKTUBAYEVA, Dina|0|1500|POL|7|w|0
+G|4|4|137||Kunchenko, Oleksandr|1580|0|LUX|3|w|0
+G|5|4|25||Swidurski, Julien|1507|0|FRA|5|b|0
+G|6|4|159||Ricome, Juliette|0|1500|FRA|3|w|0
+G|7|4|98||CHHUN, Labo|0|1500|FRA|0|w|1
+G|8|4|242||Rodrigues Miguel, Luca|0|1500|FRA|8|b|0
+G|9|4|224||HERNOT, Emilie|0|1500|FRA|3,5|w|0
+P|224||HERNOT, Emilie|1500|0|1459||3,5|141|FRA|0||1976
+G|2|4|132||Vaissaire, Michel|1606|0|FRA|3|w|0
+G|3|4|95||GLYNN, Laurence|0|1500|FRA|2|w|0
+G|4|4|159||Ricome, Juliette|0|1500|FRA|3|b|0
+G|5|4|227||GIRARD, Xavier|0|1500|FRA|2|b|0
+G|6|4|93||Guignard, Frederic|0|1500|FRA|2,5|w|½
+G|7|4|229||MUZARD, Pierre-Yves|0|1500|FRA|2,5|w|1
+G|8|4|119||Fuster, Jean Baptiste|1408|0|FRA|3|b|1
+G|9|4|223||Bressers, Effie|0|1500|BEL|1|b|1
+P|225|WFM|Farhat Willemstein, Stela Souza|0|1842|1610|-15,6|2|185|BRA|0|2109808|1982
+G|2|3|175||PELLERIN, Alexandre|0|1500|FRA|5|w|0
+G|3|2|86||GOTTY, Jerome|0|1500|FRA|2|w|0
+G|4|3|222||Hinkel, Kira|1612|0|BEL|5|w|1
+G|5|2|78|CM|Hassabis, Demis|2182|0|ENG|5,5|b|0
+G|6|3|195||Fritz, Antoni|2032|0|POL|5,5|b|0
+G|7|2|210||SALINGUE, Guillaume|0|1500|FRA|1|w|1
+G|8|3|111|FM|Moingt, Jean-Claude|2049|0|FRA|1|w|0
+P|226||Spurgeon, Brad|0|1462|740|-8|0|231|FRA|0|20681119|1957
+G|1|4|154||Fuchs, Louison|1698|0|FRA|3|w|0
+G|2|4|146||LARIVAIN, Laurent|0|1500|FRA|1|b|0
+G|3|4|201||DECUGIS, Christophe|0|1500|FRA|4|b|0
+G|7|4|203||MUKTUBAYEVA, Dina|0|1500|POL|7|b|0
+G|8|4|229||MUZARD, Pierre-Yves|0|1500|FRA|2,5|b|0
+P|227||GIRARD, Xavier|1500|0|1500||2|212|FRA|0||1981
+G|5|4|224||HERNOT, Emilie|0|1500|FRA|3,5|w|1
+G|6|4|176||MOLCARD, Theophile|0|1500|FRA|7|w|0
+G|7|3|202||PUROHIT, Sachin|0|1500|FRA|2,5|w|0
+G|9|4|158||Pascal, Guillaume|0|1500|FRA|1|w|1
+P|228||Steinle, Thibaud|0|2009|2157|23,4|5|78|FRA|0|631027|1986
+G|1|1|39|IM|Meinhardt, Maximilian Dr.|2384|0|GER|4|w|0
+G|2|1|155||Goujon, Antoine|1903|0|FRA|1|b|1
+G|3|1|116||Guy, Ange|1834|0|FRA|3|w|1
+G|4|1|108|GM|Degraeve, Jean-Marc|2430|0|FRA|5|w|½
+G|5|1|147|GM|Moussard, Jules|2605|0|FRA|8,5|b|0
+G|6|1|22||Van Hees, Pepijn|1730|0|NED|0|b|1
+G|7|1|219||Bertram, Johannes|1915|0|GER|4,5|w|½
+G|8|1|53||Maleki, Nicolas|2005|0|FRA|0,5|w|1
+G|9|1|151|IM|Alexieva, Silvia|2218|0|FRA|6|b|0
+P|229||MUZARD, Pierre-Yves|1500|0|1441||2,5|173|FRA|0||1976
+G|1|4|187||Blanchard, Paul|1838|0|FRA|3|w|0
+G|3|4|137||Kunchenko, Oleksandr|1580|0|LUX|3|b|0
+G|4|4|203||MUKTUBAYEVA, Dina|0|1500|POL|7|b|0
+G|6|4|216||Costes, Arthur|1513|0|FRA|0,5|w|½
+G|7|4|224||HERNOT, Emilie|0|1500|FRA|3,5|b|0
+G|8|4|226||Spurgeon, Brad|1462|0|FRA|0|w|1
+G|9|4|119||Fuster, Jean Baptiste|1408|0|FRA|3|w|1
+P|231||Dorofeev, Andrei|0|1513|1057|-29|0|221|FRA|0|551016010|1981
+G|1|2|71||Kuhn, Patrick|2044|0|GER|4|b|0
+G|2|2|13||Benaggoun, Khaled|1778|0|ALG|2,5|w|0
+G|4|2|148|AIM|Dimitriadis, Alexandros|1941|0|GRE|4,5|b|0
+G|5|2|117||Strand, Hakan|1595|0|FRA|4|w|0
+G|6|2|75||Heather, James|1739|0|ENG|3,5|w|0
+G|7|2|177||ZEMMOUR, Zaki|1564|0|FRA|1,5|b|0
+G|8|1|50|FM|Senlle Caride, Miguel|2336|0|ESP|6,5|w|0
+P|232||Dejean, Thomas|0|1655|1924|35,6|2|186|FRA|0|527047601|1984
+G|1|1|70|IM|Reimanis, Ritvars|2280|0|LAT|5|w|0
+G|2|1|11||Martine, Valentin|1860|0|FRA|5|b|0
+G|4|1|147|GM|Moussard, Jules|2605|0|FRA|8,5|w|0
+G|5|1|116||Guy, Ange|1834|0|FRA|3|b|1
+G|6|1|74||Castro Ros, Alejandro|1821|0|FRA|2|b|1
+G|7|1|174||Roux, Olivier|2080|0|FRA|3,5|w|0
+G|9|1|172||Akl, Nabil|2097|0|FRA|7|b|0
+P|233||Remtoula, Naushad|0|1461|1554|8,6|3|180|FRA|0|551060019|1984
+G|5|4|119||Fuster, Jean Baptiste|1408|0|FRA|3|w|1
+G|6|4|203||MUKTUBAYEVA, Dina|0|1500|POL|7|w|1
+G|7|4|176||MOLCARD, Theophile|0|1500|FRA|7|b|0
+G|8|4|95||GLYNN, Laurence|0|1500|FRA|2|b|0
+G|9|4|217||Auneveux, Nicolas|0|1500|FRA|0|w|1
+P|234||BLEVINAL, Victor|1500|0|1515||2,5|174|FRA|0|560031867|1994
+G|1|3|72||Kralj, Samo|1966|0|SLO|4,5|w|0
+G|2|3|214||WANG, Cedric|0|1500|FRA|1|b|1
+G|4|3|149||NUTHMANN, Thomas|0|1500|FRA|1,5|w|½
+G|5|3|118||Wyler, Luc|1490|0|FRA|1|b|1
+G|7|3|175||PELLERIN, Alexandre|0|1500|FRA|5|w|0
+G|8|2|94||AHMED, Wasim|0|1500|FRA|6|b|0
+G|9|2|215||Roux, Jean-Luc|1866|0|FRA|4,5|w|0
+P|235||BEAUCAIRE, Charles|1500|0|1426||2|196|FRA|0|560031859|1998
+G|1|4|73||Maguire, Tallann|1643|0|IRL|4|b|0
+G|2|4|89||PARRAUD, Guillaume|0|1500|FRA|5|w|0
+G|4|4|150||DE LUCCA, Enrico|0|1500|FRA|2|b|0
+G|6|3|202||PUROHIT, Sachin|0|1500|FRA|2,5|b|1
+G|8|3|52||Allan, David|0|1500|FRA|4|w|0
+G|9|3|173||Bonnet, Francois|1662|0|FRA|2|b|1
+P|236||Zurkowski, Andrzej|0|2054|2115|11,4|4,5|104|POL|0|1131303|1991
+G|1|1|34|GM|Sochacki, Christophe|2412|0|FRA|5,5|b|0
+G|2|1|74||Castro Ros, Alejandro|1821|0|FRA|2|w|1
+G|3|1|160|GM|Dourerassou, Jonathan|2480|0|FRA|5,5|b|0
+G|4|1|22||Van Hees, Pepijn|1730|0|NED|0|w|1
+G|5|1|61|FM|Wu, Christopher|2347|0|USA|4,5|w|0
+G|6|1|197||Beaudoire, Gregoire|1801|0|FRA|3,5|b|1
+G|7|1|151|IM|Alexieva, Silvia|2218|0|FRA|6|w|½
+G|8|1|142||Ibazizen, Abdelatif|1948|0|FRA|2|b|1
+G|9|1|70|IM|Reimanis, Ritvars|2280|0|LAT|5|w|0
+P|237||Szarwacki, Dominik|0|1869|1899|5,8|4|119|POL|0|1136364|1989
+G|1|2|36|FM|Ternault, Mathieu|2212|0|FRA|7|w|0
+G|2|2|75||Heather, James|1739|0|ENG|3,5|b|1
+G|3|2|161||Nemirovski, Laurent|2024|0|FRA|4,5|w|½
+G|4|2|23||Gujran, Krithik|1693|0|NED|1|b|1
+G|5|2|62||Machlik, Monika|2068|0|NOR|6,5|b|½
+G|6|2|198||Socko, Szymon|1705|0|POL|4|w|1
+G|7|2|152||Ciarletta, Iris|2086|0|FRA|6,5|b|0
+G|8|2|143||Marty, Jean-Yves|1911|0|FRA|4,5|w|0
+G|9|2|71||Kuhn, Patrick|2044|0|GER|4|b|0
+P|238||Kowal, Cezary|0|1723|1800|7,2|4,5|105|POL|0|1195417|1995
+G|1|3|38|WIM|De Seroux, Camille|2073|0|SUI|1|b|0
+G|2|3|202||PUROHIT, Sachin|0|1500|FRA|2,5|w|1
+G|3|3|162||Guerlach, Frederic|1951|0|FRA|5|b|0
+G|4|3|24||Liyanage, Nuwan|1607|0|NED|5|w|0
+G|5|3|63||Sundsbo, Sigve|1851|0|NOR|2|w|1
+G|6|3|200||Textoris, Pierre|0|1500|FRA|0|b|1
+G|7|3|153|WIM|Roumegous, Marina|1990|0|FRA|5,5|w|½
+G|8|3|144||Quemener, Yann|1761|0|FRA|5,5|b|0
+G|9|3|72||Kralj, Samo|1966|0|SLO|4,5|w|1
+P|239||Sabat, Anna|0|1546|1682|23|5|72|POL|0|1156330|1980
+G|1|4|37||Kirk, Eden|1932|0|FRA|3|w|0
+G|2|4|203||MUKTUBAYEVA, Dina|0|1500|POL|7|b|0
+G|3|4|163||Simonnet, Raphael|1629|0|FRA|2,5|w|0
+G|4|4|25||Swidurski, Julien|1507|0|FRA|5|b|1
+G|5|4|64||Kyrkjebo, Marte B.|1839|0|NOR|6|b|0
+G|6|4|201||DECUGIS, Christophe|0|1500|FRA|4|w|1
+G|7|4|154||Fuchs, Louison|1698|0|FRA|3|b|1
+G|8|4|145||BOUTELDJA, Brahim|0|1500|FRA|2|w|1
+G|9|4|73||Maguire, Tallann|1643|0|IRL|4|b|1
+P|240|CM|Kirszenberg, Marc|0|2062|2001|-11,2|2,5|184|FRA|0|601594|1964
+G|1|2|48||Boyer, Jean-Francois|1726|0|FRA|4|w|1
+G|2|2|66|IM|Matros, Alexander|2305|0|KAZ|5,5|b|0
+G|3|2|3|GM|Rusev, Krasimir|2396|0|BUL|6,5|b|0
+G|4|2|96||Le Marquer, Pierre|1933|0|FRA|6,5|w|1
+G|5|2|71||Kuhn, Patrick|2044|0|GER|4|w|0
+G|6|2|148|AIM|Dimitriadis, Alexandros|1941|0|GRE|4,5|b|½
+P|241||Marek, Yves|0|1973|2143|7,2|1|232|FRA|0|26007177|1963
+G|1|1|184|IM|Daulyte-Cornette, Deimante|2348|0|FRA|4,5|b|0
+G|2|1|9|CM|Martine, Jean-Christophe|1937|0|FRA|2,5|b|1
+P|242||Rodrigues Miguel, Luca|1500|0|1931||8|8|FRA|0|560029099|2000
+G|1|4|196||Moscicka, Pola|1937|0|POL|7|b|0
+G|2|4|0||Brett nicht besetzt,|0|0||0||
+G|3|4|150||DE LUCCA, Enrico|0|1500|FRA|2|w|1
+G|4|4|33||Charbit, Florent|1916|0|FRA|6,5|b|1
+G|5|4|145||BOUTELDJA, Brahim|0|1500|FRA|2|w|1
+G|6|4|103||DROIN, Sebastien|0|1500|FRA|1|w|1
+G|7|4|119||Fuster, Jean Baptiste|1408|0|FRA|3|b|1
+G|8|4|223||Bressers, Effie|0|1500|BEL|1|w|1
+G|9|4|89||PARRAUD, Guillaume|0|1500|FRA|5|b|1

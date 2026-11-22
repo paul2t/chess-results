@@ -17,26 +17,28 @@ test('basePath strips the tournament part and keeps the folder', () => {
 
 test('parsePath reads tab, team and round', () => {
   assert.equal(parsePath(B, B), null);
-  assert.deepEqual(parsePath(`${B}1542962`, B), { demo: false, tnr: 1542962, view: 'standings', snr: null, rd: null });
-  assert.deepEqual(parsePath(`${B}1542962/teams`, B), { demo: false, tnr: 1542962, view: 'teams', snr: null, rd: null });
-  assert.deepEqual(parsePath(`${B}1542962/teams/50`, B), { demo: false, tnr: 1542962, view: 'teams', snr: 50, rd: null });
-  assert.deepEqual(parsePath(`${B}1542962/team/50`, B), { demo: false, tnr: 1542962, view: 'teams', snr: 50, rd: null }); // earlier name
-  assert.deepEqual(parsePath(`${B}1542962/standings/`, B), { demo: false, tnr: 1542962, view: 'standings', snr: null, rd: null });
-  assert.deepEqual(parsePath(`${B}1542962/rounds/4`, B), { demo: false, tnr: 1542962, view: 'rounds', snr: null, rd: 4 });
-  assert.deepEqual(parsePath(`${B}demo/teams/45`, B), { demo: true, tnr: 0, view: 'teams', snr: 45, rd: null });
+  assert.deepEqual(parsePath(`${B}1542962`, B), { demo: false, tnr: 1542962, view: 'standings', snr: null, pno: null, rd: null });
+  assert.deepEqual(parsePath(`${B}1542962/teams`, B), { demo: false, tnr: 1542962, view: 'teams', snr: null, pno: null, rd: null });
+  assert.deepEqual(parsePath(`${B}1542962/teams/50`, B), { demo: false, tnr: 1542962, view: 'teams', snr: 50, pno: null, rd: null });
+  assert.deepEqual(parsePath(`${B}1542962/team/50`, B), { demo: false, tnr: 1542962, view: 'teams', snr: 50, pno: null, rd: null }); // earlier name
+  assert.deepEqual(parsePath(`${B}1542962/standings/`, B), { demo: false, tnr: 1542962, view: 'standings', snr: null, pno: null, rd: null });
+  assert.deepEqual(parsePath(`${B}1542962/players`, B), { demo: false, tnr: 1542962, view: 'players', snr: null, pno: null, rd: null });
+  assert.deepEqual(parsePath(`${B}1542962/players/138`, B), { demo: false, tnr: 1542962, view: 'players', snr: null, pno: 138, rd: null });
+  assert.deepEqual(parsePath(`${B}1542962/rounds/4`, B), { demo: false, tnr: 1542962, view: 'rounds', snr: null, pno: null, rd: 4 });
+  assert.deepEqual(parsePath(`${B}demo/teams/45`, B), { demo: true, tnr: 0, view: 'teams', snr: 45, pno: null, rd: null });
 });
 
 test('buildPath is the inverse of parsePath', () => {
-  for (const p of ['1542962/teams', '1542962/teams/50', '1542962/standings', '1542962/rounds', '1542962/rounds/4', 'demo/teams/45', 'demo/rounds/2']) {
+  for (const p of ['1542962/teams', '1542962/teams/50', '1542962/standings', '1542962/rounds', '1542962/rounds/4', '1542962/players', '1542962/players/138', 'demo/teams/45', 'demo/rounds/2']) {
     const r = parsePath(B + p, B)!;
     assert.equal(buildPath(r, B), B + p);
   }
 });
 
 test('old query links are understood', () => {
-  assert.deepEqual(parseLegacy('?t=1542962&view=team&show=50'), { demo: false, tnr: 1542962, view: 'teams', snr: 50, rd: null });
-  assert.deepEqual(parseLegacy('?t=1542962&view=rounds&rd=3&show=9'), { demo: false, tnr: 1542962, view: 'rounds', snr: null, rd: 3 });
-  assert.deepEqual(parseLegacy('?demo=1&view=standings'), { demo: true, tnr: 0, view: 'standings', snr: null, rd: null });
+  assert.deepEqual(parseLegacy('?t=1542962&view=team&show=50'), { demo: false, tnr: 1542962, view: 'teams', snr: 50, pno: null, rd: null });
+  assert.deepEqual(parseLegacy('?t=1542962&view=rounds&rd=3&show=9'), { demo: false, tnr: 1542962, view: 'rounds', snr: null, pno: null, rd: 3 });
+  assert.deepEqual(parseLegacy('?demo=1&view=standings'), { demo: true, tnr: 0, view: 'standings', snr: null, pno: null, rd: null });
   assert.equal(parseLegacy('?team=foo'), null);
   assert.equal(parseLegacy(''), null);
 });

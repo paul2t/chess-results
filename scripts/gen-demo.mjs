@@ -98,4 +98,44 @@ ${body}
     `<table class="CRs1">${comp}</table>${opp.length ? `<table class="CRs1">${opp.join('')}</table>` : ''}<h3>Board Pairings</h3><table class="CRs1">${pair.join('')}</table>`));
 }
 
+// ── players: starting list (art=16), every player's games (art=24, gives the card numbers), cards (art=9) ──
+{
+  const lines = read('players.txt');
+  const players = []; // { p: [...P fields], games: [[...G fields]] }
+  const list = [];
+  for (const l of lines) {
+    const c = l.slice(2).split('|');
+    if (l.startsWith('L|')) list.push(c);
+    else if (l.startsWith('P|')) players.push({ p: c, games: [] });
+    else if (l.startsWith('G|')) players[players.length - 1].games.push(c);
+  }
+  const tn = (fed) => `<div class="tn_${fed}"></div>`;
+  const listRows = list.map(([no, title, name, fide, ri, rn, fed, team, bo], i) =>
+    `<tr class="CRng${(i % 2) + 1} ${fed}"><td class="CRc">${no}</td><td class="CR">${tn(fed)}</td><td class="CR">${tn(fed)}</td><td class="CR">${title}</td><td class="CR">${esc(name)}</td>` +
+    `<td>${fide && fide !== '0' ? `<a href="http://ratings.fide.com/profile/${fide}" target="_blank">${fide}</a>` : ''}</td><td class="CRr">${ri}</td><td class="CRr">${rn}</td><td class="CR">${fed}</td><td class="CR">${esc(team)}</td><td class="CRc">${bo}</td></tr>`);
+  writeFileSync(`${OUT}/players.html`, page('Starting rank',
+    `<table class="CRs1"><tr class="CRng1b"><th class="CRc">No.</th><th class="CRc">&nbsp;</th><th class="CRc">&nbsp;</th><th class="CR"></th><th class="CR">Name</th><th class="CRr">FideID</th><th class="CRr">RtgI</th><th class="CRr">RtgN</th><th class="CR">FED</th><th class="CR">Team</th><th class="CRc">Bo.</th></tr>${listRows.join('')}</table>`));
+
+  const gameHead = (extra) => `<tr class="CRng1b"><th class="CRc">Rd.</th>${extra ? '<th class="CRc">Bo.</th>' : ''}<th class="CRc">SNo</th><th class="CR"></th><th class="CR">Name</th><th class="CRr">RtgI</th><th class="CRr">RtgN</th><th class="CR">FED</th><th class="CRc">Pts.</th><th class="CRc">Res.</th></tr>`;
+  const num = (x) => (x === '½' ? '&frac12;' : x);
+  const all = players.map(({ p, games }) => {
+    const [, title, name, rn, ri, perf, , , , fed] = p;
+    const rows = games.map(([rd, bo, sno, ot, on, ori, orn, of, op, col, res], i) =>
+      `<tr class="CRng${(i % 2) + 1}"><td class="CRc">${rd}</td><td class="CRc">${sno}</td><td class="CR">${ot}</td><td class="CR">${esc(on.replace(',', ''))}</td><td class="CRr">${ori}</td><td class="CRr">${orn}</td><td class="CR">${of}</td><td class="CRc">${op}</td><td class="CRc">${col === 'b' ? 's' : 'w'} ${num(res)}</td><td class="CRc">${bo}</td></tr>`);
+    return `<tr class="CRg1b"><td class="none" colspan="10">${esc(name.replace(',', ''))} ${title} ${ri !== '0' ? ri : rn} ${fed} Rp:${perf}</td></tr>${gameHead(false).replace('<th class="CRc">Res.</th>', '<th class="CRc">Res.</th><th class="CRc">Bo.</th>').replace('<th class="CRc">SNo</th>', '<th class="CRc">SNo</th>')}${rows.join('')}`;
+  });
+  writeFileSync(`${OUT}/player-numbers.html`, page('Player info', `<table class="CRs1">${all.join('')}</table>`));
+
+  for (const { p, games } of players) {
+    const [snr, title, name, rn, ri, perf, delta, pts, rank, fed, ident, fide, birth] = p;
+    const kv = [['Name', name], ['Title', title], ['Starting rank', snr], ['Rating national', rn], ['Rating international', ri], ['Performance rating', perf], ['FIDE rtg +/-', delta], ['Points', pts], ['Rank', rank], ['Federation', fed], ['Ident-Number', ident], ['Fide-ID', fide], ['Year of birth ', birth]]
+      .filter(([k, v]) => v !== '' || k === 'Name')
+      .map(([k, v]) => `<tr><td class="CR">${k}</td><td class="CR">${esc(v)}</td></tr>`).join('');
+    const rows = games.map(([rd, bo, sno, ot, on, ori, orn, of, op, col, res], i) =>
+      `<tr class="CRng${(i % 2) + 1}"><td class="CRc">${rd}</td><td class="CRc">${bo}</td><td class="CRc">${sno}</td><td class="CR">${ot}</td><td class="CR">${esc(on)}</td><td class="CRr">${ori}</td><td class="CRr">${orn}</td><td class="CR">${of}</td><td class="CRc">${op}</td><td class="CR"><table><tr><td><div class="${col === 'b' ? 'FarbesT' : 'FarbewT'}"></div></td><td class="CR">${num(res)}</td></tr></table></td></tr>`);
+    writeFileSync(`${OUT}/player-${snr}.html`, page('Player info',
+      `<img border="0" src="images/f90/tn_${fed}.gif" alt="Flag ${fed}"/><table Class="CRs1">${kv}</table>${games.length ? `<table class="CRs1">${gameHead(true)}${rows.join('')}</table>` : ''}`));
+  }
+}
+
 console.log('demo pages written to', OUT);

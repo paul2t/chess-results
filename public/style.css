@@ -204,3 +204,15 @@ a.icon { display: grid; place-items: center; text-decoration: none; }
 /* link to the same page on chess-results.com */
 .srclink { text-align: center; margin-top: 16px; }
 .srclink .link { display: inline-block; font-size: .85rem; font-weight: 500; }
+
+/* players */
+.trow.dim { opacity: .55; }
+.kv { display: flex; justify-content: space-between; align-items: baseline; gap: 12px; padding: 8px 0; border-bottom: 1px solid var(--line); font-size: .9rem; }
+.kv:first-child { padding-top: 0; }
+.kv:last-child { border-bottom: 0; padding-bottom: 0; }
+.kv span { color: var(--muted); }
+.kv b { font-weight: 600; text-align: right; overflow-wrap: anywhere; }
+.opps { display: grid; gap: 2px; }
+.opps .board { grid-template-columns: 18px 14px minmax(0, 1fr) auto; padding: 5px 0; }
+.opps .opplink { padding: 2px 0; text-align: left; }
+.board .who small { color: var(--muted); }

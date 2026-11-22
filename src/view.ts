@@ -1,6 +1,7 @@
 // Mobile-first viewer for chess-results.com team tournaments.
 //   /                          the dashboard: favorite tournaments + search (src/dashboard.ts)
-//   /<tnr>/team/<snr>          a tournament (tournament number), its Team tab on team number <snr>
+//   /<tnr>/teams/<snr>         a tournament (tournament number), its Teams tab on team number <snr>
+//   /<tnr>/players/<number>    the card of a player (the list is /<tnr>/players)
 //   /<tnr>/standings           /<tnr>/rounds/<round>      the other tabs (see src/route.ts)
 //   /demo/…                    the 2025 edition (real data, no network)      ?proxy=<url template with {url}>
 import { createDemoFetcher, createFetcher, pageUrl, type Fetcher } from './api';
@@ -11,10 +12,12 @@ import {
 } from './favs';
 import { flagOf } from './flags';
 import { t } from './i18n';
-import { loadSnapshot, loadTeamPage } from './loader';
+import { loadPlayerNumbers, loadPlayerPage, loadPlayers, loadSnapshot, loadTeamPage } from './loader';
 import { BASE, buildPath, extraQuery, parseLegacy, parsePath, type Route, type View } from './route';
-import { formatScore, isPlayed, normName, outcome, type Outcome } from './parse';
-import type { BoardGame, Snapshot, TeamMatch, TeamPage, TeamRow, Tournament } from './types';
+import { formatScore, isPlayed, normName, outcome, playerKey, ratingOf, type Outcome } from './parse';
+import type {
+  BoardGame, PlayerGame, PlayerNumbers, PlayerPage, PlayerRow, Snapshot, TeamMatch, TeamPage, TeamRow, Tournament,
+} from './types';
 
 interface Config { proxies: string[] }
 
@@ -35,6 +38,16 @@ const S = {
   pages: new Map<number, TeamPage>(),
   /** Pages fetched since the last refresh of the tournament (the others may be out of date). */
   fresh: new Set<number>(),
+  /** Players tab: the starting list, the card numbers, the cards opened (most recent last), the card on show. */
+  players: null as PlayerRow[] | null,
+  playersAt: 0,
+  numbers: null as PlayerNumbers | null,
+  cards: new Map<number, PlayerPage>(),
+  cardFresh: new Set<number>(),
+  viewPno: null as number | null,
+  /** Rows of the list whose card could not be found. */
+  noCard: new Set<number>(),
+  pfilter: '',
   open: new Set<string>(),
   filter: '',
   favTeams: [] as string[],
@@ -190,6 +203,8 @@ async function load(): Promise<void> {
       const page = await loadTeamPage(S.fetcher, S.tnr, S.viewSnr).catch(() => null);
       if (page) rememberPage(S.viewSnr, page);
     }
+    S.cardFresh.clear();
+    if (S.view === 'players') await fetchPlayersTab().catch(() => undefined); // the Players tab refreshes with the rest
     if (S.round === null) S.round = defaultRound(snap);
     persist(cacheKey(S.tnr), JSON.stringify(snap));
   } catch (e) {
@@ -248,12 +263,13 @@ async function openTeam(snr: number): Promise<void> {
 // round only rewrites the current one.
 function buildUrl(): string {
   const rd = S.view === 'rounds' && S.round !== null && (!S.snap || S.round !== defaultRound(S.snap)) ? S.round : null;
-  const path = buildPath({ demo: DEMO, tnr: S.tnr, view: S.view, snr: S.view === 'teams' ? S.viewSnr : null, rd });
+  const path = buildPath({ demo: DEMO, tnr: S.tnr, view: S.view, snr: S.view === 'teams' ? S.viewSnr : null, pno: S.view === 'players' ? S.viewPno : null, rd });
   return `${path}${extraQuery(location.search)}${location.hash}`;
 }
 
 function syncUrl(push = false): void {
   if (S.view === 'teams') persist(lastTeamKey(S.tnr), S.viewSnr === null ? '' : String(S.viewSnr));
+  if (S.view === 'players') persist(lastPlayerKey(S.tnr), S.viewPno === null ? '' : String(S.viewPno));
   const url = buildUrl();
   if (url === `${location.pathname}${location.search}${location.hash}`) return;
   try {
@@ -266,10 +282,12 @@ function applyUrl(): void {
   const r = parsePath(location.pathname);
   S.view = r?.view ?? 'standings';
   if (S.view === 'teams') S.viewSnr = r?.snr ?? null;
+  if (S.view === 'players') S.viewPno = r?.pno ?? null;
   if (S.view === 'rounds') S.round = r?.rd || (S.snap ? defaultRound(S.snap) : null);
   render();
   window.scrollTo(0, 0);
   if (S.view === 'teams' && S.viewSnr !== null) void ensureTeamPage(S.viewSnr);
+  if (S.view === 'players') void ensurePlayersTab();
 }
 
 function setView(v: View): void {
@@ -279,13 +297,14 @@ function setView(v: View): void {
   render();
   window.scrollTo(0, 0);
   if (v === 'teams' && S.viewSnr !== null) void ensureTeamPage(S.viewSnr);
+  if (v === 'players') void ensurePlayersTab();
 }
 
 // ───────────────────────────── rendering ─────────────────────────────
 
 function render(): void {
   const y = window.scrollY;
-  const view = S.view === 'standings' ? standingsView() : S.view === 'rounds' ? roundsView() : teamView();
+  const view = S.view === 'standings' ? standingsView() : S.view === 'rounds' ? roundsView() : S.view === 'players' ? playersView() : teamView();
   const b = banner();
   document.title = pageTitle();
   $app.replaceChildren(...[header(), b, h('main', null, view, S.snap ? originalLink() : null), nav()].filter((x): x is HTMLElement => x !== null));
@@ -299,6 +318,7 @@ function originalUrl(): string {
   const started = s?.home.kind === 'ranking';
   if (S.view === 'standings') return pageUrl(S.tnr, { art: started ? 1 : 0 });
   if (S.view === 'rounds') return pageUrl(S.tnr, { art: 2, rd: S.round ?? (s ? defaultRound(s) : 1) });
+  if (S.view === 'players') return S.viewPno !== null ? pageUrl(S.tnr, { art: 9, snr: S.viewPno }) : pageUrl(S.tnr, { art: 16, zeilen: 99999 });
   return S.viewSnr !== null ? pageUrl(S.tnr, { art: started ? 20 : 8, snr: S.viewSnr }) : pageUrl(S.tnr, {});
 }
 
@@ -312,6 +332,9 @@ function pageTitle(): string {
   const name = S.snap?.home.tournamentName;
   if (!name) return 'Chess results';
   const row = S.view === 'teams' && S.viewSnr !== null ? teamOf(S.viewSnr) : undefined;
+  const card = S.view === 'players' && S.viewPno !== null ? S.cards.get(S.viewPno) : undefined;
+  if (card) return `${natural(card.name)} – ${name}`;
+  if (S.view === 'players') return `${t('players')} – ${name}`;
   return row ? `${shortName(row.name)} – ${name}` : S.view === 'standings' ? `${t('standings')} – ${name}` : S.view === 'rounds' ? `${t('rounds')} – ${name}` : name;
 }
 
@@ -360,7 +383,7 @@ function banner(): HTMLElement | null {
 function nav(): HTMLElement {
   const item = (v: View, icon: string, text: string) =>
     h('button', { class: S.view === v ? 'on' : '', onclick: () => setView(v) }, h('span', { class: 'ico' }, icon), h('span', null, text));
-  return h('nav', { class: 'tabs' }, item('standings', '☰', t('standings')), item('teams', '♟', t('teams')), item('rounds', '⚑', t('rounds')));
+  return h('nav', { class: 'tabs' }, item('standings', '☰', t('standings')), item('teams', '♟', t('teams')), item('players', '♞', t('players')), item('rounds', '⚑', t('rounds')));
 }
 
 // ── team view ──
@@ -644,6 +667,211 @@ function roundsView(): HTMLElement {
     chips, body);
 }
 
+// ───────────────────────────── players ─────────────────────────────
+
+const playersKey = (tnr: number) => `cr:players:${tnr}`;
+const numbersKey = (tnr: number) => `cr:numbers:${tnr}`;
+const cardsKey = (tnr: number) => `cr:cards:${tnr}`;
+const lastPlayerKey = (tnr: number) => `cr:lastplayer:${tnr}`;
+/** The starting list and the card numbers hardly change: they are fetched again after this long. */
+const PLAYERS_TTL = 5 * 60_000;
+const MAX_CARDS = 8;
+
+const inflight = new Map<string, Promise<void>>();
+/** One request at a time per page, however many places ask for it. */
+function once(key: string, fn: () => Promise<void>): Promise<void> {
+  const running = inflight.get(key);
+  if (running) return running;
+  const p = fn().finally(() => inflight.delete(key));
+  inflight.set(key, p);
+  return p;
+}
+
+const listStale = (): boolean => Date.now() - S.playersAt > PLAYERS_TTL;
+const cardStale = (): boolean => S.viewPno !== null && !S.cardFresh.has(S.viewPno);
+
+/** Keeps a player's card (in memory, and on this device for when the wifi drops). */
+function rememberCard(snr: number, page: PlayerPage): void {
+  S.cards.delete(snr);
+  S.cards.set(snr, page);
+  S.cardFresh.add(snr);
+  while (S.cards.size > MAX_CARDS) S.cards.delete(S.cards.keys().next().value!);
+  persist(cardsKey(S.tnr), JSON.stringify([...S.cards]));
+}
+
+/** The requests behind the Players tab: the list, and the card on show. */
+async function fetchPlayersTab(): Promise<void> {
+  const f = S.fetcher;
+  if (!f) return;
+  const jobs: Promise<void>[] = [];
+  if (listStale()) {
+    jobs.push(once('list', async () => {
+      S.players = await loadPlayers(f, S.tnr);
+      S.playersAt = Date.now();
+      persist(playersKey(S.tnr), JSON.stringify(S.players));
+    }));
+  }
+  const pno = S.viewPno;
+  if (pno !== null && cardStale()) {
+    jobs.push(once(`card:${pno}`, async () => {
+      const page = await loadPlayerPage(f, S.tnr, pno);
+      if (page) rememberCard(pno, page);
+    }));
+  }
+  await Promise.all(jobs);
+}
+
+/** Like ensureTeamPage: shows the spinner while the Players tab loads, and what failed in the header. */
+async function ensurePlayersTab(): Promise<void> {
+  if (!S.fetcher || !(listStale() || cardStale())) return;
+  const alone = !S.loading;
+  S.loading = true;
+  render();
+  try {
+    await fetchPlayersTab();
+    S.error = '';
+  } catch (e) {
+    S.error = e instanceof Error ? e.message : String(e);
+  } finally {
+    if (alone) S.loading = false;
+    render();
+  }
+}
+
+/** The card number of a row of the list (the list itself does not say it): found by name, then by rating. */
+function cardNumberOf(row: PlayerRow): number | null {
+  const found = S.numbers?.[playerKey(row.name)];
+  if (!found?.length) return null;
+  return (found.find((x) => x.rating === ratingOf(row)) ?? found[0]!).snr;
+}
+
+let numbersAt = 0;
+
+/** Opens the card of a player picked in the list; the first time this fetches the numbers of all players. */
+async function openPlayerRow(row: PlayerRow): Promise<void> {
+  let snr = cardNumberOf(row);
+  const f = S.fetcher;
+  if (snr === null && f && Date.now() - numbersAt > PLAYERS_TTL) {
+    const alone = !S.loading;
+    S.loading = true;
+    render();
+    try {
+      const numbers = await once('numbers', async () => {
+        const n = await loadPlayerNumbers(f, S.tnr);
+        if (Object.keys(n).length) { S.numbers = n; persist(numbersKey(S.tnr), JSON.stringify(n)); }
+      }).then(() => S.numbers);
+      numbersAt = Date.now();
+      S.error = '';
+      snr = numbers ? cardNumberOf(row) : null;
+    } catch (e) {
+      S.error = e instanceof Error ? e.message : String(e);
+    } finally {
+      if (alone) S.loading = false;
+      render();
+    }
+  }
+  if (snr === null) {
+    if (!S.error) { S.noCard.add(row.no); render(); }
+    return;
+  }
+  await openPlayer(snr);
+}
+
+async function openPlayer(snr: number): Promise<void> {
+  // as for teams: from the list or another tab this is a new page, from another card it replaces that card
+  const switching = S.view === 'players' && S.viewPno !== null;
+  S.viewPno = snr;
+  S.view = 'players';
+  syncUrl(!switching);
+  render();
+  window.scrollTo(0, 0);
+  await ensurePlayersTab();
+}
+
+function showPlayerList(): void {
+  S.viewPno = null;
+  syncUrl(true);
+  render();
+  window.scrollTo(0, 0);
+  void ensurePlayersTab();
+}
+
+function playersView(): HTMLElement {
+  return S.viewPno === null ? playerList() : playerCard(S.viewPno);
+}
+
+function playerList(): HTMLElement {
+  const rows = S.players;
+  if (!rows?.length) return h('p', { class: 'empty' }, !rows && S.loading ? t('loading') : t('noData'));
+  const search = h('input', {
+    type: 'search', placeholder: t('searchPlayers'), value: S.pfilter, autocomplete: 'off',
+    oninput: (e: Event) => {
+      S.pfilter = (e.target as HTMLInputElement).value;
+      document.getElementById('plist')?.replaceWith(buildRows());
+    },
+  });
+  function buildRows(): HTMLElement {
+    const q = normName(S.pfilter);
+    const shown = q ? rows!.filter((r) => normName(`${r.title} ${r.name} ${r.team} ${r.fed}`).includes(q)) : rows!;
+    return h('div', { class: 'tlist', id: 'plist' }, ...shown.map((r) => {
+      const missing = S.noCard.has(r.no);
+      return h('div', { class: `trow ${missing ? 'dim' : ''}` },
+        h('button', { class: 'tpick', disabled: missing, onclick: () => void openPlayerRow(r) },
+          h('span', { class: 'rk' }, r.no),
+          h('span', { class: 'tn' },
+            h('b', null, r.title ? h('em', null, `${r.title} `) : null, natural(r.name)),
+            h('small', null, missing ? t('playerNoCard') : [flagOf(r.fed), r.team, r.board ? `${t('board')} ${r.board}` : ''].filter(Boolean).join(' · '))),
+          h('span', { class: 'pts2' }, h('b', null, ratingOf(r) || '–'))));
+    }));
+  }
+  return h('div', { class: 'stack' }, pageHead(t('players'), `${rows.length}`), h('div', null, search, buildRows()));
+}
+
+function gameRow(g: PlayerGame): HTMLElement {
+  const o = g.result === null ? null : outcome(g.result, 1 - g.result);
+  const rating = ratingOf({ ratingI: g.oppRatingI, ratingN: g.oppRatingN });
+  const name = g.oppName && !/^bye$/i.test(g.oppName) ? natural(g.oppName) : t('bye');
+  return h('div', { class: 'board' },
+    h('span', { class: 'bo' }, g.round),
+    h('span', { class: `sq ${g.color ?? ''}`, title: g.color === 'w' ? t('white') : g.color === 'b' ? t('black') : '' }),
+    h('span', { class: 'who' },
+      g.oppTitle ? h('em', null, `${g.oppTitle} `) : null,
+      g.oppSnr ? h('button', { class: 'opplink', onclick: () => void openPlayer(g.oppSnr) }, name) : name,
+      rating ? h('small', null, ` ${rating}`) : null,
+      g.oppFed ? h('small', null, ` ${flagOf(g.oppFed)}`) : null),
+    h('span', { class: `pill sm ${outcomeClass(o)}` },
+      g.result === null ? '·' : `${formatScore(g.result)}${g.forfeit ? ` (${t('forfeit')})` : ''}`));
+}
+
+function playerCard(pno: number): HTMLElement {
+  const bar = h('div', { class: 'chips tswitch' },
+    h('button', { class: 'tchip all', onclick: showPlayerList }, `‹ ${t('allPlayers')}`));
+  const page = S.cards.get(pno);
+  if (!page) return h('div', { class: 'stack' }, bar, h('p', { class: 'empty' }, S.loading ? t('loading') : t('noData')));
+  const row = S.players?.find((r) => playerKey(r.name) === playerKey(page.name));
+  const teamRow = row ? S.snap?.home.teams.find((x) => sameName(x.name, row.team)) : undefined;
+  const played = page.games.filter((g) => g.result !== null).length;
+  const stat = (k: string, v: string | number) => h('div', { class: 'stat' }, h('b', null, v), h('span', null, k));
+  const kv = (k: string, v: Kid): HTMLElement | null =>
+    v === null || v === '' || v === undefined || v === false ? null : h('div', { class: 'kv' }, h('span', null, k), h('b', null, v));
+  const hero = h('section', { class: 'card hero' },
+    pageHead(`${page.title ? `${page.title} ` : ''}${natural(page.name)}`, [flagOf(page.fed), row?.team ?? ''].filter(Boolean).join(' · ')),
+    h('div', { class: 'stats' },
+      stat(t('rating'), ratingOf(page) || '–'), stat(t('perf'), page.perf ?? '–'),
+      stat(t('points'), page.points === null ? '–' : `${formatScore(page.points)}/${played}`), stat(t('rank'), page.rank ?? '–')));
+  const details = [
+    kv(t('teamLabel'), teamRow ? h('button', { class: 'opplink', onclick: () => void openTeam(teamRow.snr) }, shortName(teamRow.name)) : row?.team),
+    kv(t('board'), row?.board),
+    kv(t('ratingChange'), page.ratingChange),
+    kv(t('fideId'), page.fideId ? h('a', { class: 'opplink', href: `https://ratings.fide.com/profile/${page.fideId}`, target: '_blank', rel: 'noopener noreferrer' }, page.fideId) : ''),
+    kv(t('born'), page.birth),
+    kv(t('startNo'), page.snr),
+  ].filter((x): x is HTMLElement => x !== null);
+  return h('div', { class: 'stack' }, bar, hero,
+    details.length ? h('section', { class: 'card' }, ...details) : null,
+    page.games.length ? h('section', { class: 'card' }, h('h3', null, t('opponents')), h('div', { class: 'opps' }, ...page.games.map(gameRow))) : null);
+}
+
 // ───────────────────────────── settings ─────────────────────────────
 
 function openSettings(): void {
@@ -718,11 +946,20 @@ async function boot(): Promise<void> {
   }
   // Position from the address: the team being viewed and the selected round
   S.viewSnr = ROUTE.view === 'teams' ? ROUTE.snr : DEMO ? null : asInt(store.get(lastTeamKey(S.tnr))) || null;
+  S.viewPno = ROUTE.view === 'players' ? ROUTE.pno : DEMO ? null : asInt(store.get(lastPlayerKey(S.tnr))) || null;
+  if (!DEMO) { // what the Players tab showed last time, until it is fetched again
+    try { S.players = JSON.parse(store.get(playersKey(S.tnr)) ?? 'null') as PlayerRow[] | null; } catch { /* ignore corrupt cache */ }
+    try { S.numbers = JSON.parse(store.get(numbersKey(S.tnr)) ?? 'null') as PlayerNumbers | null; } catch { /* ignore corrupt cache */ }
+    try {
+      for (const [snr, card] of JSON.parse(store.get(cardsKey(S.tnr)) ?? '[]') as [number, PlayerPage][]) S.cards.set(snr, card);
+    } catch { /* ignore corrupt cache */ }
+  }
   if (ROUTE.rd && S.view === 'rounds') S.round = ROUTE.rd;
   syncUrl(); // an old ?t=… link becomes /<tnr>/…
   window.addEventListener('popstate', applyUrl);
   render();
-  await load();
+  const tab = S.view === 'players' ? ensurePlayersTab() : Promise.resolve(); // independent of the tournament page
+  await Promise.all([load(), tab]);
 
   setInterval(() => {
     if (!S.auto || document.visibilityState !== 'visible' || (S.snap && isFinished(S.snap))) return;

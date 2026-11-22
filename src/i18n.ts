@@ -1,4 +1,7 @@
 const en = {
+  players: 'Players', allPlayers: 'All players', searchPlayers: 'Find a player…', opponents: 'Opponents', rating: 'Rating',
+  perf: 'Perf.', points: 'Points', teamLabel: 'Team', fideId: 'FIDE ID', born: 'Born', ratingChange: 'Rtg ±', startNo: 'Number',
+  playerNoCard: 'No card for this player', board: 'Board',
   teams: 'Teams', standings: 'Standings', rounds: 'Rounds', settings: 'Settings',
   refresh: 'Refresh', updated: 'Refreshed here', source: 'Uploaded to chess-results',
   rank: 'Rank', seed: 'Seed', mp: 'Match pts', gp: 'Game pts', record: 'W-D-L',
@@ -30,6 +33,9 @@ const en = {
 };
 
 const fr: typeof en = {
+  players: 'Joueurs', allPlayers: 'Tous les joueurs', searchPlayers: 'Chercher un joueur…', opponents: 'Adversaires', rating: 'Elo',
+  perf: 'Perf.', points: 'Points', teamLabel: 'Équipe', fideId: 'ID FIDE', born: 'Né en', ratingChange: 'Elo ±', startNo: 'Numéro',
+  playerNoCard: 'Pas de fiche pour ce joueur', board: 'Échiquier',
   teams: 'Équipes', standings: 'Classement', rounds: 'Rondes', settings: 'Réglages',
   refresh: 'Actualiser', updated: 'Actualisé ici', source: 'mis en ligne sur chess-results',
   rank: 'Rang', seed: 'Tête de série', mp: 'Pts match', gp: 'Pts parties', record: 'G-N-P',

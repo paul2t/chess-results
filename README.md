@@ -34,6 +34,8 @@ The home page is a dashboard, not a fixed tournament:
 | `/chess-results/1542962/standings` | The standings |
 | `/chess-results/1542962/teams` | The list of teams |
 | `/chess-results/1542962/teams/50` | The page of team number 50 in that tournament |
+| `/chess-results/1542962/players` | All players, highest rating first |
+| `/chess-results/1542962/players/138` | The card of the player with number 138: details and opponents |
 | `/chess-results/1542962/rounds/4` | Round 4 (`/rounds` alone: the latest round) |
 | `/chess-results/demo/standings` | Full 2025 edition (real data, no network) to see what a finished event looks like; `demo` replaces the tournament number |
 
@@ -43,11 +45,14 @@ GitHub Pages has no server-side routing, so these paths are answered with `404.h
 
 Tabs: **Standings** (the default), **Teams** (the list of teams, and the page of one team: rank, match/game points,
 next or live match, line-up with per-round results, every match with board-by-board colours, ratings and results; tap an
-opponent's name to open that team, *‹ All teams* goes back to the list), **Rounds** (all pairings, tap a team to open it). `‹`
+opponent's name to open that team, *‹ All teams* goes back to the list), **Players** (every player by rating with flag, team and board; search by name, team or country; tap one for the card: rating, performance, points, FIDE ID and one line per round with the opponent, colour and result, each opponent opening that player), **Rounds** (all pairings, tap a team to open it). `‹`
 goes back to the dashboard, where you pick (or paste a link to) another tournament; the ⚙ menu holds auto-refresh and the proxy.
 The demo is on the dashboard's ⚙ menu.
 Every tab ends with *Open on chess-results.com ↗*, the same page (team, standings, round) on the original site;
 the ⚙ menu links the tournament's home page.
+The starting list of players does not say which card number a player has, so the first time you open a card from the list the app
+fetches chess-results' page with every player's games (`art=24`, large) once and reads the numbers from the opponents; it is kept
+on the device. A player who has not played yet has no number there and shows as "No card for this player".
 Tapping a team anywhere opens its page. The page refreshes on load, with the ↻ button, and every 60 s while
 visible; the last data is cached so it still shows something when the venue wifi drops.
 
