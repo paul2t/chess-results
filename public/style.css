@@ -27,7 +27,7 @@ em { font-style: normal; color: var(--accent); font-weight: 600; font-size: .85e
 
 /* header */
 .top {
-  position: sticky; top: 0; z-index: 5; display: flex; align-items: center; gap: 4px;
+  display: flex; align-items: center; gap: 4px;
   padding: calc(8px + env(safe-area-inset-top)) 8px 8px 14px; background: var(--brand); color: #fff;
 }
 .top .title { flex: 1; min-width: 0; }
@@ -48,7 +48,7 @@ em { font-style: normal; color: var(--accent); font-weight: 600; font-size: .85e
 @keyframes spin { to { transform: rotate(360deg); } }
 
 /* banners */
-.banners { position: sticky; top: calc(60px + env(safe-area-inset-top)); z-index: 4; }
+.banners { position: relative; }
 .banner { display: flex; flex-wrap: wrap; gap: 4px 12px; align-items: center; padding: 8px 14px; font-size: .85rem; }
 .banner small { flex-basis: 100%; }
 .banner.err { background: var(--loss-bg); color: var(--loss); }
