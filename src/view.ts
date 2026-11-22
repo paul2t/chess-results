@@ -512,7 +512,7 @@ function lineupCard(page: TeamPage, s: Snapshot): HTMLElement {
     h('span', { class: 'nm' }, p.title ? h('em', null, p.title + ' ') : null,
       S.noCard.has(playerKey(p.name))
         ? natural(p.name)
-        : h('button', { class: 'opplink', title: t('openPlayer'), onclick: () => void openPlayerByName({ name: p.name, rating: p.rating ?? 0 }) }, natural(p.name)),
+        : h('button', { class: 'opplink', title: t('openPlayer'), onclick: () => void openPlayerByName({ name: p.name, rating: p.rating ?? 0, snr: p.snr }) }, natural(p.name)),
       p.rating ? h('small', null, ` ${p.rating}`) : null),
     h('span', { class: 'pts' }, roundsShown ? p.points || '–' : ''),
     roundsShown
@@ -756,8 +756,8 @@ function cardNumberOf(who: { name: string; rating: number }): number | null {
 let numbersAt = 0;
 
 /** Opens the card of a player picked in the list or a line-up; the first time this fetches the numbers of all players. */
-async function openPlayerByName(who: { name: string; rating: number }): Promise<void> {
-  let snr = cardNumberOf(who);
+async function openPlayerByName(who: { name: string; rating: number; snr?: number | null }): Promise<void> {
+  let snr = who.snr ?? cardNumberOf(who); // the number when the page gave it (before the event), else by name
   const f = S.fetcher;
   if (snr === null && f && Date.now() - numbersAt > PLAYERS_TTL) {
     const alone = !S.loading;
@@ -823,7 +823,7 @@ function playerList(): HTMLElement {
     return h('div', { class: 'tlist', id: 'plist' }, ...shown.map((r) => {
       const missing = S.noCard.has(playerKey(r.name));
       return h('div', { class: `trow ${missing ? 'dim' : ''}` },
-        h('button', { class: 'tpick', disabled: missing, onclick: () => void openPlayerByName({ name: r.name, rating: ratingOf(r) }) },
+        h('button', { class: 'tpick', disabled: missing, onclick: () => void openPlayerByName({ name: r.name, rating: ratingOf(r), snr: r.snr }) },
           h('span', { class: 'rk' }, r.no),
           h('span', { class: 'tn' },
             h('b', null, r.title ? h('em', null, `${r.title} `) : null, natural(r.name)),
@@ -864,8 +864,9 @@ function playerCard(pno: number): HTMLElement {
   const hero = h('section', { class: 'card hero' },
     pageHead(`${page.title ? `${page.title} ` : ''}${natural(page.name)}`, [flagOf(page.fed), row?.team ?? ''].filter(Boolean).join(' · ')),
     h('div', { class: 'stats' },
-      stat(t('rating'), ratingOf(page) || '–'), stat(t('perf'), page.perf ?? '–'),
-      stat(t('points'), page.points === null ? '–' : `${formatScore(page.points)}/${played}`), stat(t('rank'), page.rank ?? '–')));
+      stat(t('rating'), ratingOf(page) || '–'),
+      // before the first game there is nothing to show but the rating (the page's points, rank and performance are placeholders)
+      ...(played ? [stat(t('perf'), page.perf ?? '–'), stat(t('points'), page.points === null ? '–' : `${formatScore(page.points)}/${played}`), stat(t('rank'), page.rank ?? '–')] : [])));
   const details = [
     kv(t('teamLabel'), teamRow ? h('button', { class: 'opplink', onclick: () => void openTeam(teamRow.snr) }, shortName(teamRow.name)) : row?.team),
     kv(t('board'), row?.board),

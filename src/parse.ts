@@ -326,7 +326,8 @@ function parseComposition(rows: HTMLTableRowElement[], page: TeamPage): void {
   page.roundColumns = roundCols.length;
 
   for (const r of rows.slice(hi + 1)) {
-    const c = cells(r).map(txt);
+    const cs = cells(r);
+    const c = cs.map(txt);
     if (!/^\d+$/.test(c[iBo] ?? '') || iName < 0) continue;
     // Before the event only "Rtg" exists; later RtgI (international) wins over RtgN (national).
     const intl = iRtgI >= 0 ? int(c[iRtgI] ?? '') : 0;
@@ -340,6 +341,7 @@ function parseComposition(rows: HTMLTableRowElement[], page: TeamPage): void {
       rating,
       fed: c[iFed] ?? '',
       fideId: c[iFide] ?? '',
+      snr: snrOfCell(cs[iName]),
       results: roundCols.map((i) => c[i] ?? ''),
       points: iPts >= 0 ? c[iPts] ?? '' : '',
       games: iGames >= 0 ? int(c[iGames] ?? '') : null,
@@ -416,6 +418,12 @@ function parseTeamMatches(rows: HTMLTableRowElement[], snr: number): TeamMatch[]
 
 const headersOf = (r: HTMLTableRowElement): string[] => cells(r).map((c) => txt(c));
 
+/** The card number in a name's link (".../tnr1542962.aspx?lan=1&art=9&snr=155"), if the cell has one. */
+const snrOfCell = (cell: Element | undefined): number | null => {
+  const m = /[?&]snr=(\d+)/.exec(cell?.querySelector('a')?.getAttribute('href') ?? '');
+  return m ? parseInt(m[1]!, 10) : null;
+};
+
 /** International rating, else the national one (what chess-results sorts the starting list by). */
 export const ratingOf = (r: { ratingI: number; ratingN: number }): number => r.ratingI || r.ratingN;
 
@@ -429,11 +437,14 @@ export function parsePlayers(doc: Document): PlayerRow[] {
     const h = headersOf(head);
     const iName = h.indexOf('Name'), iTeam = h.indexOf('Team');
     if (iName < 0 || iTeam < 0) continue;
-    const iNo = h.indexOf('No.'), iFide = h.indexOf('FideID'), iI = h.indexOf('RtgI'), iN = h.indexOf('RtgN');
+    // Before the event there is one rating column, "Rtg"; later RtgI (international) and RtgN (national).
+    const iNo = h.indexOf('No.'), iFide = h.indexOf('FideID'), iN = h.indexOf('RtgN');
+    const iI = h.indexOf('RtgI') >= 0 ? h.indexOf('RtgI') : h.indexOf('Rtg');
     const iFed = h.indexOf('FED'), iBo = h.indexOf('Bo.');
     for (const r of rows) {
       if (isHeaderRow(r)) continue;
-      const c = cells(r).map(txt);
+      const cs = cells(r);
+      const c = cs.map(txt);
       if (c.length <= iTeam || !c[iName]) continue;
       out.push({
         no: iNo >= 0 ? int(c[iNo]!) : out.length + 1,
@@ -445,6 +456,7 @@ export function parsePlayers(doc: Document): PlayerRow[] {
         fed: iFed >= 0 ? c[iFed] ?? '' : '',
         team: c[iTeam] ?? '',
         board: iBo >= 0 && c[iBo] ? int(c[iBo]!) : null,
+        snr: snrOfCell(cs[iName]),
       });
     }
     if (out.length) break;

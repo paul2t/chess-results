@@ -49,7 +49,7 @@ opponent's name to open that team, *‹ All teams* goes back to the list), **Pla
 goes back to the dashboard, where you pick (or paste a link to) another tournament. The ⚙ menu is only on the dashboard: theme
 (auto, light or dark), auto-refresh, the proxy and the demo.
 Every tab ends with *Open on chess-results.com ↗*, the same page (team, standings, player, round) on the original site.
-The starting list of players does not say which card number a player has, so the first time you open a card from the list the app
+Before the event chess-results links each player's name to the card, so those pages give the number directly. Once the event is over the starting list does not say which card number a player has, so the first time you open a card from the list the app
 fetches chess-results' page with every player's games (`art=24`, large) once and reads the numbers from the opponents; it is kept
 on the device. A player who has not played yet has no number there and shows as "No card for this player".
 Pressing the Teams or Players tab again, while on a team or a player, goes back to the whole list (on the list it scrolls to the top).

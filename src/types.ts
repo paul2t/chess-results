@@ -64,6 +64,8 @@ export interface Player {
   rating: number | null;
   fed: string;
   fideId: string;
+  /** Card number of the player, when the page links to it (before the event it does). */
+  snr: number | null;
   /** One entry per round: "1", "0", "½", "+", "-" or "" when not played yet. */
   results: string[];
   points: string;
@@ -153,6 +155,8 @@ export interface PlayerRow {
   fed: string;
   team: string;
   board: number | null;
+  /** Card number, when the list links to it (it does before the event); else it is found by name. */
+  snr: number | null;
 }
 
 /** One game on a player's card. */

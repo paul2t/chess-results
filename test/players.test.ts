@@ -2,7 +2,7 @@ import { test } from 'node:test';
 import assert from 'node:assert/strict';
 import { readFileSync } from 'node:fs';
 import { JSDOM } from 'jsdom';
-import { parsePlayerNumbers, parsePlayerPage, parsePlayers, playerKey, ratingOf } from '../src/parse';
+import { parsePlayerNumbers, parsePlayerPage, parsePlayers, parseTeamPage, playerKey, ratingOf } from '../src/parse';
 
 const doc = (path: string): Document => new JSDOM(readFileSync(path, 'utf8')).window.document;
 const fx = (f: string) => doc(`test/fixtures/${f}`);
@@ -15,7 +15,7 @@ test('starting list (real page): columns, titles, missing FIDE ids', () => {
   assert.equal(rows.length, 32);
   assert.deepEqual(rows[0], {
     no: 1, title: 'GM', name: "L'ami, Erwin", fideId: '1007998', ratingI: 2640, ratingN: 0,
-    fed: 'NED', team: 'TePe Sigeman', board: 1,
+    fed: 'NED', team: 'TePe Sigeman', board: 1, snr: null,
   });
   assert.equal(rows[1]!.fed, 'BUL');
   assert.equal(rows[1]!.team, 'Agrofert');
@@ -89,4 +89,24 @@ test('a card with forfeits and byes keeps its rows', () => {
   assert.deepEqual([p.games[1]!.oppSnr, p.games[1]!.result, p.games[1]!.color], [0, null, null]);
   assert.equal(p.fideId, '');
   assert.equal(parsePlayerPage(new JSDOM('<html><body><h2>Player info</h2></body></html>').window.document, 9), null);
+});
+
+test('starting list before the event (2026): one Rtg column, card numbers in the name links', () => {
+  const rows = parsePlayers(fx('2026-players-list.html'));
+  assert.equal(rows.length, 30);
+  assert.deepEqual(rows[0], {
+    no: 1, title: 'GM', name: 'Vachier-Lagrave, Maxime', fideId: '623539', ratingI: 2712, ratingN: 0,
+    fed: 'FRA', team: '16 Anjou 1 (France) Consulting', board: 1, snr: 155,
+  });
+  assert.equal(rows[1]!.snr, 111);
+  assert.ok(rows.every((r) => r.snr !== null && ratingOf(r) > 0));
+  // the 2025 list (finished event) has no links: the number is found by name
+  assert.ok(parsePlayers(fx('2025-players-list.html')).every((r) => r.snr === null));
+});
+
+test('line-up names carry the card number before the event (2026)', () => {
+  const page = parseTeamPage(fx('2026-team8.html'), 8)!;
+  assert.ok(page.lineup.length > 0);
+  assert.ok(page.lineup.every((p) => typeof p.snr === 'number' && p.snr > 0));
+  assert.equal(parseTeamPage(fx('2025-team45.html'), 45)!.lineup.every((p) => p.snr === null), true);
 });
