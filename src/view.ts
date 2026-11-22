@@ -121,12 +121,20 @@ const isFollowed = (row: TeamRow | undefined): boolean => !!row && isFavTeam(row
 /** Toggle shown in Standings and Rounds: keep only the followed teams (a device setting). */
 function followFilter(): HTMLElement {
   return h('button', {
-    class: `iconbtn star ${S.onlyFav ? 'on' : ''}`, 'aria-pressed': S.onlyFav, 'aria-label': t('followedOnly'), title: t('followedOnly'),
+    class: `iconbtn sm star ${S.onlyFav ? 'on' : ''}`, 'aria-pressed': S.onlyFav, 'aria-label': t('followedOnly'), title: t('followedOnly'),
     onclick: () => { S.onlyFav = !S.onlyFav; store.set('cr:onlyfav', S.onlyFav ? '1' : '0'); render(); },
   }, S.onlyFav ? '★' : '☆');
 }
 
-/** Header of a page or card: title (and a small line under it) on the left, icon buttons on the right. */
+/** Heading of a list page (Standings, Teams, Players, Rounds): one slim line, a detail beside the title, icon buttons on the right. */
+function listHead(title: string, detail: string, hint: string, ...icons: Kid[]): HTMLElement {
+  return h('div', { class: 'head slim' },
+    h('div', { class: 'head-title' },
+      h('h2', { title: hint || null }, title, detail ? h('span', { class: 'sub detail' }, ` · ${detail}`) : null)),
+    h('div', { class: 'head-icons' }, ...icons));
+}
+
+/** Header of a card: title (and a small line under it) on the left, icon buttons on the right. */
 function pageHead(title: string, sub: string, ...icons: Kid[]): HTMLElement {
   return h('div', { class: 'head' },
     h('div', { class: 'head-title' }, h('h2', null, title), sub ? h('p', { class: 'sub' }, sub) : null),
@@ -412,7 +420,7 @@ function teamView(): HTMLElement {
 }
 
 function teamsList(): HTMLElement {
-  return h('div', { class: 'stack' }, pageHead(t('allTeams'), '', followFilter()), teamList((snr) => void openTeam(snr), true, true, true));
+  return h('div', { class: 'stack' }, listHead(t('allTeams'), '', '', followFilter()), teamList((snr) => void openTeam(snr), true, true, true));
 }
 
 /** One line: back to the list of teams, then the followed teams, one tap apart. */
@@ -632,7 +640,8 @@ function standingsView(): HTMLElement {
   const labels = s.home.tbLabels;
   const title = started ? (s.home.listTitle || t('standings')) : t('startingList');
   return h('div', { class: 'stack' },
-    pageHead(title, started ? `${label(labels[1], 'TB1')} · ${label(labels[3], 'TB3')}` : '', followFilter()), // the star comes last so it stays put when switching to Rounds
+    // the two numbers on the right are TB1 and TB3: named in the tooltip; the star comes last so it stays put when switching tabs
+    listHead(title, '', started ? `${label(labels[1], 'TB1')} · ${label(labels[3], 'TB3')}` : '', followFilter()),
     teamList((snr) => void openTeam(snr), true, true));
 }
 
@@ -673,7 +682,7 @@ function roundsView(): HTMLElement {
       }))
     : h('p', { class: 'empty' }, `${t('notPaired')}${sched ? ` · ${dayTime(sched.date, sched.time)}` : ''}`);
   return h('div', { class: 'stack' },
-    pageHead(`${t('round')} ${sel}`, r ? dayTime(r.date, r.time) : '', followFilter()),
+    listHead(`${t('round')} ${sel}`, r ? dayTime(r.date, r.time) : '', '', followFilter()),
     chips, body);
 }
 
@@ -833,7 +842,7 @@ function playerList(): HTMLElement {
           h('span', { class: 'pts2' }, h('b', null, ratingOf(r) || '–'))));
     }));
   }
-  return h('div', { class: 'stack' }, pageHead(t('players'), `${rows.length}`, followFilter()), h('div', null, search, buildRows()));
+  return h('div', { class: 'stack' }, listHead(t('players'), '', '', followFilter()), h('div', null, search, buildRows()));
 }
 
 function gameRow(g: PlayerGame): HTMLElement {

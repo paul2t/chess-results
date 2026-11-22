@@ -154,6 +154,10 @@ input[type="search"], .sheet input[type="text"] {
 .head-title h2 { overflow-wrap: anywhere; }
 .head-icons { display: flex; gap: 6px; flex: 0 0 auto; }
 .card > .head { margin: -4px -4px 0 0; }
+.head.slim { min-height: 32px; }
+.head.slim h2 { font-size: 1.25rem; }
+.head.slim .detail { font-size: .85rem; font-weight: 400; white-space: nowrap; }
+.iconbtn.sm { width: 32px; height: 32px; font-size: 1.05rem; }
 .iconbtn { width: 42px; height: 42px; border-radius: 50%; display: grid; place-items: center; align-self: auto; font-size: 1.3rem; line-height: 1; border: 1px solid var(--line); background: var(--bg); color: var(--muted); text-align: center; }
 .iconbtn.star.on { color: #e3a700; border-color: #e3a700; }
 .dialog-text { margin-bottom: 16px; line-height: 1.4; }
