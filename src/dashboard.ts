@@ -25,7 +25,8 @@ export function startDashboard(root: HTMLElement, fetcher: Fetcher): void {
   const S = {
     favs: parseFavs(store.get(FAVS_KEY)),
     recent: parseFavs(store.get(RECENT_KEY)),
-    favTab: 'current' as 'current' | 'past', // opens on live and upcoming; "past" only on request
+    // opens on live and upcoming favorites, or on the past ones when there are no others; a tab pressed sticks
+    favTab: 'auto' as 'auto' | 'current' | 'past',
     query: '',
     results: null as (SearchResults & { query: string }) | null,
     direct: null as number | null,
@@ -39,7 +40,7 @@ export function startDashboard(root: HTMLElement, fetcher: Fetcher): void {
     const saved = JSON.parse(session.get(DASH_KEY) ?? 'null') as { query?: unknown; results?: SearchResults & { query: string } | null; direct?: unknown; favTab?: unknown } | null;
     if (saved && typeof saved.query === 'string') {
       S.query = saved.query;
-      if (saved.favTab === 'past') S.favTab = 'past';
+      if (saved.favTab === 'past' || saved.favTab === 'current') S.favTab = saved.favTab;
       S.direct = Number.isInteger(saved.direct) ? (saved.direct as number) : null;
       const r = saved.results;
       if (r && Array.isArray(r.tournaments)) {
@@ -106,10 +107,10 @@ export function startDashboard(root: HTMLElement, fetcher: Fetcher): void {
     render();
   }
 
-  /** Favorites: live and upcoming first; finished ones sit behind a "Past" tab, shown only when there are some. */
+  /** Favorites: live and upcoming first; finished ones sit behind a "Past" tab, shown only when there are some (and shown first when nothing is upcoming). */
   function favorites(): HTMLElement {
     const { current, past } = splitFavs(S.favs, todayStamp());
-    const tab = past.length ? S.favTab : 'current';
+    const tab = !past.length ? 'current' : S.favTab === 'auto' ? (current.length ? 'current' : 'past') : S.favTab;
     const seg = (id: 'current' | 'past', label: string, n: number): HTMLElement =>
       h('button', {
         class: `segbtn ${tab === id ? 'on' : ''}`, role: 'tab', 'aria-selected': tab === id,
