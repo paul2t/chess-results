@@ -1,12 +1,12 @@
 const en = {
-  team: 'Team', standings: 'Standings', rounds: 'Rounds', settings: 'Settings',
+  teams: 'Teams', standings: 'Standings', rounds: 'Rounds', settings: 'Settings',
   refresh: 'Refresh', updated: 'Refreshed here', source: 'Uploaded to chess-results',
   rank: 'Rank', seed: 'Seed', mp: 'Match pts', gp: 'Game pts', record: 'W-D-L',
   nextMatch: 'Next match', liveMatch: 'In progress', lastMatch: 'Last result', startsAt: 'Starts',
   round: 'Round', vs: 'vs', lineup: 'Line-up', matches: 'Matches', boards: 'Boards',
   white: 'White', black: 'Black', bye: 'Bye', notPaired: 'Not paired yet',
   noData: 'Nothing to show yet', search: 'Find a team…',
-  chooseTeam: 'Choose a team',
+  allTeams: 'All teams', openTeam: 'Open this team',
   apply: 'Apply', autoRefresh: 'Auto-refresh (60 s)',
   demo: 'Demo (2025 data)', offline: 'Offline – showing saved data from', error: 'Could not load',
   loading: 'Loading…', finished: 'Final', forfeit: 'forfeit', noPlayer: 'no player',
@@ -30,14 +30,14 @@ const en = {
 };
 
 const fr: typeof en = {
-  team: 'Équipe', standings: 'Classement', rounds: 'Rondes', settings: 'Réglages',
+  teams: 'Équipes', standings: 'Classement', rounds: 'Rondes', settings: 'Réglages',
   refresh: 'Actualiser', updated: 'Actualisé ici', source: 'mis en ligne sur chess-results',
   rank: 'Rang', seed: 'Tête de série', mp: 'Pts match', gp: 'Pts parties', record: 'G-N-P',
   nextMatch: 'Prochain match', liveMatch: 'En cours', lastMatch: 'Dernier résultat', startsAt: 'Début',
   round: 'Ronde', vs: 'contre', lineup: 'Composition', matches: 'Matchs', boards: 'Échiquiers',
   white: 'Blancs', black: 'Noirs', bye: 'Exempt', notPaired: 'Pas encore appariée',
   noData: 'Rien à afficher pour le moment', search: 'Chercher une équipe…',
-  chooseTeam: 'Choisissez une équipe',
+  allTeams: 'Toutes les équipes', openTeam: 'Ouvrir cette équipe',
   apply: 'Valider', autoRefresh: 'Actualisation auto (60 s)',
   demo: 'Démo (données 2025)', offline: 'Hors ligne – données enregistrées de', error: 'Chargement impossible',
   loading: 'Chargement…', finished: 'Final', forfeit: 'forfait', noPlayer: 'absent',

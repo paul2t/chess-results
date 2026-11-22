@@ -29,7 +29,7 @@ const DEMO = ROUTE?.demo === true;
 const S = {
   tnr: 0,
   viewSnr: null as number | null,
-  view: 'team' as View,
+  view: 'standings' as View,
   round: null as number | null,
   snap: null as Snapshot | null,
   /** Team pages loaded or remembered, most recently used last. */
@@ -193,7 +193,6 @@ async function load(): Promise<void> {
     refreshFavTournament(snap);
     if (!DEMO) store.set(RECENT_KEY, JSON.stringify(pushRecent(parseFavs(store.get(RECENT_KEY)), tournamentInfo(snap))));
     S.fresh.clear();
-    if (S.viewSnr === null) S.viewSnr = defaultTeam();
     syncUrl(); // the team on show is only known now when nothing was cached
     if (S.viewSnr !== null) {
       const page = await loadTeamPage(S.fetcher, S.tnr, S.viewSnr).catch(() => null);
@@ -231,9 +230,17 @@ async function ensureTeamPage(snr: number): Promise<void> {
   }
 }
 
+/** Back to the list of teams (the Teams tab without a team). */
+function showTeamList(): void {
+  S.viewSnr = null;
+  syncUrl(true);
+  render();
+  window.scrollTo(0, 0);
+}
+
 async function openTeam(snr: number): Promise<void> {
   S.viewSnr = snr;
-  S.view = 'team';
+  S.view = 'teams';
   syncUrl(true);
   render();
   window.scrollTo(0, 0);
@@ -245,7 +252,7 @@ async function openTeam(snr: number): Promise<void> {
 // round only rewrites the current one.
 function buildUrl(): string {
   const rd = S.view === 'rounds' && S.round !== null && (!S.snap || S.round !== defaultRound(S.snap)) ? S.round : null;
-  const path = buildPath({ demo: DEMO, tnr: S.tnr, view: S.view, snr: S.view === 'team' ? S.viewSnr : null, rd });
+  const path = buildPath({ demo: DEMO, tnr: S.tnr, view: S.view, snr: S.view === 'teams' ? S.viewSnr : null, rd });
   return `${path}${extraQuery(location.search)}${location.hash}`;
 }
 
@@ -260,20 +267,22 @@ function syncUrl(push = false): void {
 /** Back/Forward: put the view, viewed team and round back as the address says. */
 function applyUrl(): void {
   const r = parsePath(location.pathname);
-  S.view = r?.view ?? 'team';
-  if (S.view === 'team') S.viewSnr = r?.snr || defaultTeam();
+  S.view = r?.view ?? 'standings';
+  if (S.view === 'teams') S.viewSnr = r?.snr ?? null;
   if (S.view === 'rounds') S.round = r?.rd || (S.snap ? defaultRound(S.snap) : null);
   render();
   window.scrollTo(0, 0);
-  if (S.view === 'team' && S.viewSnr !== null) void ensureTeamPage(S.viewSnr);
+  if (S.view === 'teams' && S.viewSnr !== null) void ensureTeamPage(S.viewSnr);
 }
 
 function setView(v: View): void {
   if (S.view === v) { window.scrollTo({ top: 0, behavior: 'smooth' }); return; }
   S.view = v;
+  if (v === 'teams' && S.viewSnr === null) S.viewSnr = defaultTeam(); // the first followed team, else the list
   syncUrl(true);
   render();
   window.scrollTo(0, 0);
+  if (v === 'teams' && S.viewSnr !== null) void ensureTeamPage(S.viewSnr);
 }
 
 // ───────────────────────────── rendering ─────────────────────────────
@@ -306,7 +315,7 @@ function originalLink(): HTMLElement {
 function pageTitle(): string {
   const name = S.snap?.home.tournamentName;
   if (!name) return 'Chess results';
-  const row = S.view === 'team' && S.viewSnr !== null ? teamOf(S.viewSnr) : undefined;
+  const row = S.view === 'teams' && S.viewSnr !== null ? teamOf(S.viewSnr) : undefined;
   return row ? `${shortName(row.name)} – ${name}` : S.view === 'standings' ? `${t('standings')} – ${name}` : S.view === 'rounds' ? `${t('rounds')} – ${name}` : name;
 }
 
@@ -355,7 +364,7 @@ function banner(): HTMLElement | null {
 function nav(): HTMLElement {
   const item = (v: View, icon: string, text: string) =>
     h('button', { class: S.view === v ? 'on' : '', onclick: () => setView(v) }, h('span', { class: 'ico' }, icon), h('span', null, text));
-  return h('nav', { class: 'tabs' }, item('team', '♟', t('team')), item('standings', '☰', t('standings')), item('rounds', '⚑', t('rounds')));
+  return h('nav', { class: 'tabs' }, item('standings', '☰', t('standings')), item('teams', '♟', t('teams')), item('rounds', '⚑', t('rounds')));
 }
 
 // ── team view ──
@@ -363,18 +372,20 @@ function nav(): HTMLElement {
 function teamView(): HTMLElement {
   const s = S.snap;
   if (!s) return h('p', { class: 'empty' }, S.loading ? t('loading') : t('noData'));
-  if (S.viewSnr === null) return chooser();
+  if (S.viewSnr === null) return teamsList();
   const row = teamOf(S.viewSnr);
   const page = viewedPage();
   if (!row) return h('p', { class: 'empty' }, t('noData'));
-  const wrap = h('div', { class: 'stack' }, teamSwitcher(), hero(row, s), statusCard(page, s, row));
+  const wrap = h('div', { class: 'stack' },
+    h('button', { class: 'link back', onclick: showTeamList }, `‹ ${t('allTeams')}`),
+    teamSwitcher(), hero(row, s), statusCard(page, s, row));
   if (page && page.lineup.length) wrap.append(lineupCard(page, s));
   if (page && page.matches.length) wrap.append(matchesCard(page, s));
   return wrap;
 }
 
-function chooser(): HTMLElement {
-  return h('div', { class: 'stack' }, h('h2', null, t('chooseTeam')), teamList((snr) => void openTeam(snr), true));
+function teamsList(): HTMLElement {
+  return h('div', { class: 'stack' }, h('h2', null, t('allTeams')), teamList((snr) => void openTeam(snr), true));
 }
 
 /** The followed teams, one tap apart. */
@@ -443,7 +454,7 @@ function statusCard(page: TeamPage | null, s: Snapshot, row: TeamRow): HTMLEleme
     return h('section', { class: `card status ${running ? 'live' : ''}` },
       h('h3', null, running ? t('liveMatch') : t('nextMatch')),
       h('div', { class: 'big' }, `${t('round')} ${pending.round}`, ' · ', dayTime(pending.date, pending.time)),
-      h('div', null, `${t('vs')} `, h('b', null, pending.oppName), opp?.rank ? ` (#${opp.rank})` : ''),
+      h('div', null, `${t('vs')} `, oppLink(pending), opp?.rank ? ` (#${opp.rank})` : ''),
       running ? h('div', { class: 'score' }, scoreText(a, b)) : null);
   }
   if (!matches.length) {
@@ -498,6 +509,16 @@ function matchesCard(page: TeamPage, s: Snapshot): HTMLElement {
     ...list.map((m) => matchCard(m, page, s, m === latest)));
 }
 
+/** The opponent's name, which opens that team's page (inside a match summary it must not also fold the match). */
+function oppLink(m: TeamMatch, cls = ''): HTMLElement {
+  const row = teamOf(m.oppSnr);
+  if (!row) return h('span', { class: cls }, m.oppName);
+  return h('button', {
+    class: `opplink ${cls}`, title: t('openTeam'),
+    onclick: (e: Event) => { e.preventDefault(); e.stopPropagation(); void openTeam(row.snr); },
+  }, m.oppName);
+}
+
 function matchCard(m: TeamMatch, page: TeamPage, _s: Snapshot, defaultOpen: boolean): HTMLElement {
   const key = `${page.snr}:${m.round}`;
   const [a, b] = liveScore(m);
@@ -515,7 +536,7 @@ function matchCard(m: TeamMatch, page: TeamPage, _s: Snapshot, defaultOpen: bool
     h('summary', null,
       h('span', { class: 'rd' }, `R${m.round}`),
       h('span', { class: 'opp' },
-        h('span', { class: 'on' }, m.oppName),
+        oppLink(m, 'on'),
         h('small', null, [dayTime(m.date, m.time), opp?.rank ? `#${opp.rank}` : ''].filter(Boolean).join(' · '))),
       h('span', { class: `pill ${outcomeClass(o)}` }, scoreText(a, b))),
     h('div', { class: 'boards' }, ...m.boards.map((g) => boardRow(g, page))));
@@ -702,7 +723,7 @@ async function boot(): Promise<void> {
     } catch { /* ignore corrupt cache */ }
   }
   // Position from the address: the team being viewed and the selected round
-  S.viewSnr = ROUTE.snr ?? defaultTeam();
+  S.viewSnr = ROUTE.snr;
   if (ROUTE.rd && S.view === 'rounds') S.round = ROUTE.rd;
   syncUrl(); // an old ?t=… link becomes /<tnr>/…
   window.addEventListener('popstate', applyUrl);

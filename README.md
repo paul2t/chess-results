@@ -17,7 +17,7 @@ The home page is a dashboard, not a fixed tournament:
   only (Swiss and round-robin team events), most recent first.
 * **Followed teams** – tap ☆ on a team in Standings (or the ☆ at the top right of its card). They are kept per tournament, on this
   device only, and are **never part of the link**, so a link can be shared safely. Followed teams appear as chips at the top of the
-  Team tab, one tap apart, and their games are outlined in Rounds. The Team tab opens on the first one you followed (or asks you to
+  Teams tab, one tap apart, and their games are outlined in Rounds. The Teams tab opens on the first one you followed (or asks you to
   pick a team if there is none), and the ★ icon at the top right of Standings and Rounds ("followed only") keeps just them.
   Pages of the teams you opened last are remembered, so they still show when the wifi drops.
 * **Back / Forward** – every tab or team change adds a history entry, and the address holds the whole position
@@ -30,18 +30,20 @@ The home page is a dashboard, not a fixed tournament:
 | URL | What it shows |
 | --- | --- |
 | `/chess-results/` | The dashboard: favorites and tournament search |
-| `/chess-results/1542962` | A tournament (`tnr` from the chess-results URL); opens on the Team tab |
-| `/chess-results/1542962/team/50` | The page of team number 50 in that tournament |
+| `/chess-results/1542962` | A tournament (`tnr` from the chess-results URL); opens on the standings |
 | `/chess-results/1542962/standings` | The standings |
+| `/chess-results/1542962/teams` | The list of teams |
+| `/chess-results/1542962/teams/50` | The page of team number 50 in that tournament |
 | `/chess-results/1542962/rounds/4` | Round 4 (`/rounds` alone: the latest round) |
 | `/chess-results/demo/standings` | Full 2025 edition (real data, no network) to see what a finished event looks like; `demo` replaces the tournament number |
 
-Links in the old form (`?t=1542962&view=team&show=50`, `?demo=1`) still work and are rewritten to the new form.
+Links in the old forms (`?t=1542962&view=team&show=50`, `?demo=1`, `/team/50`) still work and are rewritten to the new form.
 GitHub Pages has no server-side routing, so these paths are answered with `404.html` (a copy of `index.html`, made by
 `build.mjs`); the page finds its files relative to the folder before the tournament number.
 
-Tabs: **Team** (rank, match/game points, next or live match, line-up with per-round results, every match with
-board-by-board colours, ratings and results), **Standings**, **Rounds** (all pairings, tap a team to open it). `‹`
+Tabs: **Standings** (the default), **Teams** (the list of teams, and the page of one team: rank, match/game points,
+next or live match, line-up with per-round results, every match with board-by-board colours, ratings and results; tap an
+opponent's name to open that team, *‹ All teams* goes back to the list), **Rounds** (all pairings, tap a team to open it). `‹`
 goes back to the dashboard, where you pick (or paste a link to) another tournament; the ⚙ menu holds auto-refresh and the proxy.
 The demo is on the dashboard's ⚙ menu.
 Every tab ends with *Open on chess-results.com ↗*, the same page (team, standings, round) on the original site;
@@ -78,7 +80,7 @@ npm install
 npm test            # parser tests (jsdom) against fixtures built from real 2025/2026 pages
 npm run typecheck
 npm run build       # -> dist/ (view.js bundled from src/view.ts with esbuild)
-npm start           # build + serve on http://localhost:8080 (try /demo/team)
+npm start           # build + serve on http://localhost:8080 (try /demo/teams)
 ```
 
 * `src/parse.ts` – parsers for the home/ranking, schedule, details, round-pairing and team pages

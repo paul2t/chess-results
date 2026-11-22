@@ -100,6 +100,9 @@ h2 { font-size: 1.15rem; }
 .match .rd { color: var(--muted); font-weight: 650; font-size: .85rem; }
 .match .opp { display: grid; min-width: 0; }
 .match .on { font-weight: 600; overflow: hidden; text-overflow: ellipsis; white-space: nowrap; }
+.opplink { font-weight: 600; color: var(--accent); text-decoration: underline dotted; text-underline-offset: 3px; justify-self: start; max-width: 100%; }
+.match .opplink { padding: 6px 0; }
+.back { justify-self: start; padding: 4px 0; }
 .pill { padding: 4px 10px; border-radius: 999px; font-weight: 700; font-variant-numeric: tabular-nums; white-space: nowrap; background: var(--bg); }
 .pill.sm { padding: 2px 8px; font-size: .8rem; }
 .pill.win { background: var(--win-bg); color: var(--win); }
