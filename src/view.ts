@@ -608,7 +608,7 @@ function teamList(onPick: (snr: number) => void, withStar = false, filterable = 
     }
     return h('div', { class: 'tlist', id: 'tlist' }, ...shown.map((x) => {
       const fav = isFavTeam(x.name);
-      return h('div', { class: `trow ${fav ? 'fav' : ''}`, 'data-snr': x.snr },
+      return h('div', { class: `trow ${fav && !S.onlyFav ? 'fav' : ''}`, 'data-snr': x.snr }, // with the filter on every row is followed: no outline
         h('button', { class: 'tpick', onclick: () => onPick(x.snr) },
           h('span', { class: 'rk' }, started && !byStart ? x.rank ?? '' : x.snr),
           h('span', { class: 'tn' }, h('b', null, x.name), h('small', null, started
@@ -668,7 +668,7 @@ function roundsView(): HTMLElement {
         // the result in color: win/draw/loss for the followed team when it is the only one in the match, else a draw is amber and a decisive result tinted
         const mine = isFavTeam(m.home) !== isFavTeam(m.away) ? (isFavTeam(m.home) ? o : o === 'W' ? 'L' : o === 'L' ? 'W' : o) : null;
         const tone = mine ? outcomeClass(mine) : o === 'D' ? 'draw' : o ? 'decisive' : 'none';
-        return h('div', { class: `pair ${followed ? 'fav' : ''}` },
+        return h('div', { class: `pair ${followed && !S.onlyFav ? 'fav' : ''}` },
           h('span', { class: 'no' }, m.no),
           side(m.home, home, o === 'W'),
           h('span', { class: `res pill sm ${tone}` }, m.bye ? `${formatScore(m.homeScore)}` : scoreText(m.homeScore, m.awayScore)),
