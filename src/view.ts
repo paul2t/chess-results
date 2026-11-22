@@ -232,16 +232,19 @@ function showTeamList(): void {
 }
 
 async function openTeam(snr: number): Promise<void> {
+  // From the list or another tab this is a new page (Back returns there); from another team's page it
+  // replaces that team, so Back skips the teams browsed in between.
+  const switching = S.view === 'teams' && S.viewSnr !== null;
   S.viewSnr = snr;
   S.view = 'teams';
-  syncUrl(true);
+  syncUrl(!switching);
   render();
   window.scrollTo(0, 0);
   await ensureTeamPage(snr);
 }
 
 // The address carries the whole position (/<tnr>/<tab>/<team or round>), so reload, share and the
-// Back/Forward buttons all land where you were. Changing tab or team adds a history entry; picking a
+// Back/Forward buttons all land where you were. Changing tab or opening a team from a list adds a history entry (going from one team to another replaces it); picking a
 // round only rewrites the current one.
 function buildUrl(): string {
   const rd = S.view === 'rounds' && S.round !== null && (!S.snap || S.round !== defaultRound(S.snap)) ? S.round : null;
