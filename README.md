@@ -18,7 +18,8 @@ The home page is a dashboard, not a fixed tournament:
   only (Swiss and round-robin team events), most recent first.
 * **My team** – open a tournament, open any team (Standings or Rounds) and tap the ♟ icon at the top right of its card (or pick it when the
   Team tab asks). It is remembered per tournament and opened first next time. Changing it asks for confirmation, and the
-  team you leave stays as a followed team. It lives on your device only and is **never part of the link**, so a link can be shared safely; whoever opens it
+  team you leave stays as a followed team. Tap the highlighted ♟ again to have no team at all (that team stays followed;
+  the Team tab asks again when you reopen the tournament). It lives on your device only and is **never part of the link**, so a link can be shared safely; whoever opens it
   chooses their own team.
 * **Followed teams** – tap ☆ on a team in Standings (or the ☆ at the top right of its card). Followed teams appear as
   chips at the top of the Team tab, one tap from your own, and their games are outlined in Rounds. The

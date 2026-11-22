@@ -133,6 +133,23 @@ function chooseMine(snr: number): void {
   void load();
 }
 
+/** Nobody's team any more: the team stays open (and followed), the Team tab asks again next time. */
+function clearMine(): void {
+  const snr = S.mySnr;
+  const row = snr !== null ? teamOf(snr) : undefined;
+  if (row && !isFavTeam(row.name)) S.favTeams = [...S.favTeams, row.name];
+  persist(favTeamsKey(S.tnr), JSON.stringify(S.favTeams));
+  if (S.snap && snr !== null) {
+    if (S.snap.team) S.other.set(snr, S.snap.team); // its page was kept in the snapshot as "my team"
+    S.snap = { ...S.snap, teamSnr: null, team: null };
+    persist(cacheKey(S.tnr), JSON.stringify(S.snap));
+  }
+  S.teamRef = null;
+  S.mySnr = null;
+  if (!DEMO) store.del(`cr:team:${S.tnr}`);
+  render();
+}
+
 function tournamentInfo(snap: Snapshot | null): Tournament {
   const first = snap?.schedule[0]?.date ?? '';
   const last = snap?.schedule[snap.schedule.length - 1]?.date ?? first;
@@ -413,7 +430,7 @@ function hero(row: TeamRow, s: Snapshot): HTMLElement {
         onclick: () => toggleFavTeam(row),
       }, fav ? '★' : '☆'),
       isMine
-        ? h('span', { class: 'iconbtn mine on', role: 'img', 'aria-label': t('myTeam'), title: t('myTeam') }, '♟')
+        ? h('button', { class: 'iconbtn mine on', 'aria-pressed': true, 'aria-label': t('unsetMine'), title: t('unsetMine'), onclick: clearMine }, '♟')
         : h('button', { class: 'iconbtn mine', 'aria-label': t('setMine'), title: t('setMine'), onclick: () => askMine(row) }, '♟')),
     h('div', { class: 'stats' }, ...stats));
 }
