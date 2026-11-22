@@ -339,11 +339,14 @@ function pageTitle(): string {
 }
 
 /** Circular arrow drawn around the middle of its box, so it spins on its own centre (the ↻ glyph does not). */
-function refreshIcon(): HTMLElement {
+function svgIcon(paths: string): HTMLElement {
   const el = h('span', { class: 'rotor', 'aria-hidden': 'true' });
-  el.innerHTML = '<svg viewBox="0 0 24 24" width="24" height="24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><path d="M20 12a8 8 0 1 1-2.6-5.9"/><path d="M20 3.5v4.6h-4.6"/></svg>';
+  el.innerHTML = `<svg viewBox="0 0 24 24" width="24" height="24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round">${paths}</svg>`;
   return el;
 }
+const refreshIcon = (): HTMLElement => svgIcon('<path d="M20 12a8 8 0 1 1-2.6-5.9"/><path d="M20 3.5v4.6h-4.6"/>');
+/** A house: the button back to the dashboard (the list of tournaments). */
+const homeIcon = (): HTMLElement => svgIcon('<path d="M3.5 11.2 12 4l8.5 7.2"/><path d="M5.8 9.8V20h4.4v-5.6h3.6V20h4.4V9.8"/>');
 
 function header(): HTMLElement {
   const s = S.snap;
@@ -354,7 +357,7 @@ function header(): HTMLElement {
   // The last refresh failed but saved data is shown: warn in the header, where nothing moves.
   const warn = s && S.error ? `${t('offline')} ${clock(s.fetchedAt)} – ${S.error}` : null;
   return h('header', { class: 'top' },
-    h('a', { class: 'icon', href: BASE, 'aria-label': t('backHome') }, '‹'),
+    h('a', { class: 'icon', href: BASE, 'aria-label': t('backHome'), title: t('backHome') }, homeIcon()),
     h('div', { class: 'title' },
       h('h1', null, s?.home.tournamentName || 'Chess results'),
       // ↻ = when this page last fetched, ↑ = when chess-results says it was uploaded (spelled out in the tooltip)

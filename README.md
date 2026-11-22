@@ -45,7 +45,7 @@ GitHub Pages has no server-side routing, so these paths are answered with `404.h
 
 Tabs: **Standings** (the default), **Teams** (the list of teams, and the page of one team: rank, match/game points,
 next or live match, line-up with per-round results, every match with board-by-board colours, ratings and results; tap an
-opponent's name to open that team, *‹ All teams* goes back to the list), **Players** (every player by rating with flag, team and board; search by name, team or country; tap one for the card: rating, performance, points, FIDE ID and one line per round with the opponent, colour and result, each opponent opening that player), **Rounds** (all pairings, tap a team to open it). `‹`
+opponent's name to open that team, *‹ All teams* goes back to the list), **Players** (every player by rating with flag, team and board; search by name, team or country; tap one for the card: rating, performance, points, FIDE ID and one line per round with the opponent, colour and result, each opponent opening that player), **Rounds** (all pairings, tap a team to open it). The house icon
 goes back to the dashboard, where you pick (or paste a link to) another tournament; the ⚙ menu holds auto-refresh and the proxy.
 The demo is on the dashboard's ⚙ menu.
 Every tab ends with *Open on chess-results.com ↗*, the same page (team, standings, round) on the original site;
