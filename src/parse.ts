@@ -137,6 +137,8 @@ function parseRankingRows(rows: HTMLTableRowElement[], headers: string[]): TeamR
 
 function parseStartRows(rows: HTMLTableRowElement[], headers: string[]): TeamRow[] {
   const iNo = headers.indexOf('No.'), iTeam = headers.indexOf('Team'), iRtg = headers.indexOf('RtgAvg');
+  // FED and Group only appear once the organiser fills them in (not in the first uploads)
+  const iFed = headers.indexOf('FED'), iGrp = headers.indexOf('Group');
   const out: TeamRow[] = [];
   rows.forEach((r) => {
     const c = cells(r).map(txt);
@@ -144,8 +146,8 @@ function parseStartRows(rows: HTMLTableRowElement[], headers: string[]): TeamRow
     out.push({
       snr: int(c[iNo]!),
       name: c[iTeam] ?? '',
-      fed: '',
-      group: '',
+      fed: iFed >= 0 ? c[iFed] ?? '' : '',
+      group: iGrp >= 0 ? c[iGrp] ?? '' : '',
       rank: null,
       played: 0, wins: 0, draws: 0, losses: 0,
       tb: [],

@@ -613,7 +613,7 @@ function teamList(onPick: (snr: number) => void, withStar = false, filterable = 
           h('span', { class: 'rk' }, started && !byStart ? x.rank ?? '' : x.snr),
           h('span', { class: 'tn' }, h('b', null, x.name), h('small', null, started
             ? `${flagOf(x.fed)}${x.group ? ' · ' + x.group : ''} · ${x.wins}-${x.draws}-${x.losses}`
-            : `Elo ∅ ${x.rating ?? '–'}`)),
+            : [flagOf(x.fed), x.group, `Elo ∅ ${x.rating ?? '–'}`].filter(Boolean).join(' · '))),
           started ? h('span', { class: 'pts2' }, h('b', null, x.tb[0] ?? ''), h('small', null, x.tb[2] ?? '')) : null),
         withStar ? h('button', {
           class: `star ${fav ? 'on' : ''}`, 'aria-pressed': fav, 'aria-label': fav ? t('unfollow') : t('follow'),

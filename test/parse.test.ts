@@ -59,6 +59,23 @@ test('home: starting list before the event (2026)', () => {
   );
 });
 
+test('home: starting list with FED and Group columns (2026, from 24 Nov)', () => {
+  const h = parseHome(fx('2026-start-fed.html'));
+  assert.equal(h.kind, 'start');
+  assert.equal(h.lastUpdate, '24.11.2026 15:15:12');
+  assert.equal(h.teams.length, 5);
+  assert.deepEqual(
+    h.teams.map((t) => [t.snr, t.name, t.fed, t.group, t.rating]),
+    [
+      [1, 'Le 16 Anjou 1', 'FRA', 'Consulting', 2322],
+      [2, 'GRECO', 'UKR', 'Consulting', 2312],
+      [3, 'Global Ramblers', 'CZE', 'Sport-Tourism', 2295],
+      [50, 'GOOGLE C', 'EUF', 'Digital', 1717],
+      [53, 'Dassault Systèmes 1', 'FRA', 'Industry', 1696],
+    ],
+  );
+});
+
 test('schedule', () => {
   const s = parseSchedule(demo('schedule.html'));
   assert.equal(s.length, 9);
