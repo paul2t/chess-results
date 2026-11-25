@@ -402,7 +402,7 @@ function teamView(): HTMLElement {
   const wrap = h('div', { class: 'stack' },
     teamBar(), hero(row, s),
     // until the team's page is here, say so rather than guess (an empty page would read as "starts at …")
-    page ? statusCard(page, s, row) : h('p', { class: 'empty' }, S.loading ? t('loading') : t('noData')));
+    page ? statusCard(page, s, row) : h('p', { class: 'empty' }, S.loading ? t('loading') : t('pageUnreadable')));
   if (page && page.lineup.length) wrap.append(lineupCard(page, s));
   if (page && page.matches.length) wrap.append(matchesCard(page, s));
   return wrap;

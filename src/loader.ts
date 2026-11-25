@@ -13,9 +13,10 @@ const roundDone = (r: RoundPairings): boolean => r.matches.length > 0 && r.match
 
 export async function loadTeamPage(f: Fetcher, tnr: number, snr: number): Promise<TeamPage | null> {
   // art=20 has the results; before the first round it carries no lineup, art=8 does.
-  const results = parseTeamPage(toDoc(await f.get(tnr, { art: 20, snr })), snr);
+  // Either page may be unreadable (layout change, error): the other one still gives what it can.
+  const results = await f.get(tnr, { art: 20, snr }).then((h) => parseTeamPage(toDoc(h), snr)).catch(() => null);
   if (results && results.lineup.length > 0) return results;
-  const lineup = parseTeamPage(toDoc(await f.get(tnr, { art: 8, snr })), snr);
+  const lineup = await f.get(tnr, { art: 8, snr }).then((h) => parseTeamPage(toDoc(h), snr)).catch(() => null);
   if (!lineup) return results;
   return { ...lineup, matches: results?.matches ?? lineup.matches };
 }

@@ -9,8 +9,22 @@ const norm = (s: string | null | undefined): string =>
   (s ?? '').replace(/ /g, ' ').replace(/\s+/g, ' ').trim();
 const txt = (e: Element | null | undefined): string => (e ? norm(e.textContent) : '');
 
+// The result tables are class CRs1 / CRs2; should the number change (CRs3 …) or the class go, every table is
+// read instead: each parser recognises its own table by its header, so extra tables do no harm.
 function tables(doc: Document): HTMLTableElement[] {
-  return Array.from(doc.querySelectorAll<HTMLTableElement>('table.CRs1, table.CRs2'));
+  const named = Array.from(doc.querySelectorAll<HTMLTableElement>('table[class^="CRs"], table[class*=" CRs"]'));
+  return named.length ? named : Array.from(doc.querySelectorAll<HTMLTableElement>('table'));
+}
+
+/**
+ * Index of the first header matching one of the names (case and spacing ignored; a trailing dot does not matter:
+ * "No." = "No"), or -1. Columns are always looked up by name, never by position, so a column that is added,
+ * moved or dropped by chess-results does not shift the others.
+ */
+function colOf(headers: string[], ...names: string[]): number {
+  const key = (x: string) => norm(x).toLowerCase().replace(/\.$/, '');
+  const wanted = names.map(key);
+  return headers.findIndex((h) => wanted.includes(key(h)));
 }
 
 function rowsOf(t: HTMLTableElement): HTMLTableRowElement[] {
@@ -86,17 +100,11 @@ export function parseHome(doc: Document): HomePage {
     const headerIdx = rows.findIndex(isHeaderRow);
     if (headerIdx < 0) continue;
     const headers = cells(rows[headerIdx]!).map(txt);
-    if (!headers.includes('Team')) continue;
-    if (headers.includes('Rk.') && headers.includes('SNo')) {
-      kind = 'ranking';
-      teams = parseRankingRows(rows.slice(headerIdx + 1), headers);
-      break;
-    }
-    if (headers.includes('No.') && headers.includes('RtgAvg')) {
-      kind = 'start';
-      teams = parseStartRows(rows.slice(headerIdx + 1), headers);
-      break;
-    }
+    if (colOf(headers, 'Team', 'Name') < 0 || colOf(headers, 'SNo', 'No.', 'Nr.') < 0) continue;
+    // A rank column makes it the ranking (after round 1 is paired); without one it is the starting list.
+    kind = colOf(headers, 'Rk.', 'Rank') >= 0 ? 'ranking' : 'start';
+    teams = (kind === 'ranking' ? parseRankingRows : parseStartRows)(rows.slice(headerIdx + 1), headers);
+    if (teams.length) break;
   }
 
   // A ranking table exists as soon as round 1 has been paired; "played" is what counts.
@@ -108,26 +116,26 @@ export function parseHome(doc: Document): HomePage {
 }
 
 function parseRankingRows(rows: HTMLTableRowElement[], headers: string[]): TeamRow[] {
-  const ix = (n: string) => headers.indexOf(n);
+  const ix = (...n: string[]) => colOf(headers, ...n);
   const col = (re: RegExp) => headers.findIndex((h) => re.test(h));
-  const iRk = ix('Rk.'), iSno = ix('SNo'), iFed = ix('FED'), iTeam = ix('Team'), iGrp = ix('Group');
+  const iRk = ix('Rk.', 'Rank'), iSno = ix('SNo', 'No.', 'Nr.'), iFed = ix('FED'), iTeam = ix('Team', 'Name'), iGrp = ix('Group');
   const iGames = ix('Games'), iW = col(/^\+$/), iD = col(/^=$/), iL = col(/^-$/);
   const iTb = [1, 2, 3, 4].map((n) => ix(`TB${n}`));
   const out: TeamRow[] = [];
   rows.forEach((r) => {
     const c = cells(r).map(txt);
-    if (c.length < 6 || !/^\d+$/.test(c[iSno] ?? '')) return;
+    if (!/^\d+$/.test(c[iSno] ?? '') || !c[iTeam]) return;
     out.push({
       snr: int(c[iSno]!),
       name: c[iTeam] ?? '',
-      fed: c[iFed] ?? '',
+      fed: iFed >= 0 ? c[iFed] ?? '' : '',
       group: iGrp >= 0 ? c[iGrp] ?? '' : '',
       // blank rank = tied with the previous row; fall back to its position in the list
       rank: /^\d+$/.test(c[iRk] ?? '') ? int(c[iRk]!) : out.length + 1,
-      played: int(c[iGames] ?? ''),
-      wins: int(c[iW] ?? ''),
-      draws: int(c[iD] ?? ''),
-      losses: int(c[iL] ?? ''),
+      played: iGames >= 0 ? int(c[iGames] ?? '') : 0,
+      wins: iW >= 0 ? int(c[iW] ?? '') : 0,
+      draws: iD >= 0 ? int(c[iD] ?? '') : 0,
+      losses: iL >= 0 ? int(c[iL] ?? '') : 0,
       tb: iTb.map((i) => (i >= 0 ? c[i] ?? '' : '')),
       rating: null,
     });
@@ -136,13 +144,14 @@ function parseRankingRows(rows: HTMLTableRowElement[], headers: string[]): TeamR
 }
 
 function parseStartRows(rows: HTMLTableRowElement[], headers: string[]): TeamRow[] {
-  const iNo = headers.indexOf('No.'), iTeam = headers.indexOf('Team'), iRtg = headers.indexOf('RtgAvg');
+  const iNo = colOf(headers, 'No.', 'SNo', 'Nr.'), iTeam = colOf(headers, 'Team', 'Name');
+  const iRtg = colOf(headers, 'RtgAvg', 'Rtg', 'Avg', 'Elo');
   // FED and Group only appear once the organiser fills them in (not in the first uploads)
-  const iFed = headers.indexOf('FED'), iGrp = headers.indexOf('Group');
+  const iFed = colOf(headers, 'FED'), iGrp = colOf(headers, 'Group');
   const out: TeamRow[] = [];
   rows.forEach((r) => {
     const c = cells(r).map(txt);
-    if (!/^\d+$/.test(c[iNo] ?? '')) return;
+    if (!/^\d+$/.test(c[iNo] ?? '') || !c[iTeam]) return;
     out.push({
       snr: int(c[iNo]!),
       name: c[iTeam] ?? '',
@@ -151,7 +160,7 @@ function parseStartRows(rows: HTMLTableRowElement[], headers: string[]): TeamRow
       rank: null,
       played: 0, wins: 0, draws: 0, losses: 0,
       tb: [],
-      rating: /^\d+$/.test(c[iRtg] ?? '') ? int(c[iRtg]!) : null,
+      rating: iRtg >= 0 && /^\d+$/.test(c[iRtg] ?? '') ? int(c[iRtg]!) : null,
     });
   });
   return out;
@@ -163,11 +172,12 @@ export function parseSchedule(doc: Document): ScheduleRound[] {
   for (const t of tables(doc)) {
     const rows = rowsOf(t);
     const head = rows[0] ? cells(rows[0]).map(txt) : [];
-    if (head[0] !== 'Round' || !head.includes('Date')) continue;
+    const iRd = colOf(head, 'Round', 'Rd.'), iDate = colOf(head, 'Date'), iTime = colOf(head, 'Time');
+    if (iRd < 0 || iDate < 0) continue;
     return rows.slice(1).flatMap((r) => {
       const c = cells(r).map(txt);
-      if (!/^\d+$/.test(c[0] ?? '')) return [];
-      return [{ round: int(c[0]!), date: c[1] ?? '', time: to24h(c[2] ?? '') }];
+      if (!/^\d+$/.test(c[iRd] ?? '')) return [];
+      return [{ round: int(c[iRd]!), date: c[iDate] ?? '', time: iTime >= 0 ? to24h(c[iTime] ?? '') : '' }];
     });
   }
   return [];
@@ -180,20 +190,24 @@ export function parseDetails(doc: Document): Details | null {
     const next = td.nextElementSibling;
     if (next && next.tagName === 'TD' && next.classList.contains('CR')) kv.set(txt(td), txt(next));
   });
-  const rounds = kv.get('Number of rounds');
-  if (!rounds && !kv.get('Date')) return null;
-  const tcKey = Array.from(kv.keys()).find((k) => k.startsWith('Time control'));
+  const get = (re: RegExp): string => {
+    const k = Array.from(kv.keys()).find((x) => re.test(x));
+    return k ? kv.get(k) ?? '' : '';
+  };
+  const rounds = get(/^(number of rounds|rounds)\b/i), dates = get(/^dates?$/i);
+  if (!rounds && !dates) return null;
   return {
-    rounds: rounds && /^\d+$/.test(rounds) ? parseInt(rounds, 10) : null,
-    dates: kv.get('Date') ?? '',
-    location: kv.get('Location') ?? '',
-    timeControl: tcKey ? kv.get(tcKey) ?? '' : '',
+    rounds: /^\d+$/.test(rounds) ? parseInt(rounds, 10) : null,
+    dates,
+    location: get(/^(location|venue|place)\b/i),
+    timeControl: get(/^time control/i),
   };
 }
 
 // ───────────────────────────── round pairings (art=2) ─────────────────────────────
 
-const ROUND_HEAD = /Round\s+(\d+)\s+on\s+(\S+)\s+at\s+(.+)$/i;
+// "Round 3 on 2026/11/27 at 3:00 pm"; the date and the time are optional should the wording change.
+const ROUND_HEAD = /Round\s+(\d+)(?:\s+on\s+(\S+))?(?:\s+at\s+(\d{1,2}:\d{2}(?:\s*[ap]m)?))?/i;
 
 /** Returns null when the round has not been paired yet (no pairing table on the page). */
 export function parsePairings(doc: Document): RoundPairings | null {
@@ -202,22 +216,29 @@ export function parsePairings(doc: Document): RoundPairings | null {
     const m = rows[0] ? ROUND_HEAD.exec(txt(rows[0])) : null;
     if (!m) continue;
     const matches: Pairing[] = [];
+    // No. | Team | Team | Res. | : | Res. — found by name; these positions are the fallback
+    const head = rows.slice(1).find(isHeaderRow);
+    const h = head ? headersOf(head) : [];
+    const iNo = Math.max(0, colOf(h, 'No.', 'Bo.', 'Nr.'));
+    const teamCols = h.flatMap((x, i) => (colOf([x], 'Team') >= 0 ? [i] : []));
+    const iHome = teamCols[0] ?? iNo + 1, iAway = teamCols[1] ?? iHome + 1;
+    const iSep = h.indexOf(':') >= 0 ? h.indexOf(':') : iAway + 2;
     for (const r of rows.slice(1)) {
       if (isHeaderRow(r)) continue;
       const c = cells(r).map(txt);
-      if (c.length < 5 || !/^\d+$/.test(c[0] ?? '')) continue;
-      const away = c[2] ?? '';
+      if (c.length <= iSep || !/^\d+$/.test(c[iNo] ?? '')) continue;
+      const away = c[iAway] ?? '';
       const bye = /^bye$/i.test(away);
       matches.push({
-        no: int(c[0]!),
-        home: c[1] ?? '',
+        no: int(c[iNo]!),
+        home: c[iHome] ?? '',
         away,
-        homeScore: parseScore(c[3] ?? ''),
-        awayScore: bye ? null : parseScore(c[5] ?? ''),
+        homeScore: parseScore(c[iSep - 1] ?? ''),
+        awayScore: bye ? null : parseScore(c[iSep + 1] ?? ''),
         bye,
       });
     }
-    return { round: parseInt(m[1]!, 10), date: m[2]!, time: to24h(m[3]!), matches };
+    return { round: parseInt(m[1]!, 10), date: m[2] ?? '', time: to24h(m[3] ?? ''), matches };
   }
   return null;
 }
@@ -226,10 +247,35 @@ export const isPlayed = (p: Pairing): boolean => p.homeScore !== null && (p.bye 
 
 // ───────────────────────────── team page (art=20 / art=8) ─────────────────────────────
 
-// The captain has moved over time: inside the brackets ("(RtgAvg:1696, Captain: X / TB1: 0 / TB2: 0)"), then
-// after them from 25 Nov 2026 ("(RtgAvg:1696 / TB1: 0 / TB2: 0) Captain: X"). Both are read.
-const TEAM_HEAD =
-  /^(\d+)\.\s*(.*?)\s*\(RtgAvg:\s*(\d+)(?:,\s*Captain:\s*(.*?))?\s*\/\s*TB1:\s*([^/]*?)\s*\/\s*TB2:\s*([^)]*?)\)\s*(?:Captain:\s*(.*?))?\s*$/;
+/**
+ * The first row of a team table: "52. Dassault Systèmes 1 (RtgAvg:1696 / TB1: 0 / TB2: 0) Captain: X". Its wording
+ * has changed before (the captain moved from inside the brackets to after them, the country and group came and
+ * went in the name), so every field is looked for on its own instead of matching the whole line.
+ * `rows` lets a table be recognised by its line-up header too when the title carries none of the usual fields.
+ */
+function parseTeamHead(first: string, rows: HTMLTableRowElement[]): { name: string; avg: number | null; captain: string; tb1: string; tb2: string } | null {
+  const m = /^(\d+)\.\s*(.*)$/.exec(first);
+  if (!m) return null;
+  const rest = m[2]!;
+  const hasFields = /RtgAvg|TB1/i.test(rest);
+  const hasLineup = rows.slice(1, 4).some((r) => {
+    const h = isHeaderRow(r) ? headersOf(r) : [];
+    return colOf(h, 'Bo.', 'Board') >= 0 && colOf(h, 'Name', 'Player') >= 0;
+  });
+  if (!hasFields && !hasLineup) return null;
+  // The name is everything before the bracket that holds the fields (it may hold brackets itself: "X (France) Industry")
+  const cut = rest.search(/\(\s*(?:RtgAvg|TB1|Captain)/i);
+  const name = (cut >= 0 ? rest.slice(0, cut) : rest.replace(/\s*(?:RtgAvg|TB1|Captain).*$/i, '')).trim();
+  const field = (re: RegExp): string => re.exec(rest)?.[1]?.trim() ?? '';
+  return {
+    name,
+    avg: int(field(/RtgAvg:?\s*(\d+)/i)) || null,
+    // "(…, Captain: X / TB1" or "…) Captain: X": up to the next separator or the end
+    captain: field(/Captain:?\s*([^/()]*)/i),
+    tb1: field(/TB1:?\s*([^/()]*)/i),
+    tb2: field(/TB2:?\s*([^/()]*)/i),
+  };
+}
 
 const RESULT_TOKEN = '(\\+|-|0|1|½)';
 const GAME_RESULT = new RegExp(`^${RESULT_TOKEN}\\s+-\\s+${RESULT_TOKEN}$`);
@@ -250,14 +296,14 @@ export function parseTeamPage(doc: Document, snr: number): TeamPage | null {
     const rows = rowsOf(t);
     const first = rows[0] ? txt(rows[0]) : '';
 
-    const head = TEAM_HEAD.exec(first);
+    const head = parseTeamHead(first, rows);
     if (head) {
       found = true;
-      page.name = head[2]!;
-      page.avgRating = int(head[3]!) || null;
-      page.captain = head[4] ?? head[7] ?? '';
-      page.tb1 = head[5] ?? '';
-      page.tb2 = head[6] ?? '';
+      page.name = head.name;
+      page.avgRating = head.avg;
+      page.captain = head.captain;
+      page.tb1 = head.tb1;
+      page.tb2 = head.tb2;
       parseComposition(rows, page);
       continue;
     }
@@ -317,34 +363,34 @@ function parseComposition(rows: HTMLTableRowElement[], page: TeamPage): void {
   const hi = rows.findIndex((r, i) => i > 0 && isHeaderRow(r));
   if (hi < 0) return;
   const headers = cells(rows[hi]!).map(txt);
-  const iName = headers.indexOf('Name');
-  const iBo = headers.indexOf('Bo.');
-  const iRtgI = headers.indexOf('RtgI');
-  const iRtgN = headers.indexOf('RtgN');
-  const iRtg = headers.indexOf('Rtg');
-  const iFed = headers.indexOf('FED');
-  const iFide = headers.indexOf('FideID');
-  const iPts = headers.indexOf('Pts.');
-  const iGames = headers.indexOf('Games');
+  const iName = colOf(headers, 'Name', 'Player');
+  const iBo = colOf(headers, 'Bo.', 'Board');
+  const iRtgI = colOf(headers, 'RtgI');
+  const iRtgN = colOf(headers, 'RtgN');
+  const iRtg = colOf(headers, 'Rtg');
+  const iFed = colOf(headers, 'FED');
+  const iFide = colOf(headers, 'FideID');
+  const iPts = colOf(headers, 'Pts.');
+  const iGames = colOf(headers, 'Games');
   const roundCols = headers.flatMap((h, i) => (/^\d+$/.test(h) ? [i] : []));
   page.roundColumns = roundCols.length;
 
   for (const r of rows.slice(hi + 1)) {
     const cs = cells(r);
     const c = cs.map(txt);
-    if (!/^\d+$/.test(c[iBo] ?? '') || iName < 0) continue;
+    if (iName < 0 || !c[iName] || (iBo >= 0 && !/^\d+$/.test(c[iBo] ?? ''))) continue;
     // Before the event only "Rtg" exists; later RtgI (international) wins over RtgN (national).
     const intl = iRtgI >= 0 ? int(c[iRtgI] ?? '') : 0;
     const natl = iRtgN >= 0 ? int(c[iRtgN] ?? '') : 0;
     const single = iRtg >= 0 ? int(c[iRtg] ?? '') : 0;
     const rating = intl || natl || single || null;
     const player: Player = {
-      board: int(c[iBo]!),
-      title: iName > 0 ? c[iName - 1] ?? '' : '',
+      board: iBo >= 0 ? int(c[iBo]!) : page.lineup.length + 1,
+      title: iName > 0 && headers[iName - 1] === '' ? c[iName - 1] ?? '' : '',
       name: c[iName] ?? '',
       rating,
-      fed: c[iFed] ?? '',
-      fideId: c[iFide] ?? '',
+      fed: iFed >= 0 ? c[iFed] ?? '' : '',
+      fideId: iFide >= 0 ? c[iFide] ?? '' : '',
       snr: snrOfCell(cs[iName]),
       results: roundCols.map((i) => c[i] ?? ''),
       points: iPts >= 0 ? c[iPts] ?? '' : '',
@@ -358,6 +404,7 @@ function parseTeamMatches(rows: HTMLTableRowElement[], snr: number): TeamMatch[]
   const out: TeamMatch[] = [];
   let cur: TeamMatch | null = null;
   let usIsLeft = true;
+  let sep = 5; // the "-" between the two sides; everything on the right is placed relative to it
 
   for (const r of rows) {
     const c = cells(r);
@@ -375,14 +422,16 @@ function parseTeamMatches(rows: HTMLTableRowElement[], snr: number): TeamMatch[]
     }
     if (!cur) continue;
 
-    if (isHeaderRow(r) && c.length >= 11) {
+    if (isHeaderRow(r) && c.length >= 9) {
       // Bo. | snrL | nameL | FED | | - | snrR | nameR | FED | | score
+      const at = c.findIndex((x, i) => i >= 3 && txt(x) === '-');
+      sep = at >= 0 ? at : 5;
       const leftSnr = int(txt(c[1]));
       const leftName = txt(c[2]);
-      const rightSnr = int(txt(c[6]));
-      const rightName = txt(c[7]);
+      const rightSnr = int(txt(c[sep + 1]));
+      const rightName = txt(c[sep + 2]);
       usIsLeft = leftSnr === snr;
-      const [ls, rs] = txt(c[10]).split(':').map((s) => parseScore(s));
+      const [ls, rs] = txt(c[c.length - 1]).split(':').map((s) => parseScore(s));
       cur.usSnr = snr;
       cur.usName = usIsLeft ? leftName : rightName;
       cur.oppSnr = usIsLeft ? rightSnr : leftSnr;
@@ -393,12 +442,12 @@ function parseTeamMatches(rows: HTMLTableRowElement[], snr: number): TeamMatch[]
       continue;
     }
 
-    if (c.length >= 11 && /^\d+\.\d+$/.test(txt(c[0]))) {
+    if (c.length >= sep + 4 && /^\d+\.\d+$/.test(txt(c[0]))) {
       const board = parseInt(txt(c[0]).split('.')[1]!, 10);
       const left: Opponent = { name: txt(c[2]), fed: txt(c[3]), title: txt(c[4]) };
-      const right: Opponent = { name: txt(c[7]), fed: txt(c[8]), title: txt(c[6]) };
+      const right: Opponent = { name: txt(c[sep + 2]), fed: txt(c[sep + 3]), title: txt(c[sep + 1]) };
       const leftWhite = c[2]!.querySelector('.FarbewT') ? true : c[2]!.querySelector('.FarbesT') ? false : null;
-      const m = GAME_RESULT.exec(txt(c[10]));
+      const m = GAME_RESULT.exec(txt(c[c.length - 1]));
       const forfeit = !!m && /[+-]/.test(m[1]! + m[2]!);
       const lp = m ? tokenPts(m[1]!) : null;
       const rp = m ? tokenPts(m[2]!) : null;
@@ -439,19 +488,19 @@ export function parsePlayers(doc: Document): PlayerRow[] {
     const head = rows.find(isHeaderRow);
     if (!head) continue;
     const h = headersOf(head);
-    const iName = h.indexOf('Name'), iTeam = h.indexOf('Team');
+    const iName = colOf(h, 'Name', 'Player'), iTeam = colOf(h, 'Team');
     if (iName < 0 || iTeam < 0) continue;
     // Before the event there is one rating column, "Rtg"; later RtgI (international) and RtgN (national).
-    const iNo = h.indexOf('No.'), iFide = h.indexOf('FideID'), iN = h.indexOf('RtgN');
-    const iI = h.indexOf('RtgI') >= 0 ? h.indexOf('RtgI') : h.indexOf('Rtg');
-    const iFed = h.indexOf('FED'), iBo = h.indexOf('Bo.');
+    const iNo = colOf(h, 'No.', 'Nr.'), iFide = colOf(h, 'FideID'), iN = colOf(h, 'RtgN');
+    const iI = colOf(h, 'RtgI') >= 0 ? colOf(h, 'RtgI') : colOf(h, 'Rtg');
+    const iFed = colOf(h, 'FED'), iBo = colOf(h, 'Bo.', 'Board');
     for (const r of rows) {
       if (isHeaderRow(r)) continue;
       const cs = cells(r);
       const c = cs.map(txt);
       if (c.length <= iTeam || !c[iName]) continue;
       out.push({
-        no: iNo >= 0 ? int(c[iNo]!) : out.length + 1,
+        no: iNo >= 0 && c[iNo] ? int(c[iNo]!) : out.length + 1,
         title: h[iName - 1] === '' ? c[iName - 1] ?? '' : '', // the untitled column right before the name
         name: c[iName]!,
         fideId: iFide >= 0 ? c[iFide] ?? '' : '',
@@ -490,10 +539,10 @@ export function parsePlayerPage(doc: Document, snr: number): PlayerPage | null {
       continue;
     }
     const h = headersOf(head);
-    const iRd = h.indexOf('Rd.'), iName = h.indexOf('Name');
+    const iRd = colOf(h, 'Rd.', 'Round'), iName = colOf(h, 'Name');
     if (iRd < 0 || iName < 0) continue;
-    const iBo = h.indexOf('Bo.'), iSno = h.indexOf('SNo'), iI = h.indexOf('RtgI'), iN = h.indexOf('RtgN');
-    const iFed = h.indexOf('FED'), iPts = h.indexOf('Pts.'), iRes = h.indexOf('Res.');
+    const iBo = colOf(h, 'Bo.', 'Board'), iSno = colOf(h, 'SNo'), iI = colOf(h, 'RtgI'), iN = colOf(h, 'RtgN');
+    const iFed = colOf(h, 'FED'), iPts = colOf(h, 'Pts.'), iRes = colOf(h, 'Res.', 'Result');
     for (const r of rows) {
       if (isHeaderRow(r)) continue;
       const cs = cells(r);
@@ -519,7 +568,7 @@ export function parsePlayerPage(doc: Document, snr: number): PlayerPage | null {
       });
     }
   }
-  const name = info.get('name');
+  const name = info.get('name') ?? info.get('player');
   if (!name) return null;
   const num = (k: string): number | null => { const v = info.get(k); return v ? int(v) : null; };
   const pts = info.get('points');
@@ -554,8 +603,8 @@ export function parsePlayerNumbers(doc: Document): PlayerNumbers {
     for (const r of rows) {
       if (isHeaderRow(r)) {
         const h = headersOf(r);
-        cols = h.includes('SNo') && h.includes('Name')
-          ? { snr: h.indexOf('SNo'), name: h.indexOf('Name'), i: h.indexOf('RtgI'), n: h.indexOf('RtgN') }
+        cols = colOf(h, 'SNo') >= 0 && colOf(h, 'Name') >= 0
+          ? { snr: colOf(h, 'SNo'), name: colOf(h, 'Name'), i: colOf(h, 'RtgI'), n: colOf(h, 'RtgN') }
           : null;
         continue;
       }
