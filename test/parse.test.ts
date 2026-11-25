@@ -183,6 +183,15 @@ test('team page before the event (art=8, 2026)', () => {
   assert.equal(t.lineup[3]!.rating, null); // unrated
 });
 
+test('team page with the captain after the brackets (2026, from 25 Nov)', () => {
+  const t = parseTeamPage(fx('2026-team8-captain.html'), 52)!;
+  assert.ok(t, 'the page must be recognised');
+  assert.equal(t.name, 'Dassault Systèmes 1');
+  assert.equal(t.avgRating, 1696);
+  assert.equal(t.captain, 'Paul de Temmerman');
+  assert.equal(t.lineup.length, 4);
+});
+
 test('garbage input does not throw', () => {
   const d = new JSDOM('<html><body><p>Maintenance</p></body></html>').window.document;
   assert.equal(parseTeamPage(d, 1), null);

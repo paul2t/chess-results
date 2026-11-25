@@ -226,8 +226,10 @@ export const isPlayed = (p: Pairing): boolean => p.homeScore !== null && (p.bye 
 
 // ───────────────────────────── team page (art=20 / art=8) ─────────────────────────────
 
+// The captain has moved over time: inside the brackets ("(RtgAvg:1696, Captain: X / TB1: 0 / TB2: 0)"), then
+// after them from 25 Nov 2026 ("(RtgAvg:1696 / TB1: 0 / TB2: 0) Captain: X"). Both are read.
 const TEAM_HEAD =
-  /^(\d+)\.\s*(.*?)\s*\(RtgAvg:\s*(\d+)(?:,\s*Captain:\s*(.*?))?\s*\/\s*TB1:\s*([^/]*?)\s*\/\s*TB2:\s*([^)]*?)\)\s*$/;
+  /^(\d+)\.\s*(.*?)\s*\(RtgAvg:\s*(\d+)(?:,\s*Captain:\s*(.*?))?\s*\/\s*TB1:\s*([^/]*?)\s*\/\s*TB2:\s*([^)]*?)\)\s*(?:Captain:\s*(.*?))?\s*$/;
 
 const RESULT_TOKEN = '(\\+|-|0|1|½)';
 const GAME_RESULT = new RegExp(`^${RESULT_TOKEN}\\s+-\\s+${RESULT_TOKEN}$`);
@@ -253,7 +255,7 @@ export function parseTeamPage(doc: Document, snr: number): TeamPage | null {
       found = true;
       page.name = head[2]!;
       page.avgRating = int(head[3]!) || null;
-      page.captain = head[4] ?? '';
+      page.captain = head[4] ?? head[7] ?? '';
       page.tb1 = head[5] ?? '';
       page.tb2 = head[6] ?? '';
       parseComposition(rows, page);
