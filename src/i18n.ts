@@ -33,7 +33,8 @@ const en = {
   followedOnly: 'Followed only', noFollowed: 'No followed team yet. Tap ☆ next to a team, or open a team and choose Follow.',
   noFollowedGame: 'None of your followed teams plays in this round.',
   noFollowedHelp: 'The ★ filter only shows the teams you follow, and you follow none yet. Go to the Teams list (the filter is switched off there) and tap ☆ next to your team.',
-  noFollowedPlayers: 'No players listed yet for the teams you follow. Their line-ups appear once the organiser publishes them.',
+  noFollowedPlayers: 'No players listed yet for the teams you follow:',
+  noFollowedPlayersHint: 'Line-ups appear once the organiser publishes them. Is one of these not your team? Open the Teams list and change who you follow.',
   goTeams: 'Go to the Teams list',
 };
 
@@ -72,7 +73,8 @@ const fr: typeof en = {
   followedOnly: 'Suivies uniquement', noFollowed: 'Aucune équipe suivie. Touchez ☆ à côté d’une équipe, ou ouvrez une équipe et choisissez Suivre.',
   noFollowedGame: 'Aucune de vos équipes suivies ne joue dans cette ronde.',
   noFollowedHelp: 'Le filtre ★ n’affiche que les équipes que vous suivez, et vous n’en suivez aucune. Allez à la liste des équipes (le filtre y est désactivé) et touchez ☆ à côté de votre équipe.',
-  noFollowedPlayers: 'Aucun joueur listé pour le moment pour les équipes que vous suivez. Leurs compositions apparaissent dès que l’organisateur les publie.',
+  noFollowedPlayers: 'Aucun joueur listé pour le moment pour les équipes que vous suivez :',
+  noFollowedPlayersHint: 'Les compositions apparaissent dès que l’organisateur les publie. Une de ces équipes n’est pas la vôtre ? Ouvrez la liste des équipes et changez les équipes suivies.',
   goTeams: 'Aller à la liste des équipes',
 };
 

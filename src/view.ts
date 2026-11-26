@@ -839,7 +839,9 @@ function playerList(): HTMLElement {
     const q = normName(S.pfilter);
     const shown = rows!.filter((r) => (!S.onlyFav || isFavTeam(r.team)) && (!q || normName(`${r.title} ${r.name} ${r.team} ${r.fed}`).includes(q)));
     if (!shown.length && S.onlyFav && !q) {
-      return h('div', { class: 'tlist', id: 'plist' }, S.favTeams.length ? h('p', { class: 'empty' }, t('noFollowedPlayers')) : noFollowedNotice());
+      return h('div', { class: 'tlist', id: 'plist' }, S.favTeams.length
+        ? h('div', { class: 'empty' }, h('p', null, t('noFollowedPlayers')), h('p', null, h('b', null, S.favTeams.join(', '))), h('p', null, h('small', null, t('noFollowedPlayersHint'))))
+        : noFollowedNotice());
     }
     return h('div', { class: 'tlist', id: 'plist' }, ...shown.map((r) => {
       const missing = S.noCard.has(playerKey(r.name));

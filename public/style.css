@@ -234,3 +234,4 @@ a.icon { display: grid; place-items: center; text-decoration: none; }
 .player .opplink { padding: 2px 0; text-align: left; }
 .empty p { margin: 0; }
 .empty .primary { margin-top: 16px; }
+.empty p + p { margin-top: 10px; }
