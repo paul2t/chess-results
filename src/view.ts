@@ -656,7 +656,7 @@ function roundsView(): HTMLElement {
   const sched = s.schedule.find((x) => x.round === sel);
   const shownMatches = r ? r.matches.filter((m) => !S.onlyFav || isFollowed(bySnr(m.home)) || isFollowed(bySnr(m.away))) : [];
   const body = r && S.onlyFav && !shownMatches.length
-    ? h('p', { class: 'empty' }, S.favTeams.length ? t('noFollowedGame') : t('noFollowed'))
+    ? (S.favTeams.length ? h('p', { class: 'empty' }, t('noFollowedGame')) : noFollowedNotice())
     : r
     ? h('div', { class: 'pairs' }, ...shownMatches.map((m) => {
         const home = bySnr(m.home), away = bySnr(m.away);
@@ -811,6 +811,20 @@ function playersView(): HTMLElement {
   return S.viewPno === null ? playerList() : playerCard(S.viewPno);
 }
 
+/** The Teams tab on its list (not on a team), whatever tab or team was open before. */
+function goToTeamList(): void {
+  S.view = 'teams';
+  showTeamList();
+}
+
+/** The ★ filter is on and shows nothing because no team is followed: say what to do, and offer the way there. */
+function noFollowedNotice(): HTMLElement {
+  return h('div', { class: 'empty' },
+    h('p', null, t('noFollowedHelp')),
+    // the filter goes off with it: on the list it would hide every team, so there would be nothing to tap ☆ on
+    h('button', { class: 'primary', onclick: () => { S.onlyFav = false; store.set('cr:onlyfav', '0'); goToTeamList(); } }, `♟ ${t('goTeams')}`));
+}
+
 function playerList(): HTMLElement {
   const rows = S.players;
   if (!rows?.length) return h('p', { class: 'empty' }, !rows && S.loading ? t('loading') : t('noData'));
@@ -824,7 +838,9 @@ function playerList(): HTMLElement {
   function buildRows(): HTMLElement {
     const q = normName(S.pfilter);
     const shown = rows!.filter((r) => (!S.onlyFav || isFavTeam(r.team)) && (!q || normName(`${r.title} ${r.name} ${r.team} ${r.fed}`).includes(q)));
-    if (!shown.length && S.onlyFav && !q) return h('div', { class: 'tlist', id: 'plist' }, h('p', { class: 'empty' }, t('noFollowed')));
+    if (!shown.length && S.onlyFav && !q) {
+      return h('div', { class: 'tlist', id: 'plist' }, S.favTeams.length ? h('p', { class: 'empty' }, t('noFollowedPlayers')) : noFollowedNotice());
+    }
     return h('div', { class: 'tlist', id: 'plist' }, ...shown.map((r) => {
       const missing = S.noCard.has(playerKey(r.name));
       return h('div', { class: `trow ${missing ? 'dim' : ''}` },
