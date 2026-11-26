@@ -2,10 +2,11 @@ import { test } from 'node:test';
 import assert from 'node:assert/strict';
 import { readFileSync } from 'node:fs';
 import { JSDOM } from 'jsdom';
+import { normName } from '../src/parse';
 import type { Fetcher } from '../src/api';
 import { mergeResults, parseSearchForm, parseSearchResults, parseTnr, searchTournaments, SEARCH_URL } from '../src/search';
 import {
-  isFav, parseFavs, parseNames, phaseOf, pushRecent, sortFavs, splitFavs, toggleFav, toggleName,
+  currentTeamName, isFav, parseFavs, parseNames, reconcileNames, phaseOf, pushRecent, sortFavs, splitFavs, toggleFav, toggleName,
 } from '../src/favs';
 import type { Tournament } from '../src/types';
 
@@ -140,4 +141,21 @@ test('favorites split: live and upcoming first, finished apart, undated stay wit
   assert.deepEqual(current.map((x) => x.tnr), [3, 2, 4]); // live, then upcoming, then undated
   assert.deepEqual(past.map((x) => x.tnr), [5, 1]); // most recent first
   assert.deepEqual(splitFavs([], today), { current: [], past: [] });
+});
+
+test('a followed team renamed by the organiser is found again', () => {
+  const key = (x: string) => normName(x);
+  const teams = ['Dassault Systèmes 1', 'Dassault Systèmes 2', 'Dassault Systèmes 10', 'GOOGLE C'];
+  assert.equal(currentTeamName('Dassault Systemes 1 (France) Industry', teams, key), 'Dassault Systèmes 1'); // group and country added
+  assert.equal(currentTeamName('Dassault Systèmes 1', teams, key), 'Dassault Systèmes 1');
+  assert.equal(currentTeamName('DASSAULT SYSTEMES 1', teams, key), 'Dassault Systèmes 1');
+  assert.equal(currentTeamName('Dassault Systemes 1 Industry', teams, key), 'Dassault Systèmes 1');
+  assert.equal(currentTeamName('Dassault Systèmes', teams, key), null); // ambiguous: three teams start with it
+  assert.equal(currentTeamName('Alstom', teams, key), null);
+  // "1" is not "10"
+  assert.equal(currentTeamName('Dassault Systèmes 1 (France)', ['Dassault Systèmes 10'], key), null);
+  // the two names found on a real phone
+  assert.deepEqual(reconcileNames(['Dassault Systemes 1 (France) Industry', 'Dassault Systemes 2 (France) Industry'], teams, key), ['Dassault Systèmes 1', 'Dassault Systèmes 2']);
+  assert.deepEqual(reconcileNames(['Dassault Systemes 1 (France) Industry', 'Gone'], teams, key), ['Dassault Systèmes 1', 'Gone']);
+  assert.deepEqual(reconcileNames(['Dassault Systemes 1 (France)', 'Dassault Systèmes 1'], teams, key), ['Dassault Systèmes 1']);
 });

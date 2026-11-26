@@ -8,7 +8,7 @@ import { createDemoFetcher, createFetcher, pageUrl, type Fetcher } from './api';
 import { startDashboard } from './dashboard';
 import { h, store, type Kid } from './dom';
 import {
-  favTeamsKey, FAVS_KEY, parseFavs, parseNames, pushRecent, RECENT_KEY, toggleName,
+  favTeamsKey, FAVS_KEY, parseFavs, parseNames, pushRecent, reconcileNames, RECENT_KEY, toggleName,
 } from './favs';
 import { flagOf } from './flags';
 import { t } from './i18n';
@@ -199,6 +199,12 @@ async function load(): Promise<void> {
     const snap = await loadSnapshot(S.fetcher, S.tnr, S.snap);
     S.snap = snap;
     S.error = '';
+    // a followed team renamed by the organiser keeps being followed under its new name
+    const names = reconcileNames(S.favTeams, snap.home.teams.map((x) => x.name), normName);
+    if (names.length !== S.favTeams.length || names.some((n, i) => n !== S.favTeams[i])) {
+      S.favTeams = names;
+      persist(favTeamsKey(S.tnr), JSON.stringify(names));
+    }
     refreshFavTournament(snap);
     if (!DEMO) store.set(RECENT_KEY, JSON.stringify(pushRecent(parseFavs(store.get(RECENT_KEY)), tournamentInfo(snap))));
     S.fresh.clear();

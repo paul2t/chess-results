@@ -78,6 +78,42 @@ export function toggleName(names: string[], name: string, same: (a: string, b: s
   return names.some((n) => same(n, name)) ? names.filter((n) => !same(n, name)) : [...names, name];
 }
 
+/**
+ * A followed name is kept as it was when the team was starred, but organisers rename teams ("Dassault Systemes 1
+ * (France) Industry" became "Dassault Systèmes 1"): a name that no team has any more follows nothing. This finds
+ * the team a stored name now stands for: the same name, or else the one whose name starts the other at a word
+ * boundary once brackets are ignored (the longest, and only when there is just one). Null when there is none.
+ * `key` normalises a name for comparison (case, accents, punctuation).
+ */
+export function currentTeamName(stored: string, teams: string[], key: (s: string) => string): string | null {
+  const core = (n: string) => key(n.replace(/\([^)]*\)/g, ' '));
+  const k = key(stored);
+  const exact = teams.find((t) => key(t) === k);
+  if (exact) return exact;
+  const c = core(stored);
+  if (!c) return null;
+  // 1. teams whose name the stored one starts with (words were added: country, group): the longest, if just one
+  const longer = teams.filter((t) => { const x = core(t); return x !== '' && (x === c || c.startsWith(`${x} `)); });
+  if (longer.length) {
+    const best = Math.max(...longer.map((t) => core(t).length));
+    const top = longer.filter((t) => core(t).length === best);
+    return top.length === 1 ? top[0]! : null;
+  }
+  // 2. teams whose name starts with the stored one (words were dropped): only when it is unambiguous
+  const shorter = teams.filter((t) => core(t).startsWith(`${c} `));
+  return shorter.length === 1 ? shorter[0]! : null;
+}
+
+/** The followed names, each replaced by the name its team has now; names that match no team are kept as they are. */
+export function reconcileNames(names: string[], teams: string[], key: (s: string) => string): string[] {
+  const out: string[] = [];
+  for (const n of names) {
+    const now = currentTeamName(n, teams, key) ?? n;
+    if (!out.some((o) => key(o) === key(now))) out.push(now);
+  }
+  return out;
+}
+
 // ── recently opened tournaments ──
 
 export const RECENT_KEY = 'cr:recent';
