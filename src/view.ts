@@ -968,8 +968,11 @@ async function boot(): Promise<void> {
   syncUrl(); // an old ?t=… link becomes /<tnr>/…
   window.addEventListener('popstate', applyUrl);
   render();
-  const tab = S.view === 'players' ? ensurePlayersTab() : Promise.resolve(); // independent of the tournament page
-  await Promise.all([load(), tab]);
+  // The tournament page first: load() skips itself while another load is under way, and ensurePlayersTab() raises
+  // that flag at once, so started the other way round the page would never refresh when opened on the Players tab.
+  const main = load();
+  const tab = S.view === 'players' ? ensurePlayersTab() : Promise.resolve();
+  await Promise.all([main, tab]);
 
   setInterval(() => {
     if (!S.auto || document.visibilityState !== 'visible' || (S.snap && isFinished(S.snap))) return;
