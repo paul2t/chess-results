@@ -104,6 +104,8 @@ export interface TeamMatch {
   oppScore: number | null;
   /** True when both scores are known. */
   played: boolean;
+  /** The table the match is played at: the part before the dot of its board numbers ("18.1"). Null when unknown. */
+  table?: number | null;
   boards: BoardGame[];
 }
 

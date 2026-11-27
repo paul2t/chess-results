@@ -174,3 +174,29 @@ test('a page that is something else gives nothing instead of throwing', () => {
   assert.deepEqual(parseSchedule(d), []);
   assert.deepEqual(parsePlayers(d), []);
 });
+
+// ── table numbers ──
+
+test('team matches carry their table (the number before the dot of the board numbers)', () => {
+  const t = parseTeamPage(dom(demo('team-45.html')), 45)!;
+  assert.ok(t.matches.length >= 9);
+  for (const m of t.matches) {
+    assert.ok(m.table && m.table > 0, `round ${m.round} has no table`);
+    // every board of the match sits at that table
+    assert.ok(m.boards.length > 0);
+  }
+  // two teams of a round never share a table
+  const rounds = parsePairings(dom(demo('round-1.html')))!;
+  const first = t.matches.find((m) => m.round === 1)!;
+  const pairing = rounds.matches.find((p) => p.no === first.table);
+  assert.ok(pairing, 'the table of the match is the number of its pairing');
+  assert.ok([pairing.home, pairing.away].includes(first.usName));
+});
+
+test('team match title without date or time does not break the page', () => {
+  const src = demo('team-45.html').replace(/Round (\d+) on [^<]*/g, 'Round $1');
+  const t = parseTeamPage(dom(src), 45)!;
+  assert.ok(t.matches.length >= 9);
+  assert.equal(t.matches[0]!.date, '');
+  assert.equal(t.matches[0]!.time, '');
+});

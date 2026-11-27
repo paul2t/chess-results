@@ -478,7 +478,7 @@ function statusCard(page: TeamPage | null, s: Snapshot, row: TeamRow): HTMLEleme
     const running = a !== null;
     return h('section', { class: `card status ${running ? 'live' : ''}` },
       h('h3', null, running ? t('liveMatch') : t('nextMatch')),
-      h('div', { class: 'big' }, `${t('round')} ${pending.round}`, ' · ', dayTime(pending.date, pending.time)),
+      h('div', { class: 'big' }, [`${t('round')} ${pending.round}`, tableOf(pending, s) ? `${t('table')} ${tableOf(pending, s)}` : '', dayTime(pending.date, pending.time)].filter(Boolean).join(' · ')),
       h('div', null, `${t('vs')} `, oppLink(pending), opp?.rank ? ` (#${opp.rank})` : ''),
       running ? h('div', { class: 'score' }, scoreText(a, b)) : null);
   }
@@ -547,7 +547,15 @@ function oppLink(m: TeamMatch, cls = ''): HTMLElement {
   }, m.oppName);
 }
 
-function matchCard(m: TeamMatch, page: TeamPage, _s: Snapshot, defaultOpen: boolean): HTMLElement {
+/** The table of a match: from its boards, else from the pairing list of the round (paired before the boards show). */
+function tableOf(m: TeamMatch, s: Snapshot): number | null {
+  if (m.table) return m.table;
+  const pairing = s.rounds.find((r) => r.round === m.round)?.matches
+    .find((x) => !x.bye && (sameName(x.home, m.usName) || sameName(x.away, m.usName)));
+  return pairing?.no ?? null;
+}
+
+function matchCard(m: TeamMatch, page: TeamPage, s: Snapshot, defaultOpen: boolean): HTMLElement {
   const key = `${page.snr}:${m.round}`;
   const [a, b] = liveScore(m);
   const o = outcome(a, b);
@@ -565,7 +573,7 @@ function matchCard(m: TeamMatch, page: TeamPage, _s: Snapshot, defaultOpen: bool
       h('span', { class: 'rd' }, `R${m.round}`),
       h('span', { class: 'opp' },
         oppLink(m, 'on'),
-        h('small', null, [dayTime(m.date, m.time), opp?.rank ? `#${opp.rank}` : ''].filter(Boolean).join(' · '))),
+        h('small', null, [dayTime(m.date, m.time), tableOf(m, s) ? `${t('table')} ${tableOf(m, s)}` : '', opp?.rank ? `#${opp.rank}` : ''].filter(Boolean).join(' · '))),
       h('span', { class: `pill ${outcomeClass(o)}` }, scoreText(a, b))),
     h('div', { class: 'boards' }, ...m.boards.map((g) => boardRow(g, page))));
   return d;

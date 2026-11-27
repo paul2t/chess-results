@@ -412,9 +412,9 @@ function parseTeamMatches(rows: HTMLTableRowElement[], snr: number): TeamMatch[]
       const m = ROUND_HEAD.exec(txt(c[0]));
       if (m) {
         cur = {
-          round: parseInt(m[1]!, 10), date: m[2]!, time: to24h(m[3]!),
+          round: parseInt(m[1]!, 10), date: m[2] ?? '', time: to24h(m[3] ?? ''),
           usSnr: snr, usName: '', oppSnr: 0, oppName: '',
-          usScore: null, oppScore: null, played: false, boards: [],
+          usScore: null, oppScore: null, played: false, table: null, boards: [],
         };
         out.push(cur);
       }
@@ -443,7 +443,8 @@ function parseTeamMatches(rows: HTMLTableRowElement[], snr: number): TeamMatch[]
     }
 
     if (c.length >= sep + 4 && /^\d+\.\d+$/.test(txt(c[0]))) {
-      const board = parseInt(txt(c[0]).split('.')[1]!, 10);
+      const [tableNo, board] = txt(c[0]).split('.').map((x) => parseInt(x, 10)) as [number, number];
+      if (cur.table == null) cur.table = tableNo;
       const left: Opponent = { name: txt(c[2]), fed: txt(c[3]), title: txt(c[4]) };
       const right: Opponent = { name: txt(c[sep + 2]), fed: txt(c[sep + 3]), title: txt(c[sep + 1]) };
       const leftWhite = c[2]!.querySelector('.FarbewT') ? true : c[2]!.querySelector('.FarbesT') ? false : null;
