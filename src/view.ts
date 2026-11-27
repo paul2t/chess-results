@@ -776,7 +776,9 @@ let numbersAt = 0;
 
 /** Opens the card of a player picked in the list or a line-up; the first time this fetches the numbers of all players. */
 async function openPlayerByName(who: { name: string; rating: number; snr?: number | null }): Promise<void> {
-  let snr = who.snr ?? cardNumberOf(who); // the number when the page gave it (before the event), else by name
+  // The number when the page gave it (before the event), else by name. Numbers saved by an earlier visit are not
+  // trusted: the organiser renumbers the players when the event starts, and a stale number opens somebody else.
+  let snr = who.snr ?? (numbersAt ? cardNumberOf(who) : null);
   const f = S.fetcher;
   if (snr === null && f && Date.now() - numbersAt > PLAYERS_TTL) {
     const alone = !S.loading;

@@ -129,3 +129,22 @@ test('forfeit results: "- 1K" wins, "- 0K" loses, "1" and "½" are played games'
   const games = parsePlayerPage(new JSDOM(html).window.document, 1)!.games;
   assert.deepEqual(games.map((x) => [x.result, x.forfeit]), [[1, true], [0, true], [1, false], [0.5, false]]);
 });
+
+test('a card of the running event (2026): the opponent rating is a plain "Rtg" column', () => {
+  const html = `<html><body><h2>Player info</h2><table class="CRs1">
+    <tr><td class="CR">Name</td><td class="CR">Margarido, Jose Miguel Teixeira</td></tr>
+    <tr><td class="CR">Starting rank</td><td class="CR">182</td></tr>
+    <tr><td class="CR">Rating</td><td class="CR">2071</td></tr>
+    <tr><td class="CR">Rating national</td><td class="CR">0</td></tr>
+    <tr><td class="CR">Rating international</td><td class="CR">2071</td></tr>
+    <tr><td class="CR">Performance rating</td><td class="CR">2595</td></tr></table>
+    <table class="CRs1"><tr><th class="CRc">Rd.</th><th class="CRc">Bo.</th><th class="CRc">SNo</th><th class="CR"></th><th class="CR">Name</th><th class="CRr">Rtg</th><th class="CR">FED</th><th class="CRc">Pts.</th><th class="CRc">Res.</th></tr>
+    <tr><td class="CRc">1</td><td class="CRc">3</td><td class="CRc">161</td><td class="CR"></td><td class="CR">Vaissaire, Michel</td><td class="CRr">1598</td><td class="CR">FRA</td><td class="CRc">1</td><td class="CRc">1</td></tr>
+    <tr><td class="CRc">2</td><td class="CRc">3</td><td class="CRc">194</td><td class="CR"></td><td class="CR">Balandynowicz, Wojciech</td><td class="CRr">1992</td><td class="CR">POL</td><td class="CRc">1</td><td class="CRc">1</td></tr></table></body></html>`;
+  const p = parsePlayerPage(new JSDOM(html).window.document, 182)!;
+  assert.deepEqual(p.games.map((g) => [g.round, g.oppName, g.oppRatingI, g.oppFed, g.result]), [
+    [1, 'Vaissaire, Michel', 1598, 'FRA', 1],
+    [2, 'Balandynowicz, Wojciech', 1992, 'POL', 1],
+  ]);
+  assert.equal(ratingOf({ ratingI: p.games[1]!.oppRatingI, ratingN: p.games[1]!.oppRatingN }), 1992);
+});

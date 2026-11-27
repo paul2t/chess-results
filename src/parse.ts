@@ -542,7 +542,9 @@ export function parsePlayerPage(doc: Document, snr: number): PlayerPage | null {
     const h = headersOf(head);
     const iRd = colOf(h, 'Rd.', 'Round'), iName = colOf(h, 'Name');
     if (iRd < 0 || iName < 0) continue;
-    const iBo = colOf(h, 'Bo.', 'Board'), iSno = colOf(h, 'SNo'), iI = colOf(h, 'RtgI'), iN = colOf(h, 'RtgN');
+    // From the event's start the opponent's rating is one plain "Rtg" column; with the national ratings it is RtgI and RtgN
+    const iBo = colOf(h, 'Bo.', 'Board'), iSno = colOf(h, 'SNo'), iN = colOf(h, 'RtgN');
+    const iI = colOf(h, 'RtgI') >= 0 ? colOf(h, 'RtgI') : colOf(h, 'Rtg');
     const iFed = colOf(h, 'FED'), iPts = colOf(h, 'Pts.'), iRes = colOf(h, 'Res.', 'Result');
     for (const r of rows) {
       if (isHeaderRow(r)) continue;
