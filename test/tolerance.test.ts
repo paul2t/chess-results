@@ -4,7 +4,7 @@ import { test } from 'node:test';
 import assert from 'node:assert/strict';
 import { readFileSync } from 'node:fs';
 import { JSDOM } from 'jsdom';
-import { parseDetails, parseHome, parsePairings, parsePlayers, parseSchedule, parseTeamPage } from '../src/parse';
+import { firstBoardColor, parseDetails, parseHome, parsePairings, parsePlayers, parseSchedule, parseTeamPage } from '../src/parse';
 
 const html = (path: string): string => readFileSync(path, 'utf8');
 const dom = (s: string): Document => new JSDOM(s).window.document;
@@ -211,4 +211,21 @@ test('a paired round that has not started (0 : 0, boards without result) is not 
   const t = parseTeamPage(dom(src), 51)!;
   assert.deepEqual(t.matches.map((m) => [m.round, m.played, m.table]), [[4, true, 22], [5, false, 27]]);
   assert.equal(t.matches[1]!.oppName, 'OCTO Technology 2');
+});
+
+// ── colour on the first board ──
+
+test('colour on the first board: from the boards, else from the round (the team on the left has white)', () => {
+  const rounds = [
+    { round: 5, date: '', time: '', matches: [{ no: 27, home: 'OCTO Technology 2', away: 'Dassault Systèmes 1', homeScore: null, awayScore: null, bye: false }] },
+    { round: 6, date: '', time: '', matches: [{ no: 27, home: 'Dassault Systèmes 1', away: 'MUREX', homeScore: null, awayScore: null, bye: false }] },
+  ];
+  const m = (round: number, boards: Array<{ board: number; color: 'w' | 'b' | null }>) =>
+    ({ round, usName: 'Dassault Systèmes 1', boards: boards.map((b) => ({ ...b })) }) as unknown as Parameters<typeof firstBoardColor>[0];
+  // boards listed: what they say, from the lowest board number
+  assert.equal(firstBoardColor(m(5, [{ board: 2, color: 'w' }, { board: 1, color: 'b' }]), rounds), 'b');
+  // no boards (or no colour on them): the pairing list decides
+  assert.equal(firstBoardColor(m(5, []), rounds), 'b'); // named second: black
+  assert.equal(firstBoardColor(m(6, [{ board: 1, color: null }]), rounds), 'w'); // named first: white
+  assert.equal(firstBoardColor(m(7, []), rounds), null); // not paired yet
 });

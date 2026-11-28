@@ -644,3 +644,18 @@ export function formatScore(n: number | null): string {
   if (!half) return String(whole);
   return whole === 0 ? '½' : `${whole}½`;
 }
+
+/**
+ * The colour our team has on the first board ("w" / "b"): read from the boards when they are listed, else from the
+ * round's pairing list, where the team named first (on the left) has white on the first board. Null when the round
+ * is not paired yet.
+ */
+export function firstBoardColor(m: TeamMatch, rounds: RoundPairings[]): 'w' | 'b' | null {
+  const first = [...m.boards].sort((a, b) => a.board - b.board)[0];
+  if (first?.color) return first.color;
+  const same = (a: string, b: string): boolean => normName(a) === normName(b);
+  const pairing = rounds.find((r) => r.round === m.round)?.matches
+    .find((x) => !x.bye && (same(x.home, m.usName) || same(x.away, m.usName)));
+  if (!pairing) return null;
+  return same(pairing.home, m.usName) ? 'w' : 'b';
+}

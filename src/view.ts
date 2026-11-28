@@ -15,7 +15,7 @@ import { t } from './i18n';
 import { applyTheme, getTheme } from './theme';
 import { loadPlayerNumbers, loadPlayerPage, loadPlayers, loadSnapshot, loadTeamPage } from './loader';
 import { BASE, buildPath, extraQuery, parseLegacy, parsePath, type Route, type View } from './route';
-import { formatScore, isPlayed, normName, outcome, playerKey, ratingOf, type Outcome } from './parse';
+import { firstBoardColor, formatScore, isPlayed, normName, outcome, playerKey, ratingOf, type Outcome } from './parse';
 import type {
   BoardGame, PlayerGame, PlayerNumbers, PlayerPage, PlayerRow, Snapshot, TeamMatch, TeamPage, TeamRow, Tournament,
 } from './types';
@@ -555,12 +555,7 @@ function oppLink(m: TeamMatch, cls = ''): HTMLElement {
  * The colour our team has on the first board ("w" / "b"), or null when unknown: from the boards, else from the pairing
  * list (the team named first has white on the first board).
  */
-function colorOf(m: TeamMatch, s: Snapshot): 'w' | 'b' | null {
-  const first = [...m.boards].sort((a, b) => a.board - b.board)[0];
-  if (first?.color) return first.color;
-  const pairing = s.rounds.find((r) => r.round === m.round)?.matches.find((x) => !x.bye && (sameName(x.home, m.usName) || sameName(x.away, m.usName)));
-  return pairing ? (sameName(pairing.home, m.usName) ? 'w' : 'b') : null;
-}
+const colorOf = (m: TeamMatch, s: Snapshot): 'w' | 'b' | null => firstBoardColor(m, s.rounds);
 
 /** "White vs" / "Black vs" (just "vs" while the colour is not known), shown before the opponent's name. */
 function vsLabel(m: TeamMatch, s: Snapshot): HTMLElement {
