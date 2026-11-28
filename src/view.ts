@@ -511,7 +511,11 @@ function lineupCard(page: TeamPage, s: Snapshot): HTMLElement {
   const roundsShown = Math.max(nCols, s.home.kind === 'ranking' ? s.totalRounds : 0);
   const chips = (kids: Kid[]) => h('div', { class: 'chips9', style: `--n:${roundsShown}` }, ...kids);
   const head = roundsShown
-    ? h('div', { class: 'lhead' }, h('span'), chips(Array.from({ length: roundsShown }, (_, i) => h('span', { class: 'c' }, i + 1))), h('span'))
+    ? h('div', { class: 'lhead' }, h('span'), chips(Array.from({ length: roundsShown }, (_, i) => {
+        // the round number takes the colour of the team's result in it (nothing until the match is over)
+        const m = page.matches.find((x) => x.round === i + 1);
+        return h('span', { class: `c ${m?.played ? outcomeClass(outcome(m.usScore, m.oppScore)) : ''}`.trim() }, i + 1);
+      })), h('span'))
     : null;
   const rows = page.lineup.map((p) => h('div', { class: 'player' },
     h('span', { class: 'bo' }, p.board),

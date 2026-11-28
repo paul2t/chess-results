@@ -91,6 +91,11 @@ h2 { font-size: 1.15rem; }
 .lhead .chips9, .player .chips9 { grid-column: 2 / 4; }
 .chips9 { display: grid; grid-template-columns: repeat(var(--n), minmax(0, 1fr)); gap: 3px; }
 .chips9 .c { text-align: center; }
+/* round numbers above the line-up: the team's result in that round */
+.lhead .c { border-radius: 5px; padding: 1px 0; font-weight: 400; }
+.lhead .c.win { background: var(--win-bg); color: var(--win); font-weight: 700; }
+.lhead .c.draw { background: var(--draw-bg); color: var(--draw); font-weight: 700; }
+.lhead .c.loss { background: var(--loss-bg); color: var(--loss); font-weight: 700; }
 .player .bo { color: var(--muted); text-align: center; }
 .player .nm { font-weight: 600; overflow-wrap: anywhere; line-height: 1.2; }
 .player .nm small { font-weight: 400; }
