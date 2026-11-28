@@ -200,3 +200,15 @@ test('team match title without date or time does not break the page', () => {
   assert.equal(t.matches[0]!.date, '');
   assert.equal(t.matches[0]!.time, '');
 });
+
+test('a paired round that has not started (0 : 0, boards without result) is not a played match', () => {
+  const row = (...c: string[]) => `<tr>${c.map((x) => `<td class="CR">${x}</td>`).join('')}</tr>`;
+  const head = (...c: string[]) => `<tr>${c.map((x) => `<th class="CR">${x}</th>`).join('')}</tr>`;
+  const src = `<html><body>
+    <table class="CRs1"><tr><td colspan="7">51. Dassault Systèmes 1 (RtgAvg:1696 / TB1: 4 / TB2: 6) Captain: P</td></tr>${head('Bo.', '', 'Name', 'Rtg', 'FED', 'FideID', 'Games')}${row('1', '', 'A', '1700', 'FRA', '1', '1')}</table>
+    <table class="CRs1"><tr><td colspan="9">Round 4 on 2026/11/27 at 15:00</td></tr>${head('Bo.', '46', 'Alstom Chess Club 2', 'Rtg', '-', '51', 'Dassault Systèmes 1', 'Rtg', '3 : 1')}${row('22.1', '', 'X, Y', '1800', '-', '', 'A', '1700', '1 - 0')}
+      <tr><td colspan="9">Round 5 on 2026/11/28 at 10:00</td></tr>${head('Bo.', '59', 'OCTO Technology 2', 'Rtg', '-', '51', 'Dassault Systèmes 1', 'Rtg', '0 : 0')}${row('27.1', '', 'no player', '0', '-', '', 'no player', '0', '')}${row('27.2', '', 'no player', '0', '-', '', 'no player', '0', '')}</table></body></html>`;
+  const t = parseTeamPage(dom(src), 51)!;
+  assert.deepEqual(t.matches.map((m) => [m.round, m.played, m.table]), [[4, true, 22], [5, false, 27]]);
+  assert.equal(t.matches[1]!.oppName, 'OCTO Technology 2');
+});

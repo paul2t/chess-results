@@ -465,6 +465,10 @@ function parseTeamMatches(rows: HTMLTableRowElement[], snr: number): TeamMatch[]
       cur.boards.push(game);
     }
   }
+  // A round that is paired but not started is listed as "0 : 0" with boards that have no result: not played yet.
+  for (const m of out) {
+    if (m.played && m.usScore === 0 && m.oppScore === 0 && !m.boards.some((b) => b.usPts !== null)) m.played = false;
+  }
   return out;
 }
 
