@@ -115,14 +115,17 @@ h2 { font-size: 1.15rem; }
 .match .rd { color: var(--muted); font-weight: 650; font-size: .85rem; }
 .match .opp { display: grid; min-width: 0; }
 /* "White vs" / "Black vs" before the opponent */
-.who { display: flex; align-items: baseline; gap: 6px; min-width: 0; }
-.vs { color: var(--muted); font-size: .8rem; white-space: nowrap; }
-.vs.w::before, .vs.b::before { content: ''; display: inline-block; width: .6em; height: .6em; border-radius: 50%; border: 1.5px solid currentColor; margin-right: 5px; vertical-align: baseline; }
-.vs.w::before { background: #fff; }
-.vs.b::before { background: #222; }
+.vsrow { display: flex; align-items: baseline; gap: 6px; min-width: 0; }
+.vslabel { color: var(--muted); font-size: .8rem; white-space: nowrap; }
+.vslabel.w::before, .vslabel.b::before { content: ''; display: inline-block; width: .6em; height: .6em; border-radius: 50%; border: 1.5px solid currentColor; margin-right: 5px; vertical-align: baseline; }
+.vslabel.w::before { background: #fff; }
+.vslabel.b::before { background: #222; }
 .match .on { font-weight: 600; overflow: hidden; text-overflow: ellipsis; white-space: nowrap; }
 .opplink { font-weight: 600; color: var(--accent); text-decoration: underline dotted; text-underline-offset: 3px; justify-self: start; max-width: 100%; }
 .match .opplink { padding: 6px 0; }
+/* player names inside a board row run with the text */
+.board .opplink.inl { display: inline; padding: 2px 0; font: inherit; font-weight: 600; text-align: left; color: var(--accent); }
+.board .opplink.inl.b { font-weight: 700; }
 .pill { padding: 4px 10px; border-radius: 999px; font-weight: 700; font-variant-numeric: tabular-nums; white-space: nowrap; background: var(--bg); }
 .pill.sm { padding: 2px 8px; font-size: .8rem; }
 .pill.win { background: var(--win-bg); color: var(--win); }

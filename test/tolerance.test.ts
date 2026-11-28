@@ -229,3 +229,19 @@ test('colour on the first board: from the boards, else from the round (the team 
   assert.equal(firstBoardColor(m(6, [{ board: 1, color: null }]), rounds), 'w'); // named first: white
   assert.equal(firstBoardColor(m(7, []), rounds), null); // not paired yet
 });
+
+test('board games carry the starting number of both players (to link their cards)', () => {
+  const link = (name: string, snr: number) => `<a class="CRdb" href="https://chess-results.com/tnr1542962.aspx?lan=1&amp;art=9&amp;flag=30&amp;snr=${snr}">${name}</a>`;
+  const row = (...c: string[]) => `<tr>${c.map((x) => `<td class="CR">${x}</td>`).join('')}</tr>`;
+  const head = (...c: string[]) => `<tr>${c.map((x) => `<th class="CR">${x}</th>`).join('')}</tr>`;
+  const src = `<html><body>
+    <table class="CRs1"><tr><td colspan="7">51. Dassault Systèmes 1 (RtgAvg:1696 / TB1: 4 / TB2: 6) Captain: P</td></tr>${head('Bo.', '', 'Name', 'Rtg', 'FED', 'FideID', 'Games')}${row('1', '', link('Ridel, Fabien', 181), '1771', 'FRA', '1', '4')}</table>
+    <table class="CRs1"><tr><td colspan="9">Round 5 on 2026/11/28 at 10:00</td></tr>${head('Bo.', '59', 'OCTO Technology 2', 'Rtg', '-', '51', 'Dassault Systèmes 1', 'Rtg', '3½ : ½')}
+      ${row('27.1', '', link('Pellerin, Alexandre', 172), '2100', '-', '', link('Ridel, Fabien', 181), '1771', '0 - 1')}
+      ${row('27.2', '', 'no player', '0', '-', '', 'no player', '0', '')}</table></body></html>`;
+  const t = parseTeamPage(dom(src), 51)!;
+  const [g1, g2] = t.matches[0]!.boards;
+  assert.deepEqual([g1!.us.name, g1!.us.snr, g1!.opp.name, g1!.opp.snr], ['Ridel, Fabien', 181, 'Pellerin, Alexandre', 172]);
+  assert.deepEqual([g2!.us.snr, g2!.opp.snr], [null, null]); // "no player" has no card
+  assert.equal(t.lineup[0]!.snr, 181);
+});

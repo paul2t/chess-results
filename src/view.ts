@@ -17,8 +17,7 @@ import { loadPlayerNumbers, loadPlayerPage, loadPlayers, loadSnapshot, loadTeamP
 import { BASE, buildPath, extraQuery, parseLegacy, parsePath, type Route, type View } from './route';
 import { firstBoardColor, formatScore, isPlayed, normName, outcome, playerKey, ratingOf, type Outcome } from './parse';
 import type {
-  BoardGame, PlayerGame, PlayerNumbers, PlayerPage, PlayerRow, Snapshot, TeamMatch, TeamPage, TeamRow, Tournament,
-} from './types';
+  BoardGame, PlayerGame, PlayerNumbers, PlayerPage, PlayerRow, Snapshot, TeamMatch, TeamPage, TeamRow, Tournament, Opponent } from './types';
 
 interface Config { proxies: string[] }
 
@@ -479,7 +478,7 @@ function statusCard(page: TeamPage | null, s: Snapshot, row: TeamRow): HTMLEleme
     return h('section', { class: `card status ${running ? 'live' : ''}` },
       h('h3', null, running ? t('liveMatch') : t('nextMatch')),
       h('div', { class: 'big' }, [`${t('round')} ${pending.round}`, tableOf(pending, s) ? `${t('table')} ${tableOf(pending, s)}` : '', dayTime(pending.date, pending.time)].filter(Boolean).join(' · ')),
-      h('div', { class: 'who' }, vsLabel(pending, s), oppLink(pending), opp?.rank ? ` (#${opp.rank})` : ''),
+      h('div', { class: 'vsrow' }, vsLabel(pending, s), oppLink(pending), opp?.rank ? ` (#${opp.rank})` : ''),
       running ? h('div', { class: 'score' }, scoreText(a, b)) : null);
   }
   if (!matches.length) {
@@ -560,7 +559,7 @@ const colorOf = (m: TeamMatch, s: Snapshot): 'w' | 'b' | null => firstBoardColor
 /** "White vs" / "Black vs" (just "vs" while the colour is not known), shown before the opponent's name. */
 function vsLabel(m: TeamMatch, s: Snapshot): HTMLElement {
   const c = colorOf(m, s);
-  return h('span', { class: `vs ${c ?? ''}`.trim() }, c ? `${t(c === 'w' ? 'white' : 'black')} ${t('vs')}` : t('vs'));
+  return h('span', { class: `vslabel ${c ?? ''}`.trim() }, c ? `${t(c === 'w' ? 'white' : 'black')} ${t('vs')}` : t('vs'));
 }
 
 /** The table of a match: from its boards, else from the pairing list of the round (paired before the boards show). */
@@ -588,11 +587,20 @@ function matchCard(m: TeamMatch, page: TeamPage, s: Snapshot, defaultOpen: boole
     h('summary', null,
       h('span', { class: 'rd' }, `R${m.round}`),
       h('span', { class: 'opp' },
-        h('span', { class: 'who' }, vsLabel(m, s), oppLink(m, 'on')),
+        h('span', { class: 'vsrow' }, vsLabel(m, s), oppLink(m, 'on')),
         h('small', null, [dayTime(m.date, m.time), tableOf(m, s) ? `${t('table')} ${tableOf(m, s)}` : '', opp?.rank ? `#${opp.rank}` : ''].filter(Boolean).join(' · '))),
       h('span', { class: `pill ${outcomeClass(o)}` }, scoreText(a, b))),
     h('div', { class: 'boards' }, ...m.boards.map((g) => boardRow(g, page))));
   return d;
+}
+
+/** A player's name, opening the player's card (nothing to open for "no player"). */
+function playerBtn(o: Opponent, rating: number | null | undefined, snr: number | null | undefined, bold = false): HTMLElement | string {
+  if (!o.name || /^no player$/i.test(o.name)) return natural(o.name);
+  return h('button', {
+    class: `opplink inl${bold ? ' b' : ''}`, title: t('openPlayer'),
+    onclick: () => void openPlayerByName({ name: o.name, rating: rating ?? 0, snr: snr ?? o.snr }),
+  }, natural(o.name));
 }
 
 function boardRow(g: BoardGame, page: TeamPage): HTMLElement {
@@ -607,9 +615,9 @@ function boardRow(g: BoardGame, page: TeamPage): HTMLElement {
     h('span', { class: 'bo' }, g.board),
     h('span', { class: `sq ${g.color ?? ''}`, title: g.color === 'w' ? t('white') : g.color === 'b' ? t('black') : '' }),
     h('span', { class: 'who' },
-      h('b', null, natural(g.us.name)), player?.rating ? h('small', null, ` ${player.rating}`) : null,
+      playerBtn(g.us, player?.rating, player?.snr, true), player?.rating ? h('small', null, ` ${player.rating}`) : null,
       h('span', { class: 'vs' }, ' – '),
-      g.opp.title ? h('em', null, g.opp.title + ' ') : null, natural(g.opp.name),
+      g.opp.title ? h('em', null, g.opp.title + ' ') : null, playerBtn(g.opp, g.opp.rating, g.opp.snr),
       g.opp.rating ? h('small', null, ` ${g.opp.rating}`) : null),
     h('span', { class: `pill sm ${outcomeClass(o)}` }, res || '·'));
 }

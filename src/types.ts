@@ -78,6 +78,8 @@ export interface Opponent {
   fed: string;
   /** International rating, else national; null when unrated or not on the page (e.g. before the round). */
   rating?: number | null;
+  /** Starting number, when the page links the player (it does for listed players, not for "no player"). */
+  snr?: number | null;
 }
 
 export interface BoardGame {

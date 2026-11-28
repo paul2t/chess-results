@@ -445,8 +445,8 @@ function parseTeamMatches(rows: HTMLTableRowElement[], snr: number): TeamMatch[]
     if (c.length >= sep + 4 && /^\d+\.\d+$/.test(txt(c[0]))) {
       const [tableNo, board] = txt(c[0]).split('.').map((x) => parseInt(x, 10)) as [number, number];
       if (cur.table == null) cur.table = tableNo;
-      const left: Opponent = { name: txt(c[2]), fed: txt(c[3]), title: txt(c[4]) };
-      const right: Opponent = { name: txt(c[sep + 2]), fed: txt(c[sep + 3]), title: txt(c[sep + 1]) };
+      const left: Opponent = { name: txt(c[2]), fed: txt(c[3]), title: txt(c[4]), snr: snrOfCell(c[2]) };
+      const right: Opponent = { name: txt(c[sep + 2]), fed: txt(c[sep + 3]), title: txt(c[sep + 1]), snr: snrOfCell(c[sep + 2]) };
       const leftWhite = c[2]!.querySelector('.FarbewT') ? true : c[2]!.querySelector('.FarbesT') ? false : null;
       const m = GAME_RESULT.exec(txt(c[c.length - 1]));
       const forfeit = !!m && /[+-]/.test(m[1]! + m[2]!);
