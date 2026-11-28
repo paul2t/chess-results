@@ -114,6 +114,12 @@ h2 { font-size: 1.15rem; }
 .match summary::-webkit-details-marker { display: none; }
 .match .rd { color: var(--muted); font-weight: 650; font-size: .85rem; }
 .match .opp { display: grid; min-width: 0; }
+/* "White vs" / "Black vs" before the opponent */
+.who { display: flex; align-items: baseline; gap: 6px; min-width: 0; }
+.vs { color: var(--muted); font-size: .8rem; white-space: nowrap; }
+.vs.w::before, .vs.b::before { content: ''; display: inline-block; width: .6em; height: .6em; border-radius: 50%; border: 1.5px solid currentColor; margin-right: 5px; vertical-align: baseline; }
+.vs.w::before { background: #fff; }
+.vs.b::before { background: #222; }
 .match .on { font-weight: 600; overflow: hidden; text-overflow: ellipsis; white-space: nowrap; }
 .opplink { font-weight: 600; color: var(--accent); text-decoration: underline dotted; text-underline-offset: 3px; justify-self: start; max-width: 100%; }
 .match .opplink { padding: 6px 0; }

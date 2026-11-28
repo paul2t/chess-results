@@ -479,7 +479,7 @@ function statusCard(page: TeamPage | null, s: Snapshot, row: TeamRow): HTMLEleme
     return h('section', { class: `card status ${running ? 'live' : ''}` },
       h('h3', null, running ? t('liveMatch') : t('nextMatch')),
       h('div', { class: 'big' }, [`${t('round')} ${pending.round}`, tableOf(pending, s) ? `${t('table')} ${tableOf(pending, s)}` : '', dayTime(pending.date, pending.time)].filter(Boolean).join(' · ')),
-      h('div', null, `${t('vs')} `, oppLink(pending), opp?.rank ? ` (#${opp.rank})` : ''),
+      h('div', { class: 'who' }, vsLabel(pending, s), oppLink(pending), opp?.rank ? ` (#${opp.rank})` : ''),
       running ? h('div', { class: 'score' }, scoreText(a, b)) : null);
   }
   if (!matches.length) {
@@ -551,6 +551,23 @@ function oppLink(m: TeamMatch, cls = ''): HTMLElement {
   }, m.oppName);
 }
 
+/**
+ * The colour our team has on the first board ("w" / "b"), or null when unknown: from the boards, else from the pairing
+ * list (the team named first has white on the first board).
+ */
+function colorOf(m: TeamMatch, s: Snapshot): 'w' | 'b' | null {
+  const first = [...m.boards].sort((a, b) => a.board - b.board)[0];
+  if (first?.color) return first.color;
+  const pairing = s.rounds.find((r) => r.round === m.round)?.matches.find((x) => !x.bye && (sameName(x.home, m.usName) || sameName(x.away, m.usName)));
+  return pairing ? (sameName(pairing.home, m.usName) ? 'w' : 'b') : null;
+}
+
+/** "White vs" / "Black vs" (just "vs" while the colour is not known), shown before the opponent's name. */
+function vsLabel(m: TeamMatch, s: Snapshot): HTMLElement {
+  const c = colorOf(m, s);
+  return h('span', { class: `vs ${c ?? ''}`.trim() }, c ? `${t(c === 'w' ? 'white' : 'black')} ${t('vs')}` : t('vs'));
+}
+
 /** The table of a match: from its boards, else from the pairing list of the round (paired before the boards show). */
 function tableOf(m: TeamMatch, s: Snapshot): number | null {
   if (m.table) return m.table;
@@ -576,7 +593,7 @@ function matchCard(m: TeamMatch, page: TeamPage, s: Snapshot, defaultOpen: boole
     h('summary', null,
       h('span', { class: 'rd' }, `R${m.round}`),
       h('span', { class: 'opp' },
-        oppLink(m, 'on'),
+        h('span', { class: 'who' }, vsLabel(m, s), oppLink(m, 'on')),
         h('small', null, [dayTime(m.date, m.time), tableOf(m, s) ? `${t('table')} ${tableOf(m, s)}` : '', opp?.rank ? `#${opp.rank}` : ''].filter(Boolean).join(' · '))),
       h('span', { class: `pill ${outcomeClass(o)}` }, scoreText(a, b))),
     h('div', { class: 'boards' }, ...m.boards.map((g) => boardRow(g, page))));
